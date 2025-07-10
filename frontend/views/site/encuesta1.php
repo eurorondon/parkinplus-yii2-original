@@ -21,8 +21,8 @@ $this->title = 'Encuesta de Satisfacción';
         0 => 'No, tengo una sugerencia',
     ]) ?>
 
-    <!-- Sugerencias (se muestra solo si selecciona NO) -->
-    <div id="div-sugerencias" style="display:none;">
+    <!-- Sugerencias (campo siempre visible) -->
+    <div id="div-sugerencias">
         <?= $form->field($model, 'sugerencias')->textarea([
             'rows' => 4,
             'placeholder' => 'Cuéntanos cómo podemos mejorar...',
@@ -38,7 +38,9 @@ $this->title = 'Encuesta de Satisfacción';
 </div>
 
 <?php
-// Script para mostrar u ocultar el campo de sugerencias
+// El campo de sugerencias ahora siempre se muestra, por lo que el script de
+// visibilidad ha sido deshabilitado.
+/*
 $this->registerJs('
     $("input[name=\'EncuestaInicial[respuesta]\']").change(function(){
         if ($(this).val() == "0") {
@@ -48,4 +50,5 @@ $this->registerJs('
         }
     }).trigger("change");
 ');
+*/
 ?>
