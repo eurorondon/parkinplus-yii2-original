@@ -1,0 +1,671 @@
+
+/* ESTILOS PARA MOVIL */
+
+@media (max-width: 800px) {
+  .reserva__container {
+    flex-direction: column;
+  }
+
+  .reserva__price__movil {
+    display: block !important;
+  }
+
+  .reserva__price,
+  .reserva__total__c {
+    display: none !important;
+  }
+
+  .reserva__ini__picture {
+    display: none;
+  }
+}
+
+@media (max-width: 575px) {
+  .reserva__form__item {
+    flex-direction: column;
+  }
+  .reserva__ser__extra {
+    width: 100%;
+  }
+
+  .reserva__costo__total {
+    padding-left: 16px;
+    margin-right: 20px;
+    width: 75%;
+  }
+
+  .reserva__total__pagar {
+    justify-content: end;
+    padding-right: 44px;
+  }
+	
+	.ser__extra_item{
+		flex-direction: column;
+	}
+	.des-reserva-ind{
+		width: 100% !important;
+	}
+	
+	.services {
+        width: 100% !important;
+	}
+	
+	.reserva__total__pagar{
+		flex-direction: column;
+	}
+	
+	#subtotal-factura{
+		width: 100% !important;
+		justify-content: flex-start !important;
+	}
+    #reserva_f{
+        justify-content: center !important;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #calc_reserva .card-body1,  #calc_reserva .card-body1 .cal__reserva__input{
+        flex-direction: column;
+    }
+
+    .calcular {
+        padding: 6px 12px !important;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+}
+
+
+@media screen and (max-device-width : 390px){
+	.button-f-r{
+		flex-direction: column;
+    	width: 100%;
+	}	
+}
+
+@media screen and (max-device-width : 480px) {
+	 .plan {
+    	flex-direction: column;
+    	gap: 10px;
+	}	
+	
+	#fechas_r{
+		height: auto !important;
+		padding-bottom: 10px !important;
+	}
+	
+    #sidebar{
+        display:none;
+    }
+
+    #menu{
+        text-align:center;
+    }
+
+    .krajee-datepicker {
+        font-size: 1em !important;
+    }
+
+    .dash1 {
+        border-top: 2px dashed #921007;
+        margin-left: 0px;
+        margin-right: 0px;    
+        margin-top: 35px;
+        margin-bottom: 35px;
+    } 
+
+    .ss {
+        display: none;
+    }
+
+    .panel-separator, .panel-separator2 {
+        border:0px !important;
+        height: auto;
+    }
+
+    .pcontent-services, .pcontent-services2 {
+        text-align: center;
+        padding: 30px 25px 45px 30px;
+    }    
+
+    .pd {
+        margin-top: 0px;
+    }   
+
+    .img-torni {
+        display: none !important;
+    }
+
+    .section-reserva {
+        margin-top: 100px;
+    }
+
+    .label-res {
+        display: none;
+    }
+
+    .panel-default {
+       /* padding: 0px 5px 20px 5px;*/
+    }
+
+    .reserva-promo {
+        margin: 10px 15px 0px 15px;
+        padding: 15px;
+    }
+
+    .form-control, .btn {
+        border-radius: 6px;
+    }
+
+    .paneles {
+        margin: 15px 5px;
+    }
+
+    .reservation {
+        top:0px;
+        right:0px;
+    }
+
+    .msje-inicio {
+        font-size: 1.5em;
+        padding: 10px;
+        display: none;
+    }
+
+    .section-reserva {
+        padding-bottom: 0px;
+        height: auto;
+    }
+
+    .titulo {
+        margin-top: -115px;
+        font-size: 1.9em;
+    }
+
+    .minititulo2, .titulo2, .logo-main2 {
+        display: none !important;
+    }
+
+    .title-footer {
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 1.2em;
+    }
+
+    .table-responsive {
+        border: 0px;
+    }
+
+    .footer, .mgen {
+        margin: 0px;
+    }
+
+    .text-lateral, .iconsc {
+        margin: 0px 0px 0px 20px;
+    }
+
+    .mapa-index {
+        margin-left: 0px;
+        width: 100%;
+    }
+
+    .hrs {
+        margin-top: 40px;
+    }
+
+    .text-index {
+        margin: 5px 0px 40px 0px !important;
+    }
+
+    .img-min {
+        margin-bottom: 40px;
+    }
+
+    .panel-body {
+        padding: 10px;
+    }
+
+    .promo {
+        width: 100%;
+    }
+
+    .coche {
+        padding: 0px;
+        margin-bottom: 0px;
+    }
+
+    .image-atcliente, .image-atc {
+        display: none !important;
+    }
+
+    .image-services {
+        top: 335px;
+        left: 230px;
+        width: 30%;
+    }
+
+    .image-cam {
+        top: 270px;
+        left: 280px;
+        width: 15%;
+    }
+
+    .off {
+        margin-top: -180px !important;
+        margin-left: -120px !important;
+    }
+     .salir {
+        margin-top: -180px !important;
+    }
+
+    .logo-login {
+        width: 25% !important;
+    }
+
+    .parking-login {
+        width: 25%;    
+        margin-left: -450px !important;
+    }
+
+    .plus-login {
+        width: 15.5%;
+        margin-left: -518px !important;
+    }
+
+    .text-lema-login {
+        display: none;
+    }
+
+    .login-content {
+        margin-left: 0px !important;
+        margin-right: 0px !important;
+    } 
+
+    .wrap-login > .container {
+        margin-top: 60px;
+    }
+
+    .alert {
+        margin: 0px 0px 10px 0px;
+    } 
+
+    /* reservas */
+
+    #tm {
+        margin: 20px 10px -30px 10px !important;
+    }
+
+    .datetimepicker {
+        margin-top: 125px;
+    }
+
+    #esp {
+        margin-top: 10px;
+    }
+
+
+    .subtitulo-reserva {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+
+    .services {
+        width: 45%;
+        position: relative;
+        font-size: 12px;
+        text-align: left;
+
+    }
+
+    .servicios {
+        margin-left: 50px;
+    }
+
+    .service-reserva {
+        width: 45%;
+        position: relative;
+        font-size: 12px;
+        text-align: left;
+        top: -30px;
+
+    }  
+
+    .num {
+        position: relative;
+        top: -30px !important;
+    }  
+
+    .mb {
+        position: relative;
+        top: -30px !important;
+    }    
+
+    .des-reserva-ind {
+
+        width: 35%;
+        position: relative;
+        font-size: 11px;
+ 
+    }
+
+    #pu1 {
+        display: none;
+    }
+    #pu {
+        position: relative;
+        width: 20%;
+        font-size: 14px;
+        top: -50px;
+        left: 20px;
+        font-size: 10px;
+    }
+
+    #c1 {
+        display: none;
+    }
+    #c {
+        position: relative;
+        width: 20%;
+        font-size: 14px;
+        top: -100px;
+        left: 80px;
+        font-size: 10px;
+    }  
+
+    #t1 {
+        display: none;
+    }
+    #t {
+        position: relative;
+        width: 20%;
+        font-size: 14px;
+        top: -135px;
+        left: 150px;
+        font-size: 10px;
+    }  
+
+       
+
+    #preu, #servicio_basico, #seguro, #servicios_extras {
+        position: relative;
+        width: 15%;
+        top: -80px;
+        left: 180px;
+        font-size: 14px;
+    }
+
+    #ca, #cant_basico, #cant_seguro, #cant_extras {
+        position: relative;
+        width: 20%;
+        top: -120px;
+        left: 230px;
+        font-size: 14px;
+    }
+
+    #to, #reservas-costo_servicios, #total_seguro, #reservas-costo_servicios_extra {
+        position: relative;
+        /*width: 20%;
+        top: -160px;
+        left: 300px;*/
+        font-size: 14px;
+    }  
+
+    #servicio_basico, #seguro, #servicios_extras {
+        width: 32.55% !important;
+    } 
+
+    #cant_basico, #cant_seguro, #cant_extras {
+        width: 26.042% !important;
+    } 
+
+    #reservas-costo_servicios, #total_seguro, #reservas-costo_servicios_extra {
+        /*width: 43.79% !important;*/
+    }            
+
+    #tot {
+        margin-bottom: 70px;
+    }
+
+    #lin {
+        margin-top: -160px;
+    }
+
+    #mobile {
+        margin-top: -120px; 
+        /*margin-bottom: -120px;*/
+    }  
+
+    #mobile-unic {
+        margin-top: -60px; 
+        margin-bottom: -60px;
+    }           
+
+    .observacion {
+        padding: 0px 15px -15px 15px !important;
+        border-radius: 6px;
+        margin-bottom: 30px;
+    }
+
+    .totales-facturas {
+        width: 40%;
+        border-radius: 6px;
+    }
+
+    #reservas-monto_factura {
+        /*width: 19.95%;
+        margin-top: -150px;
+        margin-left: 300px;*/
+        border-radius: 0px;
+    } 
+
+    #reservas-monto_impuestos {
+        width: 19.95%;
+        margin-top: -115px;
+        margin-left: 300px;
+        border-radius: 0px;
+    }
+
+    #reservas-monto_total {
+        width: 19.95%;
+        margin-top: -80px;
+        margin-left: 300px;
+        border-radius: 0px;
+    }
+
+    #guardar {
+        position: relative;
+        float: right;
+        top: -20px;
+        right: 15px;
+    }     
+
+    #cancelar {
+        position: relative;
+        float: right;
+        top: -20px;
+    }
+
+    
+
+    .d-u1 {
+        width: 45%;
+    }
+
+    .d-u2 {
+        width: 45%;
+        margin-top: -72px;
+        margin-left: 175px;
+    }
+
+    .nif {
+        display: none !important;
+    }
+
+    .input-group-addon {
+        border-top-left-radius: 6px;
+        border-bottom-left-radius: 6px;
+    }
+
+    .form-control {
+        font-size: 18px;
+    }
+	
+}
+
+
+@media screen and (min-device-width : 640px) and (max-device-width : 780px) {
+	.plan{
+		display: grid !important;
+		grid-template-rows: 50% 50%;
+    	grid-template-columns: 33% 33% 33%;
+		padding: 25px !important;
+	}
+	#fechas_r{
+		height: auto !important;
+		padding-bottom: 10px !important;
+	}
+}
+
+@media screen and (min-device-width : 781px) and (max-device-width : 910px) {
+	.plan{
+		display: grid !important;
+		grid-template-rows: 50% 50%;
+    	grid-template-columns: 33% 33% 33%;
+		padding: 25px !important;
+	}
+	#fechas_r{
+		height: auto !important;
+		padding-bottom: 10px !important;
+	}
+		
+	#reserva_f{
+		display: flex
+	}
+	
+	.button-f-r{
+		gap: 10px;
+		padding-left: 0;
+	}
+}
+
+@media screen and (max-device-width : 780px) {
+		
+	#reserva_f{
+		flex-wrap: wrap;
+	}
+	.button-f-r{
+		padding-left: 0px;
+    	gap: 10px;
+		padding-bottom: 10px;
+	}
+    .dir, .contact {
+        display: none;
+    }
+
+    .otherItems {
+        margin-top: -25px;
+        border-bottom: 0px;
+    }
+
+    .mail_reserva {
+        margin-right: 75px;
+    }
+
+    .pd {
+        margin-top: 0px !important;
+    }    
+
+    .off {
+        margin-top: -40px;
+        margin-left: 200px;
+    }
+
+    .salir {
+        margin-left: -34px;
+    }
+
+    .logo-login {
+        width: 12.5%;
+    }
+
+    .parking-login {
+        margin-top: 12px;
+        margin-left: -230px;
+    }
+
+    .plus-login {
+        margin-top: 12px;
+        margin-left: -312px;
+    }
+
+    .text-lema-login {
+        margin-top: -5px;
+        margin-left: -312px;
+    }
+
+    .login-content {
+        margin-left: 150px;
+        margin-right: 150px;
+    }
+
+}
+
+@media screen and (max-device-width : 1200px) {
+
+    .pd {
+        margin-top: 0px;
+    }
+}
+
+@media screen and (min-width: 1200px){
+	.modal-xl {
+		width: 1140px;
+	}
+}
+
+@media screen and (min-device-width : 992px) and (max-device-width : 1200px) {
+	.calcular{
+		font-size: 12px !important;
+	}
+
+    .counter_container {
+        width: 200px !important;
+        height: 200px !important;
+    }
+
+    .counter__letter {
+        font-size: 1.5rem;
+    }
+
+    .counter__description {
+        font-size: 0.8rem;
+    }
+
+    .promo__img {
+        width: 290px;
+        height: 350px;
+    }
+}
+
+@media screen and (min-device-width : 768.10px) and (max-device-width : 991.90px) {
+	.calcular{
+		font-size: 12px !important;
+	}
+
+    .counter_container {
+        width: 174px !important;
+        height: 174px !important;
+        margin: 0 3px ;
+    }
+
+    .counter__letter {
+        font-size: 1.5rem;
+    }
+
+    .counter__description {
+        font-size: 0.6rem;
+    }
+}

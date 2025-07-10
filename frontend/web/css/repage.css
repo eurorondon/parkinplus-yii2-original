@@ -1,0 +1,408 @@
+.section-reserva {
+	margin-bottom: 0px;
+}
+
+.section-mensaje {
+	background: url(../images/limpiar.png) no-repeat;
+    position: relative;
+    margin-left: -15px;
+    margin-right: -15px;
+	background-color: #FFF;
+	padding: 40px;	
+}
+
+.section-servicios {
+	background: url(../images/airplane.png) no-repeat;
+    position: relative;
+    margin-left: -15px;
+    margin-right: -15px;
+	background-color: #333;
+	padding: 60px 40px 40px 40px;
+	border-top: 4px solid #961007;
+
+}
+
+.section-info-parking {
+    position: relative;
+    margin-left: -15px;
+    margin-right: -15px;    
+	background-color: #FFF;
+	padding: 60px 40px 40px 40px;
+	border-top: 4px solid #961007;
+}
+
+.section-atc {
+    position: relative;
+    margin-left: -15px;
+    margin-right: -15px;    
+	background-color: #FFF;
+	padding: 60px 40px 40px 40px;
+	border-top: 4px solid #961007;
+}
+
+.section-aparcamiento {
+    position: relative;
+    margin-left: -15px;
+    margin-right: -15px;
+	background-color: #333;
+	padding: 60px 40px 40px 40px;
+	border-top: 4px solid #961007;
+
+}
+
+.content-msje {
+	text-transform: uppercase;
+	font-size: 1.5em;
+	text-align: center;
+}
+
+.text-msje {
+	font-size: 1.1em;
+	color: #961007;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+.title-s-extras {
+	border: none;
+}
+
+.title-section {
+	font-size: 1.5em;
+	color: #FFF;
+	margin-top: -15px;
+	text-transform: uppercase;
+	letter-spacing: 3px;
+}
+
+.title-service {
+	font-size: 1.2em;
+    text-transform: uppercase;
+    text-align: center;
+    border: 5px solid #fff;
+    border-radius: 5%;
+    background-color: #961007;
+    color: #fff;
+    padding: 34px 10px;
+    margin: auto;
+    -webkit-box-shadow: 0 0 20px rgb(0 0 0 / 45%);
+    -moz-box-shadow: 0 0 20px rgba(0,0,0,.45);
+    box-shadow: 0 0 20px rgb(0 0 0 / 45%);	
+}
+
+.text-dark {
+	color: #333;
+}
+
+.panel-fresh {
+	margin-top: 35px;
+	border-radius: 0px !important;
+}
+
+.panel-dark {
+	margin-top: 35px;
+	border-radius: 0px !important;	
+}
+
+.body-fresh {
+	padding: 35px;
+	text-align: justify;
+	font-size: 0.9em;
+	line-height: 25px;
+	text-transform: uppercase;
+}
+
+.body-dark {
+	padding: 35px;
+	font-size: 0.9em;
+	line-height: 25px;
+	text-transform: uppercase;
+	background-color: #333;
+	color: #FFF;
+	animation: fadeIn 5s;
+	-webkit-animation: fadeIn 5s;
+	-moz-animation: fadeIn 5s;
+	-o-animation: fadeIn 5s;
+	-ms-animation: fadeIn 5s;
+}
+
+.img-barajas {
+	border: 2px solid #961007;
+	padding: 3px;
+	text-align: center;
+	width: 380px;
+	border-radius: 12px;
+}
+
+.carousel-index {
+	margin-top: -40px;
+}
+
+.carousel-indicators {
+	bottom: 0px;
+	left: 70%;
+}
+
+.img-atc {
+	border: 2px solid #961007;
+	padding: 3px;
+	margin-top: -30px;
+	text-align: center;
+	width: 400px;
+	border-radius: 12px;
+}
+
+.img-soloreserva {
+	display: none;
+	position: absolute;
+	bottom: 0px;
+	width: 80px;
+	top: -35px;
+	left: -45px;
+}
+
+.num-x {
+	border-radius: 8px;
+	color: #FFF;
+    border: 2px solid #ebaf01;
+    padding: 6px 12px;	
+}
+
+.text-num {
+	font-size: 0.85em;
+	text-transform: uppercase;
+	color: #FFF;
+	line-height: 25px;
+}
+
+.text-datos {
+	text-transform: uppercase;
+	font-weight: bold;
+}
+
+.reborde {
+	font-size: 1.1em;
+	letter-spacing: 1.6px;
+}
+
+.unico {
+    margin-top: -15px;
+    margin-left: 35px;
+}
+
+.content-contacto {
+	margin-top: 60px;
+	margin-left: 60px;
+}
+
+.mt-20 {
+	margin-top: 20px;
+}
+
+.mt-25 {
+	margin-top: 25px;
+}
+
+.mt-30 {
+	margin-top: 30px;
+}
+
+.mt-50 {
+	margin-top: 50px;
+}
+
+.fz-mail {
+	font-size: 1em;
+}
+
+.img-rew {
+	background-color: #FFF;
+	width: 120px;
+}
+
+.pasos {
+	margin-top: 60px;
+	margin-bottom: 40px;
+}
+
+.btn-big, .btn-big:hover, .btn-big:focus,  .btn-big:active, .btn-big:active:focus, .btn-big:active:hover {
+	margin-top: -10px;
+   	background-color: #960f07;
+    border-color: #be0d0c;		
+}
+
+.img-informa {
+	margin-top: -50px;
+	margin-left: 40px;
+	position: absolute;
+}
+
+.num-reservation {
+	margin-top: 15px;
+	font-size: 1.2em;
+}
+
+.boton-download {
+	margin-top: 60px;
+}
+
+td.active.active, .datepicker table tr td.active.highlighted.active {
+    background-color: #960f07 !important;
+    border-color: #960f07 !important;
+}
+
+@keyframes fadeIn {
+	0% { opacity: 0;}
+	100% { opacity: 1;}
+}
+
+@-moz-keyframes fadeIn {
+	0% { opacity: 0;}
+	100% { opacity: 1;}
+}
+
+@-webkit-keyframes fadeIn {
+	0% { opacity: 0;}
+	100% { opacity: 1;}
+}
+
+@-o-keyframes fadeIn {
+	0% { opacity: 0;}
+	100% { opacity: 1;}
+}
+
+@-ms-keyframes fadeIn {
+	0% { opacity: 0;}
+	100% { opacity: 1;}
+}
+
+@supports ((-webkit-hyphens:auto) or (hyphens:auto)) {
+	.text-num, .body-dark {
+		text-align: justify;
+		-webkit-hyphens: auto; /* A día de hoy aún es necesario el prefijo para soportar a Safari */
+		hyphens: auto;
+	}
+}
+
+@media screen and (max-device-width : 480px) {
+	.title-service {
+		margin-bottom: 35px;
+	}
+
+	.carousel-index {
+		margin-top: 35px;
+	}
+
+	.xs-mt {
+		margin-top: 50px;
+	}
+
+	.xs-mt-90 {
+		margin-top: 90px;
+	}
+
+	.xs-mt-40 {
+		margin-top: 40px;
+	}	
+
+	.mt-50 {
+		margin-top: 15px;
+	}
+
+	.mtx-30 {
+		margin-top: 30px !important;
+	}
+
+	.content-contacto {
+		margin-top: 40px;
+		margin-left: 15px;
+	}
+
+	.img-soloreserva {
+		position: absolute;
+		display: inline-block;
+		left: 270px;
+		top: 0px;
+	}
+
+	.img-rew {
+		width: 100px;
+	}
+
+	.unico {
+		margin-top: -12px;
+		margin-left: 36px;
+	}
+
+	.img-atc {
+		margin-top: 55px;
+		border-radius: 8px;
+	}
+
+	.section-servicios, .section-info-parking {
+		padding: 60px 20px 30px 20px;
+	}
+
+	.section-mensaje {
+		padding-top: 20px;
+		padding-bottom: 0px;
+		background: none;
+	}
+
+	.section-atc {
+		padding: 40px 30px;
+	}
+
+	.btn-big {
+		margin-top: -10px;
+	}
+
+	.img-alert {
+		width: 30%;
+	}
+
+
+
+    .panel-m {
+        margin-top: 280px;
+    }
+
+    .row-movil {
+        margin-top: 205px !important;
+    }
+
+    .title-m {
+        margin-top: -110px;
+        text-align: left !important;
+    }
+
+    .img-informa {
+        margin-top: -135px;
+        margin-left: 172px;
+        position: absolute;
+        width: 210px;
+
+    }
+
+    .phone-min {
+        top: 50px;
+        left: -10px;
+    }
+
+    .panel-min {
+        padding: 20px !important;
+    }
+
+    .btn-c {
+    	border-top: 1px solid #ccc;
+    	padding-top: 15px;
+    	margin-top: 30px;
+    	margin-bottom: 10px;
+    	text-align: center !important;
+    }
+
+    .parrafo-m {
+    	margin-top: 20px !important;
+    }
+
+}

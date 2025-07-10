@@ -1,0 +1,1 @@
+var swiper=new Swiper(".swiper-container",{navigation:{nextEl:".swiper-button-next",prevEl:".swiper-button-prev"}});$(".accordion-titulo").click(function(){var n=$(this).next(".accordion-content");"none"==n.css("display")?(n.slideDown(250),$(this).addClass("open")):(n.slideUp(250),$(this).removeClass("open"))});

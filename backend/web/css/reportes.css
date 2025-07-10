@@ -1,0 +1,422 @@
+@font-face {
+  font-family: Mollen;
+  src: url('../fonts/MollenRegular.otf');
+}
+
+@font-face {
+  font-family: Nine;
+  src: url('../fonts/Nineteenth.otf');
+}
+
+@page {
+	font-family: 'Nine', sans-serif !important;
+    margin-top: 0.5cm;
+    margin-bottom: 0.5cm;
+    margin-left: 1cm;
+    margin-right: 1cm;
+}
+
+html,
+body {
+    font-size: 12px;
+    font-family: 'Nine', sans-serif !important;
+    text-transform: uppercase;
+}
+
+#content {
+	padding: 0px;
+}
+.img-logo {
+	width: 250px;
+}
+
+.img-info {
+	margin-top: 10px;
+	width: 50px;
+}
+
+.tit-obs {
+	text-transform: uppercase;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.titulo {
+	font-size: 14px;
+	text-align: center;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+.datos-right {
+	text-align: right;
+}
+
+.title {
+	
+	padding: 5px;
+	background-color: #921007;
+	color: #fff;
+	margin-bottom: 20px;	
+}
+
+.title-section {
+	font-size: 11px;
+	border: 1px solid #ccc;
+	padding: 5px;
+	background-color: #efefef;
+	margin-top: 1px;
+	margin-bottom: 10px;
+}
+
+.title-table {
+	font-size: 12px;
+	border: 1px solid #ccc;
+	padding: 8px;
+	background-color: #eee;
+	margin-top: 1px;
+	margin-bottom: 10px;
+}
+
+.title-otros {
+	font-size: 11px;
+	color: #fff;
+	padding: 5px;
+	background-color: #961007;
+	margin-top: 1px;
+	margin-bottom: 10px;
+	padding: 6px;
+}
+
+.title-section-t {
+	border: 1px solid #ccc;
+	padding: 5px;
+	margin-top: 1px;
+	margin-bottom: 15px;
+	padding: 8px;
+}
+
+.title-section-pago {
+	margin-top: 42px;
+	left: 4.5cm;
+	position: absolute;
+	font-size: 11px;
+	border: 1px solid #ccc;
+	padding: 5px 12px;
+	background-color: #efefef;
+	width: 200px;
+}
+
+.title-section1 {
+	left: 1.1cm;
+	position: absolute;
+	font-size: 11px;
+	background-color: #eee;
+	padding: 8px 10px;
+}
+
+.title-section2 {
+	left: 10.6cm;
+	position: absolute;
+	font-size: 11px;
+	background-color: #eee;
+	padding: 8px 10px;
+}
+.title-section3 {
+	left: 15.28cm;
+	position: absolute;
+	font-size: 11px;
+	background-color: #eee;
+	padding: 8px 10px;
+}
+
+.linea {
+    margin: 50px 0px 10px 0px;
+    border-top: 1px dashed #ccc;
+}
+
+.texto {
+	font-family: 'Nine', sans-serif;
+	text-transform: uppercase;
+	font-size: 11px;
+	font-weight: bold;
+}
+
+.texto-otros {
+	font-family: 'Nine', sans-serif;
+	text-transform: uppercase;
+	font-size: 10px;
+	font-weight: bold;
+}
+
+.texto-total {
+	font-family: 'Nine', sans-serif;
+	text-transform: uppercase;
+	font-size: 14px;
+}
+
+.section {
+	display: inline;
+}
+
+.texto-min {
+	font-size: 10px;
+	color: #921007;
+	text-transform: uppercase;
+}
+
+.texto-min2 {
+	text-align: center !important;
+	font-weight: bold;
+	font-size: 11px;
+	color: #921007;
+	text-transform: uppercase;
+}
+
+.wm {
+	margin-top: 20px;
+	margin-bottom: 30px;
+}
+
+.nro-factura {
+	margin-left: 10px;
+	border: 1px solid #ccc;
+	padding: 4px 20px;
+	font-size: 18px;
+	color: #961007b0;
+	font-weight: bold;
+	text-align: center;
+}
+
+.fecha {
+	position: absolute;
+	top: 1cm;
+	left: 16cm;
+}
+
+.factura {
+	position: absolute;
+	top: 1cm;
+	left: 11.5cm;
+}
+
+.fecha-emision {
+	border: 1px solid #ccc;
+	text-transform: uppercase;
+	font-size: 9px;
+	padding: 3px 6px;
+	text-align: center;
+}
+
+/*--------------------CAMBIOS JUNIO-----------------------------------*/
+
+.table-title {
+	margin-bottom: 5px;
+	border: 1px solid #961007;
+}
+
+.table-datos {
+	margin-bottom: 20px;
+	border: 1px solid #961007;
+}
+
+.title-datosp, .title-datosr {
+	background-color: #961007;
+	padding: 5px 10px;
+	text-transform: uppercase;
+	color: #FFF;
+	font-weight: bold;
+}
+
+.texto-title {
+	text-transform: uppercase;
+	font-size: 13px;
+	padding: 5px 5px 3px 15px;
+}
+
+.titleR1 {
+	font-weight: bold;
+	text-transform: uppercase;
+	font-size: 13px !important;
+	padding: 0 5px 5px 15px;
+}
+
+.table-p {
+	padding: -4px;
+	margin-bottom: 0px;
+}
+
+
+/*---------------------------------------------------------*/
+
+.tituloR {
+	margin-top: -10px;
+	font-size: 14px;
+	text-align: center;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+.titleFR {
+	font-weight: bold;
+	padding: 5px;
+	font-size: 11px;
+	background-color: #961007;
+	color: #fff;
+	margin-bottom: 15px;	
+}
+
+.textoR {
+	font-family: 'Nine', sans-serif;
+	text-transform: uppercase;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.titleR {
+	font-family: 'Nine', sans-serif;
+	text-transform: uppercase;
+	font-size: 12px !important;
+	font-weight: bold;
+}
+
+.tableR {
+	margin-bottom: 15px;
+	font-size: 11px;
+}
+
+.title-section-r {
+	border: 1px solid #ccc;
+	font-size: 20px;
+}
+
+.texto-des {
+	font-size: 10px;
+	color: #921007;
+	text-transform: uppercase;
+}
+
+.borde {
+	font-size: 11px;
+	border: 1px solid #961007;
+	padding: 15px; 
+}
+
+.borde1 {
+	position: relative;
+	display: inline;
+	padding: 5px 15px;
+	margin-top: 5px;
+	border: 1px solid #961007;
+	width: 11cm;
+	text-transform: none;
+}
+.borde2 {
+	position: relative;
+	display: inline;
+	margin-top: -247px;
+	margin-left: 465px;
+	padding: 5px 15px;
+	border: 1px solid #961007;
+	width: 5.7cm;
+	text-transform: none;
+}
+
+.data-info {
+	position: relative;
+	display: inline;
+	margin-top: -19px;
+	margin-left: 60px;
+	font-size: 13px; 
+	color: #961007;
+}
+
+.texto-inf1 {
+	text-transform: normal;
+	font-size: 12px;
+	margin-bottom: 10px;
+}
+
+.firma {
+	margin-top: -50px;
+}
+
+.img-cars {
+	width: 250px;
+}
+
+.direccion {
+
+	font-size: 12px;
+	text-transform: normal;
+	background-color: #961007;
+	
+}
+
+.direccion1 {
+	position: absolute;
+	top: 1.1cm;
+	left: 8.2cm;
+	font-size: 12px;
+	text-transform: normal;
+}
+
+.b {
+	position: absolute;
+	top: 0.9cm;
+	left: 16.6cm;	
+	border: 1px solid #961007;
+	padding: 3px;
+}
+
+.nreserva {
+	text-align: center;
+	font-weight: bold;
+	font-size: 0.9em;
+	color: #FFF;
+	text-transform: uppercase;
+	padding: 5px 15px;
+}
+
+.nreserva2 {
+	font-size: 2em;
+	text-align: center;
+	font-weight: bold !important;
+	color: #fff;
+	padding: 0px 15px 10px 15px;
+}
+
+.direccionf {
+	position: relative;
+	margin-top: 20px;
+	margin-left: 4px;
+	font-size: 12px;
+	text-transform: normal;
+}
+
+.texto-aviso {
+	margin-left: 4px;
+	font-weight:bold;
+	font-size: 11px; 
+}
+
+.texto-av {
+	text-align: justify; 
+	margin-top: 5px; 
+	margin-left: 4px;
+	text-transform: uppercase;
+	font-size: 10px;
+}
+
+.aviso {
+	position: relative;
+	left: 1.1cm;
+	font-size: 12px;
+	text-transform: normal;
+	margin-top: 40px;
+}
+
+.otros {
+	position: relative;
+	margin-top: 30px;
+}

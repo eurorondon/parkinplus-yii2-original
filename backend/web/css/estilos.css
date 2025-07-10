@@ -1,0 +1,106 @@
+body, html {
+	font-family:'Helvetica Neue','Helvetica',Helvetica,Arial,sans-serif;
+	background-color: #ececec;
+}
+.notificacion {
+	text-align: center;
+	margin-left: auto; 
+	margin-right: auto;	
+	display: flex;
+  	justify-content: center;
+}
+
+table.tablenot {
+	width: 600px;
+	border-spacing: 0px !important;
+	border-collapse: collapse;
+	border: none;
+}
+
+td.celda {
+	padding: 0px;
+	background-color: #fff;
+}
+
+.inf-reserva {
+	text-align: left;
+	padding: 20px;
+}
+
+.saludo {
+	font-size: 1.4em;
+	text-align: left;
+	text-transform: capitalize;
+	padding: 0 20px 30px 20px;
+}
+
+.mensaje {
+	font-size: 1em;
+	padding: 0 20px;
+	text-align: justify !important;
+}
+
+.op {
+	font-weight: bold;
+	margin-top: 30px;
+	padding: 0 20px;
+	font-size: 1em;
+	text-align: left;
+}
+
+.evalua {
+	font-weight: bold;
+	padding: 15px 20px;
+	margin: 30px 20px;
+	background-color: #333;
+	color: #fff;
+	font-size: 1em;
+	text-align: left;
+	border-radius: 6px;
+}
+
+.fin {
+	font-size: 1em;
+	padding: 0 20px;
+	text-align: justify !important;
+	margin-top: 50px;
+	margin-bottom: 60px;
+}
+
+.inf-footer {
+	background-image: url("footer.png");
+	padding: 20px 20px;
+}
+
+.ul {
+	padding: 0;
+	font-weight:normal;
+	font-size:14px;
+	color:#4e5256;
+	margin-bottom:25px;
+	margin:0;
+	line-height:1
+}
+
+.li {
+	padding: 0;
+	list-style-position:inside;
+	color:#4e5256;
+	display:inline-block;
+	margin :0 0 0 35px;
+}
+
+.vinculo {
+	padding: 0;
+	color:#fff;
+	display:inline-block;
+	font-size: 13px;
+	margin:0;
+	width: 25px;
+}
+
+.icon-enlace {
+	padding: 0;
+	max-width: 120%;
+	border: none;
+}

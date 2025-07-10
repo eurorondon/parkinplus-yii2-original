@@ -1,0 +1,425 @@
+.wrape {
+    min-height: 100%;
+    height: auto;
+    margin: 0 auto -60px;
+    padding: 0 0 60px;
+}
+
+.wrape > .container {
+    padding: 70px 15px 20px;
+}
+
+
+@media screen and (max-device-width : 480px) {
+	
+	.navbar-brand > img {
+		display: inline;
+	}
+
+	.logo-main {
+    	width: 19%;
+    	margin-top: -55px;		
+	}
+
+	.caja-reserva {
+		padding: 0px;
+	}
+	.mapa-index {
+		height: 355px;
+    	width: 90%;	
+	}
+
+	.unico {
+		margin-top: -62px;
+		margin-left: 192px;
+		margin-right: 10px;
+		font-size: 0.55em;
+	}
+
+	.bootstrap-timepicker-widget table td input, .bootstrap-timepicker-widget table td a {
+	    width: 90% !important;
+	}
+
+
+	.bootstrap-timepicker .separator {
+		position: relative;
+		left:-2px;
+	}
+
+
+	.bootstrap-timepicker-widget table td a i {
+	    margin-left: 2px;
+	}
+
+	.bootstrap-timepicker-hour {
+		position: relative !important;
+		left: 2px !important;
+	}
+
+	.form-control {
+		font-size: 12px !important;
+	}
+
+	.bootstrap-timepicker-minute {
+		position: relative !important;
+		left: 0px !important;
+	}
+
+	.titulo {
+		margin-left: 90px;
+    	font-family: 'Nine', sans-serif;
+    	color: #FFF;
+    	font-size: 2em;
+    	-webkit-text-stroke: 1px #961007;
+    	margin-top: -65px;
+    	margin-bottom: 20px;
+	}
+
+	.minititulo {
+		display: inline !important;
+		margin-left: 92px;
+	}
+
+	.img-minilogo {
+		margin-left: auto;
+		margin-right: auto;
+		width: 80%;
+		height: auto;
+	}
+
+	.location {
+		margin-top: 15px;
+		margin-bottom: 20px;
+		font-size: 1em;
+		margin-left: -30px;
+	}
+
+	.contact {
+		font-size: 1em;
+		margin-left: -30px;
+	}
+
+	.redes {
+		margin-left: 0px;
+		margin-right: 10px;
+	}
+
+	.wrap-login > .container {
+	    margin-top: 55px;
+	}
+
+	.parking-login {
+	    font-size: 11.2em;
+	    position: absolute;
+	    top: 34px;
+	    left: 24px;
+	    color: #fff;
+	    width: 32%;
+	}
+
+	.full-panel {
+		margin: 50px -25px;
+	}
+
+	.logo-login {
+	    padding: 10px;
+	    width: 24.2%;
+	    margin-left: auto;
+	    margin-right: auto;
+	}
+
+	.plus-login {
+	    position: absolute;
+	    top: 31px;
+	    left: 253px;
+	    color: #fff;
+	    width: 19%;
+	}	
+
+	.text-lema-login {
+	    font-size: 0.7em;
+	    position: absolute;
+	    top: 75px;
+	    left: 257px;
+	    color: #fff;
+	}
+
+	.reservas-form	{
+		margin-top: 125px;
+	}
+
+	.title-top {
+		margin: 5px -10px -26px -10px;
+	}
+
+	.mail_reserva, .copy {
+		font-size: 1.1em;
+	}
+
+	.n {
+		font-size: 1em;
+	}
+
+	.na {
+		display: none;
+	}
+
+	.page-footer {
+		margin-top: 20px;
+	}
+
+	.panel-d {
+		margin-left: -25px;
+		margin-right: -25px;
+	}
+
+	.col-xs-4 {
+		padding: 0px !important;
+	}
+
+	.col-xs-6, .col-xs-7 {
+		padding-left: 0px !important;
+	}
+
+	.logo-main2, .titulo2, .minititulo2, .msje-inicio, .img-premium1, .s {
+		display: none;
+	}
+
+	.img-premium2 {
+	    top: 540px;
+    	left: 160px;
+    	width: 40%;
+    	border-bottom: 2px solid #cdcdcd;
+    }
+
+	.reservation {
+		width: 100%;
+		margin-top: 25px;
+		opacity: 0.95;
+	}
+
+	.field-reservas-fecha_entrada, .field-reservas-fecha_salida, .field-reservas-hora_entrada, .field-reservas-hora_salida {
+		padding-left: 15px;
+	}
+
+	#reservas-fecha_entrada, #reservas-fecha_salida, #reservas-hora_entrada, #reservas-hora_salida {
+		border-radius: 4px !important;
+	}
+
+	#reservas-hora_entrada, #reservas-hora_salida {
+		margin-left: -15px;
+	}
+
+	.h {
+		margin-left: 10px !important;
+	}
+
+	.modal-dialog {
+		margin: 80px 20px 50px 20px !important;
+	}
+
+	.section-reserva {
+		margin-top: 104px !important;
+		padding: 0px;
+	}
+
+	.dash {
+		margin-top: 20px;
+	}
+
+	.dash-contact {
+		margin-top: 20px;
+	}	
+
+	.d {
+		margin-left: 0px;
+	}
+
+	.lb {
+		margin-left: 0px;
+	}
+
+	.ver-contrato {
+	    text-align: right;
+	}
+
+	.toc {
+		margin-top: 20px;
+	}
+
+	.pnel {
+		margin-left: 15px;
+		margin-right: auto;
+		padding: 40px 0px;
+	}
+
+	.pd {
+	    position: relative;
+	    width: 100%;
+	    margin-top: 320px;
+	    margin-left: 0px;
+	}
+
+	.mapa {
+		width: 100%;
+    	margin: -280px 0px 0px 0px !important;
+	}
+
+	.panel-separator {
+		border-left: 2px dashed #ccc !important;
+		height: auto;
+		margin-top: 50px;
+	}
+
+	.pcontent-services2 {
+		padding: 30px 25px 0px 30px;
+		text-align: center;
+	}
+
+	.pcontent-services {
+		text-align: center;
+	}
+
+	.panel-separator1 {
+		margin-top: 40px;
+		border-left: 2px dashed #ccc !important;
+	}
+
+	.panel-separator3 {
+		height: auto;
+	}
+
+	.img-premium-service {
+		width: 100%;
+		margin-left: 0px;
+	}
+
+	.img-premium-service2 {
+		width: 100%;
+		top: 40px;
+		left: 0px;
+		margin-left: 0px;
+	}
+
+	.img-premium-service3 {
+		top: 80px;
+		margin-left: 0px;
+		width: 100%;
+	}
+
+	.tit-precios {
+		margin-bottom: 10px;
+	}
+
+	.price1 {
+		left: 225px;
+		top: -110px;
+	}
+
+	.price2 {
+		left: 225px;
+		top: -70px;
+	}
+
+	.price3 {
+		left: 225px;
+		top: -30px;
+	}
+
+
+	.interior {
+		top: -20px;
+		left: 0px;
+		border-radius: 10px;
+	}
+
+	.interior-exterior {
+		top: 20px;
+		left: 0px;
+		border-radius: 10px;
+	}
+
+	.completa {
+		top: 60px;
+		left: 0px;
+		border-radius: 10px;
+		width: 100%;
+	}
+
+	.service4 {
+		margin-top: 80px !important;
+		padding: 0px !important;
+	}
+
+	.tit-precios, .tit-precios2, .tit-precios3 {
+		width: auto;
+	}
+
+	.tit-precios2, .tit-precios3, .img-premium-service4, .img-premium-service5, .funda, .ser-conductor {
+		
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.funda {
+		margin-top: -20px;
+		border-radius: 10px;
+		margin-bottom: -30px;
+	}
+
+	.ser-conductor {
+		border-radius: 10px;
+		margin-top: 280px;
+	}	
+
+	.img-premium-service5 {
+		margin-top: -360px;
+	}
+
+	.price4 {
+		left: 255px;
+		top: -95px;
+		bottom: 105px;
+	}
+
+	.price5 {
+		top: 210px;
+		left: 234px;
+		bottom: 115px;
+	}
+
+	.title-footer {
+		margin-top: 30px;
+		margin-right: 40px;
+	}
+
+	.v {
+		margin-left: 20px !important;
+	}
+
+	.informe-texto	{
+		font-size: 1em;
+	}
+
+	.img-alert {
+		margin-top: -40px;
+		margin-bottom: -30px;
+	}
+
+	.bootstrap-timepicker-widget table td input {
+	    margin: 0;
+	    text-align: center;
+	    left: 10px;
+	    padding-left: 5px;
+	    padding-right: 5px;
+	}
+
+	.bootstrap-timepicker-widget {
+	    min-width: 7rem;
+	}
+
+	.offer {
+		display: none !important;
+	}
+
+}

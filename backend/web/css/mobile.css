@@ -1,0 +1,91 @@
+@media all and (max-device-width : 480px) {
+
+	.container-fluid {
+		padding-left: 0px !important;
+		padding-right: 0px !important;
+	}
+
+	.st {
+		margin-top: 20px;
+	}
+
+	.pad-0 {
+		padding: 0px !important;
+	}
+
+	.marl-0 {
+		margin-left: 0px !important;
+	}
+
+	.dn {
+		display: none;
+	}
+
+	.tright {
+		text-align: right;
+	}
+
+	.mtop {
+		margin-top: 15px;
+	}
+
+	.mlmay {
+		padding-left: 15px !important;
+	}
+
+	.b2 {
+		padding-left: 15px !important;
+		padding-right: 15px !important;
+	}
+
+	.pad-mob {
+		padding: 30px !important;
+	}
+
+	.separa {
+		border-right: none;
+	}
+
+	.btn-full {
+		border-radius: 0px !important;
+		margin-bottom: 40px;
+		margin-right: 12px;
+	}
+
+	.gs {
+		padding: 20px 10px 0px 10px !important;
+	}
+
+	.busqueda  {
+		margin: 0px !important;
+	}
+
+	.panel-index {
+		margin-left: 10px;
+		margin-right: 10px;
+	}
+
+	.breadcrumb {
+		margin: 75px 10px 20px 10px !important;
+	}
+
+	.wrap {
+	    margin: 0 auto -87px !important;
+	    padding: 0 0 82px !important;
+	}
+
+	.pb {
+	    margin-bottom: 40px !important;
+	}	
+
+	.restotal {
+		margin-top: 15px;
+		font-size: 0.9em;
+	}
+
+	.text-info-al, .arrow-panel {
+		display: none;
+	}
+
+
+}

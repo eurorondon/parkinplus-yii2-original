@@ -1,0 +1,2968 @@
+[06-Jul-2023 05:48:38 Europe/Madrid] PHP Fatal error:  Allowed memory size of 536870912 bytes exhausted (tried to allocate 20480 bytes) in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/db/BaseActiveRecord.php on line 1187
+[06-Jul-2023 05:48:57 Europe/Madrid] PHP Fatal error:  Allowed memory size of 536870912 bytes exhausted (tried to allocate 20480 bytes) in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/db/BaseActiveRecord.php on line 1187
+[06-Jul-2023 05:49:10 Europe/Madrid] PHP Fatal error:  Allowed memory size of 536870912 bytes exhausted (tried to allocate 20480 bytes) in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/db/BaseActiveRecord.php on line 1187
+[06-Jul-2023 05:49:34 Europe/Madrid] PHP Fatal error:  Allowed memory size of 536870912 bytes exhausted (tried to allocate 20480 bytes) in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/db/BaseActiveRecord.php on line 1187
+[06-Jul-2023 05:53:11 Europe/Madrid] PHP Fatal error:  Allowed memory size of 536870912 bytes exhausted (tried to allocate 20480 bytes) in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/db/BaseActiveRecord.php on line 1187
+[06-Jul-2023 05:55:13 Europe/Madrid] PHP Fatal error:  Allowed memory size of 536870912 bytes exhausted (tried to allocate 20480 bytes) in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/db/BaseActiveRecord.php on line 1187
+[06-Jul-2023 05:55:33 Europe/Madrid] PHP Fatal error:  Allowed memory size of 536870912 bytes exhausted (tried to allocate 20480 bytes) in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/db/BaseActiveRecord.php on line 1187
+[06-Jul-2023 05:58:46 Europe/Madrid] PHP Fatal error:  Allowed memory size of 536870912 bytes exhausted (tried to allocate 20480 bytes) in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/db/BaseActiveRecord.php on line 1187
+[06-Jul-2023 05:59:07 Europe/Madrid] PHP Fatal error:  Allowed memory size of 536870912 bytes exhausted (tried to allocate 20480 bytes) in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/db/BaseActiveRecord.php on line 1187
+[06-Jul-2023 06:00:40 Europe/Madrid] PHP Fatal error:  Allowed memory size of 536870912 bytes exhausted (tried to allocate 20480 bytes) in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/db/BaseActiveRecord.php on line 1187
+[06-Jul-2023 06:01:00 Europe/Madrid] PHP Fatal error:  Allowed memory size of 536870912 bytes exhausted (tried to allocate 20480 bytes) in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/db/BaseActiveRecord.php on line 1187
+[06-Jul-2023 06:02:29 Europe/Madrid] PHP Fatal error:  Allowed memory size of 536870912 bytes exhausted (tried to allocate 20480 bytes) in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/db/BaseActiveRecord.php on line 1187
+[06-Jul-2023 06:57:01 Europe/Madrid] PHP Fatal error:  Allowed memory size of 536870912 bytes exhausted (tried to allocate 20480 bytes) in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/db/BaseActiveRecord.php on line 1187
+[06-Jul-2023 06:57:14 Europe/Madrid] PHP Fatal error:  Allowed memory size of 536870912 bytes exhausted (tried to allocate 20480 bytes) in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/db/BaseActiveRecord.php on line 1187
+[06-Jul-2023 06:58:17 Europe/Madrid] PHP Fatal error:  Allowed memory size of 536870912 bytes exhausted (tried to allocate 20480 bytes) in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/db/BaseActiveRecord.php on line 1187
+[06-Jul-2023 07:00:16 Europe/Madrid] PHP Fatal error:  Allowed memory size of 536870912 bytes exhausted (tried to allocate 20480 bytes) in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/db/BaseActiveRecord.php on line 1187
+[06-Jul-2023 07:01:37 Europe/Madrid] PHP Fatal error:  Allowed memory size of 536870912 bytes exhausted (tried to allocate 20480 bytes) in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/db/BaseActiveRecord.php on line 1187
+[06-Jul-2023 07:02:45 Europe/Madrid] PHP Fatal error:  Allowed memory size of 536870912 bytes exhausted (tried to allocate 20480 bytes) in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/db/BaseActiveRecord.php on line 1187
+[06-Jul-2023 07:03:25 Europe/Madrid] PHP Fatal error:  Allowed memory size of 536870912 bytes exhausted (tried to allocate 20480 bytes) in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/db/BaseActiveRecord.php on line 1187
+[06-Jul-2023 08:02:32 Europe/Madrid] PHP Fatal error:  Allowed memory size of 536870912 bytes exhausted (tried to allocate 20480 bytes) in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/db/BaseActiveRecord.php on line 1187
+[06-Jul-2023 08:24:02 Europe/Madrid] PHP Fatal error:  Allowed memory size of 536870912 bytes exhausted (tried to allocate 20480 bytes) in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/db/BaseActiveRecord.php on line 1187
+[01-Dec-2023 21:33:51 Europe/Madrid] An Error occurred while handling another error:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ReservasController.php on line 450. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/ErrorHandler.php(135): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\web\ErrorHandler->renderException(Object(yii\web\HeadersAlreadySentException))
+#3 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\HeadersAlreadySentException))
+#4 {main}
+Previous exception:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ReservasController.php on line 450. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/Application.php(392): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php(17): yii\base\Application->run()
+#3 {main}
+$_SERVER = [
+    'PATH' => '/usr/local/bin:/usr/bin:/bin',
+    'TEMP' => '/tmp',
+    'TMP' => '/tmp',
+    'TMPDIR' => '/tmp',
+    'PWD' => '/',
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br',
+    'HTTP_ACCEPT_LANGUAGE' => 'es-VE,es-419;q=0.9,es;q=0.8',
+    'CONTENT_LENGTH' => '0',
+    'HTTP_COOKIE' => 'advanced-frontend=6fd89c61b51ebf68f3149b149b28878c; _csrf-frontend=c78d7e2ea1b341ef053cbc818841152425eb28cd69fec653ac5ed94aa8de5ae5a%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_csrf-frontend%22%3Bi%3A1%3Bs%3A32%3A%22r2qn6fm5pgz5oMNZRDoWOIxe2R06YuOd%22%3B%7D; advanced-backend=1e7b55b7215717b2004f6902212d8889; _identity-backend=58514600cc523079c54c086fd35aff9c3296c49583bcefe4734a3cd1de9a39bca%3A2%3A%7Bi%3A0%3Bs%3A17%3A%22_identity-backend%22%3Bi%3A1%3Bs%3A46%3A%22%5B7%2C%22ew5zTXOA9DNqg2U7KsRFY4rqMPkb0mnf%22%2C2592000%5D%22%3B%7D; _csrf-backend=7d1f9cdf1303c46b26f3fe7a6aaa24158d01030d2192ab9ab122abcbe2304e08a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22Hh52FDB2o-Kf_Rc_9BgwlhstZALvrAHZ%22%3B%7D',
+    'HTTP_HOST' => 'parkingplus.es',
+    'HTTP_REFERER' => 'https://parkingplus.es/aparcamiento/backend/web/index.php?r=reservas%2Findex',
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36',
+    'HTTP_CACHE_CONTROL' => 'max-age=0',
+    'HTTP_SEC_CH_UA' => '"Google Chrome";v="119", "Chromium";v="119", "Not?A_Brand";v="24"',
+    'HTTP_SEC_CH_UA_MOBILE' => '?0',
+    'HTTP_SEC_CH_UA_PLATFORM' => '"Linux"',
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+    'HTTP_SEC_FETCH_SITE' => 'same-origin',
+    'HTTP_SEC_FETCH_MODE' => 'navigate',
+    'HTTP_SEC_FETCH_USER' => '?1',
+    'HTTP_SEC_FETCH_DEST' => 'document',
+    'HTTP_X_HTTPS' => '1',
+    'UNIQUE_ID' => 'ZWpC6Q1OLYq_6x1b7QZCFQAAhQU',
+    'MMDB_ADDR' => '190.89.30.131',
+    'MMDB_INFO' => 'result found',
+    'MM_CONTINENT_CODE' => 'SA',
+    'MM_COUNTRY_CODE' => 'PE',
+    'GEOIP_CONTINENT_CODE' => 'SA',
+    'GEOIP_COUNTRY_CODE' => 'PE',
+    'SCRIPT_URL' => '/aparcamiento/backend/web/index.php',
+    'SCRIPT_URI' => 'https://parkingplus.es/aparcamiento/backend/web/index.php',
+    'HTTPS' => 'on',
+    'SSL_TLS_SNI' => 'parkingplus.es',
+    'HTTP2' => 'on',
+    'H2PUSH' => 'off',
+    'H2_PUSH' => 'off',
+    'H2_PUSHED' => '',
+    'H2_PUSHED_ON' => '',
+    'H2_STREAM_ID' => '1',
+    'H2_STREAM_TAG' => '1686999-1375-1',
+    'SERVER_SIGNATURE' => '',
+    'SERVER_SOFTWARE' => 'Apache',
+    'SERVER_NAME' => 'parkingplus.es',
+    'SERVER_ADDR' => '185.101.224.12',
+    'SERVER_PORT' => '443',
+    'REMOTE_ADDR' => '190.89.30.131',
+    'DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'REQUEST_SCHEME' => 'https',
+    'CONTEXT_PREFIX' => '',
+    'CONTEXT_DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'SERVER_ADMIN' => 'webmaster@parkingplus.es',
+    'SCRIPT_FILENAME' => '/home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php',
+    'REMOTE_PORT' => '54964',
+    'SERVER_PROTOCOL' => 'HTTP/2.0',
+    'REQUEST_METHOD' => 'GET',
+    'QUERY_STRING' => 'r=reservas%2Findex&page=2&per-page=15',
+    'REQUEST_URI' => '/aparcamiento/backend/web/index.php?r=reservas%2Findex&page=2&per-page=15',
+    'SCRIPT_NAME' => '/aparcamiento/backend/web/index.php',
+    'PHP_SELF' => '/aparcamiento/backend/web/index.php',
+    'REQUEST_TIME_FLOAT' => 1701462761.715569,
+    'REQUEST_TIME' => 1701462761,
+]
+[09-Dec-2023 02:47:03 Europe/Madrid] An Error occurred while handling another error:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ReservasController.php on line 1088. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/ErrorHandler.php(135): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\web\ErrorHandler->renderException(Object(yii\web\HeadersAlreadySentException))
+#3 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\HeadersAlreadySentException))
+#4 {main}
+Previous exception:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ReservasController.php on line 1088. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/Application.php(392): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php(17): yii\base\Application->run()
+#3 {main}
+$_SERVER = [
+    'PATH' => '/usr/local/bin:/usr/bin:/bin',
+    'TEMP' => '/tmp',
+    'TMP' => '/tmp',
+    'TMPDIR' => '/tmp',
+    'PWD' => '/',
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br',
+    'HTTP_ACCEPT_LANGUAGE' => 'es-VE,es-419;q=0.9,es;q=0.8',
+    'CONTENT_LENGTH' => '0',
+    'HTTP_COOKIE' => '_identity-backend=58514600cc523079c54c086fd35aff9c3296c49583bcefe4734a3cd1de9a39bca%3A2%3A%7Bi%3A0%3Bs%3A17%3A%22_identity-backend%22%3Bi%3A1%3Bs%3A46%3A%22%5B7%2C%22ew5zTXOA9DNqg2U7KsRFY4rqMPkb0mnf%22%2C2592000%5D%22%3B%7D; _csrf-backend=96db3c6d60afa84d549b445ec426babcd3e148ed3798535a2e8231b45eb5baa0a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%222uyBlv6ACu8TlHFbkTiI8kxtgjElnUDd%22%3B%7D; advanced-frontend=3fe9a278320b737211f8302bfdc6a631; _csrf-frontend=e477c4b653200ead092062b3fdafb84eb8b64605263650857456bf2f8065336ba%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_csrf-frontend%22%3Bi%3A1%3Bs%3A32%3A%22nE-hMMfrYMEkjd3HqbxKuXYECTanRjeA%22%3B%7D; advanced-backend=6172cff7ab6148b3ee4c803784cc8191',
+    'HTTP_HOST' => 'parkingplus.es',
+    'HTTP_REFERER' => 'https://parkingplus.es/aparcamiento/backend/web/index.php?r=reservas%2Findex',
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36',
+    'HTTP_CACHE_CONTROL' => 'max-age=0',
+    'HTTP_SEC_CH_UA' => '"Google Chrome";v="119", "Chromium";v="119", "Not?A_Brand";v="24"',
+    'HTTP_SEC_CH_UA_MOBILE' => '?0',
+    'HTTP_SEC_CH_UA_PLATFORM' => '"Linux"',
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+    'HTTP_SEC_FETCH_SITE' => 'same-origin',
+    'HTTP_SEC_FETCH_MODE' => 'navigate',
+    'HTTP_SEC_FETCH_USER' => '?1',
+    'HTTP_SEC_FETCH_DEST' => 'document',
+    'HTTP_X_HTTPS' => '1',
+    'UNIQUE_ID' => 'ZXPHF66w1J-5sMFUEbA3uAAARCI',
+    'MMDB_ADDR' => '190.89.30.130',
+    'MMDB_INFO' => 'result found',
+    'MM_COUNTRY_CODE' => 'PE',
+    'GEOIP_CONTINENT_CODE' => 'SA',
+    'GEOIP_COUNTRY_CODE' => 'PE',
+    'MM_CONTINENT_CODE' => 'SA',
+    'SCRIPT_URL' => '/aparcamiento/backend/web/index.php',
+    'SCRIPT_URI' => 'https://parkingplus.es/aparcamiento/backend/web/index.php',
+    'HTTPS' => 'on',
+    'SSL_TLS_SNI' => 'parkingplus.es',
+    'HTTP2' => 'on',
+    'H2PUSH' => 'off',
+    'H2_PUSH' => 'off',
+    'H2_PUSHED' => '',
+    'H2_PUSHED_ON' => '',
+    'H2_STREAM_ID' => '1',
+    'H2_STREAM_TAG' => '2456525-540-1',
+    'SERVER_SIGNATURE' => '',
+    'SERVER_SOFTWARE' => 'Apache',
+    'SERVER_NAME' => 'parkingplus.es',
+    'SERVER_ADDR' => '185.101.224.12',
+    'SERVER_PORT' => '443',
+    'REMOTE_ADDR' => '190.89.30.130',
+    'DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'REQUEST_SCHEME' => 'https',
+    'CONTEXT_PREFIX' => '',
+    'CONTEXT_DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'SERVER_ADMIN' => 'webmaster@parkingplus.es',
+    'SCRIPT_FILENAME' => '/home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php',
+    'REMOTE_PORT' => '48982',
+    'SERVER_PROTOCOL' => 'HTTP/2.0',
+    'REQUEST_METHOD' => 'GET',
+    'QUERY_STRING' => 'r=reservas%2Fcreate&entrada=13-12-2023&salida=16-12-2023&hora_e=18%3A30&hora_s=21%3A30&medio=1&agencia=',
+    'REQUEST_URI' => '/aparcamiento/backend/web/index.php?r=reservas%2Fcreate&entrada=13-12-2023&salida=16-12-2023&hora_e=18%3A30&hora_s=21%3A30&medio=1&agencia=',
+    'SCRIPT_NAME' => '/aparcamiento/backend/web/index.php',
+    'PHP_SELF' => '/aparcamiento/backend/web/index.php',
+    'REQUEST_TIME_FLOAT' => 1702086423.528574,
+    'REQUEST_TIME' => 1702086423,
+]
+[09-Dec-2023 03:06:23 Europe/Madrid] An Error occurred while handling another error:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ReservasController.php on line 1088. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/ErrorHandler.php(135): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\web\ErrorHandler->renderException(Object(yii\web\HeadersAlreadySentException))
+#3 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\HeadersAlreadySentException))
+#4 {main}
+Previous exception:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ReservasController.php on line 1088. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/Application.php(392): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php(17): yii\base\Application->run()
+#3 {main}
+$_SERVER = [
+    'PATH' => '/usr/local/bin:/usr/bin:/bin',
+    'TEMP' => '/tmp',
+    'TMP' => '/tmp',
+    'TMPDIR' => '/tmp',
+    'PWD' => '/',
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br',
+    'HTTP_ACCEPT_LANGUAGE' => 'es-VE,es-419;q=0.9,es;q=0.8',
+    'CONTENT_LENGTH' => '0',
+    'HTTP_COOKIE' => '_identity-backend=58514600cc523079c54c086fd35aff9c3296c49583bcefe4734a3cd1de9a39bca%3A2%3A%7Bi%3A0%3Bs%3A17%3A%22_identity-backend%22%3Bi%3A1%3Bs%3A46%3A%22%5B7%2C%22ew5zTXOA9DNqg2U7KsRFY4rqMPkb0mnf%22%2C2592000%5D%22%3B%7D; _csrf-backend=96db3c6d60afa84d549b445ec426babcd3e148ed3798535a2e8231b45eb5baa0a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%222uyBlv6ACu8TlHFbkTiI8kxtgjElnUDd%22%3B%7D; advanced-frontend=3fe9a278320b737211f8302bfdc6a631; _csrf-frontend=e477c4b653200ead092062b3fdafb84eb8b64605263650857456bf2f8065336ba%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_csrf-frontend%22%3Bi%3A1%3Bs%3A32%3A%22nE-hMMfrYMEkjd3HqbxKuXYECTanRjeA%22%3B%7D; advanced-backend=6172cff7ab6148b3ee4c803784cc8191',
+    'HTTP_HOST' => 'parkingplus.es',
+    'HTTP_REFERER' => 'https://parkingplus.es/aparcamiento/backend/web/index.php?r=reservas%2Findex',
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36',
+    'HTTP_CACHE_CONTROL' => 'max-age=0',
+    'HTTP_SEC_CH_UA' => '"Google Chrome";v="119", "Chromium";v="119", "Not?A_Brand";v="24"',
+    'HTTP_SEC_CH_UA_MOBILE' => '?0',
+    'HTTP_SEC_CH_UA_PLATFORM' => '"Linux"',
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+    'HTTP_SEC_FETCH_SITE' => 'same-origin',
+    'HTTP_SEC_FETCH_MODE' => 'navigate',
+    'HTTP_SEC_FETCH_USER' => '?1',
+    'HTTP_SEC_FETCH_DEST' => 'document',
+    'HTTP_X_HTTPS' => '1',
+    'UNIQUE_ID' => 'ZXPLnnO8wFc96LwkNRQ8OAABUQc',
+    'MMDB_ADDR' => '190.89.30.130',
+    'MMDB_INFO' => 'result found',
+    'GEOIP_CONTINENT_CODE' => 'SA',
+    'GEOIP_COUNTRY_CODE' => 'PE',
+    'MM_CONTINENT_CODE' => 'SA',
+    'MM_COUNTRY_CODE' => 'PE',
+    'SCRIPT_URL' => '/aparcamiento/backend/web/index.php',
+    'SCRIPT_URI' => 'https://parkingplus.es/aparcamiento/backend/web/index.php',
+    'HTTPS' => 'on',
+    'SSL_TLS_SNI' => 'parkingplus.es',
+    'HTTP2' => 'on',
+    'H2PUSH' => 'off',
+    'H2_PUSH' => 'off',
+    'H2_PUSHED' => '',
+    'H2_PUSHED_ON' => '',
+    'H2_STREAM_ID' => '1',
+    'H2_STREAM_TAG' => '2590151-50-1',
+    'SERVER_SIGNATURE' => '',
+    'SERVER_SOFTWARE' => 'Apache',
+    'SERVER_NAME' => 'parkingplus.es',
+    'SERVER_ADDR' => '185.101.224.12',
+    'SERVER_PORT' => '443',
+    'REMOTE_ADDR' => '190.89.30.130',
+    'DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'REQUEST_SCHEME' => 'https',
+    'CONTEXT_PREFIX' => '',
+    'CONTEXT_DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'SERVER_ADMIN' => 'webmaster@parkingplus.es',
+    'SCRIPT_FILENAME' => '/home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php',
+    'REMOTE_PORT' => '56134',
+    'SERVER_PROTOCOL' => 'HTTP/2.0',
+    'REQUEST_METHOD' => 'GET',
+    'QUERY_STRING' => 'r=reservas%2Fcreate&entrada=13-12-2023&salida=16-12-2023&hora_e=18%3A30&hora_s=21%3A30&medio=1&agencia=',
+    'REQUEST_URI' => '/aparcamiento/backend/web/index.php?r=reservas%2Fcreate&entrada=13-12-2023&salida=16-12-2023&hora_e=18%3A30&hora_s=21%3A30&medio=1&agencia=',
+    'SCRIPT_NAME' => '/aparcamiento/backend/web/index.php',
+    'PHP_SELF' => '/aparcamiento/backend/web/index.php',
+    'REQUEST_TIME_FLOAT' => 1702087583.028244,
+    'REQUEST_TIME' => 1702087583,
+]
+[09-Dec-2023 03:40:20 Europe/Madrid] An Error occurred while handling another error:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ReservasController.php on line 1113. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/ErrorHandler.php(135): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\web\ErrorHandler->renderException(Object(yii\web\HeadersAlreadySentException))
+#3 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\HeadersAlreadySentException))
+#4 {main}
+Previous exception:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ReservasController.php on line 1113. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/Application.php(392): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php(17): yii\base\Application->run()
+#3 {main}
+$_SERVER = [
+    'PATH' => '/usr/local/bin:/usr/bin:/bin',
+    'TEMP' => '/tmp',
+    'TMP' => '/tmp',
+    'TMPDIR' => '/tmp',
+    'PWD' => '/',
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br',
+    'HTTP_ACCEPT_LANGUAGE' => 'es-VE,es-419;q=0.9,es;q=0.8',
+    'CONTENT_LENGTH' => '0',
+    'HTTP_COOKIE' => '_identity-backend=58514600cc523079c54c086fd35aff9c3296c49583bcefe4734a3cd1de9a39bca%3A2%3A%7Bi%3A0%3Bs%3A17%3A%22_identity-backend%22%3Bi%3A1%3Bs%3A46%3A%22%5B7%2C%22ew5zTXOA9DNqg2U7KsRFY4rqMPkb0mnf%22%2C2592000%5D%22%3B%7D; _csrf-backend=96db3c6d60afa84d549b445ec426babcd3e148ed3798535a2e8231b45eb5baa0a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%222uyBlv6ACu8TlHFbkTiI8kxtgjElnUDd%22%3B%7D; advanced-frontend=3fe9a278320b737211f8302bfdc6a631; _csrf-frontend=e477c4b653200ead092062b3fdafb84eb8b64605263650857456bf2f8065336ba%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_csrf-frontend%22%3Bi%3A1%3Bs%3A32%3A%22nE-hMMfrYMEkjd3HqbxKuXYECTanRjeA%22%3B%7D; advanced-backend=6172cff7ab6148b3ee4c803784cc8191',
+    'HTTP_HOST' => 'parkingplus.es',
+    'HTTP_REFERER' => 'https://parkingplus.es/aparcamiento/backend/web/index.php?r=reservas%2Findex',
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36',
+    'HTTP_CACHE_CONTROL' => 'max-age=0',
+    'HTTP_SEC_CH_UA' => '"Google Chrome";v="119", "Chromium";v="119", "Not?A_Brand";v="24"',
+    'HTTP_SEC_CH_UA_MOBILE' => '?0',
+    'HTTP_SEC_CH_UA_PLATFORM' => '"Linux"',
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+    'HTTP_SEC_FETCH_SITE' => 'same-origin',
+    'HTTP_SEC_FETCH_MODE' => 'navigate',
+    'HTTP_SEC_FETCH_USER' => '?1',
+    'HTTP_SEC_FETCH_DEST' => 'document',
+    'HTTP_X_HTTPS' => '1',
+    'UNIQUE_ID' => 'ZXPTlGs1cgRVNL74IvB3KwAA0gM',
+    'MMDB_ADDR' => '190.89.30.130',
+    'MMDB_INFO' => 'result found',
+    'MM_CONTINENT_CODE' => 'SA',
+    'MM_COUNTRY_CODE' => 'PE',
+    'GEOIP_CONTINENT_CODE' => 'SA',
+    'GEOIP_COUNTRY_CODE' => 'PE',
+    'SCRIPT_URL' => '/aparcamiento/backend/web/index.php',
+    'SCRIPT_URI' => 'https://parkingplus.es/aparcamiento/backend/web/index.php',
+    'HTTPS' => 'on',
+    'SSL_TLS_SNI' => 'parkingplus.es',
+    'HTTP2' => 'on',
+    'H2PUSH' => 'off',
+    'H2_PUSH' => 'off',
+    'H2_PUSHED' => '',
+    'H2_PUSHED_ON' => '',
+    'H2_STREAM_ID' => '1',
+    'H2_STREAM_TAG' => '2641191-7-1',
+    'SERVER_SIGNATURE' => '',
+    'SERVER_SOFTWARE' => 'Apache',
+    'SERVER_NAME' => 'parkingplus.es',
+    'SERVER_ADDR' => '185.101.224.12',
+    'SERVER_PORT' => '443',
+    'REMOTE_ADDR' => '190.89.30.130',
+    'DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'REQUEST_SCHEME' => 'https',
+    'CONTEXT_PREFIX' => '',
+    'CONTEXT_DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'SERVER_ADMIN' => 'webmaster@parkingplus.es',
+    'SCRIPT_FILENAME' => '/home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php',
+    'REMOTE_PORT' => '50878',
+    'SERVER_PROTOCOL' => 'HTTP/2.0',
+    'REQUEST_METHOD' => 'GET',
+    'QUERY_STRING' => 'r=reservas%2Fcreate&entrada=13-12-2023&salida=16-12-2023&hora_e=18%3A30&hora_s=21%3A30&medio=1&agencia=',
+    'REQUEST_URI' => '/aparcamiento/backend/web/index.php?r=reservas%2Fcreate&entrada=13-12-2023&salida=16-12-2023&hora_e=18%3A30&hora_s=21%3A30&medio=1&agencia=',
+    'SCRIPT_NAME' => '/aparcamiento/backend/web/index.php',
+    'PHP_SELF' => '/aparcamiento/backend/web/index.php',
+    'REQUEST_TIME_FLOAT' => 1702089620.35095,
+    'REQUEST_TIME' => 1702089620,
+]
+[21-Dec-2023 22:00:47 Europe/Madrid] An Error occurred while handling another error:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ReservasController.php on line 1436. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/ErrorHandler.php(135): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\web\ErrorHandler->renderException(Object(yii\web\HeadersAlreadySentException))
+#3 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\HeadersAlreadySentException))
+#4 {main}
+Previous exception:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ReservasController.php on line 1436. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/Application.php(392): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php(17): yii\base\Application->run()
+#3 {main}
+$_SERVER = [
+    'PATH' => '/usr/local/bin:/usr/bin:/bin',
+    'TEMP' => '/tmp',
+    'TMP' => '/tmp',
+    'TMPDIR' => '/tmp',
+    'PWD' => '/',
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br',
+    'HTTP_ACCEPT_LANGUAGE' => 'es-VE,es-419;q=0.9,es;q=0.8',
+    'CONTENT_LENGTH' => '0',
+    'HTTP_COOKIE' => '_identity-backend=58514600cc523079c54c086fd35aff9c3296c49583bcefe4734a3cd1de9a39bca%3A2%3A%7Bi%3A0%3Bs%3A17%3A%22_identity-backend%22%3Bi%3A1%3Bs%3A46%3A%22%5B7%2C%22ew5zTXOA9DNqg2U7KsRFY4rqMPkb0mnf%22%2C2592000%5D%22%3B%7D; _csrf-backend=96db3c6d60afa84d549b445ec426babcd3e148ed3798535a2e8231b45eb5baa0a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%222uyBlv6ACu8TlHFbkTiI8kxtgjElnUDd%22%3B%7D; advanced-frontend=3fe9a278320b737211f8302bfdc6a631; _csrf-frontend=e477c4b653200ead092062b3fdafb84eb8b64605263650857456bf2f8065336ba%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_csrf-frontend%22%3Bi%3A1%3Bs%3A32%3A%22nE-hMMfrYMEkjd3HqbxKuXYECTanRjeA%22%3B%7D; advanced-backend=e419b16c9df4dda5b0c42d04b93744fe',
+    'HTTP_HOST' => 'parkingplus.es',
+    'HTTP_REFERER' => 'https://parkingplus.es/aparcamiento/backend/web/index.php?r=reservas%2Findex',
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+    'HTTP_CACHE_CONTROL' => 'max-age=0',
+    'HTTP_SEC_CH_UA' => '"Not_A Brand";v="8", "Chromium";v="120", "Google Chrome";v="120"',
+    'HTTP_SEC_CH_UA_MOBILE' => '?0',
+    'HTTP_SEC_CH_UA_PLATFORM' => '"Linux"',
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+    'HTTP_SEC_FETCH_SITE' => 'same-origin',
+    'HTTP_SEC_FETCH_MODE' => 'navigate',
+    'HTTP_SEC_FETCH_USER' => '?1',
+    'HTTP_SEC_FETCH_DEST' => 'document',
+    'HTTP_X_HTTPS' => '1',
+    'UNIQUE_ID' => 'ZYSnfkTT_ES_CyaflvOiFwAAghM',
+    'MMDB_ADDR' => '190.89.30.130',
+    'MMDB_INFO' => 'result found',
+    'MM_CONTINENT_CODE' => 'SA',
+    'MM_COUNTRY_CODE' => 'PE',
+    'GEOIP_CONTINENT_CODE' => 'SA',
+    'GEOIP_COUNTRY_CODE' => 'PE',
+    'SCRIPT_URL' => '/aparcamiento/backend/web/index.php',
+    'SCRIPT_URI' => 'https://parkingplus.es/aparcamiento/backend/web/index.php',
+    'HTTPS' => 'on',
+    'SSL_TLS_SNI' => 'parkingplus.es',
+    'HTTP2' => 'on',
+    'H2PUSH' => 'off',
+    'H2_PUSH' => 'off',
+    'H2_PUSHED' => '',
+    'H2_PUSHED_ON' => '',
+    'H2_STREAM_ID' => '1',
+    'H2_STREAM_TAG' => '1105928-2422-1',
+    'SERVER_SIGNATURE' => '',
+    'SERVER_SOFTWARE' => 'Apache',
+    'SERVER_NAME' => 'parkingplus.es',
+    'SERVER_ADDR' => '185.101.224.12',
+    'SERVER_PORT' => '443',
+    'REMOTE_ADDR' => '190.89.30.130',
+    'DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'REQUEST_SCHEME' => 'https',
+    'CONTEXT_PREFIX' => '',
+    'CONTEXT_DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'SERVER_ADMIN' => 'webmaster@parkingplus.es',
+    'SCRIPT_FILENAME' => '/home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php',
+    'REMOTE_PORT' => '50466',
+    'SERVER_PROTOCOL' => 'HTTP/2.0',
+    'REQUEST_METHOD' => 'GET',
+    'QUERY_STRING' => 'r=reservas%2Fcreate&entrada=12-01-2024&salida=30-12-2023&hora_e=14%3A00&hora_s=16%3A00&medio=1&agencia=',
+    'REQUEST_URI' => '/aparcamiento/backend/web/index.php?r=reservas%2Fcreate&entrada=12-01-2024&salida=30-12-2023&hora_e=14%3A00&hora_s=16%3A00&medio=1&agencia=',
+    'SCRIPT_NAME' => '/aparcamiento/backend/web/index.php',
+    'PHP_SELF' => '/aparcamiento/backend/web/index.php',
+    'REQUEST_TIME_FLOAT' => 1703192446.885129,
+    'REQUEST_TIME' => 1703192446,
+]
+[27-Dec-2023 01:27:28 Europe/Madrid] An Error occurred while handling another error:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ClientesController.php on line 57. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/ErrorHandler.php(135): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\web\ErrorHandler->renderException(Object(yii\web\HeadersAlreadySentException))
+#3 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\HeadersAlreadySentException))
+#4 {main}
+Previous exception:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ClientesController.php on line 57. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/Application.php(392): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php(17): yii\base\Application->run()
+#3 {main}
+$_SERVER = [
+    'PATH' => '/usr/local/bin:/usr/bin:/bin',
+    'TEMP' => '/tmp',
+    'TMP' => '/tmp',
+    'TMPDIR' => '/tmp',
+    'PWD' => '/',
+    'HTTP_ACCEPT' => '*/*',
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br',
+    'HTTP_ACCEPT_LANGUAGE' => 'es-VE,es-419;q=0.9,es;q=0.8',
+    'CONTENT_LENGTH' => '0',
+    'HTTP_COOKIE' => '_identity-backend=58514600cc523079c54c086fd35aff9c3296c49583bcefe4734a3cd1de9a39bca%3A2%3A%7Bi%3A0%3Bs%3A17%3A%22_identity-backend%22%3Bi%3A1%3Bs%3A46%3A%22%5B7%2C%22ew5zTXOA9DNqg2U7KsRFY4rqMPkb0mnf%22%2C2592000%5D%22%3B%7D; _csrf-backend=57dc05a14c0f7615fc65ddcb76062b90c4075188b33c66da82fb5cd042a5e7a3a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22JulYIei9dxV9PTi60tVatq8Al0ajOW1n%22%3B%7D; advanced-backend=dbcbde5f92ccec238f115e0f9258977a',
+    'HTTP_HOST' => 'parkingplus.es',
+    'HTTP_REFERER' => 'https://parkingplus.es/aparcamiento/backend/web/index.php?r=reservas%2Fcreate&entrada=27-12-2023&salida=28-12-2023&hora_e=12%3A45&hora_s=12%3A45&medio=1&agencia=',
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+    'HTTP_SEC_CH_UA' => '"Not_A Brand";v="8", "Chromium";v="120", "Google Chrome";v="120"',
+    'HTTP_X_CSRF_TOKEN' => 'YjfRSLYhVUYagCOGcSbVZUvxvmSP35NLrGifUwPQ4XooQr0R_0Q8f374db8hcrxTe4XoBfuuqwrAWP45TIfQFA==',
+    'HTTP_X_REQUESTED_WITH' => 'XMLHttpRequest',
+    'HTTP_SEC_CH_UA_MOBILE' => '?0',
+    'HTTP_SEC_CH_UA_PLATFORM' => '"Linux"',
+    'HTTP_SEC_FETCH_SITE' => 'same-origin',
+    'HTTP_SEC_FETCH_MODE' => 'cors',
+    'HTTP_SEC_FETCH_DEST' => 'empty',
+    'HTTP_X_HTTPS' => '1',
+    'UNIQUE_ID' => 'ZYtvN7l9ETGzo56BeDP29QAAGBM',
+    'MMDB_ADDR' => '190.89.30.131',
+    'MMDB_INFO' => 'result found',
+    'GEOIP_COUNTRY_CODE' => 'PE',
+    'MM_CONTINENT_CODE' => 'SA',
+    'MM_COUNTRY_CODE' => 'PE',
+    'GEOIP_CONTINENT_CODE' => 'SA',
+    'SCRIPT_URL' => '/aparcamiento/backend/web/index.php',
+    'SCRIPT_URI' => 'https://parkingplus.es/aparcamiento/backend/web/index.php',
+    'HTTPS' => 'on',
+    'SSL_TLS_SNI' => 'parkingplus.es',
+    'HTTP2' => 'on',
+    'H2PUSH' => 'off',
+    'H2_PUSH' => 'off',
+    'H2_PUSHED' => '',
+    'H2_PUSHED_ON' => '',
+    'H2_STREAM_ID' => '1',
+    'H2_STREAM_TAG' => '2514224-719-1',
+    'SERVER_SIGNATURE' => '',
+    'SERVER_SOFTWARE' => 'Apache',
+    'SERVER_NAME' => 'parkingplus.es',
+    'SERVER_ADDR' => '185.101.224.12',
+    'SERVER_PORT' => '443',
+    'REMOTE_ADDR' => '190.89.30.131',
+    'DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'REQUEST_SCHEME' => 'https',
+    'CONTEXT_PREFIX' => '',
+    'CONTEXT_DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'SERVER_ADMIN' => 'webmaster@parkingplus.es',
+    'SCRIPT_FILENAME' => '/home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php',
+    'REMOTE_PORT' => '50114',
+    'SERVER_PROTOCOL' => 'HTTP/2.0',
+    'REQUEST_METHOD' => 'GET',
+    'QUERY_STRING' => 'r=clientes%2Fcliente&email=davizdj13%40hotmail.com',
+    'REQUEST_URI' => '/aparcamiento/backend/web/index.php?r=clientes%2Fcliente&email=davizdj13%40hotmail.com',
+    'SCRIPT_NAME' => '/aparcamiento/backend/web/index.php',
+    'PHP_SELF' => '/aparcamiento/backend/web/index.php',
+    'REQUEST_TIME_FLOAT' => 1703636791.370237,
+    'REQUEST_TIME' => 1703636791,
+]
+[27-Dec-2023 01:28:23 Europe/Madrid] An Error occurred while handling another error:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ClientesController.php on line 57. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/ErrorHandler.php(135): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\web\ErrorHandler->renderException(Object(yii\web\HeadersAlreadySentException))
+#3 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\HeadersAlreadySentException))
+#4 {main}
+Previous exception:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ClientesController.php on line 57. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/Application.php(392): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php(17): yii\base\Application->run()
+#3 {main}
+$_SERVER = [
+    'PATH' => '/usr/local/bin:/usr/bin:/bin',
+    'TEMP' => '/tmp',
+    'TMP' => '/tmp',
+    'TMPDIR' => '/tmp',
+    'PWD' => '/',
+    'HTTP_ACCEPT' => '*/*',
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br',
+    'HTTP_ACCEPT_LANGUAGE' => 'es-VE,es-419;q=0.9,es;q=0.8',
+    'CONTENT_LENGTH' => '0',
+    'HTTP_COOKIE' => '_identity-backend=58514600cc523079c54c086fd35aff9c3296c49583bcefe4734a3cd1de9a39bca%3A2%3A%7Bi%3A0%3Bs%3A17%3A%22_identity-backend%22%3Bi%3A1%3Bs%3A46%3A%22%5B7%2C%22ew5zTXOA9DNqg2U7KsRFY4rqMPkb0mnf%22%2C2592000%5D%22%3B%7D; _csrf-backend=57dc05a14c0f7615fc65ddcb76062b90c4075188b33c66da82fb5cd042a5e7a3a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22JulYIei9dxV9PTi60tVatq8Al0ajOW1n%22%3B%7D; advanced-backend=dbcbde5f92ccec238f115e0f9258977a',
+    'HTTP_HOST' => 'parkingplus.es',
+    'HTTP_REFERER' => 'https://parkingplus.es/aparcamiento/backend/web/index.php?r=reservas%2Fcreate&entrada=27-12-2023&salida=28-12-2023&hora_e=12%3A45&hora_s=12%3A45&medio=1&agencia=',
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+    'HTTP_SEC_CH_UA' => '"Not_A Brand";v="8", "Chromium";v="120", "Google Chrome";v="120"',
+    'HTTP_X_CSRF_TOKEN' => 'YjfRSLYhVUYagCOGcSbVZUvxvmSP35NLrGifUwPQ4XooQr0R_0Q8f374db8hcrxTe4XoBfuuqwrAWP45TIfQFA==',
+    'HTTP_X_REQUESTED_WITH' => 'XMLHttpRequest',
+    'HTTP_SEC_CH_UA_MOBILE' => '?0',
+    'HTTP_SEC_CH_UA_PLATFORM' => '"Linux"',
+    'HTTP_SEC_FETCH_SITE' => 'same-origin',
+    'HTTP_SEC_FETCH_MODE' => 'cors',
+    'HTTP_SEC_FETCH_DEST' => 'empty',
+    'HTTP_X_HTTPS' => '1',
+    'UNIQUE_ID' => 'ZYtvXLl9ETGzo56BeDP3IwAAGBQ',
+    'MMDB_ADDR' => '190.89.30.131',
+    'MMDB_INFO' => 'result found',
+    'GEOIP_COUNTRY_CODE' => 'PE',
+    'MM_CONTINENT_CODE' => 'SA',
+    'MM_COUNTRY_CODE' => 'PE',
+    'GEOIP_CONTINENT_CODE' => 'SA',
+    'SCRIPT_URL' => '/aparcamiento/backend/web/index.php',
+    'SCRIPT_URI' => 'https://parkingplus.es/aparcamiento/backend/web/index.php',
+    'HTTPS' => 'on',
+    'SSL_TLS_SNI' => 'parkingplus.es',
+    'HTTP2' => 'on',
+    'H2PUSH' => 'off',
+    'H2_PUSH' => 'off',
+    'H2_PUSHED' => '',
+    'H2_PUSHED_ON' => '',
+    'H2_STREAM_ID' => '3',
+    'H2_STREAM_TAG' => '2514224-719-3',
+    'SERVER_SIGNATURE' => '',
+    'SERVER_SOFTWARE' => 'Apache',
+    'SERVER_NAME' => 'parkingplus.es',
+    'SERVER_ADDR' => '185.101.224.12',
+    'SERVER_PORT' => '443',
+    'REMOTE_ADDR' => '190.89.30.131',
+    'DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'REQUEST_SCHEME' => 'https',
+    'CONTEXT_PREFIX' => '',
+    'CONTEXT_DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'SERVER_ADMIN' => 'webmaster@parkingplus.es',
+    'SCRIPT_FILENAME' => '/home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php',
+    'REMOTE_PORT' => '50114',
+    'SERVER_PROTOCOL' => 'HTTP/2.0',
+    'REQUEST_METHOD' => 'GET',
+    'QUERY_STRING' => 'r=clientes%2Fcliente&email=davizdj13%40hotmail.co',
+    'REQUEST_URI' => '/aparcamiento/backend/web/index.php?r=clientes%2Fcliente&email=davizdj13%40hotmail.co',
+    'SCRIPT_NAME' => '/aparcamiento/backend/web/index.php',
+    'PHP_SELF' => '/aparcamiento/backend/web/index.php',
+    'REQUEST_TIME_FLOAT' => 1703636828.96761,
+    'REQUEST_TIME' => 1703636828,
+]
+[27-Dec-2023 01:29:44 Europe/Madrid] An Error occurred while handling another error:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ClientesController.php on line 57. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/ErrorHandler.php(135): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\web\ErrorHandler->renderException(Object(yii\web\HeadersAlreadySentException))
+#3 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\HeadersAlreadySentException))
+#4 {main}
+Previous exception:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ClientesController.php on line 57. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/Application.php(392): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php(17): yii\base\Application->run()
+#3 {main}
+$_SERVER = [
+    'PATH' => '/usr/local/bin:/usr/bin:/bin',
+    'TEMP' => '/tmp',
+    'TMP' => '/tmp',
+    'TMPDIR' => '/tmp',
+    'PWD' => '/',
+    'HTTP_ACCEPT' => '*/*',
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br',
+    'HTTP_ACCEPT_LANGUAGE' => 'es-VE,es-419;q=0.9,es;q=0.8',
+    'CONTENT_LENGTH' => '0',
+    'HTTP_COOKIE' => '_identity-backend=58514600cc523079c54c086fd35aff9c3296c49583bcefe4734a3cd1de9a39bca%3A2%3A%7Bi%3A0%3Bs%3A17%3A%22_identity-backend%22%3Bi%3A1%3Bs%3A46%3A%22%5B7%2C%22ew5zTXOA9DNqg2U7KsRFY4rqMPkb0mnf%22%2C2592000%5D%22%3B%7D; _csrf-backend=57dc05a14c0f7615fc65ddcb76062b90c4075188b33c66da82fb5cd042a5e7a3a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22JulYIei9dxV9PTi60tVatq8Al0ajOW1n%22%3B%7D; advanced-backend=dbcbde5f92ccec238f115e0f9258977a',
+    'HTTP_HOST' => 'parkingplus.es',
+    'HTTP_REFERER' => 'https://parkingplus.es/aparcamiento/backend/web/index.php?r=reservas%2Fcreate&entrada=27-12-2023&salida=28-12-2023&hora_e=12%3A45&hora_s=12%3A45&medio=1&agencia=',
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+    'HTTP_SEC_CH_UA' => '"Not_A Brand";v="8", "Chromium";v="120", "Google Chrome";v="120"',
+    'HTTP_X_CSRF_TOKEN' => 'YjfRSLYhVUYagCOGcSbVZUvxvmSP35NLrGifUwPQ4XooQr0R_0Q8f374db8hcrxTe4XoBfuuqwrAWP45TIfQFA==',
+    'HTTP_X_REQUESTED_WITH' => 'XMLHttpRequest',
+    'HTTP_SEC_CH_UA_MOBILE' => '?0',
+    'HTTP_SEC_CH_UA_PLATFORM' => '"Linux"',
+    'HTTP_SEC_FETCH_SITE' => 'same-origin',
+    'HTTP_SEC_FETCH_MODE' => 'cors',
+    'HTTP_SEC_FETCH_DEST' => 'empty',
+    'HTTP_X_HTTPS' => '1',
+    'UNIQUE_ID' => 'ZYtvZLl9ETGzo56BeDP3LgAAGB4',
+    'MMDB_ADDR' => '190.89.30.131',
+    'MMDB_INFO' => 'result found',
+    'GEOIP_COUNTRY_CODE' => 'PE',
+    'MM_CONTINENT_CODE' => 'SA',
+    'MM_COUNTRY_CODE' => 'PE',
+    'GEOIP_CONTINENT_CODE' => 'SA',
+    'SCRIPT_URL' => '/aparcamiento/backend/web/index.php',
+    'SCRIPT_URI' => 'https://parkingplus.es/aparcamiento/backend/web/index.php',
+    'HTTPS' => 'on',
+    'SSL_TLS_SNI' => 'parkingplus.es',
+    'HTTP2' => 'on',
+    'H2PUSH' => 'off',
+    'H2_PUSH' => 'off',
+    'H2_PUSHED' => '',
+    'H2_PUSHED_ON' => '',
+    'H2_STREAM_ID' => '5',
+    'H2_STREAM_TAG' => '2514224-719-5',
+    'SERVER_SIGNATURE' => '',
+    'SERVER_SOFTWARE' => 'Apache',
+    'SERVER_NAME' => 'parkingplus.es',
+    'SERVER_ADDR' => '185.101.224.12',
+    'SERVER_PORT' => '443',
+    'REMOTE_ADDR' => '190.89.30.131',
+    'DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'REQUEST_SCHEME' => 'https',
+    'CONTEXT_PREFIX' => '',
+    'CONTEXT_DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'SERVER_ADMIN' => 'webmaster@parkingplus.es',
+    'SCRIPT_FILENAME' => '/home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php',
+    'REMOTE_PORT' => '50114',
+    'SERVER_PROTOCOL' => 'HTTP/2.0',
+    'REQUEST_METHOD' => 'GET',
+    'QUERY_STRING' => 'r=clientes%2Fcliente&email=davizdj13%40hotmail.com',
+    'REQUEST_URI' => '/aparcamiento/backend/web/index.php?r=clientes%2Fcliente&email=davizdj13%40hotmail.com',
+    'SCRIPT_NAME' => '/aparcamiento/backend/web/index.php',
+    'PHP_SELF' => '/aparcamiento/backend/web/index.php',
+    'REQUEST_TIME_FLOAT' => 1703636836.921118,
+    'REQUEST_TIME' => 1703636836,
+]
+[27-Dec-2023 01:33:40 Europe/Madrid] An Error occurred while handling another error:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ClientesController.php on line 58. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/ErrorHandler.php(135): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\web\ErrorHandler->renderException(Object(yii\web\HeadersAlreadySentException))
+#3 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\HeadersAlreadySentException))
+#4 {main}
+Previous exception:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ClientesController.php on line 58. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/Application.php(392): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php(17): yii\base\Application->run()
+#3 {main}
+$_SERVER = [
+    'PATH' => '/usr/local/bin:/usr/bin:/bin',
+    'TEMP' => '/tmp',
+    'TMP' => '/tmp',
+    'TMPDIR' => '/tmp',
+    'PWD' => '/',
+    'HTTP_ACCEPT' => '*/*',
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br',
+    'HTTP_ACCEPT_LANGUAGE' => 'es-VE,es-419;q=0.9,es;q=0.8',
+    'CONTENT_LENGTH' => '0',
+    'HTTP_COOKIE' => '_identity-backend=58514600cc523079c54c086fd35aff9c3296c49583bcefe4734a3cd1de9a39bca%3A2%3A%7Bi%3A0%3Bs%3A17%3A%22_identity-backend%22%3Bi%3A1%3Bs%3A46%3A%22%5B7%2C%22ew5zTXOA9DNqg2U7KsRFY4rqMPkb0mnf%22%2C2592000%5D%22%3B%7D; _csrf-backend=57dc05a14c0f7615fc65ddcb76062b90c4075188b33c66da82fb5cd042a5e7a3a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22JulYIei9dxV9PTi60tVatq8Al0ajOW1n%22%3B%7D; advanced-backend=dbcbde5f92ccec238f115e0f9258977a',
+    'HTTP_HOST' => 'parkingplus.es',
+    'HTTP_REFERER' => 'https://parkingplus.es/aparcamiento/backend/web/index.php?r=reservas%2Fcreate&entrada=27-12-2023&salida=28-12-2023&hora_e=12%3A45&hora_s=12%3A45&medio=1&agencia=',
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+    'HTTP_SEC_CH_UA' => '"Not_A Brand";v="8", "Chromium";v="120", "Google Chrome";v="120"',
+    'HTTP_X_CSRF_TOKEN' => 'YjfRSLYhVUYagCOGcSbVZUvxvmSP35NLrGifUwPQ4XooQr0R_0Q8f374db8hcrxTe4XoBfuuqwrAWP45TIfQFA==',
+    'HTTP_X_REQUESTED_WITH' => 'XMLHttpRequest',
+    'HTTP_SEC_CH_UA_MOBILE' => '?0',
+    'HTTP_SEC_CH_UA_PLATFORM' => '"Linux"',
+    'HTTP_SEC_FETCH_SITE' => 'same-origin',
+    'HTTP_SEC_FETCH_MODE' => 'cors',
+    'HTTP_SEC_FETCH_DEST' => 'empty',
+    'HTTP_X_HTTPS' => '1',
+    'UNIQUE_ID' => 'ZYtwgOhi-mP74Iq06VQc4wAAkAg',
+    'MMDB_ADDR' => '190.89.30.131',
+    'MMDB_INFO' => 'result found',
+    'GEOIP_COUNTRY_CODE' => 'PE',
+    'MM_CONTINENT_CODE' => 'SA',
+    'MM_COUNTRY_CODE' => 'PE',
+    'GEOIP_CONTINENT_CODE' => 'SA',
+    'SCRIPT_URL' => '/aparcamiento/backend/web/index.php',
+    'SCRIPT_URI' => 'https://parkingplus.es/aparcamiento/backend/web/index.php',
+    'HTTPS' => 'on',
+    'SSL_TLS_SNI' => 'parkingplus.es',
+    'HTTP2' => 'on',
+    'H2PUSH' => 'off',
+    'H2_PUSH' => 'off',
+    'H2_PUSHED' => '',
+    'H2_PUSHED_ON' => '',
+    'H2_STREAM_ID' => '1',
+    'H2_STREAM_TAG' => '2513981-636-1',
+    'SERVER_SIGNATURE' => '',
+    'SERVER_SOFTWARE' => 'Apache',
+    'SERVER_NAME' => 'parkingplus.es',
+    'SERVER_ADDR' => '185.101.224.12',
+    'SERVER_PORT' => '443',
+    'REMOTE_ADDR' => '190.89.30.131',
+    'DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'REQUEST_SCHEME' => 'https',
+    'CONTEXT_PREFIX' => '',
+    'CONTEXT_DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'SERVER_ADMIN' => 'webmaster@parkingplus.es',
+    'SCRIPT_FILENAME' => '/home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php',
+    'REMOTE_PORT' => '34800',
+    'SERVER_PROTOCOL' => 'HTTP/2.0',
+    'REQUEST_METHOD' => 'GET',
+    'QUERY_STRING' => 'r=clientes%2Fcliente&email=davizdj13%40hotmail.com',
+    'REQUEST_URI' => '/aparcamiento/backend/web/index.php?r=clientes%2Fcliente&email=davizdj13%40hotmail.com',
+    'SCRIPT_NAME' => '/aparcamiento/backend/web/index.php',
+    'PHP_SELF' => '/aparcamiento/backend/web/index.php',
+    'REQUEST_TIME_FLOAT' => 1703637120.824202,
+    'REQUEST_TIME' => 1703637120,
+]
+[27-Dec-2023 01:33:40 Europe/Madrid] An Error occurred while handling another error:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ClientesController.php on line 58. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/ErrorHandler.php(135): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\web\ErrorHandler->renderException(Object(yii\web\HeadersAlreadySentException))
+#3 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\HeadersAlreadySentException))
+#4 {main}
+Previous exception:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ClientesController.php on line 58. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/Application.php(392): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php(17): yii\base\Application->run()
+#3 {main}
+$_SERVER = [
+    'PATH' => '/usr/local/bin:/usr/bin:/bin',
+    'TEMP' => '/tmp',
+    'TMP' => '/tmp',
+    'TMPDIR' => '/tmp',
+    'PWD' => '/',
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br',
+    'HTTP_ACCEPT_LANGUAGE' => 'es-VE,es-419;q=0.9,es;q=0.8',
+    'CONTENT_LENGTH' => '0',
+    'HTTP_COOKIE' => '_identity-backend=58514600cc523079c54c086fd35aff9c3296c49583bcefe4734a3cd1de9a39bca%3A2%3A%7Bi%3A0%3Bs%3A17%3A%22_identity-backend%22%3Bi%3A1%3Bs%3A46%3A%22%5B7%2C%22ew5zTXOA9DNqg2U7KsRFY4rqMPkb0mnf%22%2C2592000%5D%22%3B%7D; _csrf-backend=57dc05a14c0f7615fc65ddcb76062b90c4075188b33c66da82fb5cd042a5e7a3a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22JulYIei9dxV9PTi60tVatq8Al0ajOW1n%22%3B%7D; advanced-backend=dbcbde5f92ccec238f115e0f9258977a',
+    'HTTP_HOST' => 'parkingplus.es',
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+    'HTTP_SEC_CH_UA' => '"Not_A Brand";v="8", "Chromium";v="120", "Google Chrome";v="120"',
+    'HTTP_SEC_CH_UA_MOBILE' => '?0',
+    'HTTP_SEC_CH_UA_PLATFORM' => '"Linux"',
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+    'HTTP_SEC_FETCH_SITE' => 'none',
+    'HTTP_SEC_FETCH_MODE' => 'navigate',
+    'HTTP_SEC_FETCH_USER' => '?1',
+    'HTTP_SEC_FETCH_DEST' => 'document',
+    'HTTP_X_HTTPS' => '1',
+    'UNIQUE_ID' => 'ZYtwm-hi-mP74Iq06VQc8wAAkAc',
+    'MMDB_ADDR' => '190.89.30.131',
+    'MMDB_INFO' => 'result found',
+    'GEOIP_COUNTRY_CODE' => 'PE',
+    'MM_CONTINENT_CODE' => 'SA',
+    'MM_COUNTRY_CODE' => 'PE',
+    'GEOIP_CONTINENT_CODE' => 'SA',
+    'SCRIPT_URL' => '/aparcamiento/backend/web/index.php',
+    'SCRIPT_URI' => 'https://parkingplus.es/aparcamiento/backend/web/index.php',
+    'HTTPS' => 'on',
+    'SSL_TLS_SNI' => 'parkingplus.es',
+    'HTTP2' => 'on',
+    'H2PUSH' => 'off',
+    'H2_PUSH' => 'off',
+    'H2_PUSHED' => '',
+    'H2_PUSHED_ON' => '',
+    'H2_STREAM_ID' => '3',
+    'H2_STREAM_TAG' => '2513981-636-3',
+    'SERVER_SIGNATURE' => '',
+    'SERVER_SOFTWARE' => 'Apache',
+    'SERVER_NAME' => 'parkingplus.es',
+    'SERVER_ADDR' => '185.101.224.12',
+    'SERVER_PORT' => '443',
+    'REMOTE_ADDR' => '190.89.30.131',
+    'DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'REQUEST_SCHEME' => 'https',
+    'CONTEXT_PREFIX' => '',
+    'CONTEXT_DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'SERVER_ADMIN' => 'webmaster@parkingplus.es',
+    'SCRIPT_FILENAME' => '/home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php',
+    'REMOTE_PORT' => '34800',
+    'SERVER_PROTOCOL' => 'HTTP/2.0',
+    'REQUEST_METHOD' => 'GET',
+    'QUERY_STRING' => 'r=clientes%2Fcliente&email=davizdj13%40hotmail.com',
+    'REQUEST_URI' => '/aparcamiento/backend/web/index.php?r=clientes%2Fcliente&email=davizdj13%40hotmail.com',
+    'SCRIPT_NAME' => '/aparcamiento/backend/web/index.php',
+    'PHP_SELF' => '/aparcamiento/backend/web/index.php',
+    'REQUEST_TIME_FLOAT' => 1703637147.318338,
+    'REQUEST_TIME' => 1703637147,
+]
+[27-Dec-2023 01:35:02 Europe/Madrid] An Error occurred while handling another error:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ClientesController.php on line 58. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/ErrorHandler.php(135): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\web\ErrorHandler->renderException(Object(yii\web\HeadersAlreadySentException))
+#3 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\HeadersAlreadySentException))
+#4 {main}
+Previous exception:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ClientesController.php on line 58. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/Application.php(392): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php(17): yii\base\Application->run()
+#3 {main}
+$_SERVER = [
+    'PATH' => '/usr/local/bin:/usr/bin:/bin',
+    'TEMP' => '/tmp',
+    'TMP' => '/tmp',
+    'TMPDIR' => '/tmp',
+    'PWD' => '/',
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br',
+    'HTTP_ACCEPT_LANGUAGE' => 'es-VE,es-419;q=0.9,es;q=0.8',
+    'CONTENT_LENGTH' => '0',
+    'HTTP_COOKIE' => '_identity-backend=58514600cc523079c54c086fd35aff9c3296c49583bcefe4734a3cd1de9a39bca%3A2%3A%7Bi%3A0%3Bs%3A17%3A%22_identity-backend%22%3Bi%3A1%3Bs%3A46%3A%22%5B7%2C%22ew5zTXOA9DNqg2U7KsRFY4rqMPkb0mnf%22%2C2592000%5D%22%3B%7D; _csrf-backend=57dc05a14c0f7615fc65ddcb76062b90c4075188b33c66da82fb5cd042a5e7a3a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22JulYIei9dxV9PTi60tVatq8Al0ajOW1n%22%3B%7D; advanced-backend=dbcbde5f92ccec238f115e0f9258977a',
+    'HTTP_HOST' => 'parkingplus.es',
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+    'HTTP_SEC_CH_UA' => '"Not_A Brand";v="8", "Chromium";v="120", "Google Chrome";v="120"',
+    'HTTP_SEC_CH_UA_MOBILE' => '?0',
+    'HTTP_SEC_CH_UA_PLATFORM' => '"Linux"',
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+    'HTTP_SEC_FETCH_SITE' => 'none',
+    'HTTP_SEC_FETCH_MODE' => 'navigate',
+    'HTTP_SEC_FETCH_USER' => '?1',
+    'HTTP_SEC_FETCH_DEST' => 'document',
+    'HTTP_X_HTTPS' => '1',
+    'UNIQUE_ID' => 'ZYtw5Ohi-mP74Iq06VQdDwAAkA8',
+    'MMDB_ADDR' => '190.89.30.131',
+    'MMDB_INFO' => 'result found',
+    'GEOIP_COUNTRY_CODE' => 'PE',
+    'MM_CONTINENT_CODE' => 'SA',
+    'MM_COUNTRY_CODE' => 'PE',
+    'GEOIP_CONTINENT_CODE' => 'SA',
+    'SCRIPT_URL' => '/aparcamiento/backend/web/index.php',
+    'SCRIPT_URI' => 'https://parkingplus.es/aparcamiento/backend/web/index.php',
+    'HTTPS' => 'on',
+    'SSL_TLS_SNI' => 'parkingplus.es',
+    'HTTP2' => 'on',
+    'H2PUSH' => 'off',
+    'H2_PUSH' => 'off',
+    'H2_PUSHED' => '',
+    'H2_PUSHED_ON' => '',
+    'H2_STREAM_ID' => '5',
+    'H2_STREAM_TAG' => '2513981-636-5',
+    'SERVER_SIGNATURE' => '',
+    'SERVER_SOFTWARE' => 'Apache',
+    'SERVER_NAME' => 'parkingplus.es',
+    'SERVER_ADDR' => '185.101.224.12',
+    'SERVER_PORT' => '443',
+    'REMOTE_ADDR' => '190.89.30.131',
+    'DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'REQUEST_SCHEME' => 'https',
+    'CONTEXT_PREFIX' => '',
+    'CONTEXT_DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'SERVER_ADMIN' => 'webmaster@parkingplus.es',
+    'SCRIPT_FILENAME' => '/home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php',
+    'REMOTE_PORT' => '34800',
+    'SERVER_PROTOCOL' => 'HTTP/2.0',
+    'REQUEST_METHOD' => 'GET',
+    'QUERY_STRING' => 'r=clientes%2Fcliente&email=davizdj13%40hotmail.com',
+    'REQUEST_URI' => '/aparcamiento/backend/web/index.php?r=clientes%2Fcliente&email=davizdj13%40hotmail.com',
+    'SCRIPT_NAME' => '/aparcamiento/backend/web/index.php',
+    'PHP_SELF' => '/aparcamiento/backend/web/index.php',
+    'REQUEST_TIME_FLOAT' => 1703637220.282898,
+    'REQUEST_TIME' => 1703637220,
+]
+[05-Jan-2024 14:21:32 Europe/Madrid] PHP Fatal error:  Cannot use empty array elements in arrays in /home/tn5qqzxx/public_html/aparcamiento/backend/views/reservas/_form.php on line 640
+[05-Jan-2024 15:53:23 Europe/Madrid] An Error occurred while handling another error:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ReservasController.php on line 1487. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/ErrorHandler.php(135): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\web\ErrorHandler->renderException(Object(yii\web\HeadersAlreadySentException))
+#3 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\HeadersAlreadySentException))
+#4 {main}
+Previous exception:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ReservasController.php on line 1487. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/Application.php(392): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php(17): yii\base\Application->run()
+#3 {main}
+$_SERVER = [
+    'PATH' => '/usr/local/bin:/usr/bin:/bin',
+    'TEMP' => '/tmp',
+    'TMP' => '/tmp',
+    'TMPDIR' => '/tmp',
+    'PWD' => '/',
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br',
+    'HTTP_ACCEPT_LANGUAGE' => 'es-VE,es-419;q=0.9,es;q=0.8',
+    'CONTENT_TYPE' => 'application/x-www-form-urlencoded',
+    'CONTENT_LENGTH' => '1726',
+    'HTTP_COOKIE' => '_identity-backend=58514600cc523079c54c086fd35aff9c3296c49583bcefe4734a3cd1de9a39bca%3A2%3A%7Bi%3A0%3Bs%3A17%3A%22_identity-backend%22%3Bi%3A1%3Bs%3A46%3A%22%5B7%2C%22ew5zTXOA9DNqg2U7KsRFY4rqMPkb0mnf%22%2C2592000%5D%22%3B%7D; _csrf-backend=cba3a40e51a5c2bf3b44b5b12ccdce6c0e7ec452e18e95207480d3acdbc68126a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22tKnv4WuXY3U57HZGWWsaWMxIs8ngZUrL%22%3B%7D; advanced-frontend=f4550d10a4967b65487a376b44bd2016; _csrf-frontend=f4c4a1fa7f040cac3457cc76265df8d3e67c7a5ad31202329ab389556e590681a%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_csrf-frontend%22%3Bi%3A1%3Bs%3A32%3A%22HgbQ5dveSJSfIUSPAeHP0Ek8R_2vd3jt%22%3B%7D; advanced-backend=08a419ae6d95e8fe605e8da037ab1a26',
+    'HTTP_HOST' => 'parkingplus.es',
+    'HTTP_REFERER' => 'https://parkingplus.es/aparcamiento/backend/web/index.php?r=reservas%2Fcreate&entrada=05-01-2024&salida=06-01-2024&hora_e=11%3A45&hora_s=10%3A45&medio=1&agencia=',
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+    'HTTP_CACHE_CONTROL' => 'max-age=0',
+    'HTTP_SEC_CH_UA' => '"Not_A Brand";v="8", "Chromium";v="120", "Google Chrome";v="120"',
+    'HTTP_SEC_CH_UA_MOBILE' => '?0',
+    'HTTP_SEC_CH_UA_PLATFORM' => '"Linux"',
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+    'HTTP_ORIGIN' => 'https://parkingplus.es',
+    'HTTP_SEC_FETCH_SITE' => 'same-origin',
+    'HTTP_SEC_FETCH_MODE' => 'navigate',
+    'HTTP_SEC_FETCH_USER' => '?1',
+    'HTTP_SEC_FETCH_DEST' => 'document',
+    'HTTP_X_HTTPS' => '1',
+    'UNIQUE_ID' => 'ZZgX4mHwD0AYwKqdPkBhagAAVAE',
+    'MMDB_ADDR' => '190.89.30.130',
+    'MMDB_INFO' => 'result found',
+    'GEOIP_COUNTRY_CODE' => 'PE',
+    'MM_CONTINENT_CODE' => 'SA',
+    'MM_COUNTRY_CODE' => 'PE',
+    'GEOIP_CONTINENT_CODE' => 'SA',
+    'SCRIPT_URL' => '/aparcamiento/backend/web/index.php',
+    'SCRIPT_URI' => 'https://parkingplus.es/aparcamiento/backend/web/index.php',
+    'HTTPS' => 'on',
+    'SSL_TLS_SNI' => 'parkingplus.es',
+    'HTTP2' => 'on',
+    'H2PUSH' => 'off',
+    'H2_PUSH' => 'off',
+    'H2_PUSHED' => '',
+    'H2_PUSHED_ON' => '',
+    'H2_STREAM_ID' => '1',
+    'H2_STREAM_TAG' => '231169-422-1',
+    'SERVER_SIGNATURE' => '',
+    'SERVER_SOFTWARE' => 'Apache',
+    'SERVER_NAME' => 'parkingplus.es',
+    'SERVER_ADDR' => '185.101.224.12',
+    'SERVER_PORT' => '443',
+    'REMOTE_ADDR' => '190.89.30.130',
+    'DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'REQUEST_SCHEME' => 'https',
+    'CONTEXT_PREFIX' => '',
+    'CONTEXT_DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'SERVER_ADMIN' => 'webmaster@parkingplus.es',
+    'SCRIPT_FILENAME' => '/home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php',
+    'REMOTE_PORT' => '50698',
+    'SERVER_PROTOCOL' => 'HTTP/2.0',
+    'REQUEST_METHOD' => 'POST',
+    'QUERY_STRING' => 'r=reservas%2Fcreate&entrada=05-01-2024&salida=06-01-2024&hora_e=11%3A45&hora_s=10%3A45&medio=1&agencia=',
+    'REQUEST_URI' => '/aparcamiento/backend/web/index.php?r=reservas%2Fcreate&entrada=05-01-2024&salida=06-01-2024&hora_e=11%3A45&hora_s=10%3A45&medio=1&agencia=',
+    'SCRIPT_NAME' => '/aparcamiento/backend/web/index.php',
+    'PHP_SELF' => '/aparcamiento/backend/web/index.php',
+    'REQUEST_TIME_FLOAT' => 1704466402.648862,
+    'REQUEST_TIME' => 1704466402,
+]
+[05-Jan-2024 15:56:31 Europe/Madrid] An Error occurred while handling another error:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ReservasController.php on line 1487. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/ErrorHandler.php(135): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\web\ErrorHandler->renderException(Object(yii\web\HeadersAlreadySentException))
+#3 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\HeadersAlreadySentException))
+#4 {main}
+Previous exception:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ReservasController.php on line 1487. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/Application.php(392): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php(17): yii\base\Application->run()
+#3 {main}
+$_SERVER = [
+    'PATH' => '/usr/local/bin:/usr/bin:/bin',
+    'TEMP' => '/tmp',
+    'TMP' => '/tmp',
+    'TMPDIR' => '/tmp',
+    'PWD' => '/',
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br',
+    'HTTP_ACCEPT_LANGUAGE' => 'es-VE,es-419;q=0.9,es;q=0.8',
+    'CONTENT_TYPE' => 'application/x-www-form-urlencoded',
+    'CONTENT_LENGTH' => '1726',
+    'HTTP_COOKIE' => '_identity-backend=58514600cc523079c54c086fd35aff9c3296c49583bcefe4734a3cd1de9a39bca%3A2%3A%7Bi%3A0%3Bs%3A17%3A%22_identity-backend%22%3Bi%3A1%3Bs%3A46%3A%22%5B7%2C%22ew5zTXOA9DNqg2U7KsRFY4rqMPkb0mnf%22%2C2592000%5D%22%3B%7D; _csrf-backend=cba3a40e51a5c2bf3b44b5b12ccdce6c0e7ec452e18e95207480d3acdbc68126a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22tKnv4WuXY3U57HZGWWsaWMxIs8ngZUrL%22%3B%7D; advanced-frontend=f4550d10a4967b65487a376b44bd2016; _csrf-frontend=f4c4a1fa7f040cac3457cc76265df8d3e67c7a5ad31202329ab389556e590681a%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_csrf-frontend%22%3Bi%3A1%3Bs%3A32%3A%22HgbQ5dveSJSfIUSPAeHP0Ek8R_2vd3jt%22%3B%7D; advanced-backend=08a419ae6d95e8fe605e8da037ab1a26',
+    'HTTP_HOST' => 'parkingplus.es',
+    'HTTP_REFERER' => 'https://parkingplus.es/aparcamiento/backend/web/index.php?r=reservas%2Fcreate&entrada=05-01-2024&salida=06-01-2024&hora_e=11%3A45&hora_s=10%3A45&medio=1&agencia=',
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+    'HTTP_CACHE_CONTROL' => 'max-age=0',
+    'HTTP_SEC_CH_UA' => '"Not_A Brand";v="8", "Chromium";v="120", "Google Chrome";v="120"',
+    'HTTP_SEC_CH_UA_MOBILE' => '?0',
+    'HTTP_SEC_CH_UA_PLATFORM' => '"Linux"',
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+    'HTTP_ORIGIN' => 'https://parkingplus.es',
+    'HTTP_SEC_FETCH_SITE' => 'same-origin',
+    'HTTP_SEC_FETCH_MODE' => 'navigate',
+    'HTTP_SEC_FETCH_USER' => '?1',
+    'HTTP_SEC_FETCH_DEST' => 'document',
+    'HTTP_X_HTTPS' => '1',
+    'UNIQUE_ID' => 'ZZgYnkz7ZqTzUN6eWcCd1wAAGBM',
+    'MMDB_ADDR' => '190.89.30.130',
+    'MMDB_INFO' => 'result found',
+    'GEOIP_COUNTRY_CODE' => 'PE',
+    'MM_CONTINENT_CODE' => 'SA',
+    'MM_COUNTRY_CODE' => 'PE',
+    'GEOIP_CONTINENT_CODE' => 'SA',
+    'SCRIPT_URL' => '/aparcamiento/backend/web/index.php',
+    'SCRIPT_URI' => 'https://parkingplus.es/aparcamiento/backend/web/index.php',
+    'HTTPS' => 'on',
+    'SSL_TLS_SNI' => 'parkingplus.es',
+    'HTTP2' => 'on',
+    'H2PUSH' => 'off',
+    'H2_PUSH' => 'off',
+    'H2_PUSHED' => '',
+    'H2_PUSHED_ON' => '',
+    'H2_STREAM_ID' => '1',
+    'H2_STREAM_TAG' => '161561-1155-1',
+    'SERVER_SIGNATURE' => '',
+    'SERVER_SOFTWARE' => 'Apache',
+    'SERVER_NAME' => 'parkingplus.es',
+    'SERVER_ADDR' => '185.101.224.12',
+    'SERVER_PORT' => '443',
+    'REMOTE_ADDR' => '190.89.30.130',
+    'DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'REQUEST_SCHEME' => 'https',
+    'CONTEXT_PREFIX' => '',
+    'CONTEXT_DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'SERVER_ADMIN' => 'webmaster@parkingplus.es',
+    'SCRIPT_FILENAME' => '/home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php',
+    'REMOTE_PORT' => '54880',
+    'SERVER_PROTOCOL' => 'HTTP/2.0',
+    'REQUEST_METHOD' => 'POST',
+    'QUERY_STRING' => 'r=reservas%2Fcreate&entrada=05-01-2024&salida=06-01-2024&hora_e=11%3A45&hora_s=10%3A45&medio=1&agencia=',
+    'REQUEST_URI' => '/aparcamiento/backend/web/index.php?r=reservas%2Fcreate&entrada=05-01-2024&salida=06-01-2024&hora_e=11%3A45&hora_s=10%3A45&medio=1&agencia=',
+    'SCRIPT_NAME' => '/aparcamiento/backend/web/index.php',
+    'PHP_SELF' => '/aparcamiento/backend/web/index.php',
+    'REQUEST_TIME_FLOAT' => 1704466591.018407,
+    'REQUEST_TIME' => 1704466591,
+]
+[11-Feb-2024 20:11:47 Europe/Madrid] An Error occurred while handling another error:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ReservasController.php on line 1491. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/ErrorHandler.php(135): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\web\ErrorHandler->renderException(Object(yii\web\HeadersAlreadySentException))
+#3 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\HeadersAlreadySentException))
+#4 {main}
+Previous exception:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ReservasController.php on line 1491. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/Application.php(392): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php(17): yii\base\Application->run()
+#3 {main}
+$_SERVER = [
+    'PATH' => '/usr/local/bin:/usr/bin:/bin',
+    'TEMP' => '/tmp',
+    'TMP' => '/tmp',
+    'TMPDIR' => '/tmp',
+    'PWD' => '/',
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate',
+    'HTTP_ACCEPT_LANGUAGE' => 'es-ES,es;q=0.9',
+    'HTTP_CONNECTION' => 'keep-alive',
+    'CONTENT_TYPE' => 'application/x-www-form-urlencoded',
+    'CONTENT_LENGTH' => '1737',
+    'HTTP_COOKIE' => '_identity-backend=58514600cc523079c54c086fd35aff9c3296c49583bcefe4734a3cd1de9a39bca%3A2%3A%7Bi%3A0%3Bs%3A17%3A%22_identity-backend%22%3Bi%3A1%3Bs%3A46%3A%22%5B7%2C%22ew5zTXOA9DNqg2U7KsRFY4rqMPkb0mnf%22%2C2592000%5D%22%3B%7D; advanced-backend=bd6c0f9d356a0dd98173dd52d53cce6a; _csrf-backend=272ec7bd62a66fa094f10043bebbad6f829ae0aff32961e782dd83fce8071f81a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22sGpr4rolRWyS6Kx3Y3X8SGiZ_1bZBPH4%22%3B%7D',
+    'HTTP_HOST' => 'parkingplus.es',
+    'HTTP_REFERER' => 'http://parkingplus.es/aparcamiento/backend/web/index.php?r=reservas%2Fcreate&entrada=23-02-2024&salida=03-03-2024&hora_e=10%3A30&hora_s=14%3A30&medio=1&agencia=',
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Linux; Android 13; SAMSUNG SM-S901B) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/23.0 Chrome/115.0.0.0 Mobile Safari/537.36',
+    'HTTP_CACHE_CONTROL' => 'max-age=0',
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+    'HTTP_ORIGIN' => 'http://parkingplus.es',
+    'UNIQUE_ID' => 'Zckb8nZF_c7cqS094dT3RgAAAME',
+    'MMDB_ADDR' => '2.153.192.154',
+    'MMDB_INFO' => 'result found',
+    'GEOIP_CONTINENT_CODE' => 'EU',
+    'GEOIP_COUNTRY_CODE' => 'ES',
+    'MM_CONTINENT_CODE' => 'EU',
+    'MM_COUNTRY_CODE' => 'ES',
+    'AllowCountryXmlrpc' => '1',
+    'SCRIPT_URL' => '/aparcamiento/backend/web/index.php',
+    'SCRIPT_URI' => 'http://parkingplus.es/aparcamiento/backend/web/index.php',
+    'SERVER_SIGNATURE' => '',
+    'SERVER_SOFTWARE' => 'Apache',
+    'SERVER_NAME' => 'parkingplus.es',
+    'SERVER_ADDR' => '185.101.224.12',
+    'SERVER_PORT' => '80',
+    'REMOTE_ADDR' => '2.153.192.154',
+    'DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'REQUEST_SCHEME' => 'http',
+    'CONTEXT_PREFIX' => '',
+    'CONTEXT_DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'SERVER_ADMIN' => 'webmaster@parkingplus.es',
+    'SCRIPT_FILENAME' => '/home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php',
+    'REMOTE_PORT' => '56852',
+    'SERVER_PROTOCOL' => 'HTTP/1.1',
+    'REQUEST_METHOD' => 'POST',
+    'QUERY_STRING' => 'r=reservas%2Fcreate&entrada=23-02-2024&salida=03-03-2024&hora_e=10%3A30&hora_s=14%3A30&medio=1&agencia=',
+    'REQUEST_URI' => '/aparcamiento/backend/web/index.php?r=reservas%2Fcreate&entrada=23-02-2024&salida=03-03-2024&hora_e=10%3A30&hora_s=14%3A30&medio=1&agencia=',
+    'SCRIPT_NAME' => '/aparcamiento/backend/web/index.php',
+    'PHP_SELF' => '/aparcamiento/backend/web/index.php',
+    'REQUEST_TIME_FLOAT' => 1707678706.952096,
+    'REQUEST_TIME' => 1707678706,
+]
+[15-Mar-2024 13:34:05 Europe/Madrid] An Error occurred while handling another error:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/FacturasController.php on line 241. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/ErrorHandler.php(135): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\web\ErrorHandler->renderException(Object(yii\web\HeadersAlreadySentException))
+#3 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\HeadersAlreadySentException))
+#4 {main}
+Previous exception:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/FacturasController.php on line 241. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/Application.php(392): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php(17): yii\base\Application->run()
+#3 {main}
+$_SERVER = [
+    'PATH' => '/usr/local/bin:/usr/bin:/bin',
+    'TEMP' => '/tmp',
+    'TMP' => '/tmp',
+    'TMPDIR' => '/tmp',
+    'PWD' => '/',
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br, zstd',
+    'HTTP_ACCEPT_LANGUAGE' => 'es-VE,es-419;q=0.9,es;q=0.8',
+    'CONTENT_LENGTH' => '0',
+    'HTTP_COOKIE' => '_gcl_au=1.1.1096122467.1707516082; _ga=GA1.1.2087563250.1707516083; _ga_ZQ2MSQHZJC=GS1.2.1707522542.2.1.1707526311.0.0.0; _ga_C4Q61H0G50=GS1.1.1707522540.2.1.1707526855.0.0.0; _identity-backend=58514600cc523079c54c086fd35aff9c3296c49583bcefe4734a3cd1de9a39bca%3A2%3A%7Bi%3A0%3Bs%3A17%3A%22_identity-backend%22%3Bi%3A1%3Bs%3A46%3A%22%5B7%2C%22ew5zTXOA9DNqg2U7KsRFY4rqMPkb0mnf%22%2C2592000%5D%22%3B%7D; _csrf-backend=a6f10ad749bcdbe46771c44a13443af6dd0f5b2eef6a91f93ccc2f75ef7053a4a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%227jENqFTbveLXEr6qX8IwCoC3DXL6_uxm%22%3B%7D; advanced-frontend=c5e1c4518a05c972ef85ea99b2018cf7; _csrf-frontend=1bb9b66af9d533b1f7f7f0a0d335657a8a7e5201f771e9b7591b17fa612a16e7a%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_csrf-frontend%22%3Bi%3A1%3Bs%3A32%3A%22gCGPtDI7AhXMlqkXhTnkRHUeSfpdze2Z%22%3B%7D; advanced-backend=99919e0ec3f550d293877dab1a04f667',
+    'HTTP_HOST' => 'parkingplus.es',
+    'HTTP_REFERER' => 'https://parkingplus.es/aparcamiento/backend/web/index.php?r=facturas%2Findex',
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+    'HTTP_CACHE_CONTROL' => 'max-age=0',
+    'HTTP_IF_MODIFIED_SINCE' => 'Fri, 15 Mar 2024 12:24:57 GMT',
+    'HTTP_SEC_CH_UA' => '"Not_A Brand";v="8", "Chromium";v="120", "Google Chrome";v="120"',
+    'HTTP_SEC_CH_UA_MOBILE' => '?0',
+    'HTTP_SEC_CH_UA_PLATFORM' => '"Linux"',
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+    'HTTP_SEC_FETCH_SITE' => 'same-origin',
+    'HTTP_SEC_FETCH_MODE' => 'navigate',
+    'HTTP_SEC_FETCH_USER' => '?1',
+    'HTTP_SEC_FETCH_DEST' => 'document',
+    'HTTP_X_HTTPS' => '1',
+    'UNIQUE_ID' => 'ZfRAPXj2HGTbmb5wD4zv7gAATgg',
+    'MMDB_ADDR' => '190.89.30.130',
+    'MMDB_INFO' => 'result found',
+    'GEOIP_CONTINENT_CODE' => 'SA',
+    'GEOIP_COUNTRY_CODE' => 'PE',
+    'MM_CONTINENT_CODE' => 'SA',
+    'MM_COUNTRY_CODE' => 'PE',
+    'SCRIPT_URL' => '/aparcamiento/backend/web/index.php',
+    'SCRIPT_URI' => 'https://parkingplus.es/aparcamiento/backend/web/index.php',
+    'HTTPS' => 'on',
+    'SSL_TLS_SNI' => 'parkingplus.es',
+    'HTTP2' => 'on',
+    'H2PUSH' => 'off',
+    'H2_PUSH' => 'off',
+    'H2_PUSHED' => '',
+    'H2_PUSHED_ON' => '',
+    'H2_STREAM_ID' => '1',
+    'H2_STREAM_TAG' => '1512083-2404-1',
+    'SERVER_SIGNATURE' => '',
+    'SERVER_SOFTWARE' => 'Apache',
+    'SERVER_NAME' => 'parkingplus.es',
+    'SERVER_ADDR' => '185.101.224.12',
+    'SERVER_PORT' => '443',
+    'REMOTE_ADDR' => '190.89.30.130',
+    'DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'REQUEST_SCHEME' => 'https',
+    'CONTEXT_PREFIX' => '',
+    'CONTEXT_DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'SERVER_ADMIN' => 'webmaster@parkingplus.es',
+    'SCRIPT_FILENAME' => '/home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php',
+    'REMOTE_PORT' => '39686',
+    'SERVER_PROTOCOL' => 'HTTP/2.0',
+    'REQUEST_METHOD' => 'GET',
+    'QUERY_STRING' => 'r=facturas%2Fview-pdf&id=4096',
+    'REQUEST_URI' => '/aparcamiento/backend/web/index.php?r=facturas%2Fview-pdf&id=4096',
+    'SCRIPT_NAME' => '/aparcamiento/backend/web/index.php',
+    'PHP_SELF' => '/aparcamiento/backend/web/index.php',
+    'REQUEST_TIME_FLOAT' => 1710506045.487078,
+    'REQUEST_TIME' => 1710506045,
+]
+[15-Mar-2024 13:34:34 Europe/Madrid] An Error occurred while handling another error:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/FacturasController.php on line 241. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/ErrorHandler.php(135): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\web\ErrorHandler->renderException(Object(yii\web\HeadersAlreadySentException))
+#3 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\HeadersAlreadySentException))
+#4 {main}
+Previous exception:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/FacturasController.php on line 241. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/Application.php(392): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php(17): yii\base\Application->run()
+#3 {main}
+$_SERVER = [
+    'PATH' => '/usr/local/bin:/usr/bin:/bin',
+    'TEMP' => '/tmp',
+    'TMP' => '/tmp',
+    'TMPDIR' => '/tmp',
+    'PWD' => '/',
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br, zstd',
+    'HTTP_ACCEPT_LANGUAGE' => 'es-VE,es-419;q=0.9,es;q=0.8',
+    'CONTENT_LENGTH' => '0',
+    'HTTP_COOKIE' => '_gcl_au=1.1.1096122467.1707516082; _ga=GA1.1.2087563250.1707516083; _ga_ZQ2MSQHZJC=GS1.2.1707522542.2.1.1707526311.0.0.0; _ga_C4Q61H0G50=GS1.1.1707522540.2.1.1707526855.0.0.0; _identity-backend=58514600cc523079c54c086fd35aff9c3296c49583bcefe4734a3cd1de9a39bca%3A2%3A%7Bi%3A0%3Bs%3A17%3A%22_identity-backend%22%3Bi%3A1%3Bs%3A46%3A%22%5B7%2C%22ew5zTXOA9DNqg2U7KsRFY4rqMPkb0mnf%22%2C2592000%5D%22%3B%7D; _csrf-backend=a6f10ad749bcdbe46771c44a13443af6dd0f5b2eef6a91f93ccc2f75ef7053a4a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%227jENqFTbveLXEr6qX8IwCoC3DXL6_uxm%22%3B%7D; advanced-frontend=c5e1c4518a05c972ef85ea99b2018cf7; _csrf-frontend=1bb9b66af9d533b1f7f7f0a0d335657a8a7e5201f771e9b7591b17fa612a16e7a%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_csrf-frontend%22%3Bi%3A1%3Bs%3A32%3A%22gCGPtDI7AhXMlqkXhTnkRHUeSfpdze2Z%22%3B%7D; advanced-backend=99919e0ec3f550d293877dab1a04f667',
+    'HTTP_HOST' => 'parkingplus.es',
+    'HTTP_REFERER' => 'https://parkingplus.es/aparcamiento/backend/web/index.php?r=facturas%2Findex',
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+    'HTTP_CACHE_CONTROL' => 'max-age=0',
+    'HTTP_SEC_CH_UA' => '"Not_A Brand";v="8", "Chromium";v="120", "Google Chrome";v="120"',
+    'HTTP_SEC_CH_UA_MOBILE' => '?0',
+    'HTTP_SEC_CH_UA_PLATFORM' => '"Linux"',
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+    'HTTP_SEC_FETCH_SITE' => 'same-origin',
+    'HTTP_SEC_FETCH_MODE' => 'navigate',
+    'HTTP_SEC_FETCH_USER' => '?1',
+    'HTTP_SEC_FETCH_DEST' => 'document',
+    'HTTP_X_HTTPS' => '1',
+    'UNIQUE_ID' => 'ZfRAWs188cy2ox3cM0660wAAhQs',
+    'MMDB_ADDR' => '190.89.30.130',
+    'MMDB_INFO' => 'result found',
+    'GEOIP_CONTINENT_CODE' => 'SA',
+    'GEOIP_COUNTRY_CODE' => 'PE',
+    'MM_CONTINENT_CODE' => 'SA',
+    'MM_COUNTRY_CODE' => 'PE',
+    'SCRIPT_URL' => '/aparcamiento/backend/web/index.php',
+    'SCRIPT_URI' => 'https://parkingplus.es/aparcamiento/backend/web/index.php',
+    'HTTPS' => 'on',
+    'SSL_TLS_SNI' => 'parkingplus.es',
+    'HTTP2' => 'on',
+    'H2PUSH' => 'off',
+    'H2_PUSH' => 'off',
+    'H2_PUSHED' => '',
+    'H2_PUSHED_ON' => '',
+    'H2_STREAM_ID' => '1',
+    'H2_STREAM_TAG' => '1772397-1039-1',
+    'SERVER_SIGNATURE' => '',
+    'SERVER_SOFTWARE' => 'Apache',
+    'SERVER_NAME' => 'parkingplus.es',
+    'SERVER_ADDR' => '185.101.224.12',
+    'SERVER_PORT' => '443',
+    'REMOTE_ADDR' => '190.89.30.130',
+    'DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'REQUEST_SCHEME' => 'https',
+    'CONTEXT_PREFIX' => '',
+    'CONTEXT_DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'SERVER_ADMIN' => 'webmaster@parkingplus.es',
+    'SCRIPT_FILENAME' => '/home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php',
+    'REMOTE_PORT' => '57178',
+    'SERVER_PROTOCOL' => 'HTTP/2.0',
+    'REQUEST_METHOD' => 'GET',
+    'QUERY_STRING' => 'r=facturas%2Fview-pdf&id=4096',
+    'REQUEST_URI' => '/aparcamiento/backend/web/index.php?r=facturas%2Fview-pdf&id=4096',
+    'SCRIPT_NAME' => '/aparcamiento/backend/web/index.php',
+    'PHP_SELF' => '/aparcamiento/backend/web/index.php',
+    'REQUEST_TIME_FLOAT' => 1710506074.312913,
+    'REQUEST_TIME' => 1710506074,
+]
+[15-Mar-2024 13:37:03 Europe/Madrid] An Error occurred while handling another error:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/FacturasController.php on line 241. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/ErrorHandler.php(135): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\web\ErrorHandler->renderException(Object(yii\web\HeadersAlreadySentException))
+#3 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\HeadersAlreadySentException))
+#4 {main}
+Previous exception:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/FacturasController.php on line 241. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/Application.php(392): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php(17): yii\base\Application->run()
+#3 {main}
+$_SERVER = [
+    'PATH' => '/usr/local/bin:/usr/bin:/bin',
+    'TEMP' => '/tmp',
+    'TMP' => '/tmp',
+    'TMPDIR' => '/tmp',
+    'PWD' => '/',
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br, zstd',
+    'HTTP_ACCEPT_LANGUAGE' => 'es-VE,es-419;q=0.9,es;q=0.8',
+    'CONTENT_LENGTH' => '0',
+    'HTTP_COOKIE' => '_gcl_au=1.1.1096122467.1707516082; _ga=GA1.1.2087563250.1707516083; _ga_ZQ2MSQHZJC=GS1.2.1707522542.2.1.1707526311.0.0.0; _ga_C4Q61H0G50=GS1.1.1707522540.2.1.1707526855.0.0.0; _identity-backend=58514600cc523079c54c086fd35aff9c3296c49583bcefe4734a3cd1de9a39bca%3A2%3A%7Bi%3A0%3Bs%3A17%3A%22_identity-backend%22%3Bi%3A1%3Bs%3A46%3A%22%5B7%2C%22ew5zTXOA9DNqg2U7KsRFY4rqMPkb0mnf%22%2C2592000%5D%22%3B%7D; _csrf-backend=a6f10ad749bcdbe46771c44a13443af6dd0f5b2eef6a91f93ccc2f75ef7053a4a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%227jENqFTbveLXEr6qX8IwCoC3DXL6_uxm%22%3B%7D; advanced-frontend=c5e1c4518a05c972ef85ea99b2018cf7; _csrf-frontend=1bb9b66af9d533b1f7f7f0a0d335657a8a7e5201f771e9b7591b17fa612a16e7a%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_csrf-frontend%22%3Bi%3A1%3Bs%3A32%3A%22gCGPtDI7AhXMlqkXhTnkRHUeSfpdze2Z%22%3B%7D; advanced-backend=99919e0ec3f550d293877dab1a04f667',
+    'HTTP_HOST' => 'parkingplus.es',
+    'HTTP_REFERER' => 'https://parkingplus.es/aparcamiento/backend/web/index.php?r=facturas%2Findex',
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+    'HTTP_CACHE_CONTROL' => 'max-age=0',
+    'HTTP_SEC_CH_UA' => '"Not_A Brand";v="8", "Chromium";v="120", "Google Chrome";v="120"',
+    'HTTP_SEC_CH_UA_MOBILE' => '?0',
+    'HTTP_SEC_CH_UA_PLATFORM' => '"Linux"',
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+    'HTTP_SEC_FETCH_SITE' => 'same-origin',
+    'HTTP_SEC_FETCH_MODE' => 'navigate',
+    'HTTP_SEC_FETCH_USER' => '?1',
+    'HTTP_SEC_FETCH_DEST' => 'document',
+    'HTTP_X_HTTPS' => '1',
+    'UNIQUE_ID' => 'ZfRA73j2HGTbmb5wD4zxRwAASBI',
+    'MMDB_ADDR' => '190.89.30.130',
+    'MMDB_INFO' => 'result found',
+    'GEOIP_CONTINENT_CODE' => 'SA',
+    'GEOIP_COUNTRY_CODE' => 'PE',
+    'MM_CONTINENT_CODE' => 'SA',
+    'MM_COUNTRY_CODE' => 'PE',
+    'SCRIPT_URL' => '/aparcamiento/backend/web/index.php',
+    'SCRIPT_URI' => 'https://parkingplus.es/aparcamiento/backend/web/index.php',
+    'HTTPS' => 'on',
+    'SSL_TLS_SNI' => 'parkingplus.es',
+    'HTTP2' => 'on',
+    'H2PUSH' => 'off',
+    'H2_PUSH' => 'off',
+    'H2_PUSHED' => '',
+    'H2_PUSHED_ON' => '',
+    'H2_STREAM_ID' => '1',
+    'H2_STREAM_TAG' => '1512083-2448-1',
+    'SERVER_SIGNATURE' => '',
+    'SERVER_SOFTWARE' => 'Apache',
+    'SERVER_NAME' => 'parkingplus.es',
+    'SERVER_ADDR' => '185.101.224.12',
+    'SERVER_PORT' => '443',
+    'REMOTE_ADDR' => '190.89.30.130',
+    'DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'REQUEST_SCHEME' => 'https',
+    'CONTEXT_PREFIX' => '',
+    'CONTEXT_DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'SERVER_ADMIN' => 'webmaster@parkingplus.es',
+    'SCRIPT_FILENAME' => '/home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php',
+    'REMOTE_PORT' => '40394',
+    'SERVER_PROTOCOL' => 'HTTP/2.0',
+    'REQUEST_METHOD' => 'GET',
+    'QUERY_STRING' => 'r=facturas%2Fview-pdf&id=4096',
+    'REQUEST_URI' => '/aparcamiento/backend/web/index.php?r=facturas%2Fview-pdf&id=4096',
+    'SCRIPT_NAME' => '/aparcamiento/backend/web/index.php',
+    'PHP_SELF' => '/aparcamiento/backend/web/index.php',
+    'REQUEST_TIME_FLOAT' => 1710506223.832181,
+    'REQUEST_TIME' => 1710506223,
+]
+[15-Mar-2024 13:46:51 Europe/Madrid] PHP Fatal error:  Namespace declaration statement has to be the very first statement or after any declare call in the script in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/FacturasController.php on line 6
+[15-Mar-2024 13:56:56 Europe/Madrid] PHP Fatal error:  Cannot use common\models\Clientes as Clientes because the name is already in use in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/FacturasController.php on line 31
+[15-Mar-2024 14:03:11 Europe/Madrid] An Error occurred while handling another error:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/FacturasController.php on line 295. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/ErrorHandler.php(135): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\web\ErrorHandler->renderException(Object(yii\web\HeadersAlreadySentException))
+#3 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\HeadersAlreadySentException))
+#4 {main}
+Previous exception:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/FacturasController.php on line 295. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/Application.php(392): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php(17): yii\base\Application->run()
+#3 {main}
+$_SERVER = [
+    'PATH' => '/usr/local/bin:/usr/bin:/bin',
+    'TEMP' => '/tmp',
+    'TMP' => '/tmp',
+    'TMPDIR' => '/tmp',
+    'PWD' => '/',
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br, zstd',
+    'HTTP_ACCEPT_LANGUAGE' => 'es-VE,es-419;q=0.9,es;q=0.8',
+    'CONTENT_LENGTH' => '0',
+    'HTTP_COOKIE' => '_gcl_au=1.1.1096122467.1707516082; _ga=GA1.1.2087563250.1707516083; _ga_ZQ2MSQHZJC=GS1.2.1707522542.2.1.1707526311.0.0.0; _ga_C4Q61H0G50=GS1.1.1707522540.2.1.1707526855.0.0.0; _identity-backend=58514600cc523079c54c086fd35aff9c3296c49583bcefe4734a3cd1de9a39bca%3A2%3A%7Bi%3A0%3Bs%3A17%3A%22_identity-backend%22%3Bi%3A1%3Bs%3A46%3A%22%5B7%2C%22ew5zTXOA9DNqg2U7KsRFY4rqMPkb0mnf%22%2C2592000%5D%22%3B%7D; _csrf-backend=a6f10ad749bcdbe46771c44a13443af6dd0f5b2eef6a91f93ccc2f75ef7053a4a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%227jENqFTbveLXEr6qX8IwCoC3DXL6_uxm%22%3B%7D; advanced-frontend=c5e1c4518a05c972ef85ea99b2018cf7; _csrf-frontend=1bb9b66af9d533b1f7f7f0a0d335657a8a7e5201f771e9b7591b17fa612a16e7a%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_csrf-frontend%22%3Bi%3A1%3Bs%3A32%3A%22gCGPtDI7AhXMlqkXhTnkRHUeSfpdze2Z%22%3B%7D; advanced-backend=99919e0ec3f550d293877dab1a04f667',
+    'HTTP_HOST' => 'parkingplus.es',
+    'HTTP_REFERER' => 'https://parkingplus.es/aparcamiento/backend/web/index.php?r=facturas%2Findex',
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+    'HTTP_CACHE_CONTROL' => 'max-age=0',
+    'HTTP_SEC_CH_UA' => '"Not_A Brand";v="8", "Chromium";v="120", "Google Chrome";v="120"',
+    'HTTP_SEC_CH_UA_MOBILE' => '?0',
+    'HTTP_SEC_CH_UA_PLATFORM' => '"Linux"',
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+    'HTTP_SEC_FETCH_SITE' => 'same-origin',
+    'HTTP_SEC_FETCH_MODE' => 'navigate',
+    'HTTP_SEC_FETCH_USER' => '?1',
+    'HTTP_SEC_FETCH_DEST' => 'document',
+    'HTTP_X_HTTPS' => '1',
+    'UNIQUE_ID' => 'ZfRHD3j2HGTbmb5wD4z7TQAAQAI',
+    'MMDB_ADDR' => '190.89.30.130',
+    'MMDB_INFO' => 'result found',
+    'GEOIP_CONTINENT_CODE' => 'SA',
+    'GEOIP_COUNTRY_CODE' => 'PE',
+    'MM_CONTINENT_CODE' => 'SA',
+    'MM_COUNTRY_CODE' => 'PE',
+    'SCRIPT_URL' => '/aparcamiento/backend/web/index.php',
+    'SCRIPT_URI' => 'https://parkingplus.es/aparcamiento/backend/web/index.php',
+    'HTTPS' => 'on',
+    'SSL_TLS_SNI' => 'parkingplus.es',
+    'HTTP2' => 'on',
+    'H2PUSH' => 'off',
+    'H2_PUSH' => 'off',
+    'H2_PUSHED' => '',
+    'H2_PUSHED_ON' => '',
+    'H2_STREAM_ID' => '1',
+    'H2_STREAM_TAG' => '1512083-2695-1',
+    'SERVER_SIGNATURE' => '',
+    'SERVER_SOFTWARE' => 'Apache',
+    'SERVER_NAME' => 'parkingplus.es',
+    'SERVER_ADDR' => '185.101.224.12',
+    'SERVER_PORT' => '443',
+    'REMOTE_ADDR' => '190.89.30.130',
+    'DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'REQUEST_SCHEME' => 'https',
+    'CONTEXT_PREFIX' => '',
+    'CONTEXT_DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'SERVER_ADMIN' => 'webmaster@parkingplus.es',
+    'SCRIPT_FILENAME' => '/home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php',
+    'REMOTE_PORT' => '53148',
+    'SERVER_PROTOCOL' => 'HTTP/2.0',
+    'REQUEST_METHOD' => 'GET',
+    'QUERY_STRING' => 'r=facturas%2Fview-pdf&id=4096',
+    'REQUEST_URI' => '/aparcamiento/backend/web/index.php?r=facturas%2Fview-pdf&id=4096',
+    'SCRIPT_NAME' => '/aparcamiento/backend/web/index.php',
+    'PHP_SELF' => '/aparcamiento/backend/web/index.php',
+    'REQUEST_TIME_FLOAT' => 1710507791.721519,
+    'REQUEST_TIME' => 1710507791,
+]
+[18-Mar-2024 15:08:28 Europe/Madrid] An Error occurred while handling another error:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/FacturasController.php on line 251. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/ErrorHandler.php(135): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\web\ErrorHandler->renderException(Object(yii\web\HeadersAlreadySentException))
+#3 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\HeadersAlreadySentException))
+#4 {main}
+Previous exception:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/FacturasController.php on line 251. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/Application.php(392): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php(17): yii\base\Application->run()
+#3 {main}
+$_SERVER = [
+    'PATH' => '/usr/local/bin:/usr/bin:/bin',
+    'TEMP' => '/tmp',
+    'TMP' => '/tmp',
+    'TMPDIR' => '/tmp',
+    'PWD' => '/',
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br, zstd',
+    'HTTP_ACCEPT_LANGUAGE' => 'es-VE,es-419;q=0.9,es;q=0.8',
+    'CONTENT_LENGTH' => '0',
+    'HTTP_COOKIE' => '_gcl_au=1.1.1096122467.1707516082; _ga=GA1.1.2087563250.1707516083; _ga_ZQ2MSQHZJC=GS1.2.1707522542.2.1.1707526311.0.0.0; _ga_C4Q61H0G50=GS1.1.1707522540.2.1.1707526855.0.0.0; _identity-backend=58514600cc523079c54c086fd35aff9c3296c49583bcefe4734a3cd1de9a39bca%3A2%3A%7Bi%3A0%3Bs%3A17%3A%22_identity-backend%22%3Bi%3A1%3Bs%3A46%3A%22%5B7%2C%22ew5zTXOA9DNqg2U7KsRFY4rqMPkb0mnf%22%2C2592000%5D%22%3B%7D; _csrf-backend=a6f10ad749bcdbe46771c44a13443af6dd0f5b2eef6a91f93ccc2f75ef7053a4a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%227jENqFTbveLXEr6qX8IwCoC3DXL6_uxm%22%3B%7D; advanced-frontend=c5e1c4518a05c972ef85ea99b2018cf7; _csrf-frontend=1bb9b66af9d533b1f7f7f0a0d335657a8a7e5201f771e9b7591b17fa612a16e7a%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_csrf-frontend%22%3Bi%3A1%3Bs%3A32%3A%22gCGPtDI7AhXMlqkXhTnkRHUeSfpdze2Z%22%3B%7D; advanced-backend=0e1e4f7144f3f576eed3b9ffee795ccf',
+    'HTTP_HOST' => 'parkingplus.es',
+    'HTTP_REFERER' => 'https://parkingplus.es/aparcamiento/backend/web/index.php?r=facturas%2Findex',
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+    'HTTP_CACHE_CONTROL' => 'max-age=0',
+    'HTTP_IF_MODIFIED_SINCE' => 'Mon, 18 Mar 2024 14:06:57 GMT',
+    'HTTP_SEC_CH_UA' => '"Not_A Brand";v="8", "Chromium";v="120", "Google Chrome";v="120"',
+    'HTTP_SEC_CH_UA_MOBILE' => '?0',
+    'HTTP_SEC_CH_UA_PLATFORM' => '"Linux"',
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+    'HTTP_SEC_FETCH_SITE' => 'same-origin',
+    'HTTP_SEC_FETCH_MODE' => 'navigate',
+    'HTTP_SEC_FETCH_USER' => '?1',
+    'HTTP_SEC_FETCH_DEST' => 'document',
+    'HTTP_X_HTTPS' => '1',
+    'UNIQUE_ID' => 'ZfhK3J3whyId8EvcraQ2VQAAWAk',
+    'MMDB_ADDR' => '190.89.30.130',
+    'MMDB_INFO' => 'result found',
+    'GEOIP_CONTINENT_CODE' => 'SA',
+    'GEOIP_COUNTRY_CODE' => 'PE',
+    'MM_CONTINENT_CODE' => 'SA',
+    'MM_COUNTRY_CODE' => 'PE',
+    'SCRIPT_URL' => '/aparcamiento/backend/web/index.php',
+    'SCRIPT_URI' => 'https://parkingplus.es/aparcamiento/backend/web/index.php',
+    'HTTPS' => 'on',
+    'SSL_TLS_SNI' => 'parkingplus.es',
+    'HTTP2' => 'on',
+    'H2PUSH' => 'off',
+    'H2_PUSH' => 'off',
+    'H2_PUSHED' => '',
+    'H2_PUSHED_ON' => '',
+    'H2_STREAM_ID' => '1',
+    'H2_STREAM_TAG' => '2816696-1927-1',
+    'SERVER_SIGNATURE' => '',
+    'SERVER_SOFTWARE' => 'Apache',
+    'SERVER_NAME' => 'parkingplus.es',
+    'SERVER_ADDR' => '185.101.224.12',
+    'SERVER_PORT' => '443',
+    'REMOTE_ADDR' => '190.89.30.130',
+    'DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'REQUEST_SCHEME' => 'https',
+    'CONTEXT_PREFIX' => '',
+    'CONTEXT_DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'SERVER_ADMIN' => 'webmaster@parkingplus.es',
+    'SCRIPT_FILENAME' => '/home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php',
+    'REMOTE_PORT' => '60306',
+    'SERVER_PROTOCOL' => 'HTTP/2.0',
+    'REQUEST_METHOD' => 'GET',
+    'QUERY_STRING' => 'r=facturas%2Fview-pdf&id=4111',
+    'REQUEST_URI' => '/aparcamiento/backend/web/index.php?r=facturas%2Fview-pdf&id=4111',
+    'SCRIPT_NAME' => '/aparcamiento/backend/web/index.php',
+    'PHP_SELF' => '/aparcamiento/backend/web/index.php',
+    'REQUEST_TIME_FLOAT' => 1710770908.614342,
+    'REQUEST_TIME' => 1710770908,
+]
+[13-Jun-2024 20:28:03 Europe/Madrid] An Error occurred while handling another error:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ReservasController.php on line 1664. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/ErrorHandler.php(135): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\web\ErrorHandler->renderException(Object(yii\web\HeadersAlreadySentException))
+#3 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\HeadersAlreadySentException))
+#4 {main}
+Previous exception:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ReservasController.php on line 1664. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/Application.php(392): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php(17): yii\base\Application->run()
+#3 {main}
+$_SERVER = [
+    'PATH' => '/usr/local/bin:/usr/bin:/bin',
+    'TEMP' => '/tmp',
+    'TMP' => '/tmp',
+    'TMPDIR' => '/tmp',
+    'PWD' => '/',
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br, zstd',
+    'HTTP_ACCEPT_LANGUAGE' => 'es-VE,es-419;q=0.9,es;q=0.8',
+    'CONTENT_TYPE' => 'application/x-www-form-urlencoded',
+    'CONTENT_LENGTH' => '1794',
+    'HTTP_COOKIE' => '_gcl_au=1.1.186271658.1716932134; _ga=GA1.2.770629201.1717504631; _ga_ZQ2MSQHZJC=GS1.2.1718039730.3.1.1718040705.0.0.0; _ga_C4Q61H0G50=GS1.1.1718039729.3.1.1718040706.0.0.0; advanced-backend=25fc712d99726bd10fe2d66afa091550; _csrf-backend=91f015c73cc7055500de425f0b0327fc7fd5d2805eedacfc704a40122ebafcd2a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%222IegjDjCUgX-P1IZq7aC5RMoiU9GFtkf%22%3B%7D',
+    'HTTP_HOST' => 'parkingplus.es',
+    'HTTP_REFERER' => 'https://parkingplus.es/aparcamiento/backend/web/index.php?r=reservas%2Fcreate&entrada=13-06-2024&salida=14-06-2024&hora_e=14%3A15&hora_s=14%3A15&medio=1&agencia=',
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36',
+    'HTTP_CACHE_CONTROL' => 'max-age=0',
+    'HTTP_SEC_CH_UA' => '"Google Chrome";v="125", "Chromium";v="125", "Not.A/Brand";v="24"',
+    'HTTP_SEC_CH_UA_MOBILE' => '?0',
+    'HTTP_SEC_CH_UA_PLATFORM' => '"Linux"',
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+    'HTTP_ORIGIN' => 'https://parkingplus.es',
+    'HTTP_SEC_FETCH_SITE' => 'same-origin',
+    'HTTP_SEC_FETCH_MODE' => 'navigate',
+    'HTTP_SEC_FETCH_USER' => '?1',
+    'HTTP_SEC_FETCH_DEST' => 'document',
+    'HTTP_PRIORITY' => 'u=0, i',
+    'HTTP_X_HTTPS' => '1',
+    'UNIQUE_ID' => 'Zms6M9BeqKg4VLYoiOEgRAAAVgk',
+    'MMDB_ADDR' => '190.89.30.130',
+    'MMDB_INFO' => 'result found',
+    'GEOIP_CONTINENT_CODE' => 'SA',
+    'GEOIP_COUNTRY_CODE' => 'PE',
+    'MM_CONTINENT_CODE' => 'SA',
+    'MM_COUNTRY_CODE' => 'PE',
+    'SCRIPT_URL' => '/aparcamiento/backend/web/index.php',
+    'SCRIPT_URI' => 'https://parkingplus.es/aparcamiento/backend/web/index.php',
+    'HTTPS' => 'on',
+    'SSL_TLS_SNI' => 'parkingplus.es',
+    'HTTP2' => 'on',
+    'H2PUSH' => 'off',
+    'H2_PUSH' => 'off',
+    'H2_PUSHED' => '',
+    'H2_PUSHED_ON' => '',
+    'H2_STREAM_ID' => '1',
+    'H2_STREAM_TAG' => '3105464-2932-1',
+    'SERVER_SIGNATURE' => '',
+    'SERVER_SOFTWARE' => 'Apache',
+    'SERVER_NAME' => 'parkingplus.es',
+    'SERVER_ADDR' => '185.101.224.12',
+    'SERVER_PORT' => '443',
+    'REMOTE_ADDR' => '190.89.30.130',
+    'DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'REQUEST_SCHEME' => 'https',
+    'CONTEXT_PREFIX' => '',
+    'CONTEXT_DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'SERVER_ADMIN' => 'webmaster@parkingplus.es',
+    'SCRIPT_FILENAME' => '/home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php',
+    'REMOTE_PORT' => '59756',
+    'SERVER_PROTOCOL' => 'HTTP/2.0',
+    'REQUEST_METHOD' => 'POST',
+    'QUERY_STRING' => 'r=reservas%2Fcreate&entrada=13-06-2024&salida=14-06-2024&hora_e=14%3A15&hora_s=14%3A15&medio=1&agencia=',
+    'REQUEST_URI' => '/aparcamiento/backend/web/index.php?r=reservas%2Fcreate&entrada=13-06-2024&salida=14-06-2024&hora_e=14%3A15&hora_s=14%3A15&medio=1&agencia=',
+    'SCRIPT_NAME' => '/aparcamiento/backend/web/index.php',
+    'PHP_SELF' => '/aparcamiento/backend/web/index.php',
+    'REQUEST_TIME_FLOAT' => 1718303283.645982,
+    'REQUEST_TIME' => 1718303283,
+]
+[24-Sep-2024 19:15:27 Europe/Madrid] An Error occurred while handling another error:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ReservasController.php on line 491. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/ErrorHandler.php(135): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\web\ErrorHandler->renderException(Object(yii\web\HeadersAlreadySentException))
+#3 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\HeadersAlreadySentException))
+#4 {main}
+Previous exception:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ReservasController.php on line 491. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/Application.php(392): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php(17): yii\base\Application->run()
+#3 {main}
+$_SERVER = [
+    'PATH' => '/usr/local/bin:/usr/bin:/bin',
+    'TEMP' => '/tmp',
+    'TMP' => '/tmp',
+    'TMPDIR' => '/tmp',
+    'PWD' => '/',
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br, zstd',
+    'HTTP_ACCEPT_LANGUAGE' => 'es-VE,es-419;q=0.9,es;q=0.8',
+    'CONTENT_LENGTH' => '0',
+    'HTTP_COOKIE' => '_gcl_au=1.1.1872002595.1726323405; _ga=GA1.2.130525813.1726323405; _ga_ZQ2MSQHZJC=GS1.2.1726830475.6.1.1726831365.0.0.0; _ga_C4Q61H0G50=GS1.1.1726830475.7.1.1726832539.0.0.0; advanced-frontend=a38fed5be420ba310ab5566308de35db; _csrf-frontend=71e94a72c9667a94f220975a793f2ebedd29068ffba2a2260a78713265f393e4a%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_csrf-frontend%22%3Bi%3A1%3Bs%3A32%3A%22R8kxuJA09790Uhy3G3qd2bYn6MG7HojO%22%3B%7D; advanced-backend=5ed42f910954aba2bee88ea77e4e6fb9; _identity-backend=58514600cc523079c54c086fd35aff9c3296c49583bcefe4734a3cd1de9a39bca%3A2%3A%7Bi%3A0%3Bs%3A17%3A%22_identity-backend%22%3Bi%3A1%3Bs%3A46%3A%22%5B7%2C%22ew5zTXOA9DNqg2U7KsRFY4rqMPkb0mnf%22%2C2592000%5D%22%3B%7D; _csrf-backend=c37ae6f5034a0d6d33d62a326a0f952a19a43901c1cd0e2e0e014f19f982553aa%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22Bz27fRJdcM-Rzlj1tOuGriRvW6NSkytA%22%3B%7D',
+    'HTTP_HOST' => 'parkingplus.es',
+    'HTTP_REFERER' => 'https://parkingplus.es/aparcamiento/backend/web/index.php?r=reservas%2Findex',
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
+    'HTTP_CACHE_CONTROL' => 'max-age=0',
+    'HTTP_SEC_CH_UA' => '"Chromium";v="128", "Not;A=Brand";v="24", "Google Chrome";v="128"',
+    'HTTP_SEC_CH_UA_MOBILE' => '?0',
+    'HTTP_SEC_CH_UA_PLATFORM' => '"Linux"',
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+    'HTTP_SEC_FETCH_SITE' => 'same-origin',
+    'HTTP_SEC_FETCH_MODE' => 'navigate',
+    'HTTP_SEC_FETCH_USER' => '?1',
+    'HTTP_SEC_FETCH_DEST' => 'document',
+    'HTTP_PRIORITY' => 'u=0, i',
+    'HTTP_X_HTTPS' => '1',
+    'UNIQUE_ID' => 'ZvLzoUHfLw_kPudjTNr_VQAAASQ',
+    'MMDB_ADDR' => '190.89.30.128',
+    'MMDB_INFO' => 'result found',
+    'MM_CONTINENT_CODE' => 'SA',
+    'MM_COUNTRY_CODE' => 'PE',
+    'GEOIP_CONTINENT_CODE' => 'SA',
+    'GEOIP_COUNTRY_CODE' => 'PE',
+    'SCRIPT_URL' => '/aparcamiento/backend/web/index.php',
+    'SCRIPT_URI' => 'https://parkingplus.es/aparcamiento/backend/web/index.php',
+    'HTTPS' => 'on',
+    'SSL_TLS_SNI' => 'parkingplus.es',
+    'HTTP2' => 'on',
+    'H2PUSH' => 'off',
+    'H2_PUSH' => 'off',
+    'H2_PUSHED' => '',
+    'H2_PUSHED_ON' => '',
+    'H2_STREAM_ID' => '1',
+    'H2_STREAM_TAG' => '1786163-2568-1',
+    'SERVER_SIGNATURE' => '',
+    'SERVER_SOFTWARE' => 'Apache',
+    'SERVER_NAME' => 'parkingplus.es',
+    'SERVER_ADDR' => '185.101.224.12',
+    'SERVER_PORT' => '443',
+    'REMOTE_ADDR' => '190.89.30.128',
+    'DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'REQUEST_SCHEME' => 'https',
+    'CONTEXT_PREFIX' => '',
+    'CONTEXT_DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'SERVER_ADMIN' => 'webmaster@parkingplus.es',
+    'SCRIPT_FILENAME' => '/home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php',
+    'REMOTE_PORT' => '38752',
+    'SERVER_PROTOCOL' => 'HTTP/2.0',
+    'REQUEST_METHOD' => 'GET',
+    'QUERY_STRING' => 'r=reservas%2Findex',
+    'REQUEST_URI' => '/aparcamiento/backend/web/index.php?r=reservas%2Findex',
+    'SCRIPT_NAME' => '/aparcamiento/backend/web/index.php',
+    'PHP_SELF' => '/aparcamiento/backend/web/index.php',
+    'REQUEST_TIME_FLOAT' => 1727198113.558874,
+    'REQUEST_TIME' => 1727198113,
+]
+[25-Sep-2024 14:02:36 Europe/Madrid] An Error occurred while handling another error:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ReservasController.php on line 1635. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/ErrorHandler.php(135): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\web\ErrorHandler->renderException(Object(yii\web\HeadersAlreadySentException))
+#3 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\HeadersAlreadySentException))
+#4 {main}
+Previous exception:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ReservasController.php on line 1635. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/Application.php(392): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php(17): yii\base\Application->run()
+#3 {main}
+$_SERVER = [
+    'PATH' => '/usr/local/bin:/usr/bin:/bin',
+    'TEMP' => '/tmp',
+    'TMP' => '/tmp',
+    'TMPDIR' => '/tmp',
+    'PWD' => '/',
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br, zstd',
+    'HTTP_ACCEPT_LANGUAGE' => 'es-VE,es-419;q=0.9,es;q=0.8',
+    'CONTENT_TYPE' => 'application/x-www-form-urlencoded',
+    'CONTENT_LENGTH' => '1984',
+    'HTTP_COOKIE' => '_gcl_au=1.1.1872002595.1726323405; _ga=GA1.2.130525813.1726323405; _ga_ZQ2MSQHZJC=GS1.2.1726830475.6.1.1726831365.0.0.0; _ga_C4Q61H0G50=GS1.1.1726830475.7.1.1726832539.0.0.0; advanced-frontend=a38fed5be420ba310ab5566308de35db; _csrf-frontend=71e94a72c9667a94f220975a793f2ebedd29068ffba2a2260a78713265f393e4a%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_csrf-frontend%22%3Bi%3A1%3Bs%3A32%3A%22R8kxuJA09790Uhy3G3qd2bYn6MG7HojO%22%3B%7D; _csrf-backend=9b934e70af649a73ce1162d12ce8e07e75e3376f153744a4bfeeff2aae3aa0a4a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%229rY6B3SqeMcfmR2LYKpX350HwYWEAwzP%22%3B%7D; advanced-backend=0a6f6f36ec56d58045ca96506579db12',
+    'HTTP_HOST' => 'parkingplus.es',
+    'HTTP_REFERER' => 'https://parkingplus.es/aparcamiento/backend/web/index.php?r=reservas%2Fupdate&id=79368393',
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
+    'HTTP_CACHE_CONTROL' => 'max-age=0',
+    'HTTP_SEC_CH_UA' => '"Chromium";v="128", "Not;A=Brand";v="24", "Google Chrome";v="128"',
+    'HTTP_SEC_CH_UA_MOBILE' => '?0',
+    'HTTP_SEC_CH_UA_PLATFORM' => '"Linux"',
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+    'HTTP_ORIGIN' => 'https://parkingplus.es',
+    'HTTP_SEC_FETCH_SITE' => 'same-origin',
+    'HTTP_SEC_FETCH_MODE' => 'navigate',
+    'HTTP_SEC_FETCH_USER' => '?1',
+    'HTTP_SEC_FETCH_DEST' => 'document',
+    'HTTP_PRIORITY' => 'u=0, i',
+    'HTTP_X_HTTPS' => '1',
+    'UNIQUE_ID' => 'ZvP72_OmZ23NfYxRYlmy_QABExA',
+    'MMDB_ADDR' => '190.89.30.130',
+    'MMDB_INFO' => 'result found',
+    'GEOIP_CONTINENT_CODE' => 'SA',
+    'GEOIP_COUNTRY_CODE' => 'PE',
+    'MM_CONTINENT_CODE' => 'SA',
+    'MM_COUNTRY_CODE' => 'PE',
+    'SCRIPT_URL' => '/aparcamiento/backend/web/index.php',
+    'SCRIPT_URI' => 'https://parkingplus.es/aparcamiento/backend/web/index.php',
+    'HTTPS' => 'on',
+    'SSL_TLS_SNI' => 'parkingplus.es',
+    'HTTP2' => 'on',
+    'H2PUSH' => 'off',
+    'H2_PUSH' => 'off',
+    'H2_PUSHED' => '',
+    'H2_PUSHED_ON' => '',
+    'H2_STREAM_ID' => '1',
+    'H2_STREAM_TAG' => '3801609-938-1',
+    'SERVER_SIGNATURE' => '',
+    'SERVER_SOFTWARE' => 'Apache',
+    'SERVER_NAME' => 'parkingplus.es',
+    'SERVER_ADDR' => '185.101.224.12',
+    'SERVER_PORT' => '443',
+    'REMOTE_ADDR' => '190.89.30.130',
+    'DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'REQUEST_SCHEME' => 'https',
+    'CONTEXT_PREFIX' => '',
+    'CONTEXT_DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'SERVER_ADMIN' => 'webmaster@parkingplus.es',
+    'SCRIPT_FILENAME' => '/home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php',
+    'REMOTE_PORT' => '40198',
+    'SERVER_PROTOCOL' => 'HTTP/2.0',
+    'REQUEST_METHOD' => 'POST',
+    'QUERY_STRING' => 'r=reservas%2Fupdate&id=79368393',
+    'REQUEST_URI' => '/aparcamiento/backend/web/index.php?r=reservas%2Fupdate&id=79368393',
+    'SCRIPT_NAME' => '/aparcamiento/backend/web/index.php',
+    'PHP_SELF' => '/aparcamiento/backend/web/index.php',
+    'REQUEST_TIME_FLOAT' => 1727265755.898325,
+    'REQUEST_TIME' => 1727265755,
+]
+[25-Sep-2024 14:03:14 Europe/Madrid] An Error occurred while handling another error:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ReservasController.php on line 1638. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/ErrorHandler.php(135): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\web\ErrorHandler->renderException(Object(yii\web\HeadersAlreadySentException))
+#3 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\HeadersAlreadySentException))
+#4 {main}
+Previous exception:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ReservasController.php on line 1638. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/Application.php(392): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php(17): yii\base\Application->run()
+#3 {main}
+$_SERVER = [
+    'PATH' => '/usr/local/bin:/usr/bin:/bin',
+    'TEMP' => '/tmp',
+    'TMP' => '/tmp',
+    'TMPDIR' => '/tmp',
+    'PWD' => '/',
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br, zstd',
+    'HTTP_ACCEPT_LANGUAGE' => 'es-VE,es-419;q=0.9,es;q=0.8',
+    'CONTENT_TYPE' => 'application/x-www-form-urlencoded',
+    'CONTENT_LENGTH' => '1984',
+    'HTTP_COOKIE' => '_gcl_au=1.1.1872002595.1726323405; _ga=GA1.2.130525813.1726323405; _ga_ZQ2MSQHZJC=GS1.2.1726830475.6.1.1726831365.0.0.0; _ga_C4Q61H0G50=GS1.1.1726830475.7.1.1726832539.0.0.0; advanced-frontend=a38fed5be420ba310ab5566308de35db; _csrf-frontend=71e94a72c9667a94f220975a793f2ebedd29068ffba2a2260a78713265f393e4a%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_csrf-frontend%22%3Bi%3A1%3Bs%3A32%3A%22R8kxuJA09790Uhy3G3qd2bYn6MG7HojO%22%3B%7D; _csrf-backend=9b934e70af649a73ce1162d12ce8e07e75e3376f153744a4bfeeff2aae3aa0a4a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%229rY6B3SqeMcfmR2LYKpX350HwYWEAwzP%22%3B%7D; advanced-backend=0a6f6f36ec56d58045ca96506579db12',
+    'HTTP_HOST' => 'parkingplus.es',
+    'HTTP_REFERER' => 'https://parkingplus.es/aparcamiento/backend/web/index.php?r=reservas%2Fupdate&id=79368393',
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
+    'HTTP_CACHE_CONTROL' => 'max-age=0',
+    'HTTP_SEC_CH_UA' => '"Chromium";v="128", "Not;A=Brand";v="24", "Google Chrome";v="128"',
+    'HTTP_SEC_CH_UA_MOBILE' => '?0',
+    'HTTP_SEC_CH_UA_PLATFORM' => '"Linux"',
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+    'HTTP_ORIGIN' => 'https://parkingplus.es',
+    'HTTP_SEC_FETCH_SITE' => 'same-origin',
+    'HTTP_SEC_FETCH_MODE' => 'navigate',
+    'HTTP_SEC_FETCH_USER' => '?1',
+    'HTTP_SEC_FETCH_DEST' => 'document',
+    'HTTP_PRIORITY' => 'u=0, i',
+    'HTTP_X_HTTPS' => '1',
+    'UNIQUE_ID' => 'ZvP8AvOmZ23NfYxRYlmzDQABEhM',
+    'MMDB_ADDR' => '190.89.30.130',
+    'MMDB_INFO' => 'result found',
+    'GEOIP_CONTINENT_CODE' => 'SA',
+    'GEOIP_COUNTRY_CODE' => 'PE',
+    'MM_CONTINENT_CODE' => 'SA',
+    'MM_COUNTRY_CODE' => 'PE',
+    'SCRIPT_URL' => '/aparcamiento/backend/web/index.php',
+    'SCRIPT_URI' => 'https://parkingplus.es/aparcamiento/backend/web/index.php',
+    'HTTPS' => 'on',
+    'SSL_TLS_SNI' => 'parkingplus.es',
+    'HTTP2' => 'on',
+    'H2PUSH' => 'off',
+    'H2_PUSH' => 'off',
+    'H2_PUSHED' => '',
+    'H2_PUSHED_ON' => '',
+    'H2_STREAM_ID' => '1',
+    'H2_STREAM_TAG' => '3801609-943-1',
+    'SERVER_SIGNATURE' => '',
+    'SERVER_SOFTWARE' => 'Apache',
+    'SERVER_NAME' => 'parkingplus.es',
+    'SERVER_ADDR' => '185.101.224.12',
+    'SERVER_PORT' => '443',
+    'REMOTE_ADDR' => '190.89.30.130',
+    'DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'REQUEST_SCHEME' => 'https',
+    'CONTEXT_PREFIX' => '',
+    'CONTEXT_DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'SERVER_ADMIN' => 'webmaster@parkingplus.es',
+    'SCRIPT_FILENAME' => '/home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php',
+    'REMOTE_PORT' => '47982',
+    'SERVER_PROTOCOL' => 'HTTP/2.0',
+    'REQUEST_METHOD' => 'POST',
+    'QUERY_STRING' => 'r=reservas%2Fupdate&id=79368393',
+    'REQUEST_URI' => '/aparcamiento/backend/web/index.php?r=reservas%2Fupdate&id=79368393',
+    'SCRIPT_NAME' => '/aparcamiento/backend/web/index.php',
+    'PHP_SELF' => '/aparcamiento/backend/web/index.php',
+    'REQUEST_TIME_FLOAT' => 1727265794.328874,
+    'REQUEST_TIME' => 1727265794,
+]
+[25-Sep-2024 14:12:00 Europe/Madrid] An Error occurred while handling another error:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ReservasController.php on line 1637. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/ErrorHandler.php(135): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\web\ErrorHandler->renderException(Object(yii\web\HeadersAlreadySentException))
+#3 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\HeadersAlreadySentException))
+#4 {main}
+Previous exception:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ReservasController.php on line 1637. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/Application.php(392): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php(17): yii\base\Application->run()
+#3 {main}
+$_SERVER = [
+    'PATH' => '/usr/local/bin:/usr/bin:/bin',
+    'TEMP' => '/tmp',
+    'TMP' => '/tmp',
+    'TMPDIR' => '/tmp',
+    'PWD' => '/',
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br, zstd',
+    'HTTP_ACCEPT_LANGUAGE' => 'es-VE,es-419;q=0.9,es;q=0.8',
+    'CONTENT_TYPE' => 'application/x-www-form-urlencoded',
+    'CONTENT_LENGTH' => '1981',
+    'HTTP_COOKIE' => '_gcl_au=1.1.1872002595.1726323405; _ga=GA1.2.130525813.1726323405; _ga_ZQ2MSQHZJC=GS1.2.1726830475.6.1.1726831365.0.0.0; _ga_C4Q61H0G50=GS1.1.1726830475.7.1.1726832539.0.0.0; advanced-frontend=a38fed5be420ba310ab5566308de35db; _csrf-frontend=71e94a72c9667a94f220975a793f2ebedd29068ffba2a2260a78713265f393e4a%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_csrf-frontend%22%3Bi%3A1%3Bs%3A32%3A%22R8kxuJA09790Uhy3G3qd2bYn6MG7HojO%22%3B%7D; _csrf-backend=9b934e70af649a73ce1162d12ce8e07e75e3376f153744a4bfeeff2aae3aa0a4a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%229rY6B3SqeMcfmR2LYKpX350HwYWEAwzP%22%3B%7D; advanced-backend=0a6f6f36ec56d58045ca96506579db12',
+    'HTTP_HOST' => 'parkingplus.es',
+    'HTTP_REFERER' => 'https://parkingplus.es/aparcamiento/backend/web/index.php?r=reservas%2Fupdate&id=79368393',
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
+    'HTTP_CACHE_CONTROL' => 'max-age=0',
+    'HTTP_SEC_CH_UA' => '"Chromium";v="128", "Not;A=Brand";v="24", "Google Chrome";v="128"',
+    'HTTP_SEC_CH_UA_MOBILE' => '?0',
+    'HTTP_SEC_CH_UA_PLATFORM' => '"Linux"',
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+    'HTTP_ORIGIN' => 'https://parkingplus.es',
+    'HTTP_SEC_FETCH_SITE' => 'same-origin',
+    'HTTP_SEC_FETCH_MODE' => 'navigate',
+    'HTTP_SEC_FETCH_USER' => '?1',
+    'HTTP_SEC_FETCH_DEST' => 'document',
+    'HTTP_PRIORITY' => 'u=0, i',
+    'HTTP_X_HTTPS' => '1',
+    'UNIQUE_ID' => 'ZvP-ENKcpFLlImLI0E-zDAAAxB8',
+    'MMDB_ADDR' => '190.89.30.130',
+    'MMDB_INFO' => 'result found',
+    'GEOIP_CONTINENT_CODE' => 'SA',
+    'GEOIP_COUNTRY_CODE' => 'PE',
+    'MM_CONTINENT_CODE' => 'SA',
+    'MM_COUNTRY_CODE' => 'PE',
+    'SCRIPT_URL' => '/aparcamiento/backend/web/index.php',
+    'SCRIPT_URI' => 'https://parkingplus.es/aparcamiento/backend/web/index.php',
+    'HTTPS' => 'on',
+    'SSL_TLS_SNI' => 'parkingplus.es',
+    'HTTP2' => 'on',
+    'H2PUSH' => 'off',
+    'H2_PUSH' => 'off',
+    'H2_PUSHED' => '',
+    'H2_PUSHED_ON' => '',
+    'H2_STREAM_ID' => '1',
+    'H2_STREAM_TAG' => '3801978-1050-1',
+    'SERVER_SIGNATURE' => '',
+    'SERVER_SOFTWARE' => 'Apache',
+    'SERVER_NAME' => 'parkingplus.es',
+    'SERVER_ADDR' => '185.101.224.12',
+    'SERVER_PORT' => '443',
+    'REMOTE_ADDR' => '190.89.30.130',
+    'DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'REQUEST_SCHEME' => 'https',
+    'CONTEXT_PREFIX' => '',
+    'CONTEXT_DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'SERVER_ADMIN' => 'webmaster@parkingplus.es',
+    'SCRIPT_FILENAME' => '/home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php',
+    'REMOTE_PORT' => '48160',
+    'SERVER_PROTOCOL' => 'HTTP/2.0',
+    'REQUEST_METHOD' => 'POST',
+    'QUERY_STRING' => 'r=reservas%2Fupdate&id=79368393',
+    'REQUEST_URI' => '/aparcamiento/backend/web/index.php?r=reservas%2Fupdate&id=79368393',
+    'SCRIPT_NAME' => '/aparcamiento/backend/web/index.php',
+    'PHP_SELF' => '/aparcamiento/backend/web/index.php',
+    'REQUEST_TIME_FLOAT' => 1727266320.591391,
+    'REQUEST_TIME' => 1727266320,
+]
+[25-Sep-2024 14:22:02 Europe/Madrid] An Error occurred while handling another error:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ReservasController.php on line 1637. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/ErrorHandler.php(135): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\web\ErrorHandler->renderException(Object(yii\web\HeadersAlreadySentException))
+#3 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\HeadersAlreadySentException))
+#4 {main}
+Previous exception:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ReservasController.php on line 1637. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/Application.php(392): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php(17): yii\base\Application->run()
+#3 {main}
+$_SERVER = [
+    'PATH' => '/usr/local/bin:/usr/bin:/bin',
+    'TEMP' => '/tmp',
+    'TMP' => '/tmp',
+    'TMPDIR' => '/tmp',
+    'PWD' => '/',
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br, zstd',
+    'HTTP_ACCEPT_LANGUAGE' => 'es-VE,es-419;q=0.9,es;q=0.8',
+    'CONTENT_TYPE' => 'application/x-www-form-urlencoded',
+    'CONTENT_LENGTH' => '1981',
+    'HTTP_COOKIE' => '_gcl_au=1.1.1872002595.1726323405; _ga=GA1.2.130525813.1726323405; _ga_ZQ2MSQHZJC=GS1.2.1726830475.6.1.1726831365.0.0.0; _ga_C4Q61H0G50=GS1.1.1726830475.7.1.1726832539.0.0.0; advanced-frontend=a38fed5be420ba310ab5566308de35db; _csrf-frontend=71e94a72c9667a94f220975a793f2ebedd29068ffba2a2260a78713265f393e4a%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_csrf-frontend%22%3Bi%3A1%3Bs%3A32%3A%22R8kxuJA09790Uhy3G3qd2bYn6MG7HojO%22%3B%7D; _csrf-backend=9b934e70af649a73ce1162d12ce8e07e75e3376f153744a4bfeeff2aae3aa0a4a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%229rY6B3SqeMcfmR2LYKpX350HwYWEAwzP%22%3B%7D; advanced-backend=0a6f6f36ec56d58045ca96506579db12',
+    'HTTP_HOST' => 'parkingplus.es',
+    'HTTP_REFERER' => 'https://parkingplus.es/aparcamiento/backend/web/index.php?r=reservas%2Fupdate&id=79368393',
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
+    'HTTP_CACHE_CONTROL' => 'max-age=0',
+    'HTTP_SEC_CH_UA' => '"Chromium";v="128", "Not;A=Brand";v="24", "Google Chrome";v="128"',
+    'HTTP_SEC_CH_UA_MOBILE' => '?0',
+    'HTTP_SEC_CH_UA_PLATFORM' => '"Linux"',
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+    'HTTP_ORIGIN' => 'https://parkingplus.es',
+    'HTTP_SEC_FETCH_SITE' => 'same-origin',
+    'HTTP_SEC_FETCH_MODE' => 'navigate',
+    'HTTP_SEC_FETCH_USER' => '?1',
+    'HTTP_SEC_FETCH_DEST' => 'document',
+    'HTTP_PRIORITY' => 'u=0, i',
+    'HTTP_X_HTTPS' => '1',
+    'UNIQUE_ID' => 'ZvQAaWRu_hmxZDnQn4vfTQABVRc',
+    'MMDB_ADDR' => '190.89.30.130',
+    'MMDB_INFO' => 'result found',
+    'GEOIP_CONTINENT_CODE' => 'SA',
+    'GEOIP_COUNTRY_CODE' => 'PE',
+    'MM_CONTINENT_CODE' => 'SA',
+    'MM_COUNTRY_CODE' => 'PE',
+    'SCRIPT_URL' => '/aparcamiento/backend/web/index.php',
+    'SCRIPT_URI' => 'https://parkingplus.es/aparcamiento/backend/web/index.php',
+    'HTTPS' => 'on',
+    'SSL_TLS_SNI' => 'parkingplus.es',
+    'HTTP2' => 'on',
+    'H2PUSH' => 'off',
+    'H2_PUSH' => 'off',
+    'H2_PUSHED' => '',
+    'H2_PUSHED_ON' => '',
+    'H2_STREAM_ID' => '7',
+    'H2_STREAM_TAG' => '237696-8-7',
+    'SERVER_SIGNATURE' => '',
+    'SERVER_SOFTWARE' => 'Apache',
+    'SERVER_NAME' => 'parkingplus.es',
+    'SERVER_ADDR' => '185.101.224.12',
+    'SERVER_PORT' => '443',
+    'REMOTE_ADDR' => '190.89.30.130',
+    'DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'REQUEST_SCHEME' => 'https',
+    'CONTEXT_PREFIX' => '',
+    'CONTEXT_DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'SERVER_ADMIN' => 'webmaster@parkingplus.es',
+    'SCRIPT_FILENAME' => '/home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php',
+    'REMOTE_PORT' => '42094',
+    'SERVER_PROTOCOL' => 'HTTP/2.0',
+    'REQUEST_METHOD' => 'POST',
+    'QUERY_STRING' => 'r=reservas%2Fupdate&id=79368393',
+    'REQUEST_URI' => '/aparcamiento/backend/web/index.php?r=reservas%2Fupdate&id=79368393',
+    'SCRIPT_NAME' => '/aparcamiento/backend/web/index.php',
+    'PHP_SELF' => '/aparcamiento/backend/web/index.php',
+    'REQUEST_TIME_FLOAT' => 1727266922.020483,
+    'REQUEST_TIME' => 1727266922,
+]
+[25-Sep-2024 14:50:05 Europe/Madrid] An Error occurred while handling another error:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ReservasController.php on line 1632. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/ErrorHandler.php(135): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\web\ErrorHandler->renderException(Object(yii\web\HeadersAlreadySentException))
+#3 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\HeadersAlreadySentException))
+#4 {main}
+Previous exception:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ReservasController.php on line 1632. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/Application.php(392): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php(17): yii\base\Application->run()
+#3 {main}
+$_SERVER = [
+    'PATH' => '/usr/local/bin:/usr/bin:/bin',
+    'TEMP' => '/tmp',
+    'TMP' => '/tmp',
+    'TMPDIR' => '/tmp',
+    'PWD' => '/',
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br, zstd',
+    'HTTP_ACCEPT_LANGUAGE' => 'es-VE,es-419;q=0.9,es;q=0.8',
+    'CONTENT_TYPE' => 'application/x-www-form-urlencoded',
+    'CONTENT_LENGTH' => '1994',
+    'HTTP_COOKIE' => '_gcl_au=1.1.1872002595.1726323405; _ga=GA1.2.130525813.1726323405; _ga_ZQ2MSQHZJC=GS1.2.1726830475.6.1.1726831365.0.0.0; _ga_C4Q61H0G50=GS1.1.1726830475.7.1.1726832539.0.0.0; advanced-frontend=a38fed5be420ba310ab5566308de35db; _csrf-frontend=71e94a72c9667a94f220975a793f2ebedd29068ffba2a2260a78713265f393e4a%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_csrf-frontend%22%3Bi%3A1%3Bs%3A32%3A%22R8kxuJA09790Uhy3G3qd2bYn6MG7HojO%22%3B%7D; _csrf-backend=9b934e70af649a73ce1162d12ce8e07e75e3376f153744a4bfeeff2aae3aa0a4a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%229rY6B3SqeMcfmR2LYKpX350HwYWEAwzP%22%3B%7D; advanced-backend=0a6f6f36ec56d58045ca96506579db12',
+    'HTTP_HOST' => 'parkingplus.es',
+    'HTTP_REFERER' => 'https://parkingplus.es/aparcamiento/backend/web/index.php?r=reservas%2Fupdate&id=79368538',
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
+    'HTTP_CACHE_CONTROL' => 'max-age=0',
+    'HTTP_SEC_CH_UA' => '"Chromium";v="128", "Not;A=Brand";v="24", "Google Chrome";v="128"',
+    'HTTP_SEC_CH_UA_MOBILE' => '?0',
+    'HTTP_SEC_CH_UA_PLATFORM' => '"Linux"',
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+    'HTTP_ORIGIN' => 'https://parkingplus.es',
+    'HTTP_SEC_FETCH_SITE' => 'same-origin',
+    'HTTP_SEC_FETCH_MODE' => 'navigate',
+    'HTTP_SEC_FETCH_USER' => '?1',
+    'HTTP_SEC_FETCH_DEST' => 'document',
+    'HTTP_PRIORITY' => 'u=0, i',
+    'HTTP_X_HTTPS' => '1',
+    'UNIQUE_ID' => 'ZvQG_CMIeJFiRsL-GW_exQAAUAY',
+    'MMDB_ADDR' => '190.89.30.130',
+    'MMDB_INFO' => 'result found',
+    'GEOIP_CONTINENT_CODE' => 'SA',
+    'GEOIP_COUNTRY_CODE' => 'PE',
+    'MM_CONTINENT_CODE' => 'SA',
+    'MM_COUNTRY_CODE' => 'PE',
+    'SCRIPT_URL' => '/aparcamiento/backend/web/index.php',
+    'SCRIPT_URI' => 'https://parkingplus.es/aparcamiento/backend/web/index.php',
+    'HTTPS' => 'on',
+    'SSL_TLS_SNI' => 'parkingplus.es',
+    'HTTP2' => 'on',
+    'H2PUSH' => 'off',
+    'H2_PUSH' => 'off',
+    'H2_PUSHED' => '',
+    'H2_PUSHED_ON' => '',
+    'H2_STREAM_ID' => '1',
+    'H2_STREAM_TAG' => '3801610-1064-1',
+    'SERVER_SIGNATURE' => '',
+    'SERVER_SOFTWARE' => 'Apache',
+    'SERVER_NAME' => 'parkingplus.es',
+    'SERVER_ADDR' => '185.101.224.12',
+    'SERVER_PORT' => '443',
+    'REMOTE_ADDR' => '190.89.30.130',
+    'DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'REQUEST_SCHEME' => 'https',
+    'CONTEXT_PREFIX' => '',
+    'CONTEXT_DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'SERVER_ADMIN' => 'webmaster@parkingplus.es',
+    'SCRIPT_FILENAME' => '/home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php',
+    'REMOTE_PORT' => '57402',
+    'SERVER_PROTOCOL' => 'HTTP/2.0',
+    'REQUEST_METHOD' => 'POST',
+    'QUERY_STRING' => 'r=reservas%2Fupdate&id=79368538',
+    'REQUEST_URI' => '/aparcamiento/backend/web/index.php?r=reservas%2Fupdate&id=79368538',
+    'SCRIPT_NAME' => '/aparcamiento/backend/web/index.php',
+    'PHP_SELF' => '/aparcamiento/backend/web/index.php',
+    'REQUEST_TIME_FLOAT' => 1727268604.851854,
+    'REQUEST_TIME' => 1727268604,
+]
+[25-Sep-2024 15:12:47 Europe/Madrid] An Error occurred while handling another error:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ReservasController.php on line 1629. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/ErrorHandler.php(135): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\web\ErrorHandler->renderException(Object(yii\web\HeadersAlreadySentException))
+#3 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\HeadersAlreadySentException))
+#4 {main}
+Previous exception:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ReservasController.php on line 1629. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/Application.php(392): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php(17): yii\base\Application->run()
+#3 {main}
+$_SERVER = [
+    'PATH' => '/usr/local/bin:/usr/bin:/bin',
+    'TEMP' => '/tmp',
+    'TMP' => '/tmp',
+    'TMPDIR' => '/tmp',
+    'PWD' => '/',
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br, zstd',
+    'HTTP_ACCEPT_LANGUAGE' => 'es-VE,es-419;q=0.9,es;q=0.8',
+    'CONTENT_TYPE' => 'application/x-www-form-urlencoded',
+    'CONTENT_LENGTH' => '2031',
+    'HTTP_COOKIE' => '_gcl_au=1.1.1872002595.1726323405; _ga=GA1.2.130525813.1726323405; _ga_ZQ2MSQHZJC=GS1.2.1726830475.6.1.1726831365.0.0.0; _ga_C4Q61H0G50=GS1.1.1726830475.7.1.1726832539.0.0.0; advanced-frontend=a38fed5be420ba310ab5566308de35db; _csrf-frontend=71e94a72c9667a94f220975a793f2ebedd29068ffba2a2260a78713265f393e4a%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_csrf-frontend%22%3Bi%3A1%3Bs%3A32%3A%22R8kxuJA09790Uhy3G3qd2bYn6MG7HojO%22%3B%7D; _csrf-backend=9b934e70af649a73ce1162d12ce8e07e75e3376f153744a4bfeeff2aae3aa0a4a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%229rY6B3SqeMcfmR2LYKpX350HwYWEAwzP%22%3B%7D; advanced-backend=0a6f6f36ec56d58045ca96506579db12',
+    'HTTP_HOST' => 'parkingplus.es',
+    'HTTP_REFERER' => 'https://parkingplus.es/aparcamiento/backend/web/index.php?r=reservas%2Fupdate&id=79368538',
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
+    'HTTP_CACHE_CONTROL' => 'max-age=0',
+    'HTTP_SEC_CH_UA' => '"Chromium";v="128", "Not;A=Brand";v="24", "Google Chrome";v="128"',
+    'HTTP_SEC_CH_UA_MOBILE' => '?0',
+    'HTTP_SEC_CH_UA_PLATFORM' => '"Linux"',
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+    'HTTP_ORIGIN' => 'https://parkingplus.es',
+    'HTTP_SEC_FETCH_SITE' => 'same-origin',
+    'HTTP_SEC_FETCH_MODE' => 'navigate',
+    'HTTP_SEC_FETCH_USER' => '?1',
+    'HTTP_SEC_FETCH_DEST' => 'document',
+    'HTTP_PRIORITY' => 'u=0, i',
+    'HTTP_X_HTTPS' => '1',
+    'UNIQUE_ID' => 'ZvQMT_OmZ23NfYxRYlm-2gABDBw',
+    'MMDB_ADDR' => '190.89.30.130',
+    'MMDB_INFO' => 'result found',
+    'GEOIP_CONTINENT_CODE' => 'SA',
+    'GEOIP_COUNTRY_CODE' => 'PE',
+    'MM_CONTINENT_CODE' => 'SA',
+    'MM_COUNTRY_CODE' => 'PE',
+    'SCRIPT_URL' => '/aparcamiento/backend/web/index.php',
+    'SCRIPT_URI' => 'https://parkingplus.es/aparcamiento/backend/web/index.php',
+    'HTTPS' => 'on',
+    'SSL_TLS_SNI' => 'parkingplus.es',
+    'HTTP2' => 'on',
+    'H2PUSH' => 'off',
+    'H2_PUSH' => 'off',
+    'H2_PUSHED' => '',
+    'H2_PUSHED_ON' => '',
+    'H2_STREAM_ID' => '3',
+    'H2_STREAM_TAG' => '3801609-1407-3',
+    'SERVER_SIGNATURE' => '',
+    'SERVER_SOFTWARE' => 'Apache',
+    'SERVER_NAME' => 'parkingplus.es',
+    'SERVER_ADDR' => '185.101.224.12',
+    'SERVER_PORT' => '443',
+    'REMOTE_ADDR' => '190.89.30.130',
+    'DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'REQUEST_SCHEME' => 'https',
+    'CONTEXT_PREFIX' => '',
+    'CONTEXT_DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'SERVER_ADMIN' => 'webmaster@parkingplus.es',
+    'SCRIPT_FILENAME' => '/home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php',
+    'REMOTE_PORT' => '47948',
+    'SERVER_PROTOCOL' => 'HTTP/2.0',
+    'REQUEST_METHOD' => 'POST',
+    'QUERY_STRING' => 'r=reservas%2Fupdate&id=79368538',
+    'REQUEST_URI' => '/aparcamiento/backend/web/index.php?r=reservas%2Fupdate&id=79368538',
+    'SCRIPT_NAME' => '/aparcamiento/backend/web/index.php',
+    'PHP_SELF' => '/aparcamiento/backend/web/index.php',
+    'REQUEST_TIME_FLOAT' => 1727269967.730777,
+    'REQUEST_TIME' => 1727269967,
+]
+[25-Sep-2024 15:33:02 Europe/Madrid] An Error occurred while handling another error:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ReservasController.php on line 1645. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/ErrorHandler.php(135): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\web\ErrorHandler->renderException(Object(yii\web\HeadersAlreadySentException))
+#3 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\HeadersAlreadySentException))
+#4 {main}
+Previous exception:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ReservasController.php on line 1645. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/Application.php(392): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php(17): yii\base\Application->run()
+#3 {main}
+$_SERVER = [
+    'PATH' => '/usr/local/bin:/usr/bin:/bin',
+    'TEMP' => '/tmp',
+    'TMP' => '/tmp',
+    'TMPDIR' => '/tmp',
+    'PWD' => '/',
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br, zstd',
+    'HTTP_ACCEPT_LANGUAGE' => 'es-VE,es-419;q=0.9,es;q=0.8',
+    'CONTENT_TYPE' => 'application/x-www-form-urlencoded',
+    'CONTENT_LENGTH' => '2032',
+    'HTTP_COOKIE' => '_gcl_au=1.1.1872002595.1726323405; _ga=GA1.2.130525813.1726323405; _ga_ZQ2MSQHZJC=GS1.2.1726830475.6.1.1726831365.0.0.0; _ga_C4Q61H0G50=GS1.1.1726830475.7.1.1726832539.0.0.0; advanced-frontend=a38fed5be420ba310ab5566308de35db; _csrf-frontend=71e94a72c9667a94f220975a793f2ebedd29068ffba2a2260a78713265f393e4a%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_csrf-frontend%22%3Bi%3A1%3Bs%3A32%3A%22R8kxuJA09790Uhy3G3qd2bYn6MG7HojO%22%3B%7D; _csrf-backend=9b934e70af649a73ce1162d12ce8e07e75e3376f153744a4bfeeff2aae3aa0a4a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%229rY6B3SqeMcfmR2LYKpX350HwYWEAwzP%22%3B%7D; advanced-backend=0a6f6f36ec56d58045ca96506579db12',
+    'HTTP_HOST' => 'parkingplus.es',
+    'HTTP_REFERER' => 'https://parkingplus.es/aparcamiento/backend/web/index.php?r=reservas%2Fupdate&id=79368538',
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
+    'HTTP_CACHE_CONTROL' => 'max-age=0',
+    'HTTP_SEC_CH_UA' => '"Chromium";v="128", "Not;A=Brand";v="24", "Google Chrome";v="128"',
+    'HTTP_SEC_CH_UA_MOBILE' => '?0',
+    'HTTP_SEC_CH_UA_PLATFORM' => '"Linux"',
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+    'HTTP_ORIGIN' => 'https://parkingplus.es',
+    'HTTP_SEC_FETCH_SITE' => 'same-origin',
+    'HTTP_SEC_FETCH_MODE' => 'navigate',
+    'HTTP_SEC_FETCH_USER' => '?1',
+    'HTTP_SEC_FETCH_DEST' => 'document',
+    'HTTP_PRIORITY' => 'u=0, i',
+    'HTTP_X_HTTPS' => '1',
+    'UNIQUE_ID' => 'ZvQRDiMIeJFiRsL-GW_krAAAUBo',
+    'MMDB_ADDR' => '190.89.30.130',
+    'MMDB_INFO' => 'result found',
+    'GEOIP_CONTINENT_CODE' => 'SA',
+    'GEOIP_COUNTRY_CODE' => 'PE',
+    'MM_CONTINENT_CODE' => 'SA',
+    'MM_COUNTRY_CODE' => 'PE',
+    'SCRIPT_URL' => '/aparcamiento/backend/web/index.php',
+    'SCRIPT_URI' => 'https://parkingplus.es/aparcamiento/backend/web/index.php',
+    'HTTPS' => 'on',
+    'SSL_TLS_SNI' => 'parkingplus.es',
+    'HTTP2' => 'on',
+    'H2PUSH' => 'off',
+    'H2_PUSH' => 'off',
+    'H2_PUSHED' => '',
+    'H2_PUSHED_ON' => '',
+    'H2_STREAM_ID' => '7',
+    'H2_STREAM_TAG' => '3801610-1238-7',
+    'SERVER_SIGNATURE' => '',
+    'SERVER_SOFTWARE' => 'Apache',
+    'SERVER_NAME' => 'parkingplus.es',
+    'SERVER_ADDR' => '185.101.224.12',
+    'SERVER_PORT' => '443',
+    'REMOTE_ADDR' => '190.89.30.130',
+    'DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'REQUEST_SCHEME' => 'https',
+    'CONTEXT_PREFIX' => '',
+    'CONTEXT_DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'SERVER_ADMIN' => 'webmaster@parkingplus.es',
+    'SCRIPT_FILENAME' => '/home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php',
+    'REMOTE_PORT' => '57556',
+    'SERVER_PROTOCOL' => 'HTTP/2.0',
+    'REQUEST_METHOD' => 'POST',
+    'QUERY_STRING' => 'r=reservas%2Fupdate&id=79368538',
+    'REQUEST_URI' => '/aparcamiento/backend/web/index.php?r=reservas%2Fupdate&id=79368538',
+    'SCRIPT_NAME' => '/aparcamiento/backend/web/index.php',
+    'PHP_SELF' => '/aparcamiento/backend/web/index.php',
+    'REQUEST_TIME_FLOAT' => 1727271182.496448,
+    'REQUEST_TIME' => 1727271182,
+]
+[25-Sep-2024 15:38:23 Europe/Madrid] An Error occurred while handling another error:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ReservasController.php on line 1645. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/ErrorHandler.php(135): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\web\ErrorHandler->renderException(Object(yii\web\HeadersAlreadySentException))
+#3 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\HeadersAlreadySentException))
+#4 {main}
+Previous exception:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ReservasController.php on line 1645. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/Application.php(392): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php(17): yii\base\Application->run()
+#3 {main}
+$_SERVER = [
+    'PATH' => '/usr/local/bin:/usr/bin:/bin',
+    'TEMP' => '/tmp',
+    'TMP' => '/tmp',
+    'TMPDIR' => '/tmp',
+    'PWD' => '/',
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate',
+    'HTTP_ACCEPT_LANGUAGE' => 'es-ES,es;q=0.9',
+    'HTTP_CONNECTION' => 'keep-alive',
+    'CONTENT_TYPE' => 'application/x-www-form-urlencoded',
+    'CONTENT_LENGTH' => '2044',
+    'HTTP_COOKIE' => '_identity-backend=58514600cc523079c54c086fd35aff9c3296c49583bcefe4734a3cd1de9a39bca%3A2%3A%7Bi%3A0%3Bs%3A17%3A%22_identity-backend%22%3Bi%3A1%3Bs%3A46%3A%22%5B7%2C%22ew5zTXOA9DNqg2U7KsRFY4rqMPkb0mnf%22%2C2592000%5D%22%3B%7D; _gcl_au=1.1.778777918.1722345222; _csrf-backend=2b8fb2624a3bed8585fac7d59f45668883b7aa7a639e3c7cf286aa0233b5ff80a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22cV631-wttpH5aFJEAqFqOAWlhDOn7KCk%22%3B%7D; advanced-backend=c3484cee478ff63f3c99133f394a510d; ci_session=69c14c13d9a2b2ab2258781e359f984fa710133c',
+    'HTTP_HOST' => 'parkingplus.es',
+    'HTTP_REFERER' => 'http://parkingplus.es/aparcamiento/backend/web/index.php?r=reservas%2Fupdate&id=79368509',
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36',
+    'HTTP_CACHE_CONTROL' => 'max-age=0',
+    'HTTP_ORIGIN' => 'http://parkingplus.es',
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+    'UNIQUE_ID' => 'ZvQST3fan6n3ZArQGh-PqQAAAAg',
+    'MMDB_ADDR' => '2.153.192.154',
+    'MMDB_INFO' => 'result found',
+    'GEOIP_CONTINENT_CODE' => 'EU',
+    'GEOIP_COUNTRY_CODE' => 'ES',
+    'MM_CONTINENT_CODE' => 'EU',
+    'MM_COUNTRY_CODE' => 'ES',
+    'AllowCountryXmlrpc' => '1',
+    'SCRIPT_URL' => '/aparcamiento/backend/web/index.php',
+    'SCRIPT_URI' => 'http://parkingplus.es/aparcamiento/backend/web/index.php',
+    'SERVER_SIGNATURE' => '',
+    'SERVER_SOFTWARE' => 'Apache',
+    'SERVER_NAME' => 'parkingplus.es',
+    'SERVER_ADDR' => '185.101.224.12',
+    'SERVER_PORT' => '80',
+    'REMOTE_ADDR' => '2.153.192.154',
+    'DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'REQUEST_SCHEME' => 'http',
+    'CONTEXT_PREFIX' => '',
+    'CONTEXT_DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'SERVER_ADMIN' => 'webmaster@parkingplus.es',
+    'SCRIPT_FILENAME' => '/home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php',
+    'REMOTE_PORT' => '52516',
+    'SERVER_PROTOCOL' => 'HTTP/1.1',
+    'REQUEST_METHOD' => 'POST',
+    'QUERY_STRING' => 'r=reservas%2Fupdate&id=79368509',
+    'REQUEST_URI' => '/aparcamiento/backend/web/index.php?r=reservas%2Fupdate&id=79368509',
+    'SCRIPT_NAME' => '/aparcamiento/backend/web/index.php',
+    'PHP_SELF' => '/aparcamiento/backend/web/index.php',
+    'REQUEST_TIME_FLOAT' => 1727271503.540412,
+    'REQUEST_TIME' => 1727271503,
+]
+[25-Sep-2024 16:15:02 Europe/Madrid] An Error occurred while handling another error:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ReservasController.php on line 1624. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/ErrorHandler.php(135): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\web\ErrorHandler->renderException(Object(yii\web\HeadersAlreadySentException))
+#3 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\HeadersAlreadySentException))
+#4 {main}
+Previous exception:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ReservasController.php on line 1624. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/Application.php(392): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php(17): yii\base\Application->run()
+#3 {main}
+$_SERVER = [
+    'PATH' => '/usr/local/bin:/usr/bin:/bin',
+    'TEMP' => '/tmp',
+    'TMP' => '/tmp',
+    'TMPDIR' => '/tmp',
+    'PWD' => '/',
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br, zstd',
+    'HTTP_ACCEPT_LANGUAGE' => 'es-VE,es-419;q=0.9,es;q=0.8',
+    'CONTENT_TYPE' => 'application/x-www-form-urlencoded',
+    'CONTENT_LENGTH' => '2032',
+    'HTTP_COOKIE' => '_gcl_au=1.1.1872002595.1726323405; _ga=GA1.2.130525813.1726323405; _ga_ZQ2MSQHZJC=GS1.2.1726830475.6.1.1726831365.0.0.0; _ga_C4Q61H0G50=GS1.1.1726830475.7.1.1726832539.0.0.0; advanced-frontend=a38fed5be420ba310ab5566308de35db; _csrf-frontend=71e94a72c9667a94f220975a793f2ebedd29068ffba2a2260a78713265f393e4a%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_csrf-frontend%22%3Bi%3A1%3Bs%3A32%3A%22R8kxuJA09790Uhy3G3qd2bYn6MG7HojO%22%3B%7D; _csrf-backend=9b934e70af649a73ce1162d12ce8e07e75e3376f153744a4bfeeff2aae3aa0a4a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%229rY6B3SqeMcfmR2LYKpX350HwYWEAwzP%22%3B%7D; advanced-backend=0a6f6f36ec56d58045ca96506579db12',
+    'HTTP_HOST' => 'parkingplus.es',
+    'HTTP_REFERER' => 'https://parkingplus.es/aparcamiento/backend/web/index.php?r=reservas%2Fupdate&id=79368538',
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
+    'HTTP_CACHE_CONTROL' => 'max-age=0',
+    'HTTP_SEC_CH_UA' => '"Chromium";v="128", "Not;A=Brand";v="24", "Google Chrome";v="128"',
+    'HTTP_SEC_CH_UA_MOBILE' => '?0',
+    'HTTP_SEC_CH_UA_PLATFORM' => '"Linux"',
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+    'HTTP_ORIGIN' => 'https://parkingplus.es',
+    'HTTP_SEC_FETCH_SITE' => 'same-origin',
+    'HTTP_SEC_FETCH_MODE' => 'navigate',
+    'HTTP_SEC_FETCH_USER' => '?1',
+    'HTTP_SEC_FETCH_DEST' => 'document',
+    'HTTP_PRIORITY' => 'u=0, i',
+    'HTTP_X_HTTPS' => '1',
+    'UNIQUE_ID' => 'ZvQa5dKcpFLlImLI0E_KSwAAzRM',
+    'MMDB_ADDR' => '190.89.30.130',
+    'MMDB_INFO' => 'result found',
+    'GEOIP_CONTINENT_CODE' => 'SA',
+    'GEOIP_COUNTRY_CODE' => 'PE',
+    'MM_CONTINENT_CODE' => 'SA',
+    'MM_COUNTRY_CODE' => 'PE',
+    'SCRIPT_URL' => '/aparcamiento/backend/web/index.php',
+    'SCRIPT_URI' => 'https://parkingplus.es/aparcamiento/backend/web/index.php',
+    'HTTPS' => 'on',
+    'SSL_TLS_SNI' => 'parkingplus.es',
+    'HTTP2' => 'on',
+    'H2PUSH' => 'off',
+    'H2_PUSH' => 'off',
+    'H2_PUSHED' => '',
+    'H2_PUSHED_ON' => '',
+    'H2_STREAM_ID' => '1',
+    'H2_STREAM_TAG' => '3801978-1876-1',
+    'SERVER_SIGNATURE' => '',
+    'SERVER_SOFTWARE' => 'Apache',
+    'SERVER_NAME' => 'parkingplus.es',
+    'SERVER_ADDR' => '185.101.224.12',
+    'SERVER_PORT' => '443',
+    'REMOTE_ADDR' => '190.89.30.130',
+    'DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'REQUEST_SCHEME' => 'https',
+    'CONTEXT_PREFIX' => '',
+    'CONTEXT_DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'SERVER_ADMIN' => 'webmaster@parkingplus.es',
+    'SCRIPT_FILENAME' => '/home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php',
+    'REMOTE_PORT' => '50774',
+    'SERVER_PROTOCOL' => 'HTTP/2.0',
+    'REQUEST_METHOD' => 'POST',
+    'QUERY_STRING' => 'r=reservas%2Fupdate&id=79368538',
+    'REQUEST_URI' => '/aparcamiento/backend/web/index.php?r=reservas%2Fupdate&id=79368538',
+    'SCRIPT_NAME' => '/aparcamiento/backend/web/index.php',
+    'PHP_SELF' => '/aparcamiento/backend/web/index.php',
+    'REQUEST_TIME_FLOAT' => 1727273702.215557,
+    'REQUEST_TIME' => 1727273702,
+]
+[25-Sep-2024 16:15:20 Europe/Madrid] An Error occurred while handling another error:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ReservasController.php on line 1624. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/ErrorHandler.php(135): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\web\ErrorHandler->renderException(Object(yii\web\HeadersAlreadySentException))
+#3 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\HeadersAlreadySentException))
+#4 {main}
+Previous exception:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ReservasController.php on line 1624. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/Application.php(392): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php(17): yii\base\Application->run()
+#3 {main}
+$_SERVER = [
+    'PATH' => '/usr/local/bin:/usr/bin:/bin',
+    'TEMP' => '/tmp',
+    'TMP' => '/tmp',
+    'TMPDIR' => '/tmp',
+    'PWD' => '/',
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br, zstd',
+    'HTTP_ACCEPT_LANGUAGE' => 'es-VE,es-419;q=0.9,es;q=0.8',
+    'CONTENT_TYPE' => 'application/x-www-form-urlencoded',
+    'CONTENT_LENGTH' => '2032',
+    'HTTP_COOKIE' => '_gcl_au=1.1.1872002595.1726323405; _ga=GA1.2.130525813.1726323405; _ga_ZQ2MSQHZJC=GS1.2.1726830475.6.1.1726831365.0.0.0; _ga_C4Q61H0G50=GS1.1.1726830475.7.1.1726832539.0.0.0; advanced-frontend=a38fed5be420ba310ab5566308de35db; _csrf-frontend=71e94a72c9667a94f220975a793f2ebedd29068ffba2a2260a78713265f393e4a%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_csrf-frontend%22%3Bi%3A1%3Bs%3A32%3A%22R8kxuJA09790Uhy3G3qd2bYn6MG7HojO%22%3B%7D; _csrf-backend=9b934e70af649a73ce1162d12ce8e07e75e3376f153744a4bfeeff2aae3aa0a4a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%229rY6B3SqeMcfmR2LYKpX350HwYWEAwzP%22%3B%7D; advanced-backend=0a6f6f36ec56d58045ca96506579db12',
+    'HTTP_HOST' => 'parkingplus.es',
+    'HTTP_REFERER' => 'https://parkingplus.es/aparcamiento/backend/web/index.php?r=reservas%2Fupdate&id=79368538',
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
+    'HTTP_CACHE_CONTROL' => 'max-age=0',
+    'HTTP_SEC_CH_UA' => '"Chromium";v="128", "Not;A=Brand";v="24", "Google Chrome";v="128"',
+    'HTTP_SEC_CH_UA_MOBILE' => '?0',
+    'HTTP_SEC_CH_UA_PLATFORM' => '"Linux"',
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+    'HTTP_ORIGIN' => 'https://parkingplus.es',
+    'HTTP_SEC_FETCH_SITE' => 'same-origin',
+    'HTTP_SEC_FETCH_MODE' => 'navigate',
+    'HTTP_SEC_FETCH_USER' => '?1',
+    'HTTP_SEC_FETCH_DEST' => 'document',
+    'HTTP_PRIORITY' => 'u=0, i',
+    'HTTP_X_HTTPS' => '1',
+    'UNIQUE_ID' => 'ZvQa-GRu_hmxZDnQn4v9GQABQRk',
+    'MMDB_ADDR' => '190.89.30.130',
+    'MMDB_INFO' => 'result found',
+    'GEOIP_CONTINENT_CODE' => 'SA',
+    'GEOIP_COUNTRY_CODE' => 'PE',
+    'MM_CONTINENT_CODE' => 'SA',
+    'MM_COUNTRY_CODE' => 'PE',
+    'SCRIPT_URL' => '/aparcamiento/backend/web/index.php',
+    'SCRIPT_URI' => 'https://parkingplus.es/aparcamiento/backend/web/index.php',
+    'HTTPS' => 'on',
+    'SSL_TLS_SNI' => 'parkingplus.es',
+    'HTTP2' => 'on',
+    'H2PUSH' => 'off',
+    'H2_PUSH' => 'off',
+    'H2_PUSHED' => '',
+    'H2_PUSHED_ON' => '',
+    'H2_STREAM_ID' => '1',
+    'H2_STREAM_TAG' => '237696-895-1',
+    'SERVER_SIGNATURE' => '',
+    'SERVER_SOFTWARE' => 'Apache',
+    'SERVER_NAME' => 'parkingplus.es',
+    'SERVER_ADDR' => '185.101.224.12',
+    'SERVER_PORT' => '443',
+    'REMOTE_ADDR' => '190.89.30.130',
+    'DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'REQUEST_SCHEME' => 'https',
+    'CONTEXT_PREFIX' => '',
+    'CONTEXT_DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'SERVER_ADMIN' => 'webmaster@parkingplus.es',
+    'SCRIPT_FILENAME' => '/home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php',
+    'REMOTE_PORT' => '48816',
+    'SERVER_PROTOCOL' => 'HTTP/2.0',
+    'REQUEST_METHOD' => 'POST',
+    'QUERY_STRING' => 'r=reservas%2Fupdate&id=79368538',
+    'REQUEST_URI' => '/aparcamiento/backend/web/index.php?r=reservas%2Fupdate&id=79368538',
+    'SCRIPT_NAME' => '/aparcamiento/backend/web/index.php',
+    'PHP_SELF' => '/aparcamiento/backend/web/index.php',
+    'REQUEST_TIME_FLOAT' => 1727273720.688975,
+    'REQUEST_TIME' => 1727273720,
+]
+[25-Sep-2024 16:29:42 Europe/Madrid] An Error occurred while handling another error:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ReservasController.php on line 1868. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/ErrorHandler.php(135): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\web\ErrorHandler->renderException(Object(yii\web\HeadersAlreadySentException))
+#3 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\HeadersAlreadySentException))
+#4 {main}
+Previous exception:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ReservasController.php on line 1868. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/Application.php(392): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php(17): yii\base\Application->run()
+#3 {main}
+$_SERVER = [
+    'PATH' => '/usr/local/bin:/usr/bin:/bin',
+    'TEMP' => '/tmp',
+    'TMP' => '/tmp',
+    'TMPDIR' => '/tmp',
+    'PWD' => '/',
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br, zstd',
+    'HTTP_ACCEPT_LANGUAGE' => 'es-VE,es-419;q=0.9,es;q=0.8',
+    'CONTENT_TYPE' => 'application/x-www-form-urlencoded',
+    'CONTENT_LENGTH' => '136',
+    'HTTP_COOKIE' => '_gcl_au=1.1.1872002595.1726323405; _ga=GA1.2.130525813.1726323405; _ga_ZQ2MSQHZJC=GS1.2.1726830475.6.1.1726831365.0.0.0; _ga_C4Q61H0G50=GS1.1.1726830475.7.1.1726832539.0.0.0; advanced-frontend=a38fed5be420ba310ab5566308de35db; _csrf-frontend=71e94a72c9667a94f220975a793f2ebedd29068ffba2a2260a78713265f393e4a%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_csrf-frontend%22%3Bi%3A1%3Bs%3A32%3A%22R8kxuJA09790Uhy3G3qd2bYn6MG7HojO%22%3B%7D; _csrf-backend=9b934e70af649a73ce1162d12ce8e07e75e3376f153744a4bfeeff2aae3aa0a4a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%229rY6B3SqeMcfmR2LYKpX350HwYWEAwzP%22%3B%7D; advanced-backend=0a6f6f36ec56d58045ca96506579db12',
+    'HTTP_HOST' => 'parkingplus.es',
+    'HTTP_REFERER' => 'https://parkingplus.es/aparcamiento/backend/web/index.php?r=reservas%2Findex',
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
+    'HTTP_CACHE_CONTROL' => 'max-age=0',
+    'HTTP_SEC_CH_UA' => '"Chromium";v="128", "Not;A=Brand";v="24", "Google Chrome";v="128"',
+    'HTTP_SEC_CH_UA_MOBILE' => '?0',
+    'HTTP_SEC_CH_UA_PLATFORM' => '"Linux"',
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+    'HTTP_ORIGIN' => 'https://parkingplus.es',
+    'HTTP_SEC_FETCH_SITE' => 'same-origin',
+    'HTTP_SEC_FETCH_MODE' => 'navigate',
+    'HTTP_SEC_FETCH_USER' => '?1',
+    'HTTP_SEC_FETCH_DEST' => 'document',
+    'HTTP_PRIORITY' => 'u=0, i',
+    'HTTP_X_HTTPS' => '1',
+    'UNIQUE_ID' => 'ZvQeVuZbICZOYxId1Stw5wAAhg4',
+    'MMDB_ADDR' => '190.89.30.130',
+    'MMDB_INFO' => 'result found',
+    'GEOIP_CONTINENT_CODE' => 'SA',
+    'GEOIP_COUNTRY_CODE' => 'PE',
+    'MM_CONTINENT_CODE' => 'SA',
+    'MM_COUNTRY_CODE' => 'PE',
+    'SCRIPT_URL' => '/aparcamiento/backend/web/index.php',
+    'SCRIPT_URI' => 'https://parkingplus.es/aparcamiento/backend/web/index.php',
+    'HTTPS' => 'on',
+    'SSL_TLS_SNI' => 'parkingplus.es',
+    'HTTP2' => 'on',
+    'H2PUSH' => 'off',
+    'H2_PUSH' => 'off',
+    'H2_PUSHED' => '',
+    'H2_PUSHED_ON' => '',
+    'H2_STREAM_ID' => '1',
+    'H2_STREAM_TAG' => '3801818-1234-1',
+    'SERVER_SIGNATURE' => '',
+    'SERVER_SOFTWARE' => 'Apache',
+    'SERVER_NAME' => 'parkingplus.es',
+    'SERVER_ADDR' => '185.101.224.12',
+    'SERVER_PORT' => '443',
+    'REMOTE_ADDR' => '190.89.30.130',
+    'DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'REQUEST_SCHEME' => 'https',
+    'CONTEXT_PREFIX' => '',
+    'CONTEXT_DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'SERVER_ADMIN' => 'webmaster@parkingplus.es',
+    'SCRIPT_FILENAME' => '/home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php',
+    'REMOTE_PORT' => '48050',
+    'SERVER_PROTOCOL' => 'HTTP/2.0',
+    'REQUEST_METHOD' => 'POST',
+    'QUERY_STRING' => 'r=reservas%2Festatus',
+    'REQUEST_URI' => '/aparcamiento/backend/web/index.php?r=reservas%2Festatus',
+    'SCRIPT_NAME' => '/aparcamiento/backend/web/index.php',
+    'PHP_SELF' => '/aparcamiento/backend/web/index.php',
+    'REQUEST_TIME_FLOAT' => 1727274582.465463,
+    'REQUEST_TIME' => 1727274582,
+]
+[09-Oct-2024 18:55:47 Europe/Madrid] An Error occurred while handling another error:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ReservasController.php on line 1641. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/ErrorHandler.php(135): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\web\ErrorHandler->renderException(Object(yii\web\HeadersAlreadySentException))
+#3 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\HeadersAlreadySentException))
+#4 {main}
+Previous exception:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ReservasController.php on line 1641. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/Application.php(392): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php(17): yii\base\Application->run()
+#3 {main}
+$_SERVER = [
+    'PATH' => '/usr/local/bin:/usr/bin:/bin',
+    'TEMP' => '/tmp',
+    'TMP' => '/tmp',
+    'TMPDIR' => '/tmp',
+    'PWD' => '/',
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br, zstd',
+    'HTTP_ACCEPT_LANGUAGE' => 'es-VE,es-419;q=0.9,es;q=0.8',
+    'CONTENT_TYPE' => 'application/x-www-form-urlencoded',
+    'CONTENT_LENGTH' => '2121',
+    'HTTP_COOKIE' => '_gcl_au=1.1.1872002595.1726323405; _identity-backend=58514600cc523079c54c086fd35aff9c3296c49583bcefe4734a3cd1de9a39bca%3A2%3A%7Bi%3A0%3Bs%3A17%3A%22_identity-backend%22%3Bi%3A1%3Bs%3A46%3A%22%5B7%2C%22ew5zTXOA9DNqg2U7KsRFY4rqMPkb0mnf%22%2C2592000%5D%22%3B%7D; _csrf-backend=a403c87ff4c1bbc220a036e536ceeaafe7a03e9c14f13eaec8a7cc75337c8568a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22GqcLJruBeCqrLNYhFEID7vhVwDUP4VGb%22%3B%7D; advanced-frontend=04a17c72e37bc6e7246b5a0fb6f6087e; _csrf-frontend=b4e34c36c31b2f4f464b1b885be52736428bf3d1cfd0d2a78f25077f35a862c9a%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_csrf-frontend%22%3Bi%3A1%3Bs%3A32%3A%22BjvH7cJFM2KwDbEzLlf60TUsWOaeOjy9%22%3B%7D; _ga=GA1.2.130525813.1726323405; _ga_ZQ2MSQHZJC=GS1.2.1728397785.11.1.1728398990.0.0.0; _ga_C4Q61H0G50=GS1.1.1728397784.12.1.1728398994.0.0.0; advanced-backend=e0fee60df1e52202d2926ea5cea7ebca',
+    'HTTP_HOST' => 'parkingplus.es',
+    'HTTP_REFERER' => 'https://parkingplus.es/aparcamiento/backend/web/index.php?r=reservas%2Fupdate&id=79369054',
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36',
+    'HTTP_CACHE_CONTROL' => 'max-age=0',
+    'HTTP_SEC_CH_UA' => '"Google Chrome";v="129", "Not=A?Brand";v="8", "Chromium";v="129"',
+    'HTTP_SEC_CH_UA_MOBILE' => '?0',
+    'HTTP_SEC_CH_UA_PLATFORM' => '"Linux"',
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+    'HTTP_ORIGIN' => 'https://parkingplus.es',
+    'HTTP_SEC_FETCH_SITE' => 'same-origin',
+    'HTTP_SEC_FETCH_MODE' => 'navigate',
+    'HTTP_SEC_FETCH_USER' => '?1',
+    'HTTP_SEC_FETCH_DEST' => 'document',
+    'HTTP_PRIORITY' => 'u=0, i',
+    'HTTP_X_HTTPS' => '1',
+    'UNIQUE_ID' => 'Zwa1k0rp1kfiCv3ZFSh0lgAAwRQ',
+    'MMDB_ADDR' => '190.89.30.128',
+    'MMDB_INFO' => 'result found',
+    'MM_COUNTRY_CODE' => 'PE',
+    'GEOIP_CONTINENT_CODE' => 'SA',
+    'GEOIP_COUNTRY_CODE' => 'PE',
+    'MM_CONTINENT_CODE' => 'SA',
+    'SCRIPT_URL' => '/aparcamiento/backend/web/index.php',
+    'SCRIPT_URI' => 'https://parkingplus.es/aparcamiento/backend/web/index.php',
+    'HTTPS' => 'on',
+    'SSL_TLS_SNI' => 'parkingplus.es',
+    'HTTP2' => 'on',
+    'H2PUSH' => 'off',
+    'H2_PUSH' => 'off',
+    'H2_PUSHED' => '',
+    'H2_PUSHED_ON' => '',
+    'H2_STREAM_ID' => '1',
+    'H2_STREAM_TAG' => '1190-380-1',
+    'SERVER_SIGNATURE' => '',
+    'SERVER_SOFTWARE' => 'Apache',
+    'SERVER_NAME' => 'parkingplus.es',
+    'SERVER_ADDR' => '185.101.224.12',
+    'SERVER_PORT' => '443',
+    'REMOTE_ADDR' => '190.89.30.128',
+    'DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'REQUEST_SCHEME' => 'https',
+    'CONTEXT_PREFIX' => '',
+    'CONTEXT_DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'SERVER_ADMIN' => 'webmaster@parkingplus.es',
+    'SCRIPT_FILENAME' => '/home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php',
+    'REMOTE_PORT' => '51150',
+    'SERVER_PROTOCOL' => 'HTTP/2.0',
+    'REQUEST_METHOD' => 'POST',
+    'QUERY_STRING' => 'r=reservas%2Fupdate&id=79369054',
+    'REQUEST_URI' => '/aparcamiento/backend/web/index.php?r=reservas%2Fupdate&id=79369054',
+    'SCRIPT_NAME' => '/aparcamiento/backend/web/index.php',
+    'PHP_SELF' => '/aparcamiento/backend/web/index.php',
+    'REQUEST_TIME_FLOAT' => 1728492947.598955,
+    'REQUEST_TIME' => 1728492947,
+]
+[09-Oct-2024 19:02:31 Europe/Madrid] An Error occurred while handling another error:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ReservasController.php on line 1642. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/ErrorHandler.php(135): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\web\ErrorHandler->renderException(Object(yii\web\HeadersAlreadySentException))
+#3 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\HeadersAlreadySentException))
+#4 {main}
+Previous exception:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ReservasController.php on line 1642. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/Application.php(392): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php(17): yii\base\Application->run()
+#3 {main}
+$_SERVER = [
+    'PATH' => '/usr/local/bin:/usr/bin:/bin',
+    'TEMP' => '/tmp',
+    'TMP' => '/tmp',
+    'TMPDIR' => '/tmp',
+    'PWD' => '/',
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br, zstd',
+    'HTTP_ACCEPT_LANGUAGE' => 'es-VE,es-419;q=0.9,es;q=0.8',
+    'CONTENT_TYPE' => 'application/x-www-form-urlencoded',
+    'CONTENT_LENGTH' => '2121',
+    'HTTP_COOKIE' => '_gcl_au=1.1.1872002595.1726323405; _identity-backend=58514600cc523079c54c086fd35aff9c3296c49583bcefe4734a3cd1de9a39bca%3A2%3A%7Bi%3A0%3Bs%3A17%3A%22_identity-backend%22%3Bi%3A1%3Bs%3A46%3A%22%5B7%2C%22ew5zTXOA9DNqg2U7KsRFY4rqMPkb0mnf%22%2C2592000%5D%22%3B%7D; _csrf-backend=a403c87ff4c1bbc220a036e536ceeaafe7a03e9c14f13eaec8a7cc75337c8568a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22GqcLJruBeCqrLNYhFEID7vhVwDUP4VGb%22%3B%7D; advanced-frontend=04a17c72e37bc6e7246b5a0fb6f6087e; _csrf-frontend=b4e34c36c31b2f4f464b1b885be52736428bf3d1cfd0d2a78f25077f35a862c9a%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_csrf-frontend%22%3Bi%3A1%3Bs%3A32%3A%22BjvH7cJFM2KwDbEzLlf60TUsWOaeOjy9%22%3B%7D; _ga=GA1.2.130525813.1726323405; _ga_ZQ2MSQHZJC=GS1.2.1728397785.11.1.1728398990.0.0.0; _ga_C4Q61H0G50=GS1.1.1728397784.12.1.1728398994.0.0.0; advanced-backend=e0fee60df1e52202d2926ea5cea7ebca',
+    'HTTP_HOST' => 'parkingplus.es',
+    'HTTP_REFERER' => 'https://parkingplus.es/aparcamiento/backend/web/index.php?r=reservas%2Fupdate&id=79369054',
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36',
+    'HTTP_CACHE_CONTROL' => 'max-age=0',
+    'HTTP_SEC_CH_UA' => '"Google Chrome";v="129", "Not=A?Brand";v="8", "Chromium";v="129"',
+    'HTTP_SEC_CH_UA_MOBILE' => '?0',
+    'HTTP_SEC_CH_UA_PLATFORM' => '"Linux"',
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+    'HTTP_ORIGIN' => 'https://parkingplus.es',
+    'HTTP_SEC_FETCH_SITE' => 'same-origin',
+    'HTTP_SEC_FETCH_MODE' => 'navigate',
+    'HTTP_SEC_FETCH_USER' => '?1',
+    'HTTP_SEC_FETCH_DEST' => 'document',
+    'HTTP_PRIORITY' => 'u=0, i',
+    'HTTP_X_HTTPS' => '1',
+    'UNIQUE_ID' => 'Zwa3JxvGiyUWtTWEq_PPjgABEg8',
+    'MMDB_ADDR' => '190.89.30.128',
+    'MMDB_INFO' => 'result found',
+    'MM_COUNTRY_CODE' => 'PE',
+    'GEOIP_CONTINENT_CODE' => 'SA',
+    'GEOIP_COUNTRY_CODE' => 'PE',
+    'MM_CONTINENT_CODE' => 'SA',
+    'SCRIPT_URL' => '/aparcamiento/backend/web/index.php',
+    'SCRIPT_URI' => 'https://parkingplus.es/aparcamiento/backend/web/index.php',
+    'HTTPS' => 'on',
+    'SSL_TLS_SNI' => 'parkingplus.es',
+    'HTTP2' => 'on',
+    'H2PUSH' => 'off',
+    'H2_PUSH' => 'off',
+    'H2_PUSHED' => '',
+    'H2_PUSHED_ON' => '',
+    'H2_STREAM_ID' => '1',
+    'H2_STREAM_TAG' => '3006-665-1',
+    'SERVER_SIGNATURE' => '',
+    'SERVER_SOFTWARE' => 'Apache',
+    'SERVER_NAME' => 'parkingplus.es',
+    'SERVER_ADDR' => '185.101.224.12',
+    'SERVER_PORT' => '443',
+    'REMOTE_ADDR' => '190.89.30.128',
+    'DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'REQUEST_SCHEME' => 'https',
+    'CONTEXT_PREFIX' => '',
+    'CONTEXT_DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'SERVER_ADMIN' => 'webmaster@parkingplus.es',
+    'SCRIPT_FILENAME' => '/home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php',
+    'REMOTE_PORT' => '57756',
+    'SERVER_PROTOCOL' => 'HTTP/2.0',
+    'REQUEST_METHOD' => 'POST',
+    'QUERY_STRING' => 'r=reservas%2Fupdate&id=79369054',
+    'REQUEST_URI' => '/aparcamiento/backend/web/index.php?r=reservas%2Fupdate&id=79369054',
+    'SCRIPT_NAME' => '/aparcamiento/backend/web/index.php',
+    'PHP_SELF' => '/aparcamiento/backend/web/index.php',
+    'REQUEST_TIME_FLOAT' => 1728493351.728551,
+    'REQUEST_TIME' => 1728493351,
+]
+[09-Oct-2024 19:03:54 Europe/Madrid] An Error occurred while handling another error:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ReservasController.php on line 1642. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/ErrorHandler.php(135): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\web\ErrorHandler->renderException(Object(yii\web\HeadersAlreadySentException))
+#3 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\HeadersAlreadySentException))
+#4 {main}
+Previous exception:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ReservasController.php on line 1642. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/Application.php(392): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php(17): yii\base\Application->run()
+#3 {main}
+$_SERVER = [
+    'PATH' => '/usr/local/bin:/usr/bin:/bin',
+    'TEMP' => '/tmp',
+    'TMP' => '/tmp',
+    'TMPDIR' => '/tmp',
+    'PWD' => '/',
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br, zstd',
+    'HTTP_ACCEPT_LANGUAGE' => 'es-VE,es-419;q=0.9,es;q=0.8',
+    'CONTENT_TYPE' => 'application/x-www-form-urlencoded',
+    'CONTENT_LENGTH' => '2121',
+    'HTTP_COOKIE' => '_gcl_au=1.1.1872002595.1726323405; _identity-backend=58514600cc523079c54c086fd35aff9c3296c49583bcefe4734a3cd1de9a39bca%3A2%3A%7Bi%3A0%3Bs%3A17%3A%22_identity-backend%22%3Bi%3A1%3Bs%3A46%3A%22%5B7%2C%22ew5zTXOA9DNqg2U7KsRFY4rqMPkb0mnf%22%2C2592000%5D%22%3B%7D; _csrf-backend=a403c87ff4c1bbc220a036e536ceeaafe7a03e9c14f13eaec8a7cc75337c8568a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22GqcLJruBeCqrLNYhFEID7vhVwDUP4VGb%22%3B%7D; advanced-frontend=04a17c72e37bc6e7246b5a0fb6f6087e; _csrf-frontend=b4e34c36c31b2f4f464b1b885be52736428bf3d1cfd0d2a78f25077f35a862c9a%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_csrf-frontend%22%3Bi%3A1%3Bs%3A32%3A%22BjvH7cJFM2KwDbEzLlf60TUsWOaeOjy9%22%3B%7D; _ga=GA1.2.130525813.1726323405; _ga_ZQ2MSQHZJC=GS1.2.1728397785.11.1.1728398990.0.0.0; _ga_C4Q61H0G50=GS1.1.1728397784.12.1.1728398994.0.0.0; advanced-backend=e0fee60df1e52202d2926ea5cea7ebca',
+    'HTTP_HOST' => 'parkingplus.es',
+    'HTTP_REFERER' => 'https://parkingplus.es/aparcamiento/backend/web/index.php?r=reservas%2Fupdate&id=79369054',
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36',
+    'HTTP_CACHE_CONTROL' => 'max-age=0',
+    'HTTP_SEC_CH_UA' => '"Google Chrome";v="129", "Not=A?Brand";v="8", "Chromium";v="129"',
+    'HTTP_SEC_CH_UA_MOBILE' => '?0',
+    'HTTP_SEC_CH_UA_PLATFORM' => '"Linux"',
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+    'HTTP_ORIGIN' => 'https://parkingplus.es',
+    'HTTP_SEC_FETCH_SITE' => 'same-origin',
+    'HTTP_SEC_FETCH_MODE' => 'navigate',
+    'HTTP_SEC_FETCH_USER' => '?1',
+    'HTTP_SEC_FETCH_DEST' => 'document',
+    'HTTP_PRIORITY' => 'u=0, i',
+    'HTTP_X_HTTPS' => '1',
+    'UNIQUE_ID' => 'Zwa3eiTzfAyH7ywxKDVHoQAAkBc',
+    'MMDB_ADDR' => '190.89.30.128',
+    'MMDB_INFO' => 'result found',
+    'MM_COUNTRY_CODE' => 'PE',
+    'GEOIP_CONTINENT_CODE' => 'SA',
+    'GEOIP_COUNTRY_CODE' => 'PE',
+    'MM_CONTINENT_CODE' => 'SA',
+    'SCRIPT_URL' => '/aparcamiento/backend/web/index.php',
+    'SCRIPT_URI' => 'https://parkingplus.es/aparcamiento/backend/web/index.php',
+    'HTTPS' => 'on',
+    'SSL_TLS_SNI' => 'parkingplus.es',
+    'HTTP2' => 'on',
+    'H2PUSH' => 'off',
+    'H2_PUSH' => 'off',
+    'H2_PUSHED' => '',
+    'H2_PUSHED_ON' => '',
+    'H2_STREAM_ID' => '1',
+    'H2_STREAM_TAG' => '1766-922-1',
+    'SERVER_SIGNATURE' => '',
+    'SERVER_SOFTWARE' => 'Apache',
+    'SERVER_NAME' => 'parkingplus.es',
+    'SERVER_ADDR' => '185.101.224.12',
+    'SERVER_PORT' => '443',
+    'REMOTE_ADDR' => '190.89.30.128',
+    'DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'REQUEST_SCHEME' => 'https',
+    'CONTEXT_PREFIX' => '',
+    'CONTEXT_DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'SERVER_ADMIN' => 'webmaster@parkingplus.es',
+    'SCRIPT_FILENAME' => '/home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php',
+    'REMOTE_PORT' => '37246',
+    'SERVER_PROTOCOL' => 'HTTP/2.0',
+    'REQUEST_METHOD' => 'POST',
+    'QUERY_STRING' => 'r=reservas%2Fupdate&id=79369054',
+    'REQUEST_URI' => '/aparcamiento/backend/web/index.php?r=reservas%2Fupdate&id=79369054',
+    'SCRIPT_NAME' => '/aparcamiento/backend/web/index.php',
+    'PHP_SELF' => '/aparcamiento/backend/web/index.php',
+    'REQUEST_TIME_FLOAT' => 1728493434.67539,
+    'REQUEST_TIME' => 1728493434,
+]
+[09-Oct-2024 19:04:40 Europe/Madrid] An Error occurred while handling another error:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ReservasController.php on line 1642. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/ErrorHandler.php(135): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\web\ErrorHandler->renderException(Object(yii\web\HeadersAlreadySentException))
+#3 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\HeadersAlreadySentException))
+#4 {main}
+Previous exception:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ReservasController.php on line 1642. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/Application.php(392): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php(17): yii\base\Application->run()
+#3 {main}
+$_SERVER = [
+    'PATH' => '/usr/local/bin:/usr/bin:/bin',
+    'TEMP' => '/tmp',
+    'TMP' => '/tmp',
+    'TMPDIR' => '/tmp',
+    'PWD' => '/',
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br, zstd',
+    'HTTP_ACCEPT_LANGUAGE' => 'es-VE,es-419;q=0.9,es;q=0.8',
+    'CONTENT_TYPE' => 'application/x-www-form-urlencoded',
+    'CONTENT_LENGTH' => '2121',
+    'HTTP_COOKIE' => '_gcl_au=1.1.1872002595.1726323405; _identity-backend=58514600cc523079c54c086fd35aff9c3296c49583bcefe4734a3cd1de9a39bca%3A2%3A%7Bi%3A0%3Bs%3A17%3A%22_identity-backend%22%3Bi%3A1%3Bs%3A46%3A%22%5B7%2C%22ew5zTXOA9DNqg2U7KsRFY4rqMPkb0mnf%22%2C2592000%5D%22%3B%7D; _csrf-backend=a403c87ff4c1bbc220a036e536ceeaafe7a03e9c14f13eaec8a7cc75337c8568a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22GqcLJruBeCqrLNYhFEID7vhVwDUP4VGb%22%3B%7D; advanced-frontend=04a17c72e37bc6e7246b5a0fb6f6087e; _csrf-frontend=b4e34c36c31b2f4f464b1b885be52736428bf3d1cfd0d2a78f25077f35a862c9a%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_csrf-frontend%22%3Bi%3A1%3Bs%3A32%3A%22BjvH7cJFM2KwDbEzLlf60TUsWOaeOjy9%22%3B%7D; _ga=GA1.2.130525813.1726323405; _ga_ZQ2MSQHZJC=GS1.2.1728397785.11.1.1728398990.0.0.0; _ga_C4Q61H0G50=GS1.1.1728397784.12.1.1728398994.0.0.0; advanced-backend=e0fee60df1e52202d2926ea5cea7ebca',
+    'HTTP_HOST' => 'parkingplus.es',
+    'HTTP_REFERER' => 'https://parkingplus.es/aparcamiento/backend/web/index.php?r=reservas%2Fupdate&id=79369054',
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36',
+    'HTTP_CACHE_CONTROL' => 'max-age=0',
+    'HTTP_SEC_CH_UA' => '"Google Chrome";v="129", "Not=A?Brand";v="8", "Chromium";v="129"',
+    'HTTP_SEC_CH_UA_MOBILE' => '?0',
+    'HTTP_SEC_CH_UA_PLATFORM' => '"Linux"',
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+    'HTTP_ORIGIN' => 'https://parkingplus.es',
+    'HTTP_SEC_FETCH_SITE' => 'same-origin',
+    'HTTP_SEC_FETCH_MODE' => 'navigate',
+    'HTTP_SEC_FETCH_USER' => '?1',
+    'HTTP_SEC_FETCH_DEST' => 'document',
+    'HTTP_PRIORITY' => 'u=0, i',
+    'HTTP_X_HTTPS' => '1',
+    'UNIQUE_ID' => 'Zwa3qAusk5GBiILEMUueCQAADCE',
+    'MMDB_ADDR' => '190.89.30.128',
+    'MMDB_INFO' => 'result found',
+    'MM_COUNTRY_CODE' => 'PE',
+    'GEOIP_CONTINENT_CODE' => 'SA',
+    'GEOIP_COUNTRY_CODE' => 'PE',
+    'MM_CONTINENT_CODE' => 'SA',
+    'SCRIPT_URL' => '/aparcamiento/backend/web/index.php',
+    'SCRIPT_URI' => 'https://parkingplus.es/aparcamiento/backend/web/index.php',
+    'HTTPS' => 'on',
+    'SSL_TLS_SNI' => 'parkingplus.es',
+    'HTTP2' => 'on',
+    'H2PUSH' => 'off',
+    'H2_PUSH' => 'off',
+    'H2_PUSHED' => '',
+    'H2_PUSHED_ON' => '',
+    'H2_STREAM_ID' => '1',
+    'H2_STREAM_TAG' => '10118-871-1',
+    'SERVER_SIGNATURE' => '',
+    'SERVER_SOFTWARE' => 'Apache',
+    'SERVER_NAME' => 'parkingplus.es',
+    'SERVER_ADDR' => '185.101.224.12',
+    'SERVER_PORT' => '443',
+    'REMOTE_ADDR' => '190.89.30.128',
+    'DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'REQUEST_SCHEME' => 'https',
+    'CONTEXT_PREFIX' => '',
+    'CONTEXT_DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'SERVER_ADMIN' => 'webmaster@parkingplus.es',
+    'SCRIPT_FILENAME' => '/home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php',
+    'REMOTE_PORT' => '57360',
+    'SERVER_PROTOCOL' => 'HTTP/2.0',
+    'REQUEST_METHOD' => 'POST',
+    'QUERY_STRING' => 'r=reservas%2Fupdate&id=79369054',
+    'REQUEST_URI' => '/aparcamiento/backend/web/index.php?r=reservas%2Fupdate&id=79369054',
+    'SCRIPT_NAME' => '/aparcamiento/backend/web/index.php',
+    'PHP_SELF' => '/aparcamiento/backend/web/index.php',
+    'REQUEST_TIME_FLOAT' => 1728493480.576868,
+    'REQUEST_TIME' => 1728493480,
+]
+[09-Oct-2024 19:12:06 Europe/Madrid] An Error occurred while handling another error:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ReservasController.php on line 1660. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/ErrorHandler.php(135): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/ErrorHandler.php(111): yii\web\ErrorHandler->renderException(Object(yii\web\HeadersAlreadySentException))
+#3 [internal function]: yii\base\ErrorHandler->handleException(Object(yii\web\HeadersAlreadySentException))
+#4 {main}
+Previous exception:
+yii\web\HeadersAlreadySentException: Headers already sent in /home/tn5qqzxx/public_html/aparcamiento/backend/controllers/ReservasController.php on line 1660. in /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /home/tn5qqzxx/public_html/aparcamiento/vendor/yiisoft/yii2/base/Application.php(392): yii\web\Response->send()
+#2 /home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php(17): yii\base\Application->run()
+#3 {main}
+$_SERVER = [
+    'PATH' => '/usr/local/bin:/usr/bin:/bin',
+    'TEMP' => '/tmp',
+    'TMP' => '/tmp',
+    'TMPDIR' => '/tmp',
+    'PWD' => '/',
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br, zstd',
+    'HTTP_ACCEPT_LANGUAGE' => 'es-VE,es-419;q=0.9,es;q=0.8',
+    'CONTENT_TYPE' => 'application/x-www-form-urlencoded',
+    'CONTENT_LENGTH' => '2121',
+    'HTTP_COOKIE' => '_gcl_au=1.1.1872002595.1726323405; _identity-backend=58514600cc523079c54c086fd35aff9c3296c49583bcefe4734a3cd1de9a39bca%3A2%3A%7Bi%3A0%3Bs%3A17%3A%22_identity-backend%22%3Bi%3A1%3Bs%3A46%3A%22%5B7%2C%22ew5zTXOA9DNqg2U7KsRFY4rqMPkb0mnf%22%2C2592000%5D%22%3B%7D; _csrf-backend=a403c87ff4c1bbc220a036e536ceeaafe7a03e9c14f13eaec8a7cc75337c8568a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22GqcLJruBeCqrLNYhFEID7vhVwDUP4VGb%22%3B%7D; advanced-frontend=04a17c72e37bc6e7246b5a0fb6f6087e; _csrf-frontend=b4e34c36c31b2f4f464b1b885be52736428bf3d1cfd0d2a78f25077f35a862c9a%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_csrf-frontend%22%3Bi%3A1%3Bs%3A32%3A%22BjvH7cJFM2KwDbEzLlf60TUsWOaeOjy9%22%3B%7D; _ga=GA1.2.130525813.1726323405; _ga_ZQ2MSQHZJC=GS1.2.1728397785.11.1.1728398990.0.0.0; _ga_C4Q61H0G50=GS1.1.1728397784.12.1.1728398994.0.0.0; advanced-backend=e0fee60df1e52202d2926ea5cea7ebca',
+    'HTTP_HOST' => 'parkingplus.es',
+    'HTTP_REFERER' => 'https://parkingplus.es/aparcamiento/backend/web/index.php?r=reservas%2Fupdate&id=79369054',
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36',
+    'HTTP_CACHE_CONTROL' => 'max-age=0',
+    'HTTP_SEC_CH_UA' => '"Google Chrome";v="129", "Not=A?Brand";v="8", "Chromium";v="129"',
+    'HTTP_SEC_CH_UA_MOBILE' => '?0',
+    'HTTP_SEC_CH_UA_PLATFORM' => '"Linux"',
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+    'HTTP_ORIGIN' => 'https://parkingplus.es',
+    'HTTP_SEC_FETCH_SITE' => 'same-origin',
+    'HTTP_SEC_FETCH_MODE' => 'navigate',
+    'HTTP_SEC_FETCH_USER' => '?1',
+    'HTTP_SEC_FETCH_DEST' => 'document',
+    'HTTP_PRIORITY' => 'u=0, i',
+    'HTTP_X_HTTPS' => '1',
+    'UNIQUE_ID' => 'Zwa5ZQusk5GBiILEMUugGwAADhk',
+    'MMDB_ADDR' => '190.89.30.128',
+    'MMDB_INFO' => 'result found',
+    'MM_COUNTRY_CODE' => 'PE',
+    'GEOIP_CONTINENT_CODE' => 'SA',
+    'GEOIP_COUNTRY_CODE' => 'PE',
+    'MM_CONTINENT_CODE' => 'SA',
+    'SCRIPT_URL' => '/aparcamiento/backend/web/index.php',
+    'SCRIPT_URI' => 'https://parkingplus.es/aparcamiento/backend/web/index.php',
+    'HTTPS' => 'on',
+    'SSL_TLS_SNI' => 'parkingplus.es',
+    'HTTP2' => 'on',
+    'H2PUSH' => 'off',
+    'H2_PUSH' => 'off',
+    'H2_PUSHED' => '',
+    'H2_PUSHED_ON' => '',
+    'H2_STREAM_ID' => '1',
+    'H2_STREAM_TAG' => '10118-918-1',
+    'SERVER_SIGNATURE' => '',
+    'SERVER_SOFTWARE' => 'Apache',
+    'SERVER_NAME' => 'parkingplus.es',
+    'SERVER_ADDR' => '185.101.224.12',
+    'SERVER_PORT' => '443',
+    'REMOTE_ADDR' => '190.89.30.128',
+    'DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'REQUEST_SCHEME' => 'https',
+    'CONTEXT_PREFIX' => '',
+    'CONTEXT_DOCUMENT_ROOT' => '/home/tn5qqzxx/public_html',
+    'SERVER_ADMIN' => 'webmaster@parkingplus.es',
+    'SCRIPT_FILENAME' => '/home/tn5qqzxx/public_html/aparcamiento/backend/web/index.php',
+    'REMOTE_PORT' => '35268',
+    'SERVER_PROTOCOL' => 'HTTP/2.0',
+    'REQUEST_METHOD' => 'POST',
+    'QUERY_STRING' => 'r=reservas%2Fupdate&id=79369054',
+    'REQUEST_URI' => '/aparcamiento/backend/web/index.php?r=reservas%2Fupdate&id=79369054',
+    'SCRIPT_NAME' => '/aparcamiento/backend/web/index.php',
+    'PHP_SELF' => '/aparcamiento/backend/web/index.php',
+    'REQUEST_TIME_FLOAT' => 1728493926.034786,
+    'REQUEST_TIME' => 1728493926,
+]
