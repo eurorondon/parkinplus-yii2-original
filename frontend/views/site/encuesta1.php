@@ -1,4 +1,5 @@
 <?php
+
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -7,48 +8,72 @@ use yii\widgets\ActiveForm;
 
 $this->title = 'Encuesta de Satisfacción';
 ?>
-<div class="encuesta-form mt-5">
-    <h2><?= Html::encode($this->title) ?></h2>
 
-    <?php $form = ActiveForm::begin(); ?>
+<div class="container mt-5 mb-5 pt-3">
+    <div class="card shadow rounded overflow-hidden">
+        <div class="card-header bg-success text-white py-3 px-4">
+            <h4 class="mb-0"><?= Html::encode($this->title) ?></h4>
+        </div>
+        <div class="card-body p-4">
+            <?php $form = ActiveForm::begin(); ?>
 
-    <!-- Campo oculto para la reserva -->
-    <?= $form->field($model, 'reserva_id')->hiddenInput()->label(false) ?>
+            <!-- Campo oculto para la reserva -->
+            <?= $form->field($model, 'reserva_id')->hiddenInput()->label(false) ?>
 
-    <!-- Pregunta principal -->
-    <?= $form->field($model, 'respuesta')->radioList([
-        1 => 'Sí, estoy satisfecho(a)',
-        0 => 'No, tengo una sugerencia',
-    ]) ?>
+            <!-- Pregunta de satisfacción con separación amplia -->
+            <div class="mb-4">
+                <label class="form-label fw-bold">¿Estás satisfecho con el servicio recibido?</label>
 
-    <!-- Sugerencias (campo siempre visible) -->
-    <div id="div-sugerencias">
-        <?= $form->field($model, 'sugerencias')->textarea([
-            'rows' => 4,
-            'placeholder' => 'Cuéntanos cómo podemos mejorar...',
-        ]) ?>
+                <?= $form->field($model, 'respuesta', [
+                    'template' => '{input}{error}',
+                ])->radioList([
+                    1 => '✅ Sí, estoy satisfecho(a)',
+                    0 => '⚠️ No, tengo una sugerencia',
+                ], [
+                    'item' => function ($index, $label, $name, $checked, $value) {
+                        $checkedAttr = $checked ? 'checked' : '';
+                        return "
+                            <div class='form-check mb-4'>
+                                <input class='form-check-input' type='radio' name='{$name}' value='{$value}' id='respuesta{$index}' {$checkedAttr}>
+                                <label class='form-check-label ms-2' for='respuesta{$index}'>{$label}</label>
+                            </div>
+                        ";
+                    }
+                ]) ?>
+            </div>
+
+            <!-- Campo de sugerencias (oculto por defecto) -->
+            <div id="div-sugerencias" class="mb-4" style="display: none;">
+                <?= $form->field($model, 'sugerencias')->textarea([
+                    'rows' => 4,
+                    'placeholder' => 'Cuéntanos cómo podemos mejorar...',
+                    'class' => 'form-control'
+                ])->label('Tus sugerencias') ?>
+            </div>
+
+            <!-- Botón de envío -->
+            <div class="d-grid">
+                <?= Html::submitButton('✅ Enviar respuesta', ['class' => 'btn btn-success btn-lg rounded-pill']) ?>
+            </div>
+
+            <?php ActiveForm::end(); ?>
+        </div>
     </div>
-
-    <!-- Botón enviar -->
-    <div class="form-group">
-        <?= Html::submitButton('Enviar respuesta', ['class' => 'btn btn-success']) ?>
-    </div>
-
-    <?php ActiveForm::end(); ?>
 </div>
 
 <?php
-// El campo de sugerencias ahora siempre se muestra, por lo que el script de
-// visibilidad ha sido deshabilitado.
-/*
-$this->registerJs('
-    $("input[name=\'EncuestaInicial[respuesta]\']").change(function(){
-        if ($(this).val() == "0") {
-            $("#div-sugerencias").slideDown();
+// Script para mostrar el campo de sugerencias si se selecciona "No"
+$this->registerJs("
+    function toggleSugerencias() {
+        const value = $('input[name=\"EncuestaInicial[respuesta]\"]:checked').val();
+        if (value == '0') {
+            $('#div-sugerencias').slideDown();
         } else {
-            $("#div-sugerencias").slideUp();
+            $('#div-sugerencias').slideUp();
         }
-    }).trigger("change");
-');
-*/
+    }
+
+    $('input[name=\"EncuestaInicial[respuesta]\"]').on('change', toggleSugerencias);
+    toggleSugerencias();
+");
 ?>
