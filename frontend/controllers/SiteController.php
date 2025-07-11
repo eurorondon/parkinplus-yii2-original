@@ -3130,6 +3130,16 @@ class SiteController extends Controller
     if (Yii::$app->request->isGet) {
         $reservaId = Yii::$app->request->get('reserva');
         $model->reserva_id = $reservaId;
+
+        // Verifica si ya existe una valoración para la reserva
+        if ($reservaId) {
+            $valoracion = EncuestaInicial::findOne(['reserva_id' => $reservaId]);
+            if ($valoracion !== null) {
+                return $this->render('encuesta1_completada', [
+                    'valoracion' => $valoracion,
+                ]);
+            }
+        }
     }
 
     if ($model->load(Yii::$app->request->post()) && $model->save()) {
