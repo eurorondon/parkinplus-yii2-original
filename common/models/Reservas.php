@@ -228,4 +228,15 @@ class Reservas extends \yii\db\ActiveRecord
         $data = Coches::find()->where(['id_cliente' => $id])->select('*')->asArray()->all();
         return $data;
     }
+
+    /**
+     * Gets log entries for changes made by the client.
+     *
+     * @return \\yii\\db\\ActiveQuery
+     */
+    public function getCambios()
+    {
+        return $this->hasMany(ReservasLogCambios::className(), ["reserva_id" => "id"])->orderBy(["fecha" => SORT_DESC]);
+    }
 }
+

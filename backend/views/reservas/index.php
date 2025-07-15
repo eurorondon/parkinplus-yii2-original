@@ -226,6 +226,13 @@ $this->params['breadcrumbs'][] = 'Gestión de Reservas';
                 ]
               ) ?>
               <?= Html::a('Marcar revisada', ['reservas/marcar-actualizada', 'id' => $res->id], ['class' => 'btn btn-xs btn-primary']) ?>
+              <?php if ($res->cambios): ?>
+                <ul>
+                  <?php foreach ($res->cambios as $chg): ?>
+                    <li><?= Html::encode($chg->campo) ?>: <?= Html::encode($chg->valor_anterior) ?> → <?= Html::encode($chg->valor_nuevo) ?></li>
+                  <?php endforeach; ?>
+                </ul>
+              <?php endif; ?>
             </li>
           <?php endforeach; ?>
         </ul>
