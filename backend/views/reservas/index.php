@@ -206,9 +206,11 @@ $this->params['breadcrumbs'][] = 'Gestión de Reservas';
     <?php endif; ?>
 
     <?php if (!empty($actualizadasFront)): ?>
-      <div class="alert alert-info mt-2">
-        <p>Reservas actualizadas desde la web:</p>
-        <ul class="mb-0">
+      <div class="collapse" id="reservasActualizadas">
+        <div class="card card-changes mt-3">
+          <div class="card-body alert alert-info mb-0">
+            <p>Reservas actualizadas desde la web:</p>
+            <ul class="mb-0">
           <?php foreach ($actualizadasFront as $res): ?>
             <li>
               Nº <?= $res->nro_reserva ?>
@@ -229,13 +231,24 @@ $this->params['breadcrumbs'][] = 'Gestión de Reservas';
               <?php if ($res->cambios): ?>
                 <ul>
                   <?php foreach ($res->cambios as $chg): ?>
-                    <li><?= Html::encode($chg->campo) ?>: <?= Html::encode($chg->valor_anterior) ?> → <?= Html::encode($chg->valor_nuevo) ?></li>
+                    <li>
+                      <?= Html::encode($chg->campo) ?>:
+                      <span class="info-view info-change">
+                        <?= Html::encode($chg->valor_anterior) ?>
+                      </span>
+                      →
+                      <span class="info-view info-change">
+                        <?= Html::encode($chg->valor_nuevo) ?>
+                      </span>
+                    </li>
                   <?php endforeach; ?>
                 </ul>
               <?php endif; ?>
             </li>
           <?php endforeach; ?>
-        </ul>
+          </ul>
+          </div>
+        </div>
       </div>
     <?php endif; ?>
 

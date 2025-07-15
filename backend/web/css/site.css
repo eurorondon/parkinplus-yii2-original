@@ -1055,6 +1055,11 @@ a:hover {
     text-transform: uppercase;
 }
 
+.info-change {
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+}
+
 .num-price {
     text-align: center;
     height: 24px;
