@@ -206,36 +206,46 @@ $this->params['breadcrumbs'][] = 'Gestión de Reservas';
     <?php endif; ?>
 
     <?php if (!empty($actualizadasFront)): ?>
-      <div class="alert alert-info mt-2">
-        <p>Reservas actualizadas desde la web:</p>
-        <ul class="mb-0">
-          <?php foreach ($actualizadasFront as $res): ?>
-            <li>
-              Nº <?= $res->nro_reserva ?>
-              <?= Html::a(
-                'Consultar',
-                '#',
-                [
-                  'class' => 'btn-view btn-xs btn-info',
-                  'id' => 'view',
-                  'title' => Yii::t('app', 'Consultar'),
-                  'data-toggle' => 'modal',
-                  'data-target' => '#reserva',
-                  'data-url' => Url::to(['reservas/view', 'id' => $res->id]),
-                  'data-pjax' => '0',
-                ]
-              ) ?>
-              <?= Html::a('Marcar revisada', ['reservas/marcar-actualizada', 'id' => $res->id], ['class' => 'btn btn-xs btn-primary']) ?>
+      <button class="btn btn-info mb-2" type="button" data-toggle="collapse" data-target="#reservasActualizadas" aria-expanded="false" aria-controls="reservasActualizadas">
+        🔽 Ver cambios recientes de reservas
+      </button>
+      <div class="collapse" id="reservasActualizadas">
+        <?php foreach ($actualizadasFront as $res): ?>
+          <div class="card mb-3">
+            <div class="card-header">
+              Reserva modificada: #<?= Html::encode($res->nro_reserva) ?>
+            </div>
+            <div class="card-body">
               <?php if ($res->cambios): ?>
-                <ul>
-                  <?php foreach ($res->cambios as $chg): ?>
-                    <li><?= Html::encode($chg->campo) ?>: <?= Html::encode($chg->valor_anterior) ?> → <?= Html::encode($chg->valor_nuevo) ?></li>
+                <p class="mb-2"><strong>Fecha del cambio:</strong> <?= Yii::$app->formatter->asDatetime($res->cambios[0]->fecha, 'php:d-m-Y H:i') ?></p>
+                <ul class="list-group mb-2">
+                  <?php
+                  $mostrados = [];
+                  foreach ($res->cambios as $chg):
+                      if (in_array($chg->campo, $mostrados)) {
+                          continue;
+                      }
+                      $mostrados[] = $chg->campo;
+                  ?>
+                    <li class="list-group-item p-1">
+                      <?= Html::encode($chg->campo) ?>: <?= Html::encode($chg->valor_anterior) ?> → <?= Html::encode($chg->valor_nuevo) ?>
+                    </li>
                   <?php endforeach; ?>
                 </ul>
               <?php endif; ?>
-            </li>
-          <?php endforeach; ?>
-        </ul>
+              <?= Html::a('Consultar', '#', [
+                'class' => 'btn-view btn-xs btn-info',
+                'id' => 'view',
+                'title' => Yii::t('app', 'Consultar'),
+                'data-toggle' => 'modal',
+                'data-target' => '#reserva',
+                'data-url' => Url::to(['reservas/view', 'id' => $res->id]),
+                'data-pjax' => '0',
+              ]) ?>
+              <?= Html::a('Marcar Revisada', ['reservas/marcar-actualizada', 'id' => $res->id], ['class' => 'btn btn-xs btn-primary']) ?>
+            </div>
+          </div>
+        <?php endforeach; ?>
       </div>
     <?php endif; ?>
 
