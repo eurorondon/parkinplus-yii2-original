@@ -756,8 +756,17 @@ class ReservasController extends Controller
      */
     public function actionView($id)
     {
+        $model = Reservas::find()
+            ->where(['id' => $id])
+            ->with(['cliente', 'coche', 'cambios'])
+            ->one();
+
+        if ($model === null) {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+
         return $this->renderAjax('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
             'id' => $id,
         ]);
     }
