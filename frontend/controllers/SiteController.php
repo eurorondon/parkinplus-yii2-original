@@ -28,6 +28,7 @@ use common\models\Servicios;
 use common\models\TipoPago;
 use common\models\Configuracion;
 use common\models\ReservasServicios;
+use common\models\ReservasLogCambios;
 use common\models\ReservasSearch;
 use common\models\CochesSearch;
 use common\models\Paradas;
@@ -2023,6 +2024,20 @@ class SiteController extends Controller
 
         $model = Reservas::find()->where(['nro_reserva' => $_GET['codId']])->andWhere(['cod_valid' => $_GET['codValid']])->one();
 
+        if ($model === null) {
+            throw new NotFoundHttpException('La reserva solicitada no existe.');
+        }
+
+        $modelC = Clientes::find()->where(['id' => $model->id_cliente])->one();
+        if ($modelC === null) {
+            throw new NotFoundHttpException('El cliente asociado a la reserva no existe.');
+        }
+        $modelV = Coches::find()->where(['id' => $model->id_coche])->one();
+
+        $modelOld = clone $model;
+        $modelCOld = clone $modelC;
+        $modelVOld = clone $modelV;
+
         $model->factura = isset($_GET["invoice"]) && !empty($_GET["invoice"]) ? $_GET["invoice"] : 0;
 
         $entrada = $model->fecha_entrada;
@@ -2053,6 +2068,9 @@ class SiteController extends Controller
 
         $modelC = Clientes::find()->where(['id' => $model->id_cliente])->one();
         $modelV = Coches::find()->where(['id' => $model->id_coche])->one();
+
+        $oldReserva = clone $model;
+        $oldCliente = clone $modelC;
 
         $tipo_documento = [
             'NIF' => 'NIF',
@@ -2326,10 +2344,45 @@ class SiteController extends Controller
                 $model->monto_total += $_POST['servicio_noc_costo'];
             }
 
+            // Normalizar fechas y horas para evitar diferencias de formato
+            $oldReserva->fecha_entrada = date('Y-m-d', strtotime($oldReserva->fecha_entrada));
+            $oldReserva->fecha_salida = date('Y-m-d', strtotime($oldReserva->fecha_salida));
+
+            $oldReserva->hora_entrada = date('H:i', strtotime($oldReserva->hora_entrada));
+            $oldReserva->hora_salida = date('H:i', strtotime($oldReserva->hora_salida));
+
+            $model->hora_entrada = date('H:i', strtotime($model->hora_entrada));
+            $model->hora_salida = date('H:i', strtotime($model->hora_salida));
+
+
+            $changes = [];
+            if ($oldReserva->fecha_entrada != $model->fecha_entrada) {
+                $changes[] = ['campo' => 'fecha_entrada', 'old' => $oldReserva->fecha_entrada, 'new' => $model->fecha_entrada];
+            }
+            if ($oldReserva->fecha_salida != $model->fecha_salida) {
+                $changes[] = ['campo' => 'fecha_salida', 'old' => $oldReserva->fecha_salida, 'new' => $model->fecha_salida];
+            }
+            if ($oldReserva->hora_entrada != $model->hora_entrada) {
+                $changes[] = ['campo' => 'hora_entrada', 'old' => $oldReserva->hora_entrada, 'new' => $model->hora_entrada];
+            }
+            if ($oldReserva->hora_salida != $model->hora_salida) {
+                $changes[] = ['campo' => 'hora_salida', 'old' => $oldReserva->hora_salida, 'new' => $model->hora_salida];
+            }
+            if ($oldCliente->movil != $modelC->movil) {
+                $changes[] = ['campo' => 'telefono', 'old' => $oldCliente->movil, 'new' => $modelC->movil];
+            }
+
             $model->actualizada = 1;
-            $model->save();
 
             if ($model->save()) {
+                foreach ($changes as $change) {
+                    $log = new ReservasLogCambios();
+                    $log->reserva_id = $model->id;
+                    $log->campo = $change['campo'];
+                    $log->valor_anterior = $change['old'];
+                    $log->valor_nuevo = $change['new'];
+                    $log->save(false);
+                }
                 if (($u == null) && ($busca_user == null)) {
                     $modelU = new User();
                     $user_name = $modelC->correo;

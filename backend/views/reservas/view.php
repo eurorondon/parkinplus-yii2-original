@@ -306,6 +306,19 @@ if ($model->medio_reserva != 2) {
       <hr style="margin-bottom: 5px; margin-top: 40px;">
     </div>
 
+    <?php if ($model->actualizada && $model->medio_reserva == 3 && $model->cambios): ?>
+      <div class="col-lg-12">
+        <div class="alert alert-info">
+          <p>Cambios solicitados por el cliente:</p>
+          <ul class="mb-0">
+            <?php foreach ($model->cambios as $chg): ?>
+              <li><?= Html::encode($chg->campo) ?>: <?= Html::encode($chg->valor_anterior) ?> → <?= Html::encode($chg->valor_nuevo) ?></li>
+            <?php endforeach; ?>
+          </ul>
+        </div>
+      </div>
+    <?php endif; ?>
+
     <div class="col-lg-4">
       <div class="nota-titulo">Nota:</div>
       <div class="nota-descripcion">
