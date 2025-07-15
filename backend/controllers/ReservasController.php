@@ -147,7 +147,11 @@ class ReservasController extends Controller
 
         // Reservas actualizadas desde la web que requieren confirmación
         $actualizadasFront = Reservas::find()
-            ->where(['actualizada' => 1, 'medio_reserva' => 3])
+            ->where([
+                'actualizada' => 1,
+                'medio_reserva' => 3,
+                'estatus' => 3,
+            ])
             ->with('cambios')
             ->all();
 

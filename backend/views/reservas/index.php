@@ -263,11 +263,12 @@ $this->params['breadcrumbs'][] = 'Gestión de Reservas';
           </div>
         <?php endforeach; ?>
       </div>
-
-
-
-
     <?php endif; ?>
+
+
+
+
+
 
     <!--VISUALIZAR RESERVAS QUE NO SE ACTUALIZARON-->
     <?php if (!empty($pendientesSinActualizar)): ?>
