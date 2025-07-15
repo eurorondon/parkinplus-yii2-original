@@ -308,13 +308,29 @@ if ($model->medio_reserva != 2) {
 
     <?php if ($model->actualizada && $model->medio_reserva == 3 && $model->cambios): ?>
       <div class="col-lg-12">
-        <div class="alert alert-info">
-          <p>Cambios solicitados por el cliente:</p>
-          <ul class="mb-0">
-            <?php foreach ($model->cambios as $chg): ?>
-              <li><?= Html::encode($chg->campo) ?>: <?= Html::encode($chg->valor_anterior) ?> → <?= Html::encode($chg->valor_nuevo) ?></li>
-            <?php endforeach; ?>
-          </ul>
+        <button class="btn btn-info mb-2" type="button" data-toggle="collapse" data-target="#histCambios" aria-expanded="false" aria-controls="histCambios">
+          🔽 Historial de cambios
+        </button>
+        <div class="collapse" id="histCambios">
+          <div class="card mb-3">
+            <div class="card-body">
+              <p class="mb-2"><strong>Fecha del cambio:</strong> <?= Yii::$app->formatter->asDatetime($model->cambios[0]->fecha, 'php:d-m-Y H:i') ?></p>
+              <ul class="list-group mb-2">
+                <?php
+                $mostrados = [];
+                foreach ($model->cambios as $chg):
+                    if (in_array($chg->campo, $mostrados)) {
+                        continue;
+                    }
+                    $mostrados[] = $chg->campo;
+                ?>
+                  <li class="list-group-item p-1">
+                    <?= Html::encode($chg->campo) ?>: <?= Html::encode($chg->valor_anterior) ?> → <?= Html::encode($chg->valor_nuevo) ?>
+                  </li>
+                <?php endforeach; ?>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     <?php endif; ?>
