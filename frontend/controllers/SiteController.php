@@ -1274,6 +1274,7 @@ class SiteController extends Controller
                 $model->updated_at = $fecha_creacion;
                 $model->medio_reserva = 3;
 
+                $model->actualizada = 1;
                 $model->save();
 
 
@@ -2322,10 +2323,11 @@ class SiteController extends Controller
                 $modelR->tipo_servicio = 2;
                 $modelR->save();
 
-                $model->monto_total += $_POST['servicio_noc_costo'];
-            }
+            $model->monto_total += $_POST['servicio_noc_costo'];
+        }
 
-            $model->save();
+        $model->actualizada = 1;
+        $model->save();
 
             if ($model->save()) {
                 if (($u == null) && ($busca_user == null)) {

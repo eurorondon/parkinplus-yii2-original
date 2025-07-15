@@ -605,17 +605,14 @@ $this->params['breadcrumbs'][] = 'Gestión de Reservas';
                               ]);
                             },                       
                             'update' => function ($url, $model) {
-                                if ($model->medio_reserva == 2) {
-                                  return Html::a('<span class="glyphicon glyphicon-edit"></span>',
-                                      Yii::$app->urlManager->createUrl(['reservas/actualizar', 'id' => $model->id]),
-                                      ['class' => 'btn-update', 'title' => 'Modificar']
-                                  );                                  
-                                } else {
-                                  return Html::a('<span class="glyphicon glyphicon-edit"></span>',
-                                      Yii::$app->urlManager->createUrl(['reservas/update', 'id' => $model->id]),
-                                      ['class' => 'btn-update', 'title' => 'Modificar']
-                                  );
+                                if ($model->actualizada) {
+                                  return Html::tag('span', '', ['class' => 'glyphicon glyphicon-ok text-success', 'title' => 'Actualizada']);
                                 }
+                                $route = $model->medio_reserva == 2 ? ['reservas/actualizar', 'id' => $model->id] : ['reservas/update', 'id' => $model->id];
+                                return Html::a('<span class="glyphicon glyphicon-edit"></span>',
+                                    Yii::$app->urlManager->createUrl($route),
+                                    ['class' => 'btn-update', 'title' => 'Modificar']
+                                );
                             },
                             'delete' => function ($url, $model) { 
                               

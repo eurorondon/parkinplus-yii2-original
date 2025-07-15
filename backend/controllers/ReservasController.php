@@ -1205,6 +1205,7 @@ class ReservasController extends Controller
             $model->medio_reserva = $medio;
             $model->agencia = $agencia;
             $model->estatus = 1;
+            $model->actualizada = 1;
             $model->updated_at = $fecha_update;
             $model->updated_by = $id_usuario;
 
@@ -1856,11 +1857,11 @@ class ReservasController extends Controller
                 $cochesN->save();
                 $model->id_coche = Coches::find()->max('id');
             } else {
-                $model->id_coche = $coche->id;
-            }
+            $model->id_coche = $coche->id;
+        }
 
-
-            $model->save();
+        $model->actualizada = 1;
+        $model->save();
 
 
             if ($_POST["cambiar_costo_servicio"] == 1) {
@@ -2094,6 +2095,7 @@ class ReservasController extends Controller
             $reserva = Reservas::find()->where(['id' => $id_reserva])->one();
             $reserva->estatus = $estatus;
             $reserva->canceled_by = $estatus == 0 ? Yii::$app->user->id : 0;
+            $reserva->actualizada = 1;
 
             $reserva->save();
 
@@ -2635,6 +2637,7 @@ return $pdf->render();
             $model->monto_impuestos = round($montoiva, 2);
             $mtotal = $model->monto_factura + $model->monto_impuestos;
             $model->monto_total = $mtotal;
+            $model->actualizada = 1;
             $model->save();
             $modelRS->save();
 
