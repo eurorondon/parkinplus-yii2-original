@@ -206,6 +206,20 @@ $this->params['breadcrumbs'][] = 'Gestión de Reservas';
       <!--  No se encontraron reservas con errores en los últimos 30 días.-->
       <!--</div>-->
     <?php endif; ?>
+
+    <?php if (!empty($actualizadasFront)): ?>
+      <div class="alert alert-info mt-2">
+        <p>Reservas actualizadas desde la web:</p>
+        <ul class="mb-0">
+          <?php foreach ($actualizadasFront as $res): ?>
+            <li>
+              ID <?= $res->id ?> - Nº <?= $res->nro_reserva ?>
+              <?= Html::a('Marcar revisada', ['reservas/marcar-actualizada', 'id' => $res->id], ['class' => 'btn btn-xs btn-primary']) ?>
+            </li>
+          <?php endforeach; ?>
+        </ul>
+      </div>
+    <?php endif; ?>
       
       <!--VISUALIZAR RESERVAS QUE NO SE ACTUALIZARON-->
         <?php if (!empty($pendientesSinActualizar)): ?>
@@ -605,17 +619,10 @@ $this->params['breadcrumbs'][] = 'Gestión de Reservas';
                               ]);
                             },                       
                             'update' => function ($url, $model) {
-                                if ($model->medio_reserva == 2) {
-                                  return Html::a('<span class="glyphicon glyphicon-edit"></span>',
-                                      Yii::$app->urlManager->createUrl(['reservas/actualizar', 'id' => $model->id]),
-                                      ['class' => 'btn-update', 'title' => 'Modificar']
-                                  );                                  
-                                } else {
-                                  return Html::a('<span class="glyphicon glyphicon-edit"></span>',
-                                      Yii::$app->urlManager->createUrl(['reservas/update', 'id' => $model->id]),
-                                      ['class' => 'btn-update', 'title' => 'Modificar']
-                                  );
-                                }
+                                return Html::a('<span class="glyphicon glyphicon-edit"></span>',
+                                    Yii::$app->urlManager->createUrl(['reservas/update', 'id' => $model->id]),
+                                    ['class' => 'btn-update', 'title' => 'Modificar']
+                                );
                             },
                             'delete' => function ($url, $model) { 
                               

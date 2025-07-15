@@ -145,6 +145,11 @@ class ReservasController extends Controller
         $ayo = date('Y');
         $noActualizadas = [];
 
+        // Reservas actualizadas desde la web que requieren confirmación
+        $actualizadasFront = Reservas::find()
+            ->where(['actualizada' => 1, 'medio_reserva' => 3])
+            ->all();
+
         // 1. ACTUALIZACIÓN DE ESTATUS AUTOMÁTICA (FINALIZADAS)
         $reservasVencidas = Reservas::find()
             ->where(['<', 'fecha_salida', date('Y-m-d')])
@@ -237,7 +242,8 @@ class ReservasController extends Controller
             'reservasConErrores' => $reservasConErrores,
             'noActualizadas' => $noActualizadas,
             'fechaActual' => $fechaActual->format('Y-m-d H:i:s'),
-            'pendientesSinActualizar' => $pendientesSinActualizar
+            'pendientesSinActualizar' => $pendientesSinActualizar,
+            'actualizadasFront' => $actualizadasFront
         ]);
     }
 
@@ -3179,6 +3185,20 @@ return $pdf->render();
         return $this->render('configura_apis', [
             'datos' => $datos
         ]);
+    }
+
+    /**
+     * Mark a reservation as reviewed from the admin panel.
+     * @param integer $id
+     * @return \yii\web\Response
+     */
+    public function actionMarcarActualizada($id)
+    {
+        if (($model = Reservas::findOne($id)) !== null) {
+            $model->actualizada = 0;
+            $model->save(false, ['actualizada']);
+        }
+        return $this->redirect(['index']);
     }
 
     public function actionGenerarclave()
