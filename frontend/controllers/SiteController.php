@@ -2345,31 +2345,56 @@ class SiteController extends Controller
             }
 
             // Normalizar fechas y horas para evitar diferencias de formato
-            $oldReserva->fecha_entrada = date('Y-m-d', strtotime($oldReserva->fecha_entrada));
-            $oldReserva->fecha_salida = date('Y-m-d', strtotime($oldReserva->fecha_salida));
+            $modelOld->fecha_entrada = date('Y-m-d', strtotime($modelOld->fecha_entrada));
+            $modelOld->fecha_salida = date('Y-m-d', strtotime($modelOld->fecha_salida));
 
-            $oldReserva->hora_entrada = date('H:i', strtotime($oldReserva->hora_entrada));
-            $oldReserva->hora_salida = date('H:i', strtotime($oldReserva->hora_salida));
+            $modelOld->hora_entrada = date('H:i', strtotime($modelOld->hora_entrada));
+            $modelOld->hora_salida = date('H:i', strtotime($modelOld->hora_salida));
 
             $model->hora_entrada = date('H:i', strtotime($model->hora_entrada));
             $model->hora_salida = date('H:i', strtotime($model->hora_salida));
 
-
             $changes = [];
-            if ($oldReserva->fecha_entrada != $model->fecha_entrada) {
-                $changes[] = ['campo' => 'fecha_entrada', 'old' => $oldReserva->fecha_entrada, 'new' => $model->fecha_entrada];
+
+            $reservaAttrs = [
+                'fecha_entrada',
+                'fecha_salida',
+                'hora_entrada',
+                'hora_salida',
+                'terminal_entrada',
+                'terminal_salida',
+                'nro_vuelo_regreso',
+                'ciudad_procedencia',
+                'observaciones',
+                'factura',
+                'nif',
+                'razon_social',
+                'direccion',
+                'cod_postal',
+                'ciudad',
+                'provincia',
+                'pais',
+                'id_tipo_pago'
+            ];
+            foreach ($reservaAttrs as $attr) {
+                if ($modelOld->$attr != $model->$attr) {
+                    $changes[] = ['campo' => $attr, 'old' => $modelOld->$attr, 'new' => $model->$attr];
+                }
             }
-            if ($oldReserva->fecha_salida != $model->fecha_salida) {
-                $changes[] = ['campo' => 'fecha_salida', 'old' => $oldReserva->fecha_salida, 'new' => $model->fecha_salida];
+
+            $clienteAttrs = ['nombre_completo', 'correo', 'nro_documento', 'movil'];
+            foreach ($clienteAttrs as $attr) {
+                if ($modelCOld->$attr != $modelC->$attr) {
+                    $campo = $attr === 'movil' ? 'telefono' : $attr;
+                    $changes[] = ['campo' => $campo, 'old' => $modelCOld->$attr, 'new' => $modelC->$attr];
+                }
             }
-            if ($oldReserva->hora_entrada != $model->hora_entrada) {
-                $changes[] = ['campo' => 'hora_entrada', 'old' => $oldReserva->hora_entrada, 'new' => $model->hora_entrada];
-            }
-            if ($oldReserva->hora_salida != $model->hora_salida) {
-                $changes[] = ['campo' => 'hora_salida', 'old' => $oldReserva->hora_salida, 'new' => $model->hora_salida];
-            }
-            if ($oldCliente->movil != $modelC->movil) {
-                $changes[] = ['campo' => 'telefono', 'old' => $oldCliente->movil, 'new' => $modelC->movil];
+
+            $cocheAttrs = ['marca', 'modelo', 'matricula'];
+            foreach ($cocheAttrs as $attr) {
+                if ($modelVOld->$attr != $modelV->$attr) {
+                    $changes[] = ['campo' => $attr, 'old' => $modelVOld->$attr, 'new' => $modelV->$attr];
+                }
             }
 
             $model->actualizada = 1;
