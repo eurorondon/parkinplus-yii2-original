@@ -128,10 +128,10 @@ class ReservasController extends Controller
      * Lists all Reservas models.
      * @return mixed
      */
-     
+
     // ER TRABAJANDO EN CAMBIAR ESTATUS A  AQUELLAS RESERVAS QUE NO CAMBIAN DE ESTATUS
-    
-      public function actionIndex()
+
+    public function actionIndex()
     {
         $id_usuario = Yii::$app->user->id;
 
@@ -144,6 +144,11 @@ class ReservasController extends Controller
         $fechaActual = new \DateTime();
         $ayo = date('Y');
         $noActualizadas = [];
+
+        // Reservas actualizadas desde la web que requieren confirmación
+        $actualizadasFront = Reservas::find()
+            ->where(['actualizada' => 1, 'medio_reserva' => 3])
+            ->all();
 
         // 1. ACTUALIZACIÓN DE ESTATUS AUTOMÁTICA (FINALIZADAS)
         $reservasVencidas = Reservas::find()
@@ -237,7 +242,8 @@ class ReservasController extends Controller
             'reservasConErrores' => $reservasConErrores,
             'noActualizadas' => $noActualizadas,
             'fechaActual' => $fechaActual->format('Y-m-d H:i:s'),
-            'pendientesSinActualizar' => $pendientesSinActualizar
+            'pendientesSinActualizar' => $pendientesSinActualizar,
+            'actualizadasFront' => $actualizadasFront
         ]);
     }
 
@@ -608,11 +614,11 @@ class ReservasController extends Controller
     //     $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
     //     $dataProvider->pagination->pageSize = 15;
-        
-        
+
+
     //     // ER 26-06-25 ENCONTRAR ERRORES EN SERVICIO EXTRAS CONTRATADOS QUE NO SE MUESTRAN EN LAS RESERVAS
     //     $connection = Yii::$app->getDb();
-        
+
     //     $sqlErrores = "
     //         SELECT 
     //           r.id, 
@@ -636,7 +642,7 @@ class ReservasController extends Controller
     //         HAVING COUNT(rs.id) < 3
     //         ORDER BY r.fecha_salida DESC
     //     ";
-        
+
     //     $reservasConErrores = $connection->createCommand($sqlErrores)->queryAll();
     //     // END
 
@@ -650,43 +656,43 @@ class ReservasController extends Controller
     //         'reservasConErrores' => $reservasConErrores,
     //     ]);
     // }
-    
-//     public function actionDebugUpdateStatus()
-// {
-//     Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-    
-//     // Obtener reservas problemáticas
-//     $reservas = Reservas::find()
-//         ->where(['<', 'fecha_salida', date('Y-m-d')])
-//         ->andWhere(['NOT IN', 'estatus', ['0', '2', '4']])
-//         ->all();
-    
-//     $result = [
-//         'total' => count($reservas),
-//         'updated' => 0,
-//         'notUpdated' => 0,
-//         'problematicReservations' => []
-//     ];
-    
-//     foreach ($reservas as $reserva) {
-//         $shouldBeStatus = '2'; // Por defecto debería ser finalizada (2)
-        
-//         if ($reserva->estatus != $shouldBeStatus) {
-//             $result['notUpdated']++;
-//             $result['problematicReservations'][] = [
-//                 'id' => $reserva->id,
-//                 'nro_reserva' => $reserva->nro_reserva,
-//                 'estatus' => $reserva->estatus,
-//                 'fecha_salida' => $reserva->fecha_salida,
-//                 'error' => $reserva->getErrors() ? json_encode($reserva->getErrors()) : 'Sin error registrado'
-//             ];
-//         } else {
-//             $result['updated']++;
-//         }
-//     }
-    
-//     return $result;
-// }
+
+    //     public function actionDebugUpdateStatus()
+    // {
+    //     Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+    //     // Obtener reservas problemáticas
+    //     $reservas = Reservas::find()
+    //         ->where(['<', 'fecha_salida', date('Y-m-d')])
+    //         ->andWhere(['NOT IN', 'estatus', ['0', '2', '4']])
+    //         ->all();
+
+    //     $result = [
+    //         'total' => count($reservas),
+    //         'updated' => 0,
+    //         'notUpdated' => 0,
+    //         'problematicReservations' => []
+    //     ];
+
+    //     foreach ($reservas as $reserva) {
+    //         $shouldBeStatus = '2'; // Por defecto debería ser finalizada (2)
+
+    //         if ($reserva->estatus != $shouldBeStatus) {
+    //             $result['notUpdated']++;
+    //             $result['problematicReservations'][] = [
+    //                 'id' => $reserva->id,
+    //                 'nro_reserva' => $reserva->nro_reserva,
+    //                 'estatus' => $reserva->estatus,
+    //                 'fecha_salida' => $reserva->fecha_salida,
+    //                 'error' => $reserva->getErrors() ? json_encode($reserva->getErrors()) : 'Sin error registrado'
+    //             ];
+    //         } else {
+    //             $result['updated']++;
+    //         }
+    //     }
+
+    //     return $result;
+    // }
 
     /**
      * Lists all Planning Reservas models.
@@ -2112,7 +2118,7 @@ class ReservasController extends Controller
             'listaE' => $listaE,
         ]);
     }
-    
+
     // VALORACION ER
 
     // public function actionValoracion()
@@ -2152,8 +2158,8 @@ class ReservasController extends Controller
     //         'listaClientes' => $listaClientes,
     //     ]);
     // }
-    
-     public function actionValoracion()
+
+    public function actionValoracion()
     {
         $clientes = Clientes::find()->where(['estatus' => '1'])->orderBy(['nombre_completo' => SORT_DESC])->all();
         $listaClientes = ArrayHelper::map($clientes, 'id', 'nombre_completo');
@@ -2194,7 +2200,6 @@ class ReservasController extends Controller
         return $this->renderAjax('valoracion', [
             'listaClientes' => $listaClientes,
         ]);
-
     }
 
     public function actionCheckin()
@@ -2288,25 +2293,25 @@ class ReservasController extends Controller
 
         Yii::$app->response->format = \yii\web\Response::FORMAT_RAW;
         $formatter = \Yii::$app->formatter;
-        
+
         // creando nuevo boton reporte2 ER 30-06
-        
+
         if ($tipo == 1) {
-    $pdf = new Pdf([
-        'mode' => Pdf::MODE_UTF8,
-        'format' => Pdf::FORMAT_A4,
-        'orientation' => Pdf::ORIENT_PORTRAIT,
-        'destination' => Pdf::DEST_BROWSER,
-        'filename' => 'Planning de Reservas-' . $fechabusca . '.pdf',
-        'content' => $this->renderPartial('_reportPlanning', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-            'dataProvider1' => $dataProvider1,
-            'fecha' => $fecha,
-            'e0' => $e0,
-            's0' => $s0
-        ]),
-        'cssInline' => 'body {
+            $pdf = new Pdf([
+                'mode' => Pdf::MODE_UTF8,
+                'format' => Pdf::FORMAT_A4,
+                'orientation' => Pdf::ORIENT_PORTRAIT,
+                'destination' => Pdf::DEST_BROWSER,
+                'filename' => 'Planning de Reservas-' . $fechabusca . '.pdf',
+                'content' => $this->renderPartial('_reportPlanning', [
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
+                    'dataProvider1' => $dataProvider1,
+                    'fecha' => $fecha,
+                    'e0' => $e0,
+                    's0' => $s0
+                ]),
+                'cssInline' => 'body {
             font-size: 12px;
             text-transform: uppercase;
         }
@@ -2322,27 +2327,27 @@ class ReservasController extends Controller
         #content {
             padding: 0px;
         }',
-        'methods' => [
-            'SetTitle' => Yii::$app->name . ' | Planning de Reservas',
-            'SetFooter' => ['|Página {PAGENO}|'],
-        ]
-    ]);
-} elseif ($tipo == 2) {
-    $pdf = new Pdf([
-        'mode' => Pdf::MODE_UTF8,
-        'format' => Pdf::FORMAT_A4,
-        'orientation' => Pdf::ORIENT_PORTRAIT,
-        'destination' => Pdf::DEST_BROWSER,
-        'filename' => 'Planning de Rutas-' . $fechabusca . '.pdf',
-        'content' => $this->renderPartial('_reportRuta', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-            'dataProvider1' => $dataProvider1,
-            'fecha' => $fecha,
-            'e0' => $e0,
-            's0' => $s0
-        ]),
-        'cssInline' => 'body {
+                'methods' => [
+                    'SetTitle' => Yii::$app->name . ' | Planning de Reservas',
+                    'SetFooter' => ['|Página {PAGENO}|'],
+                ]
+            ]);
+        } elseif ($tipo == 2) {
+            $pdf = new Pdf([
+                'mode' => Pdf::MODE_UTF8,
+                'format' => Pdf::FORMAT_A4,
+                'orientation' => Pdf::ORIENT_PORTRAIT,
+                'destination' => Pdf::DEST_BROWSER,
+                'filename' => 'Planning de Rutas-' . $fechabusca . '.pdf',
+                'content' => $this->renderPartial('_reportRuta', [
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
+                    'dataProvider1' => $dataProvider1,
+                    'fecha' => $fecha,
+                    'e0' => $e0,
+                    's0' => $s0
+                ]),
+                'cssInline' => 'body {
             font-size: 12px;
             text-transform: uppercase;
         }
@@ -2358,29 +2363,29 @@ class ReservasController extends Controller
         #content {
             padding: 0px;
         }',
-        'methods' => [
-            'SetTitle' => Yii::$app->name . ' | Planning Simplificado - Rutas',
-            'SetFooter' => ['|Página {PAGENO}|'],
-        ]
-    ]);
-} elseif ($tipo == 3) {
-    $pdf = new Pdf([
-        'mode' => Pdf::MODE_UTF8,
-        // 'format' => [140, 216], // Media carta horizontal
-        // 'format' => [216, 140], // Media carta vertical
-        'format' => [216, 279], // Formato carta vertical
-        'orientation' => Pdf::ORIENT_LANDSCAPE,
-        'destination' => Pdf::DEST_BROWSER,
-        'filename' => 'Resumen Diario - ' . $fechabusca . '.pdf',
-        'content' => $this->renderPartial('_reportResumenDiario', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-            'dataProvider1' => $dataProvider1,
-            'fecha' => $fecha,
-            'e0' => $e0,
-            's0' => $s0
-        ]),
-        'cssInline' => 'body {
+                'methods' => [
+                    'SetTitle' => Yii::$app->name . ' | Planning Simplificado - Rutas',
+                    'SetFooter' => ['|Página {PAGENO}|'],
+                ]
+            ]);
+        } elseif ($tipo == 3) {
+            $pdf = new Pdf([
+                'mode' => Pdf::MODE_UTF8,
+                // 'format' => [140, 216], // Media carta horizontal
+                // 'format' => [216, 140], // Media carta vertical
+                'format' => [216, 279], // Formato carta vertical
+                'orientation' => Pdf::ORIENT_LANDSCAPE,
+                'destination' => Pdf::DEST_BROWSER,
+                'filename' => 'Resumen Diario - ' . $fechabusca . '.pdf',
+                'content' => $this->renderPartial('_reportResumenDiario', [
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
+                    'dataProvider1' => $dataProvider1,
+                    'fecha' => $fecha,
+                    'e0' => $e0,
+                    's0' => $s0
+                ]),
+                'cssInline' => 'body {
             font-size: 10px;
             text-transform: uppercase;
         }
@@ -2396,20 +2401,20 @@ class ReservasController extends Controller
         #content {
             padding: 0px;
         }',
-        'methods' => [
-            'SetTitle' => Yii::$app->name . ' | Resumen Diario',
-            'SetFooter' => ['|Página {PAGENO}|'],
-        ]
-    ]);
-} else {
-    throw new \yii\web\BadRequestHttpException("Tipo de reporte no válido.");
-}
+                'methods' => [
+                    'SetTitle' => Yii::$app->name . ' | Resumen Diario',
+                    'SetFooter' => ['|Página {PAGENO}|'],
+                ]
+            ]);
+        } else {
+            throw new \yii\web\BadRequestHttpException("Tipo de reporte no válido.");
+        }
 
-return $pdf->render();
+        return $pdf->render();
 
-        
-        
-    // ASI ESTABA ANTERIORMENTE  ANTES DE CAMBIAR LAS LINEAS DE ARRIBA
+
+
+        // ASI ESTABA ANTERIORMENTE  ANTES DE CAMBIAR LAS LINEAS DE ARRIBA
         // if ($tipo == 1) {
         //     $pdf = new Pdf([
         //         'mode' => Pdf::MODE_UTF8,
@@ -2486,7 +2491,7 @@ return $pdf->render();
         //     }
         // }
         // return $pdf->render();
-        
+
     }
 
 
@@ -3179,6 +3184,20 @@ return $pdf->render();
         return $this->render('configura_apis', [
             'datos' => $datos
         ]);
+    }
+
+    /**
+     * Mark a reservation as reviewed from the admin panel.
+     * @param integer $id
+     * @return \yii\web\Response
+     */
+    public function actionMarcarActualizada($id)
+    {
+        if (($model = Reservas::findOne($id)) !== null) {
+            $model->actualizada = 0;
+            $model->save(false, ['actualizada']);
+        }
+        return $this->redirect(['index']);
     }
 
     public function actionGenerarclave()

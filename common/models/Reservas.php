@@ -47,6 +47,7 @@ use yii\db\ActiveRecord;
  * @property int $created_by
  * @property string $updated_at
  * @property int $updated_by
+ * @property int $actualizada
  *
  * @property Clientes $cliente
  * @property Coches $coche
@@ -111,13 +112,13 @@ class Reservas extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['condiciones'], 'required','message'=>'Debe Aceptar Nuestras Condiciones Generales del Servicio'],
-            [['id_tipo_pago'], 'required','message'=>'Debe Seleccionar el tipo de pago'],
-            [['fecha_entrada'], 'required','message'=>'Debe Seleccionar la fecha de entrada'],
-            [['fecha_salida'], 'required','message'=>'Debe Seleccionar la fecha de salida'],   
+            [['condiciones'], 'required', 'message' => 'Debe Aceptar Nuestras Condiciones Generales del Servicio'],
+            [['id_tipo_pago'], 'required', 'message' => 'Debe Seleccionar el tipo de pago'],
+            [['fecha_entrada'], 'required', 'message' => 'Debe Seleccionar la fecha de entrada'],
+            [['fecha_salida'], 'required', 'message' => 'Debe Seleccionar la fecha de salida'],
             [['id_cliente', 'costo_servicios', 'costo_servicios_extra', 'monto_factura', 'monto_impuestos', 'monto_total'], 'required'],
             [['cortesia', 'techado', 'fecha_entrada', 'hora_entrada', 'fecha_salida', 'hora_salida', 'created_at', 'updated_at'], 'safe'],
-            [['id_cliente',  'factura_equipaje', 'factura', 'id_tipo_pago', 'condiciones', 'medio_reserva', 'estatus', 'created_by', 'updated_by', 'canceled_by'], 'integer'],
+            [['id_cliente',  'factura_equipaje', 'factura', 'id_tipo_pago', 'condiciones', 'medio_reserva', 'estatus', 'created_by', 'updated_by', 'canceled_by', 'actualizada'], 'integer'],
             [['nro_reserva', 'costo_servicios', 'costo_servicios_extra', 'monto_factura', 'monto_impuestos', 'monto_total', 'porcentaje_cupo', 'monto_des'], 'number'],
             [['terminal_entrada', 'terminal_salida', 'nro_vuelo_regreso', 'ciudad_procedencia', 'observaciones', 'razon_social', 'direccion', 'ciudad', 'provincia', 'pais', 'cupon', 'agencia', 'cod_valid'], 'string', 'max' => 255],
             [['nif'], 'string', 'max' => 100],
@@ -167,12 +168,13 @@ class Reservas extends \yii\db\ActiveRecord
             'porcentaje_cupo' => '% Desc.',
             'impreso' => 'Impreso',
             'medio_reserva' => 'Medio',
-            'agencia' => 'Nombre de la Agencia',                     
+            'agencia' => 'Nombre de la Agencia',
             'estatus' => 'Estado',
             'created_at' => 'Fecha de Reserva',
             'created_by' => 'Created By',
             'updated_at' => 'Updated At',
             'updated_by' => 'Updated By',
+            'actualizada' => 'Actualizada',
             'canceled_by' => 'Cancelada Por',
             'correo' => 'Correo Electrónico',
             'tipo_documento' => 'Tipo de Documento',
@@ -193,7 +195,7 @@ class Reservas extends \yii\db\ActiveRecord
         return $this->hasOne(Clientes::className(), ['id' => 'id_cliente']);
     }
 
-     /**
+    /**
      * @return \yii\db\ActiveQuery
      */
     public function getCanceledBy()
@@ -223,8 +225,7 @@ class Reservas extends \yii\db\ActiveRecord
      */
     public function getCochesList($id)
     {
-        $data = Coches::find()->where(['id_cliente'=>$id])->select('*')->asArray()->all();
+        $data = Coches::find()->where(['id_cliente' => $id])->select('*')->asArray()->all();
         return $data;
-    } 
-    
+    }
 }

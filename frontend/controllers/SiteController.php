@@ -1274,6 +1274,7 @@ class SiteController extends Controller
                 $model->updated_at = $fecha_creacion;
                 $model->medio_reserva = 3;
 
+                $model->actualizada = 1;
                 $model->save();
 
 
@@ -2325,6 +2326,7 @@ class SiteController extends Controller
                 $model->monto_total += $_POST['servicio_noc_costo'];
             }
 
+            $model->actualizada = 1;
             $model->save();
 
             if ($model->save()) {
@@ -3114,7 +3116,7 @@ class SiteController extends Controller
                 'temporada' => $precioTemporada,
                 'precio_dia' => $precio_dia->valor_numerico
             ]);
-        } 
+        }
     }
 
     /** ER 09-07
@@ -3122,35 +3124,35 @@ class SiteController extends Controller
      * @param string|null $reserva Numero de reserva para mostrar en la vista
      * @return string
      */
-   public function actionEncuesta1()
-{
-    $model = new EncuestaInicial();
+    public function actionEncuesta1()
+    {
+        $model = new EncuestaInicial();
 
-    // Solo asigna reserva_id si es GET
-    if (Yii::$app->request->isGet) {
-        $reservaId = Yii::$app->request->get('reserva');
-        $model->reserva_id = $reservaId;
+        // Solo asigna reserva_id si es GET
+        if (Yii::$app->request->isGet) {
+            $reservaId = Yii::$app->request->get('reserva');
+            $model->reserva_id = $reservaId;
 
-        // Verifica si ya existe una valoración para la reserva
-        if ($reservaId) {
-            $valoracion = EncuestaInicial::findOne(['reserva_id' => $reservaId]);
-            if ($valoracion !== null) {
-                return $this->render('encuesta1_completada', [
-                    'valoracion' => $valoracion,
-                ]);
+            // Verifica si ya existe una valoración para la reserva
+            if ($reservaId) {
+                $valoracion = EncuestaInicial::findOne(['reserva_id' => $reservaId]);
+                if ($valoracion !== null) {
+                    return $this->render('encuesta1_completada', [
+                        'valoracion' => $valoracion,
+                    ]);
+                }
             }
         }
-    }
 
-    if ($model->load(Yii::$app->request->post()) && $model->save()) {
-        if ($model->respuesta == 1) {
-            return $this->redirect('https://bit.ly/2OHM1za');
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            if ($model->respuesta == 1) {
+                return $this->redirect('https://bit.ly/2OHM1za');
+            }
+            return $this->render('encuesta1_confirm', ['model' => $model]);
         }
-        return $this->render('encuesta1_confirm', ['model' => $model]);
-    }
 
-    return $this->render('encuesta1', ['model' => $model]);
-}
+        return $this->render('encuesta1', ['model' => $model]);
+    }
 
 
 
