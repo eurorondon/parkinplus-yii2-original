@@ -314,6 +314,10 @@ if ($model->medio_reserva !=2) {
             <div align="right" class="col-lg-5" style="margin-top: 25px">
               <?= Html::button('Cerrar', ['class' => 'btn btn-warning', 'data-dismiss' => 'modal']) ?>
               &nbsp; &nbsp; &nbsp;
+              <?php if ($model->actualizada && $model->medio_reserva == 3): ?>
+                <?= Html::a('Marcar revisada', ['/reservas/marcar-actualizada', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+                &nbsp; &nbsp; &nbsp;
+              <?php endif; ?>
               <?= Html::a('Imprimir Comprobante', [
                   '/reservas/view-pdf',
                   'id'=> $model->id,

@@ -213,7 +213,20 @@ $this->params['breadcrumbs'][] = 'Gestión de Reservas';
         <ul class="mb-0">
           <?php foreach ($actualizadasFront as $res): ?>
             <li>
-              ID <?= $res->id ?> - Nº <?= $res->nro_reserva ?>
+              Nº <?= $res->nro_reserva ?>
+              <?= Html::a(
+                'Consultar',
+                '#',
+                [
+                  'class' => 'btn-view btn-xs btn-info',
+                  'id' => 'view',
+                  'title' => Yii::t('app', 'Consultar'),
+                  'data-toggle' => 'modal',
+                  'data-target' => '#reserva',
+                  'data-url' => Url::to(['reservas/view', 'id' => $res->id]),
+                  'data-pjax' => '0',
+                ]
+              ) ?>
               <?= Html::a('Marcar revisada', ['reservas/marcar-actualizada', 'id' => $res->id], ['class' => 'btn btn-xs btn-primary']) ?>
             </li>
           <?php endforeach; ?>
