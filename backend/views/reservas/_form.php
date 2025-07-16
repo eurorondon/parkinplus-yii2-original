@@ -164,6 +164,7 @@ $tipo_documento = [
                             </div>
                         </div>
                         <input type="hidden" id="url" value="<?= $Url ?>">
+                        <div id="msg-fechas" class="text-danger" style="display:none"></div>
                     </div>
 
                     <div class="panel panel-default panel-d">
@@ -901,20 +902,21 @@ $this->registerJs("
         mes_out = String(fecha_salida).substring(3,5);
         f2 = new Date(anio_out,mes_out,dia_out);
 
+        var invalidDates = false;
         if (f1 > f2) {
-          alert('La Fecha de Recogida debe ser menor a la Fecha de Devolución')
-          $('.btn-success').prop('disabled', true);
-        } else {
-          $('.btn-success').prop('disabled', false);
-        } 
+            invalidDates = true;
+        }
 
-        if (f1 >= f2) {
-            if (hora_entrada > hora_salida) {
-              alert('La Hora de Recogida debe ser menor a la Hora de Devolución')
-              $('.btn-success').prop('disabled', true);
-            } else {
-              $('.btn-success').prop('disabled', false);
-            }
+        if (f1 >= f2 && hora_entrada > hora_salida) {
+            invalidDates = true;
+        }
+
+        if (invalidDates) {
+            $('#msg-fechas').text('Verifique las fechas y horas seleccionadas').show();
+            $('.btn-success').prop('disabled', true);
+        } else {
+            $('#msg-fechas').hide();
+            $('.btn-success').prop('disabled', false);
         }
 
         e.preventDefault();
