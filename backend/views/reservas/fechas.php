@@ -118,10 +118,11 @@ if ($tipo_afiliado == 0) {
             <div class="form-group">
                 <?= Html::submitButton('Procesar Reserva', ['class' => 'btn btn-success']) ?>
             </div>
-            
+
         </div>
 
     </div>
+    <div id="msg-fechas" class="text-danger" style="display:none"></div>
     <?php ActiveForm::end(); ?>
 
 </div>
@@ -141,6 +142,23 @@ if ($tipo_afiliado == 0) {
         } else {
             $('#listaAg').css('display', 'none');
         }
+      });
+
+      $('#fechas-form').on('submit', function(e) {
+          var fEntrada = $('#reservas-fecha_entrada').val();
+          var fSalida  = $('#reservas-fecha_salida').val();
+
+          var partsIn  = fEntrada.split('-'),
+              partsOut = fSalida.split('-');
+          var dIn  = new Date(partsIn[2], partsIn[1]-1, partsIn[0]);
+          var dOut = new Date(partsOut[2], partsOut[1]-1, partsOut[0]);
+
+          if (dIn > dOut) {
+              $('#msg-fechas').text('La fecha de entrada no puede ser mayor que la fecha de salida').show();
+              alert('La fecha de entrada no puede ser mayor que la fecha de salida');
+              return false;
+          }
+          $('#msg-fechas').hide();
       });
 
 
