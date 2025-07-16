@@ -117,6 +117,7 @@ class Reservas extends \yii\db\ActiveRecord
             [['fecha_entrada'], 'required', 'message' => 'Debe Seleccionar la fecha de entrada'],
             [['fecha_salida'], 'required', 'message' => 'Debe Seleccionar la fecha de salida'],
             [['id_cliente', 'costo_servicios', 'costo_servicios_extra', 'monto_factura', 'monto_impuestos', 'monto_total'], 'required'],
+            [['fecha_salida'], 'validateFechaSalida'],
             [['cortesia', 'techado', 'fecha_entrada', 'hora_entrada', 'fecha_salida', 'hora_salida', 'created_at', 'updated_at'], 'safe'],
             [['id_cliente',  'factura_equipaje', 'factura', 'id_tipo_pago', 'condiciones', 'medio_reserva', 'estatus', 'created_by', 'updated_by', 'canceled_by', 'actualizada'], 'integer'],
             [['nro_reserva', 'costo_servicios', 'costo_servicios_extra', 'monto_factura', 'monto_impuestos', 'monto_total', 'porcentaje_cupo', 'monto_des'], 'number'],
@@ -237,5 +238,21 @@ class Reservas extends \yii\db\ActiveRecord
     public function getCambios()
     {
         return $this->hasMany(ReservasLogCambios::className(), ["reserva_id" => "id"])->orderBy(["fecha" => SORT_DESC]);
+    }
+
+    /**
+     * Validates that the check-out date is not earlier than the check-in date.
+     *
+     * @param string $attribute the attribute currently being validated
+     * @param array $params the additional name-value pairs given in the rule
+     */
+    public function validateFechaSalida($attribute, $params)
+    {
+        $entrada = \DateTime::createFromFormat('d-m-Y', $this->fecha_entrada);
+        $salida = \DateTime::createFromFormat('d-m-Y', $this->fecha_salida);
+
+        if ($entrada && $salida && $salida < $entrada) {
+            $this->addError($attribute, 'La fecha de devolucion debe ser posterior o igual a la fecha de recogida.');
+        }
     }
 }
