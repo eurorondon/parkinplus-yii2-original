@@ -207,7 +207,7 @@ $this->params['breadcrumbs'][] = 'Gestión de Reservas';
 
     <?php if (!empty($actualizadasFront)): ?>
       <button class="btn btn-info mb-2" type="button" data-toggle="collapse" data-target="#reservasActualizadas" aria-expanded="false" aria-controls="reservasActualizadas">
-        🔽 Ver cambios recientes de reservas
+        🔽 Ver cambios recientes de reservas Activas
       </button>
       <div class="collapse" id="reservasActualizadas">
         <?php foreach ($actualizadasFront as $res): ?>

@@ -157,7 +157,7 @@ class ReservasController extends Controller
 
         // 1. ACTUALIZACIÓN DE ESTATUS AUTOMÁTICA (FINALIZADAS)
         $reservasVencidas = Reservas::find()
-            ->where("CONCAT(fecha_salida, ' ', hora_salida) <= NOW()")
+            ->where(new \yii\db\Expression("TIMESTAMP(fecha_salida, hora_salida) <= NOW()"))
             ->andWhere(['NOT IN', 'estatus', ['0', '2', '4']])
             ->all();
 
@@ -181,10 +181,11 @@ class ReservasController extends Controller
 
         // 1.1 ACTUALIZACIÓN DE ESTATUS AUTOMÁTICA (EN CURSO / ACTIVAS)
         $reservasEnCurso = Reservas::find()
-            ->where("CONCAT(fecha_entrada, ' ', hora_entrada) <= NOW()")
-            ->andWhere("CONCAT(fecha_salida, ' ', hora_salida) > NOW()")
+            ->where(new \yii\db\Expression("TIMESTAMP(fecha_entrada, hora_entrada) <= NOW()"))
+            ->andWhere(new \yii\db\Expression("TIMESTAMP(fecha_salida, hora_salida) > NOW()"))
             ->andWhere(['NOT IN', 'estatus', ['0', '2', '3', '4']]) // Excluye canceladas, finalizadas, ya activas y especiales
             ->all();
+
 
         foreach ($reservasEnCurso as $reserva) {
             try {
