@@ -82,7 +82,7 @@ $tipo_documento = [
         <div class="panel-body gs1">
             <div class="row">
                 <div class="title-margin-new">
-                    <input type="hidden" name="precio_dia" id="precio_dia" value="<?= $precio_dia?>">
+                    <input type="hidden" name="precio_dia" id="precio_dia" value="<?= $precio_dia ?>">
                     <?php if ($model->isNewRecord) { ?>
                         <span style="display: inline">Nueva Reserva</span>
                         <input type="hidden" name="dcto" id="dcto" value="0">
@@ -164,6 +164,7 @@ $tipo_documento = [
                             </div>
                         </div>
                         <input type="hidden" id="url" value="<?= $Url ?>">
+                        <div id="msg-fechas" class="text-danger" style="display:none"></div>
                     </div>
 
                     <div class="panel panel-default panel-d">
@@ -330,7 +331,7 @@ $tipo_documento = [
                         <input class="form-control" style="margin-bottom: 20px" type="hidden" id="precio-diario<?= $num ?>"
                             value="<?= $precio_diario[$i]['precio'] ?>">
                     </div>
-                    <?php $num++;
+                <?php $num++;
                 } ?>
                 <!-- Fin de Lista de Precios Escondidad -->
                 <div id="facturacion">
@@ -496,7 +497,7 @@ $tipo_documento = [
 
 
                             <input type="hidden" name="is_noc" id="is_noc" value="<?= $nocturno[0]['id'] ?>">
-                            <input type="hidden" name="servicio_noc_id" value="<?= explode('-',$nocturno[0]['id'])[0] ?>">
+                            <input type="hidden" name="servicio_noc_id" value="<?= explode('-', $nocturno[0]['id'])[0] ?>">
                             <input type="hidden" id="servicio_noc" name="servicio_noc_costo"
                                 value="<?= $nocturno[0]['costo'] ?>">
 
@@ -533,106 +534,106 @@ $tipo_documento = [
                                     </div>
 
                                     <br>
-                                </div>
-
-
-
-                                <div class="col-lg-1 s dn" style="margin-top: 20px">
-                                    <label class="num">1</label>
-                                </div>
-
-                                <div class="col-lg-6" style="margin-top: 18px">
-                                    <label class="service-reserva"><?= $precio_diario[0]['nombre_servicio'] ?></label>
-                                    <div class="des-reserva-ind" style="margin-left: 0px">
-                                        <?= $precio_diario[0]['descripcion'] ?>
                                     </div>
-                                </div>
 
-                                <input type="hidden" id="servicio_basico" name="servicio_basico"
-                                    value="<?= $precio_diario[0]['costo'] ?>">
-                                <input type="hidden" id="cant_basico" name="cant_basico" value="<?= $cant_dias ?>">
-                                <input type="hidden" class="btn-success" id="actualiza_montos" name="actualiza_montos">
-                                <input type="hidden" id="cambiar_costo_servicio" value="0"
-                                    name="cambiar_costo_servicio">
-                                <div class="col-lg-3"></div>
 
-                                <div class="col-lg-2" style="margin-top:10px">
-                                    <?= $form->field($model, 'costo_servicios', [
-                                        'template' => '<div class="input-group costos-facturas">{input}
-                            <span class="input-group-addon">€</span></div>{error}{hint}'
-                                    ])->textInput(['onblur' => 'calcular_monto_total()', 'step' => 'any', 'type' => 'number', 'readonly' => false, 'class' => 'form-control cantidad', 'value' => '0.00']) ?>
-                                </div>
 
-                                <div class="col-lg-12"><br></div>
-
-                                <div class="col-lg-1 dn">
-                                    <label class="num">2</label>
-                                </div>
-
-                                <div class="col-lg-6">
-                                    <label class="service-reserva"><?= $seguro[0]->nombre_servicio ?></label>
-                                    <div class="des-reserva-ind" style="margin-left: 0px"><?= $seguro[0]->descripcion ?>
+                                    <div class="col-lg-1 s dn" style="margin-top: 20px">
+                                        <label class="num">1</label>
                                     </div>
-                                </div>
 
-                                <input type="hidden" id="seguro" name="seguro" value="<?= $seguro[0]['costo'] ?>">
-                                <input type="hidden" id="cant_seguro" name="cant_seguro" value="1">
+                                    <div class="col-lg-6" style="margin-top: 18px">
+                                        <label class="service-reserva"><?= $precio_diario[0]['nombre_servicio'] ?></label>
+                                        <div class="des-reserva-ind" style="margin-left: 0px">
+                                            <?= $precio_diario[0]['descripcion'] ?>
+                                        </div>
+                                    </div>
 
-                                <div class="col-lg-3"></div>
+                                    <input type="hidden" id="servicio_basico" name="servicio_basico"
+                                        value="<?= $precio_diario[0]['costo'] ?>">
+                                    <input type="hidden" id="cant_basico" name="cant_basico" value="<?= $cant_dias ?>">
+                                    <input type="hidden" class="btn-success" id="actualiza_montos" name="actualiza_montos">
+                                    <input type="hidden" id="cambiar_costo_servicio" value="0"
+                                        name="cambiar_costo_servicio">
+                                    <div class="col-lg-3"></div>
 
-                                <div class="col-lg-2" style="margin-top:-8px">
-                                    <?= $form->field($model, 'total_seguro', [
-                                        'template' => '<div class="input-group costos-facturas">{input}
+                                    <div class="col-lg-2" style="margin-top:10px">
+                                        <?= $form->field($model, 'costo_servicios', [
+                                            'template' => '<div class="input-group costos-facturas">{input}
                             <span class="input-group-addon">€</span></div>{error}{hint}'
-                                    ])->textInput(['id' => 'total_seguro', 'readonly' => true, 'class' => 'form-control cantidad', 'name' => 'total_seguro', 'value' => $seguro[0]->costo]) ?>
-                                </div>
+                                        ])->textInput(['onblur' => 'calcular_monto_total()', 'step' => 'any', 'type' => 'number', 'readonly' => false, 'class' => 'form-control cantidad', 'value' => '0.00']) ?>
+                                    </div>
 
-                                <div class="col-lg-12"><br></div>
-
-                                <div class="col-lg-1 dn">
-                                    <label class="num">3</label>
-                                </div>
-
-                                <div class="col-lg-6">
-                                    <label class="service-reserva">Servicios Extras Seleccionados</label>
-                                    <div class="des-reserva-ind" style="margin-left: 0px">Otros servicios extras</div>
-                                </div>
-
-                                <div class="col-lg-3"></div>
-
-                                <input type="hidden" id="cant_extras" name="cant_extras" value="0">
-
-                                <div class="col-lg-2" style="margin-top:-8px">
-                                    <?= $form->field($model, 'costo_servicios_extra', [
-                                        'template' => '<div class="input-group costos-facturas">{input}
-                            <span class="input-group-addon">€</span></div>{error}{hint}'
-                                    ])->textInput(['readonly' => true, 'class' => 'form-control cantidad', 'value' => '0.00']) ?>
-                                </div>
-
-                                <div id="techado">
                                     <div class="col-lg-12"><br></div>
-                                    <div class="col-lg-1">
-                                        <label class="num">4</label>
+
+                                    <div class="col-lg-1 dn">
+                                        <label class="num">2</label>
                                     </div>
 
                                     <div class="col-lg-6">
-                                        <label class="service-reserva"><?= $seguro[1]->nombre_servicio ?></label>
-                                        <div class="des-reserva-ind mb" style="margin-left: 0px">
-                                            <?= $seguro[1]->descripcion ?>
+                                        <label class="service-reserva"><?= $seguro[0]->nombre_servicio ?></label>
+                                        <div class="des-reserva-ind" style="margin-left: 0px"><?= $seguro[0]->descripcion ?>
                                         </div>
+                                    </div>
+
+                                    <input type="hidden" id="seguro" name="seguro" value="<?= $seguro[0]['costo'] ?>">
+                                    <input type="hidden" id="cant_seguro" name="cant_seguro" value="1">
+
+                                    <div class="col-lg-3"></div>
+
+                                    <div class="col-lg-2" style="margin-top:-8px">
+                                        <?= $form->field($model, 'total_seguro', [
+                                            'template' => '<div class="input-group costos-facturas">{input}
+                            <span class="input-group-addon">€</span></div>{error}{hint}'
+                                        ])->textInput(['id' => 'total_seguro', 'readonly' => true, 'class' => 'form-control cantidad', 'name' => 'total_seguro', 'value' => $seguro[0]->costo]) ?>
+                                    </div>
+
+                                    <div class="col-lg-12"><br></div>
+
+                                    <div class="col-lg-1 dn">
+                                        <label class="num">3</label>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <label class="service-reserva">Servicios Extras Seleccionados</label>
+                                        <div class="des-reserva-ind" style="margin-left: 0px">Otros servicios extras</div>
                                     </div>
 
                                     <div class="col-lg-3"></div>
 
-                                    <div class="col-lg-2">
-                                        <?= $form->field($model, 'total_seguro', [
-                                            'template' => '<div class="input-group costos-facturas">{input}
-                            <span class="input-group-addon eu">€</span></div>{error}{hint}'
-                                        ])->textInput(['id' => 'total_techado', 'readonly' => true, 'class' => 'form-control cantidad', 'name' => 'total_techado', 'value' => $seguro[1]->costo]) ?>
-                                    </div>
-                                </div>
+                                    <input type="hidden" id="cant_extras" name="cant_extras" value="0">
 
-                                <!-- <div id="cortesia">
+                                    <div class="col-lg-2" style="margin-top:-8px">
+                                        <?= $form->field($model, 'costo_servicios_extra', [
+                                            'template' => '<div class="input-group costos-facturas">{input}
+                            <span class="input-group-addon">€</span></div>{error}{hint}'
+                                        ])->textInput(['readonly' => true, 'class' => 'form-control cantidad', 'value' => '0.00']) ?>
+                                    </div>
+
+                                    <div id="techado">
+                                        <div class="col-lg-12"><br></div>
+                                        <div class="col-lg-1">
+                                            <label class="num">4</label>
+                                        </div>
+
+                                        <div class="col-lg-6">
+                                            <label class="service-reserva"><?= $seguro[1]->nombre_servicio ?></label>
+                                            <div class="des-reserva-ind mb" style="margin-left: 0px">
+                                                <?= $seguro[1]->descripcion ?>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-3"></div>
+
+                                        <div class="col-lg-2">
+                                            <?= $form->field($model, 'total_seguro', [
+                                                'template' => '<div class="input-group costos-facturas">{input}
+                            <span class="input-group-addon eu">€</span></div>{error}{hint}'
+                                            ])->textInput(['id' => 'total_techado', 'readonly' => true, 'class' => 'form-control cantidad', 'name' => 'total_techado', 'value' => $seguro[1]->costo]) ?>
+                                        </div>
+                                    </div>
+
+                                    <!-- <div id="cortesia">
                                     <div class="col-lg-12"><br></div>
                                     <div class="col-lg-1">
                                         <label class="num">4</label>
@@ -677,7 +678,7 @@ $tipo_documento = [
                                         ])->textInput(['id' => 'total_techado', 'readonly' => true, 'class' => 'form-control cantidad', 'name' => 'total_techado', 'value' => $seguro[2]->costo]) ?>
                                     </div>
                                 </div> -->
-                            </div>
+                                </div>
                         </div>
                     </div>
 
@@ -901,20 +902,21 @@ $this->registerJs("
         mes_out = String(fecha_salida).substring(3,5);
         f2 = new Date(anio_out,mes_out,dia_out);
 
+        var invalidDates = false;
         if (f1 > f2) {
-          alert('La Fecha de Recogida debe ser menor a la Fecha de Devolución')
-          $('.btn-success').prop('disabled', true);
-        } else {
-          $('.btn-success').prop('disabled', false);
-        } 
+            invalidDates = true;
+        }
 
-        if (f1 >= f2) {
-            if (hora_entrada > hora_salida) {
-              alert('La Hora de Recogida debe ser menor a la Hora de Devolución')
-              $('.btn-success').prop('disabled', true);
-            } else {
-              $('.btn-success').prop('disabled', false);
-            }
+        if (f1 >= f2 && hora_entrada > hora_salida) {
+            invalidDates = true;
+        }
+
+        if (invalidDates) {
+            $('#msg-fechas').text('Verifique las fechas y horas seleccionadas').show();
+            $('.btn-success').prop('disabled', true);
+        } else {
+            $('#msg-fechas').hide();
+            $('.btn-success').prop('disabled', false);
         }
 
         e.preventDefault();
@@ -1189,10 +1191,11 @@ $this->registerJs("
 ?>
 
 <script>
-    function enviar_email(){
+    function enviar_email() {
         var valor = $("#envio_email").val() == 0 ? 1 : 0;
         $("#envio_email").val(valor);
     }
+
     function calcular_monto_total() {
         var costo_servicios = parseFloat($("#reservas-costo_servicios").val());
 
@@ -1224,6 +1227,7 @@ $this->registerJs("
         $('#coches-marca').val($('#marca' + c).val());
         $('#coches-matricula').val($('#matricula' + c).val());
     }
+
     function muestra(id) {
 
         if (document.getElementById) {
@@ -1232,7 +1236,7 @@ $this->registerJs("
         }
     }
 
-    window.onload = function () {
+    window.onload = function() {
         muestra('facturacion');
         //muestra('cortesia');
         muestra('techado');
@@ -1251,7 +1255,7 @@ $this->registerJs("
             data: {
                 id: id_cliente
             },
-            success: function (data) {
+            success: function(data) {
                 correo = data.datos['correo'];
                 tipo_documento = data.datos['tipo_documento'];
                 nro_documento = data.datos['nro_documento'];
@@ -1261,7 +1265,7 @@ $this->registerJs("
                 $("#reservas-nro_documento").val(nro_documento);
                 $("#reservas-movil").val(movil);
             },
-            error: function () {
+            error: function() {
                 console.log("failure");
             }
         });
@@ -1278,17 +1282,15 @@ $this->registerJs("
             data: {
                 id: id_coche
             },
-            success: function (data) {
+            success: function(data) {
                 matricula = data.datos['matricula'];
                 color = data.datos['color'];
                 $("#reservas-matricula").val(matricula);
                 $("#reservas-color").val(color);
             },
-            error: function () {
+            error: function() {
                 console.log("failure");
             }
         });
     }
-
-
 </script>

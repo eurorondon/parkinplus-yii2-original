@@ -29,7 +29,7 @@ for ($i = 0; $i < $cant; $i++) { ?>
   <input class="form-control" style="margin-bottom: 20px" type="hidden" id="precio-diario<?= $num ?>"
     value="<?= $precio_diario[$i]['precio'] ?>">
 
-  <?php $num++;
+<?php $num++;
 }
 
 $formato = new IntlDateFormatter(
@@ -115,10 +115,10 @@ Modal::end();
               <strong> parking con servicio de recogina del vehiculo </strong>
               desde
               <strong class="arrivalDate"><?= $formato->format(new DateTime($model->fecha_entrada))
-                ?></strong>
+                                          ?></strong>
               hasta
               <strong class="arrivalDate"><?= $formato->format(new DateTime($model->fecha_salida))
-                ?></strong>
+                                          ?></strong>
             </p>
           </div>
         </div>
@@ -181,6 +181,9 @@ Modal::end();
               style="border-bottom: 1px solid #e7eaed; display:<?= $model->factura == 1 ? 'none !important' : '' ?>">
               Información de la reserva
             </h3>
+            <div class="col-lg-12 text-danger" style="display:none" id="alert_fechas">
+              Verifique las fechas y horas seleccionadas
+            </div>
             <div class="form-group d-flex mt-1 flex-sm-column flex-md-row reserva__form__item"
               style="display:<?= $model->factura == 1 ? 'none !important' : '' ?>">
               <label for="" class="col-md-6 col-lg-5 control-label">
@@ -188,12 +191,12 @@ Modal::end();
               </label>
               <div class="col-md-6 col-lg-5">
                 <!-- <?=
-                  $form->field($model, 'fecha_entrada')->textInput([
-                    'readonly' => !$model->isNewRecord ? false : true,
-                    'style' => 'border-radius: 6px !important;',
-                    'class' => 'form-control',
-                    'type' => 'date'
-                  ])->label(false) ?> -->
+                      $form->field($model, 'fecha_entrada')->textInput([
+                        'readonly' => !$model->isNewRecord ? false : true,
+                        'style' => 'border-radius: 6px !important;',
+                        'class' => 'form-control',
+                        'type' => 'date'
+                      ])->label(false) ?> -->
                 <?= $form->field($model, 'fecha_entrada')->widget(DatePicker::classname(), [
                   'options' => ['autocomplete' => 'off', 'onfocus' => 'blur()', 'style' => 'width: 100%;'],
                   'language' => 'es',
@@ -218,11 +221,11 @@ Modal::end();
               <div class="col-md-6 col-lg-5 checkmark-placement contains-select time">
 
                 <!-- <?= $form->field($model, 'hora_entrada')->textInput([
-                  'readonly' => !$model->isNewRecord ? false : true,
-                  'style' => 'border-radius: 6px !important;',
-                  'class' => 'form-control',
-                  'type' => 'time'
-                ])->label(false) ?> -->
+                        'readonly' => !$model->isNewRecord ? false : true,
+                        'style' => 'border-radius: 6px !important;',
+                        'class' => 'form-control',
+                        'type' => 'time'
+                      ])->label(false) ?> -->
                 <?= $form->field($model, 'hora_entrada')->widget(TimePicker::classname(), [
                   'readonly' => !$model->isNewRecord ? false : true,
                   'pluginOptions' => [
@@ -239,11 +242,11 @@ Modal::end();
               </label>
               <div class="col-md-6 col-lg-5">
                 <!-- <?=
-                  $form->field($model, 'fecha_salida')->textInput([
-                    'readonly' => !$model->isNewRecord ? false : true,
-                    'style' => 'border-radius: 6px !important;',
-                    'class' => 'form-control'
-                  ])->label(false) ?> -->
+                      $form->field($model, 'fecha_salida')->textInput([
+                        'readonly' => !$model->isNewRecord ? false : true,
+                        'style' => 'border-radius: 6px !important;',
+                        'class' => 'form-control'
+                      ])->label(false) ?> -->
                 <?= $form->field($model, 'fecha_salida')->widget(DatePicker::classname(), [
                   'options' => ['autocomplete' => 'off', 'onfocus' => 'blur()', 'style' => 'width: 100%;'],
                   'language' => 'es',
@@ -267,10 +270,10 @@ Modal::end();
               </label>
               <div class="col-md-6 col-lg-5 checkmark-placement contains-select time">
                 <!-- <?= $form->field($model, 'hora_salida')->textInput([
-                  'readonly' => !$model->isNewRecord ? false : true,
-                  'style' => 'border-radius: 6px !important;',
-                  'class' => 'form-control'
-                ])->label(false) ?> -->
+                        'readonly' => !$model->isNewRecord ? false : true,
+                        'style' => 'border-radius: 6px !important;',
+                        'class' => 'form-control'
+                      ])->label(false) ?> -->
                 <?= $form->field($model, 'hora_salida')->widget(TimePicker::classname(), [
                   'readonly' => !$model->isNewRecord ? false : true,
                   'pluginOptions' => [
@@ -479,7 +482,7 @@ Modal::end();
                     }
                   }
                 }
-                ?>
+              ?>
 
 
 
@@ -1057,20 +1060,19 @@ $this->registerJs("
     mes_out = String(fecha_salida).substring(3, 5);
     f2 = new Date(anio_out, mes_out, dia_out);
 
+    var invalid = false;
     if (f1 > f2) {
-      alert('La Fecha de Recogida debe ser menor a la Fecha de Devolución')
-      $('#finalizar').prop('disabled', true);
-    } else {
-      $('#finalizar').prop('disabled', false);
+      invalid = true;
+    } else if (f1 == f2 && hora_entrada > hora_salida) {
+      invalid = true;
     }
 
-    if (f1 == f2) {
-      if (hora_entrada > hora_salida) {
-        alert('La Hora de Recogida debe ser menor a la Hora de Devolución')
-        $('#finalizar').prop('disabled', true);
-      } else {
-        $('#finalizar').prop('disabled', false);
-      }
+    if (invalid) {
+      $('#alert_fechas').css('display', 'block');
+      $('#finalizar').prop('disabled', true);
+    } else {
+      $('#alert_fechas').css('display', 'none');
+      $('#finalizar').prop('disabled', false);
     }
 
     $.ajax({
@@ -1082,43 +1084,103 @@ $this->registerJs("
         fecha_salida: fecha_salida,
         hora_salida: hora_salida
       },
-      success: function (data) {
+      success: function(data) {
         $('#cant_basico').val(data);
         dias = $('#cant_basico').val();
         precio_dia = $('#precio_dia').val();
         var total = 0;
-        if (dias == 1) { total = parseFloat(precio1); }
-        if (dias == 2) { total = parseFloat(precio2); }
-        if (dias == 3) { total = parseFloat(precio3); }
-        if (dias == 4) { total = parseFloat(precio4); }
-        if (dias == 5) { total = parseFloat(precio5); }
-        if (dias == 6) { total = parseFloat(precio6); }
-        if (dias == 7) { total = parseFloat(precio7); }
-        if (dias == 8) { total = parseFloat(precio8); }
-        if (dias == 9) { total = parseFloat(precio9); }
-        if (dias == 10) { total = parseFloat(precio10); }
+        if (dias == 1) {
+          total = parseFloat(precio1);
+        }
+        if (dias == 2) {
+          total = parseFloat(precio2);
+        }
+        if (dias == 3) {
+          total = parseFloat(precio3);
+        }
+        if (dias == 4) {
+          total = parseFloat(precio4);
+        }
+        if (dias == 5) {
+          total = parseFloat(precio5);
+        }
+        if (dias == 6) {
+          total = parseFloat(precio6);
+        }
+        if (dias == 7) {
+          total = parseFloat(precio7);
+        }
+        if (dias == 8) {
+          total = parseFloat(precio8);
+        }
+        if (dias == 9) {
+          total = parseFloat(precio9);
+        }
+        if (dias == 10) {
+          total = parseFloat(precio10);
+        }
 
-        if (dias == 11) { total = parseFloat(precio11); }
-        if (dias == 12) { total = parseFloat(precio12); }
-        if (dias == 13) { total = parseFloat(precio13); }
-        if (dias == 14) { total = parseFloat(precio14); }
-        if (dias == 15) { total = parseFloat(precio15); }
-        if (dias == 16) { total = parseFloat(precio16); }
-        if (dias == 17) { total = parseFloat(precio17); }
-        if (dias == 18) { total = parseFloat(precio18); }
-        if (dias == 19) { total = parseFloat(precio19); }
-        if (dias == 20) { total = parseFloat(precio20); }
+        if (dias == 11) {
+          total = parseFloat(precio11);
+        }
+        if (dias == 12) {
+          total = parseFloat(precio12);
+        }
+        if (dias == 13) {
+          total = parseFloat(precio13);
+        }
+        if (dias == 14) {
+          total = parseFloat(precio14);
+        }
+        if (dias == 15) {
+          total = parseFloat(precio15);
+        }
+        if (dias == 16) {
+          total = parseFloat(precio16);
+        }
+        if (dias == 17) {
+          total = parseFloat(precio17);
+        }
+        if (dias == 18) {
+          total = parseFloat(precio18);
+        }
+        if (dias == 19) {
+          total = parseFloat(precio19);
+        }
+        if (dias == 20) {
+          total = parseFloat(precio20);
+        }
 
-        if (dias == 21) { total = parseFloat(precio21); }
-        if (dias == 22) { total = parseFloat(precio22); }
-        if (dias == 23) { total = parseFloat(precio23); }
-        if (dias == 24) { total = parseFloat(precio24); }
-        if (dias == 25) { total = parseFloat(precio25); }
-        if (dias == 26) { total = parseFloat(precio26); }
-        if (dias == 27) { total = parseFloat(precio27); }
-        if (dias == 28) { total = parseFloat(precio28); }
-        if (dias == 29) { total = parseFloat(precio29); }
-        if (dias == 30) { total = parseFloat(precio30); }
+        if (dias == 21) {
+          total = parseFloat(precio21);
+        }
+        if (dias == 22) {
+          total = parseFloat(precio22);
+        }
+        if (dias == 23) {
+          total = parseFloat(precio23);
+        }
+        if (dias == 24) {
+          total = parseFloat(precio24);
+        }
+        if (dias == 25) {
+          total = parseFloat(precio25);
+        }
+        if (dias == 26) {
+          total = parseFloat(precio26);
+        }
+        if (dias == 27) {
+          total = parseFloat(precio27);
+        }
+        if (dias == 28) {
+          total = parseFloat(precio28);
+        }
+        if (dias == 29) {
+          total = parseFloat(precio29);
+        }
+        if (dias == 30) {
+          total = parseFloat(precio30);
+        }
 
         /*if (dias > 30) {
           var cant_dias = dias - 30;
@@ -1175,7 +1237,7 @@ $this->registerJs("
       data: {
         id: id_cliente
       },
-      success: function (data) {
+      success: function(data) {
         correo = data.datos['correo'];
         tipo_documento = data.datos['tipo_documento'];
         nro_documento = data.datos['nro_documento'];
@@ -1185,7 +1247,7 @@ $this->registerJs("
         $("#reservas-nro_documento").val(nro_documento);
         $("#reservas-movil").val(movil);
       },
-      error: function () {
+      error: function() {
         console.log("failure");
       }
     });
@@ -1202,19 +1264,19 @@ $this->registerJs("
       data: {
         id: id_coche
       },
-      success: function (data) {
+      success: function(data) {
         matricula = data.datos['matricula'];
         color = data.datos['color'];
         $("#reservas-matricula").val(matricula);
         $("#reservas-color").css("background-color", color);
       },
-      error: function () {
+      error: function() {
         console.log("failure");
       }
     });
   }
   var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-  var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
     return new bootstrap.Tooltip(tooltipTriggerEl)
   })
 
@@ -1229,7 +1291,4 @@ $this->registerJs("
       $('.reserva__detail__monto').html('').append(total.toFixed(2));
     }
   }, 1000);
-
-
-
 </script>
