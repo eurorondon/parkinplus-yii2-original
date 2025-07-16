@@ -157,8 +157,8 @@ class ReservasController extends Controller
 
         // 1. ACTUALIZACIÓN DE ESTATUS AUTOMÁTICA (FINALIZADAS)
         $reservasVencidas = Reservas::find()
-            ->where(['<', 'fecha_salida', date('Y-m-d')])
-            ->andWhere(['NOT IN', 'estatus', ['0', '2', '4']]) // Excluye canceladas, finalizadas y especiales
+            ->where("CONCAT(fecha_salida, ' ', hora_salida) <= NOW()")
+            ->andWhere(['NOT IN', 'estatus', ['0', '2', '4']])
             ->all();
 
         foreach ($reservasVencidas as $reserva) {
@@ -178,6 +178,32 @@ class ReservasController extends Controller
                 Yii::error("Error actualizando reserva ID {$reserva->id}: " . $e->getMessage());
             }
         }
+
+        // 1.1 ACTUALIZACIÓN DE ESTATUS AUTOMÁTICA (EN CURSO / ACTIVAS)
+        $reservasEnCurso = Reservas::find()
+            ->where("CONCAT(fecha_entrada, ' ', hora_entrada) <= NOW()")
+            ->andWhere("CONCAT(fecha_salida, ' ', hora_salida) > NOW()")
+            ->andWhere(['NOT IN', 'estatus', ['0', '2', '3', '4']]) // Excluye canceladas, finalizadas, ya activas y especiales
+            ->all();
+
+        foreach ($reservasEnCurso as $reserva) {
+            try {
+                $reserva->estatus = '3'; // En curso
+                if (!$reserva->save(false)) {
+                    throw new \Exception('Error al guardar (estatus 3): ' . json_encode($reserva->errors));
+                }
+            } catch (\Exception $e) {
+                $noActualizadas[] = [
+                    'id' => $reserva->id,
+                    'nro_reserva' => $reserva->nro_reserva,
+                    'error' => $e->getMessage(),
+                    'fecha_entrada' => $reserva->fecha_entrada,
+                    'estatus_actual' => $reserva->estatus
+                ];
+                Yii::error("Error actualizando a activa reserva ID {$reserva->id}: " . $e->getMessage());
+            }
+        }
+
 
         // 2. CONSULTA DE AÑOS DISPONIBLES PARA FILTRO
         $query = new \yii\db\Query();
