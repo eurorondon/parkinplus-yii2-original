@@ -14,45 +14,48 @@ $buscarAfiliado = UserAfiliados::find()->where(['user_id' => $id_usuario])->one(
 if (!empty($buscarAfiliado)) {
     $tipo_afiliado = $buscarAfiliado['tipo_afiliado'];
 } else {
-    $tipo_afiliado = 0;     
+    $tipo_afiliado = 0;
 }
 
 if ($tipo_afiliado == 0) {
     $medios = [
-        1 =>'Secretaria', 2 =>'Agencia', 3=>'Web', 4=>'Universidad'
+        1 => 'Secretaria',
+        2 => 'Agencia',
+        3 => 'Web',
+        4 => 'Universidad'
     ];
 } else {
     $medios = [
-        4 =>'Universidad'
-    ];    
+        4 => 'Universidad'
+    ];
 }
 
 ?>
 
 <div class="fechas-form">
 
-    <?php 
-        $form = ActiveForm::begin([
-            'id' => 'fechas-form',
-            'options' => [
-                'autocomplete' => 'off',
-            ],
-        ]);
+    <?php
+    $form = ActiveForm::begin([
+        'id' => 'fechas-form',
+        'options' => [
+            'autocomplete' => 'off',
+        ],
+    ]);
     ?>
 
     <div class="row">
 
-        <div class="col-lg-7"> 
+        <div class="col-lg-7">
             <label class="control-label">Fecha de Recogida</label>
             <?= $form->field($model, 'fecha_entrada')->widget(DatePicker::classname(), [
                 'options' => ['autocomplete' => 'off', 'onfocus' => 'blur()'],
                 'language' => 'es',
                 'pluginOptions' => [
                     'orientation' => 'bottom left',
-                    'autoclose'=>true,
+                    'autoclose' => true,
                     'format' => 'dd-mm-yyyy',
-                    'startDate'=> date('d-m-Y'),
-                    'todayHighlight' => true,                                        
+                    'startDate' => date('d-m-Y'),
+                    'todayHighlight' => true,
                 ]
             ])->label(false); ?>
         </div>
@@ -64,20 +67,20 @@ if ($tipo_afiliado == 0) {
                 'pluginOptions' => [
                     'showMeridian' => false,
                 ]
-            ])->label(false);?>
+            ])->label(false); ?>
         </div>
 
-        <div class="col-lg-7" style="margin-top: 15px"> 
-            <label class="control-label">Fecha de Devolución</label>
+        <div class="col-lg-7" style="margin-top: 15px">
+            <label class="control-label">Fecha de Devoluci贸n</label>
             <?= $form->field($model, 'fecha_salida')->widget(DatePicker::classname(), [
                 'options' => ['autocomplete' => 'off', 'onfocus' => 'blur()'],
                 'language' => 'es',
                 'pluginOptions' => [
                     'orientation' => 'bottom left',
-                    'autoclose'=>true,
+                    'autoclose' => true,
                     'format' => 'dd-mm-yyyy',
-                    'startDate'=> date('d-m-Y'),
-                    'todayHighlight' => true,                                        
+                    'startDate' => date('d-m-Y'),
+                    'todayHighlight' => true,
                 ]
             ])->label(false); ?>
         </div>
@@ -89,7 +92,7 @@ if ($tipo_afiliado == 0) {
                 'pluginOptions' => [
                     'showMeridian' => false,
                 ]
-            ])->label(false);?>
+            ])->label(false); ?>
         </div>
 
         <div class="col-lg-7" style="margin-top: 15px">
@@ -99,7 +102,7 @@ if ($tipo_afiliado == 0) {
                     'allowClear' => true
                 ],
             ]); ?>
-        </div>         
+        </div>
 
         <div class="col-lg-5" style="margin-top: 15px">
             <div id="listaAg">
@@ -111,23 +114,24 @@ if ($tipo_afiliado == 0) {
                     ],
                 ]); ?>
             </div>
-        </div>                
+        </div>
 
         <div align="right" class="col-lg-12">
             <br>
             <div class="form-group">
                 <?= Html::submitButton('Procesar Reserva', ['class' => 'btn btn-success']) ?>
             </div>
-            
+
         </div>
 
     </div>
+    <div id="msg-fechas" class="text-danger" style="display:none"></div>
     <?php ActiveForm::end(); ?>
 
 </div>
 
-<?php   
-    $this->registerJs(" 
+<?php
+$this->registerJs(" 
 
       $( document ).ready(function() {
         $('#listaAg').css('display', 'none');
@@ -143,6 +147,26 @@ if ($tipo_afiliado == 0) {
         }
       });
 
+      $('#fechas-form').on('submit', function(e) {
+          var fEntrada = $('#reservas-fecha_entrada').val();
+          var fSalida  = $('#reservas-fecha_salida').val();
+
+          var partsIn  = fEntrada.split('-'),
+              partsOut = fSalida.split('-');
+          var dIn  = new Date(partsIn[2], partsIn[1]-1, partsIn[0]);
+          var dOut = new Date(partsOut[2], partsOut[1]-1, partsOut[0]);
+
+          if (dIn > dOut) {
+    e.preventDefault();
+    if (!$('#msg-fechas').is(':visible')) {
+        alert('La fecha de entrada no puede ser mayor que la fecha de salida');
+    }
+    $('#msg-fechas').text('La fecha de entrada no puede ser mayor que la fecha de salida').show();
+    return false;
+}
+          $('#msg-fechas').hide();
+      });
+
 
     ");
-?>    
+?>
