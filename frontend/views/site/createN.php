@@ -181,6 +181,9 @@ Modal::end();
               style="border-bottom: 1px solid #e7eaed; display:<?= $model->factura == 1 ? 'none !important' : '' ?>">
               Información de la reserva
             </h3>
+            <div class="col-lg-12 text-danger" style="display:none" id="alert_fechas">
+              Verifique las fechas y horas seleccionadas
+            </div>
             <div class="form-group d-flex mt-1 flex-sm-column flex-md-row reserva__form__item"
               style="display:<?= $model->factura == 1 ? 'none !important' : '' ?>">
               <label for="" class="col-md-6 col-lg-5 control-label">
@@ -1057,20 +1060,19 @@ $this->registerJs("
     mes_out = String(fecha_salida).substring(3, 5);
     f2 = new Date(anio_out, mes_out, dia_out);
 
+    var invalid = false;
     if (f1 > f2) {
-      alert('La Fecha de Recogida debe ser menor a la Fecha de Devolución')
-      $('#finalizar').prop('disabled', true);
-    } else {
-      $('#finalizar').prop('disabled', false);
+      invalid = true;
+    } else if (f1 == f2 && hora_entrada > hora_salida) {
+      invalid = true;
     }
 
-    if (f1 == f2) {
-      if (hora_entrada > hora_salida) {
-        alert('La Hora de Recogida debe ser menor a la Hora de Devolución')
-        $('#finalizar').prop('disabled', true);
-      } else {
-        $('#finalizar').prop('disabled', false);
-      }
+    if (invalid) {
+      $('#alert_fechas').css('display', 'block');
+      $('#finalizar').prop('disabled', true);
+    } else {
+      $('#alert_fechas').css('display', 'none');
+      $('#finalizar').prop('disabled', false);
     }
 
     $.ajax({
