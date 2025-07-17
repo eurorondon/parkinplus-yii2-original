@@ -8,8 +8,11 @@ use kartik\grid\GridView;
 use kartik\select2\Select2;
 use common\models\Clientes;
 use common\models\Reservas;
+use common\models\TipoPago;
 use yii\bootstrap\Modal;
 use kartik\date\DatePicker;
+
+$tipoPagoCache = [];
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\ReservasSearch */
@@ -234,12 +237,30 @@ $this->params['breadcrumbs'][] = 'Gestión de Reservas';
                   foreach ($res->cambios as $chg):
                     if (in_array($chg->campo, $mostrados)) continue;
                     $mostrados[] = $chg->campo;
+                    $old = $chg->valor_anterior;
+                    $new = $chg->valor_nuevo;
+                    if ($chg->campo === 'id_tipo_pago') {
+                      if ($old !== null && $old !== '') {
+                        if (!isset($tipoPagoCache[$old])) {
+                          $tp = TipoPago::findOne($old);
+                          $tipoPagoCache[$old] = $tp ? $tp->descripcion : $old;
+                        }
+                        $old = $tipoPagoCache[$old];
+                      }
+                      if ($new !== null && $new !== '') {
+                        if (!isset($tipoPagoCache[$new])) {
+                          $tp = TipoPago::findOne($new);
+                          $tipoPagoCache[$new] = $tp ? $tp->descripcion : $new;
+                        }
+                        $new = $tipoPagoCache[$new];
+                      }
+                    }
                   ?>
                     <li class="list-group-item ps-3 border-start border-4 border-info">
                       <strong><?= Html::encode($chg->campo) ?>:</strong>
-                      <span class="text-muted"><?= Html::encode($chg->valor_anterior) ?></span>
+                      <span class="text-muted"><?= Html::encode($old) ?></span>
                       <i class="fas fa-arrow-right mx-1 text-info"></i>
-                      <strong class="text-dark"><?= Html::encode($chg->valor_nuevo) ?></strong>
+                      <strong class="text-dark"><?= Html::encode($new) ?></strong>
                     </li>
                   <?php endforeach; ?>
                 </ul>

@@ -4,7 +4,10 @@ use yii\helpers\Html;
 use common\models\Servicios;
 use common\models\FacturasReserva;
 use common\models\ReservasServicios;
+use common\models\TipoPago;
 use yii\bootstrap\Modal;
+
+$tipoPagoCache = [];
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Reservas */
@@ -312,7 +315,27 @@ if ($model->medio_reserva != 2) {
           <p>Cambios solicitados por el cliente:</p>
           <ul class="mb-0">
             <?php foreach ($model->cambios as $chg): ?>
-              <li><?= Html::encode($chg->campo) ?>: <?= Html::encode($chg->valor_anterior) ?> → <?= Html::encode($chg->valor_nuevo) ?></li>
+              <?php
+                $old = $chg->valor_anterior;
+                $new = $chg->valor_nuevo;
+                if ($chg->campo === 'id_tipo_pago') {
+                  if ($old !== null && $old !== '') {
+                    if (!isset($tipoPagoCache[$old])) {
+                      $tp = TipoPago::findOne($old);
+                      $tipoPagoCache[$old] = $tp ? $tp->descripcion : $old;
+                    }
+                    $old = $tipoPagoCache[$old];
+                  }
+                  if ($new !== null && $new !== '') {
+                    if (!isset($tipoPagoCache[$new])) {
+                      $tp = TipoPago::findOne($new);
+                      $tipoPagoCache[$new] = $tp ? $tp->descripcion : $new;
+                    }
+                    $new = $tipoPagoCache[$new];
+                  }
+                }
+              ?>
+              <li><?= Html::encode($chg->campo) ?>: <?= Html::encode($old) ?> → <?= Html::encode($new) ?></li>
             <?php endforeach; ?>
           </ul>
         </div>
