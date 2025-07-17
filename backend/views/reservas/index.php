@@ -8,8 +8,11 @@ use kartik\grid\GridView;
 use kartik\select2\Select2;
 use common\models\Clientes;
 use common\models\Reservas;
+use common\models\TipoPago;
 use yii\bootstrap\Modal;
 use kartik\date\DatePicker;
+
+$mapTipoPago = ArrayHelper::map(TipoPago::find()->all(), 'id', 'descripcion');
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\ReservasSearch */
@@ -241,15 +244,24 @@ $this->params['breadcrumbs'][] = 'Gestión de Reservas';
                       <?php
                       $old = $chg->valor_anterior;
                       $new = $chg->valor_nuevo;
-                      if ($old === '1' || $old === 1) $old = 'SI';
-                      if ($old === '0' || $old === 0) $old = 'NO';
-                      if ($new === '1' || $new === 1) $new = 'SI';
-                      if ($new === '0' || $new === 0) $new = 'NO';
+                      if ($chg->campo === 'id_tipo_pago') {
+                        if (isset($mapTipoPago[$old])) {
+                          $old = $mapTipoPago[$old];
+                        }
+                        if (isset($mapTipoPago[$new])) {
+                          $new = $mapTipoPago[$new];
+                        }
+                      } else {
+                        if ($old === '1' || $old === 1) $old = 'SI';
+                        if ($old === '0' || $old === 0) $old = 'NO';
+                        if ($new === '1' || $new === 1) $new = 'SI';
+                        if ($new === '0' || $new === 0) $new = 'NO';
+                      }
                       ?>
                       <li class="list-group-item ps-3 border-start border-4 border-info">
                         <strong><?= Html::encode($chg->campo) ?>:</strong>
                         <span class="text-muted"><?= Html::encode($old) ?></span>
-                        <i class="fas fa-arrow-right mx-1 text-info"></i>
+                        →
                         <strong class="text-dark"><?= Html::encode($new) ?></strong>
                       </li>
                     <?php endforeach; ?>
