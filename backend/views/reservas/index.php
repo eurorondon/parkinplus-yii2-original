@@ -222,27 +222,39 @@ $this->params['breadcrumbs'][] = 'Gestión de Reservas';
 
             <div class="card-body bg-white rounded-bottom border">
               <?php if ($res->cambios): ?>
-                <p class="text-muted mb-3">
-                  <i class="far fa-calendar-alt me-1"></i>
-                  <strong>Fecha del cambio:</strong>
-                  <?= Yii::$app->formatter->asDatetime($res->cambios[0]->fecha, 'php:d-m-Y H:i') ?>
-                </p>
+                <?php
+                $grouped = [];
+                foreach ($res->cambios as $chg) {
+                  $fecha = Yii::$app->formatter->asDatetime($chg->fecha, 'php:d-m-Y H:i');
+                  $grouped[$fecha][] = $chg;
+                }
+                ?>
+                <?php foreach ($grouped as $fecha => $changesFecha): ?>
+                  <p class="text-muted mb-3">
+                    <i class="far fa-calendar-alt me-1"></i>
+                    <strong>Fecha del cambio:</strong>
+                    <?= $fecha ?>
+                  </p>
 
-                <ul class="list-group list-group-flush mb-3">
-                  <?php
-                  $mostrados = [];
-                  foreach ($res->cambios as $chg):
-                    if (in_array($chg->campo, $mostrados)) continue;
-                    $mostrados[] = $chg->campo;
-                  ?>
-                    <li class="list-group-item ps-3 border-start border-4 border-info">
-                      <strong><?= Html::encode($chg->campo) ?>:</strong>
-                      <span class="text-muted"><?= Html::encode($chg->valor_anterior) ?></span>
-                      <i class="fas fa-arrow-right mx-1 text-info"></i>
-                      <strong class="text-dark"><?= Html::encode($chg->valor_nuevo) ?></strong>
-                    </li>
-                  <?php endforeach; ?>
-                </ul>
+                  <ul class="list-group list-group-flush mb-3">
+                    <?php foreach ($changesFecha as $chg): ?>
+                      <?php
+                      $old = $chg->valor_anterior;
+                      $new = $chg->valor_nuevo;
+                      if ($old === '1' || $old === 1) $old = 'SI';
+                      if ($old === '0' || $old === 0) $old = 'NO';
+                      if ($new === '1' || $new === 1) $new = 'SI';
+                      if ($new === '0' || $new === 0) $new = 'NO';
+                      ?>
+                      <li class="list-group-item ps-3 border-start border-4 border-info">
+                        <strong><?= Html::encode($chg->campo) ?>:</strong>
+                        <span class="text-muted"><?= Html::encode($old) ?></span>
+                        <i class="fas fa-arrow-right mx-1 text-info"></i>
+                        <strong class="text-dark"><?= Html::encode($new) ?></strong>
+                      </li>
+                    <?php endforeach; ?>
+                  </ul>
+                <?php endforeach; ?>
               <?php endif; ?>
 
               <div class="d-flex gap-2">

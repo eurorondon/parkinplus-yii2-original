@@ -310,11 +310,29 @@ if ($model->medio_reserva != 2) {
       <div class="col-lg-12">
         <div class="alert alert-info">
           <p>Cambios solicitados por el cliente:</p>
-          <ul class="mb-0">
-            <?php foreach ($model->cambios as $chg): ?>
-              <li><?= Html::encode($chg->campo) ?>: <?= Html::encode($chg->valor_anterior) ?> → <?= Html::encode($chg->valor_nuevo) ?></li>
-            <?php endforeach; ?>
-          </ul>
+          <?php
+          $grouped = [];
+          foreach ($model->cambios as $chg) {
+            $fecha = Yii::$app->formatter->asDatetime($chg->fecha, 'php:d-m-Y H:i');
+            $grouped[$fecha][] = $chg;
+          }
+          ?>
+          <?php foreach ($grouped as $fecha => $cambiosFecha): ?>
+            <p class="mb-1"><strong>Fecha del cambio:</strong> <?= $fecha ?></p>
+            <ul class="mb-2">
+              <?php foreach ($cambiosFecha as $chg): ?>
+                <?php
+                $old = $chg->valor_anterior;
+                $new = $chg->valor_nuevo;
+                if ($old === '1' || $old === 1) $old = 'SI';
+                if ($old === '0' || $old === 0) $old = 'NO';
+                if ($new === '1' || $new === 1) $new = 'SI';
+                if ($new === '0' || $new === 0) $new = 'NO';
+                ?>
+                <li><?= Html::encode($chg->campo) ?>: <?= Html::encode($old) ?> → <?= Html::encode($new) ?></li>
+              <?php endforeach; ?>
+            </ul>
+          <?php endforeach; ?>
         </div>
       </div>
     <?php endif; ?>
