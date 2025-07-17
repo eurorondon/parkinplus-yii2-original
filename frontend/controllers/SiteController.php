@@ -2087,8 +2087,11 @@ class SiteController extends Controller
         ];
 
         $servicios = Servicios::find()->where(['estatus' => '1'])->andWhere(['fijo' => '2'])->all();
+        $serviceNames = [];
+        $oldExtras = [];
         foreach ($servicios as $serAll) {
             $ids_all[] = $serAll['id'];
+            $serviceNames[$serAll['id']] = $serAll['nombre_servicio'];
         }
 
         $servicios_sel = ReservasServicios::find()->where(['id_reserva' => $model->nro_reserva])->all();
@@ -2096,6 +2099,7 @@ class SiteController extends Controller
             $fijo = $serSel->servicios['fijo'];
             if ($fijo == 2) {
                 $ids_sel[] = $serSel['id_servicio'];
+                $oldExtras[$serSel['id_servicio']] = $serSel['cantidad'];
             }
             if ($serSel->id_servicio == 9) {
                 $type_reserva = 9;
@@ -2281,6 +2285,24 @@ class SiteController extends Controller
                 $model->id_coche = $v->id;
             }
 
+            $newExtras = [];
+            foreach ($servicios as $ser) {
+                if ($ser->fijo == 2) {
+                    $newExtras[$ser->id] = (int)$_POST['cantidad' . $ser->id];
+                }
+            }
+
+            $extraChanges = [];
+            $allExtraIds = array_unique(array_merge(array_keys($oldExtras), array_keys($newExtras)));
+            foreach ($allExtraIds as $sid) {
+                $oldQty = $oldExtras[$sid] ?? 0;
+                $newQty = $newExtras[$sid] ?? 0;
+                if ($oldQty != $newQty) {
+                    $campo = 'servicio_' . ($serviceNames[$sid] ?? $sid);
+                    $extraChanges[] = ['campo' => $campo, 'old' => $oldQty, 'new' => $newQty];
+                }
+            }
+
             $buscaServicios = ReservasServicios::find()->where(['id_reserva' => $model->nro_reserva])->all();
 
             foreach ($buscaServicios as $ser) {
@@ -2354,7 +2376,7 @@ class SiteController extends Controller
             $model->hora_entrada = date('H:i', strtotime($model->hora_entrada));
             $model->hora_salida = date('H:i', strtotime($model->hora_salida));
 
-            $changes = [];
+            $changes = $extraChanges;
 
             $reservaAttrs = [
                 'fecha_entrada',
