@@ -149,7 +149,7 @@ class ReservasController extends Controller
         $actualizadasFront = Reservas::find()
             ->where([
                 'actualizada' => 1,
-                'medio_reserva' => 3,
+                // 'medio_reserva' => 3,
                 'estatus' => 3,
             ])
             ->with('cambios')

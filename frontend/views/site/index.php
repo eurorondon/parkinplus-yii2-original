@@ -69,23 +69,23 @@ $this->title = Yii::$app->name . ' - Aparcamientos Larga Estancia en Barajas';
 				<div class="col-lg-12 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1 "
 					data-aos="fade-up" data-aos-delay="200">
 					<h1 class="mb-0">APARCAMIENTO AEROPUERTO MADRID</h1>
-				<h2 class="mt-0  fw-bold" style="color: #951104;">Parking Aeropuerto Madrid</h2>
+					<h2 class="mt-0  fw-bold" style="color: #951104;">Parking Aeropuerto Madrid</h2>
 
 
 				</div>
 				<div class="col-lg-12 order-1 order-lg-2 hero-img" style="color: white;" data-aos="zoom-in"
 					data-aos-delay="200">
 					<!-- <?= Html::img('@web/images/hero-img.png', ['class' => 'img-logo animated']) ?> -->
-				
-					
+
+
 					<!-- <h3><i> No necesitas registrar Tarjeta de Crédito <i class="bi bi-window-dash"></i></i></h3> -->
-					
-						<h2 class=" ">	Servicios de Aparcamiento T1 , Aparcamiento T2 o Aparcamiento T4. A tu vuelta, te estaremos esperando en la puerta de la terminal.</h2>
-							<!--	<h3 class> <i>Reservas en solo <i class="bi bi-2-circle"></i> minutos <i class="bi bi-stopwatch"></i> </i>-->
-							
-							</br> </br>
-						
-							<!--	
+
+					<h2 class=" "> Servicios de Aparcamiento T1 , Aparcamiento T2 o Aparcamiento T4. A tu vuelta, te estaremos esperando en la puerta de la terminal.</h2>
+					<!--	<h3 class> <i>Reservas en solo <i class="bi bi-2-circle"></i> minutos <i class="bi bi-stopwatch"></i> </i>-->
+
+					</br> </br>
+
+					<!--	
 						<svg class="time_reserva" width="118px" height="118px" viewBox="0 0 158 158" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fragment="12340db49ac" class="z-0 md:hidden font-sans absolute md:-top-48 sm:-top-26 md:-right-8 lg:-right-16 h-32 xxxs:h-auto -top-18 xxxs:-right-5 -right-5 xxxs:-top-18" style="position: absolute; top: 17%; right: 0; transform: translateX(10%); z-index: 10;">
     <title>Group 3</title>
     <defs>
@@ -1533,7 +1533,7 @@ $this->registerJs("
 			if(parada){
 				return false;
 			}else if(f1 > f2 || f1.getTime() == f2.getTime()){
-				$('.msg-fechas').css('display', 'block');
+                                $('#msg-fechas').css('display', 'block');
 			} else{			
 				$(this)
 				.text('')
