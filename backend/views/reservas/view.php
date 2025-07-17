@@ -5,6 +5,10 @@ use common\models\Servicios;
 use common\models\FacturasReserva;
 use common\models\ReservasServicios;
 use yii\bootstrap\Modal;
+use yii\helpers\ArrayHelper;
+use common\models\TipoPago;
+
+$mapTipoPago = ArrayHelper::map(TipoPago::find()->all(), 'id', 'descripcion');
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Reservas */
@@ -324,10 +328,19 @@ if ($model->medio_reserva != 2) {
                 <?php
                 $old = $chg->valor_anterior;
                 $new = $chg->valor_nuevo;
-                if ($old === '1' || $old === 1) $old = 'SI';
-                if ($old === '0' || $old === 0) $old = 'NO';
-                if ($new === '1' || $new === 1) $new = 'SI';
-                if ($new === '0' || $new === 0) $new = 'NO';
+                if ($chg->campo === 'id_tipo_pago') {
+                  if (isset($mapTipoPago[$old])) {
+                    $old = $mapTipoPago[$old];
+                  }
+                  if (isset($mapTipoPago[$new])) {
+                    $new = $mapTipoPago[$new];
+                  }
+                } else {
+                  if ($old === '1' || $old === 1) $old = 'SI';
+                  if ($old === '0' || $old === 0) $old = 'NO';
+                  if ($new === '1' || $new === 1) $new = 'SI';
+                  if ($new === '0' || $new === 0) $new = 'NO';
+                }
                 ?>
                 <li><?= Html::encode($chg->campo) ?>: <?= Html::encode($old) ?> → <?= Html::encode($new) ?></li>
               <?php endforeach; ?>
