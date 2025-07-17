@@ -306,7 +306,7 @@ if ($model->medio_reserva != 2) {
       <hr style="margin-bottom: 5px; margin-top: 40px;">
     </div>
 
-    <?php if ($model->actualizada && $model->medio_reserva == 3 && $model->cambios): ?>
+    <?php if ($model->actualizada && $model->cambios): ?>
       <div class="col-lg-12">
         <div class="alert alert-info">
           <p>Cambios solicitados por el cliente:</p>
@@ -337,7 +337,7 @@ if ($model->medio_reserva != 2) {
     <div align="right" class="col-lg-5" style="margin-top: 25px">
       <?= Html::button('Cerrar', ['class' => 'btn btn-warning', 'data-dismiss' => 'modal']) ?>
       &nbsp; &nbsp; &nbsp;
-      <?php if ($model->actualizada && $model->medio_reserva == 3): ?>
+      <?php if ($model->actualizada): ?>
         <?= Html::a('Marcar revisada', ['/reservas/marcar-actualizada', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         &nbsp; &nbsp; &nbsp;
       <?php endif; ?>

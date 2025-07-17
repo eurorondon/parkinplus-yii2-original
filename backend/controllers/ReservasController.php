@@ -30,6 +30,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use kartik\mpdf\Pdf;
 use yii\db\Query;
+use yii\db\Expression;
 
 /**
  * ReservasController implements the CRUD actions for Reservas model.
@@ -147,12 +148,12 @@ class ReservasController extends Controller
 
         // Reservas actualizadas desde la web que requieren confirmación
         $actualizadasFront = Reservas::find()
-            ->where([
-                'actualizada' => 1,
-                // 'medio_reserva' => 3,
-                'estatus' => 3,
-            ])
-            ->with('cambios')
+            ->alias('r')
+            ->joinWith('cambios')
+            ->where(['r.actualizada' => 1, 'r.estatus' => 3])
+            ->andWhere(new Expression('reservas_log_cambios.fecha > r.fecha_entrada'))
+            ->distinct()
+            ->orderBy(['reservas_log_cambios.fecha' => SORT_DESC])
             ->all();
 
         // 1. ACTUALIZACIÓN DE ESTATUS AUTOMÁTICA (FINALIZADAS)
