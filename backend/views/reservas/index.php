@@ -696,12 +696,14 @@ $this->params['breadcrumbs'][] = 'Gestión de Reservas';
                           ]);
                         },
                         'update' => function ($url, $model) {
+                          $action = ($model->medio_reserva == 2) ? 'reservas/actualizar' : 'reservas/update';
                           return Html::a(
                             '<span class="glyphicon glyphicon-edit"></span>',
-                            Yii::$app->urlManager->createUrl(['reservas/update', 'id' => $model->id]),
+                            Yii::$app->urlManager->createUrl([$action, 'id' => $model->id]),
                             ['class' => 'btn-update', 'title' => 'Modificar']
                           );
                         },
+
                         'delete' => function ($url, $model) {
 
                           return Yii::$app->user->id == 7 ? Html::a(
