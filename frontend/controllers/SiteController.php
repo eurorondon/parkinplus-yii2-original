@@ -2422,13 +2422,15 @@ class SiteController extends Controller
             $model->actualizada = 1;
 
             if ($model->save()) {
-                foreach ($changes as $change) {
-                    $log = new ReservasLogCambios();
-                    $log->reserva_id = $model->id;
-                    $log->campo = $change['campo'];
-                    $log->valor_anterior = $change['old'];
-                    $log->valor_nuevo = $change['new'];
-                    $log->save(false);
+                if ($model->estatus == 3) {
+                    foreach ($changes as $change) {
+                        $log = new ReservasLogCambios();
+                        $log->reserva_id = $model->id;
+                        $log->campo = $change['campo'];
+                        $log->valor_anterior = $change['old'];
+                        $log->valor_nuevo = $change['new'];
+                        $log->save(false);
+                    }
                 }
                 if (($u == null) && ($busca_user == null)) {
                     $modelU = new User();
