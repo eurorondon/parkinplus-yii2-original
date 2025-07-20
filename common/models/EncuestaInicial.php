@@ -36,7 +36,7 @@ class EncuestaInicial extends \yii\db\ActiveRecord
             [['reserva_id', 'pregunta1', 'pregunta2', 'pregunta3', 'pregunta4', 'pregunta5'], 'integer'],
             [['sugerencias'], 'string', 'max' => 255],
             ['sugerencias', 'required', 'when' => function ($model) {
-                return min([
+                return max([
                     $model->pregunta1,
                     $model->pregunta2,
                     $model->pregunta3,
@@ -44,13 +44,13 @@ class EncuestaInicial extends \yii\db\ActiveRecord
                     $model->pregunta5,
                 ]) >= 4;
             }, 'whenClient' => "function(attribute, value) {
-                return Math.min(
-                    parseInt($('input[name=\"EncuestaInicial[pregunta1]\"]:checked').val() || 5),
-                    parseInt($('input[name=\"EncuestaInicial[pregunta2]\"]:checked').val() || 5),
-                    parseInt($('input[name=\"EncuestaInicial[pregunta3]\"]:checked').val() || 5),
-                    parseInt($('input[name=\"EncuestaInicial[pregunta4]\"]:checked').val() || 5),
-                    parseInt($('input[name=\"EncuestaInicial[pregunta5]\"]:checked').val() || 5)
-                ) <= 2;
+                return Math.max(
+                    parseInt($('input[name=\"EncuestaInicial[pregunta1]\"]:checked').val() || 0),
+                    parseInt($('input[name=\"EncuestaInicial[pregunta2]\"]:checked').val() || 0),
+                    parseInt($('input[name=\"EncuestaInicial[pregunta3]\"]:checked').val() || 0),
+                    parseInt($('input[name=\"EncuestaInicial[pregunta4]\"]:checked').val() || 0),
+                    parseInt($('input[name=\"EncuestaInicial[pregunta5]\"]:checked').val() || 0)
+                ) >= 4;
             }"],
         ];
     }

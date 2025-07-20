@@ -3255,21 +3255,9 @@ class SiteController extends Controller
                 $model->pregunta5,
             ]);
 
-            // Si hay alguna respuesta >=4 pero no se enviaron sugerencias, mostrar el formulario de sugerencias
-            if ($model->save()) {
-                if ($max < 4) {
-                    return $this->redirect('https://g.page/r/CSa4fL5NJ---EBM/review');
-                }
-            
-                return $this->render('encuesta1_confirm', ['model' => $model]);
-            } else {
-                Yii::error('Error al guardar la encuesta: ' . \yii\helpers\VarDumper::dumpAsString($model->errors), __METHOD__);
-                Yii::$app->session->setFlash(
-                    'error',
-                    'No se pudo guardar la encuesta: ' . implode(', ', $model->getFirstErrors())
-                );
+            if ($max >= 4 && empty($model->sugerencias)) {
+                return $this->render('encuesta1_sugerencias', ['model' => $model]);
             }
-
 
             if ($model->save()) {
                 if ($max < 4) {
@@ -3278,6 +3266,12 @@ class SiteController extends Controller
 
                 return $this->render('encuesta1_confirm', ['model' => $model]);
             }
+
+            Yii::error('Error al guardar la encuesta: ' . \yii\helpers\VarDumper::dumpAsString($model->errors), __METHOD__);
+            Yii::$app->session->setFlash(
+                'error',
+                'No se pudo guardar la encuesta: ' . implode(', ', $model->getFirstErrors())
+            );
         }
 
         return $this->render('encuesta1', ['model' => $model]);
