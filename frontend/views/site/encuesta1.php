@@ -15,6 +15,13 @@ $opciones = [
 ];
 ?>
 <div class="container mt-5 mb-5 pt-3">
+    
+    <?php if (Yii::$app->session->hasFlash('error')): ?>
+    <div class="alert alert-danger">
+        <?= Yii::$app->session->getFlash('error') ?>
+    </div>
+<?php endif; ?>
+
     <div class="card shadow rounded overflow-hidden">
         <div class="card-header bg-success text-white py-3 px-4">
             <h4 class="mb-0"><?= Html::encode($this->title) ?></h4>
@@ -40,5 +47,4 @@ $opciones = [
         </div>
     </div>
 </div>
-
 

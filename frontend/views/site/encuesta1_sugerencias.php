@@ -30,4 +30,3 @@ $this->title = 'Sugerencias';
         </div>
     </div>
 </div>
-
