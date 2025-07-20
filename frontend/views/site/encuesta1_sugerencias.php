@@ -5,23 +5,9 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model common\models\EncuestaInicial */
 
-$this->title = 'Encuesta de Satisfaccion';
-$opciones = [
-    1 => 'excelente',
-    2 => 'buena',
-    3 => 'normal',
-    4 => 'mala',
-    5 => 'muy mala',
-];
+$this->title = 'Sugerencias';
 ?>
 <div class="container mt-5 mb-5 pt-3">
-    
-    <?php if (Yii::$app->session->hasFlash('error')): ?>
-    <div class="alert alert-danger">
-        <?= Yii::$app->session->getFlash('error') ?>
-    </div>
-<?php endif; ?>
-
     <div class="card shadow rounded overflow-hidden">
         <div class="card-header bg-success text-white py-3 px-4">
             <h4 class="mb-0"><?= Html::encode($this->title) ?></h4>
@@ -30,14 +16,11 @@ $opciones = [
             <?php $form = ActiveForm::begin(); ?>
 
             <?= $form->field($model, 'reserva_id')->hiddenInput()->label(false) ?>
-
             <?php for ($i = 1; $i <= 5; $i++): ?>
-                <div class="mb-4">
-                    <label class="form-label fw-bold">Pregunta <?= $i ?>:</label>
-                    <?= $form->field($model, 'pregunta' . $i, ['template' => '{input}{error}'])->radioList($opciones) ?>
-                </div>
+                <?= $form->field($model, 'pregunta' . $i)->hiddenInput()->label(false) ?>
             <?php endfor; ?>
 
+            <?= $form->field($model, 'sugerencias')->textarea(['rows' => 4]) ?>
 
             <div class="d-grid">
                 <?= Html::submitButton('Enviar', ['class' => 'btn btn-success btn-lg rounded-pill']) ?>
@@ -47,4 +30,3 @@ $opciones = [
         </div>
     </div>
 </div>
-

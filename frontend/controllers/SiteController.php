@@ -3246,7 +3246,7 @@ class SiteController extends Controller
             }
         }
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
             $max = max([
                 $model->pregunta1,
                 $model->pregunta2,
@@ -3255,11 +3255,29 @@ class SiteController extends Controller
                 $model->pregunta5,
             ]);
 
-            if ($max < 4) {
-                return $this->redirect('https://bit.ly/2OHM1za');
+            // Si hay alguna respuesta >=4 pero no se enviaron sugerencias, mostrar el formulario de sugerencias
+            if ($model->save()) {
+                if ($max < 4) {
+                    return $this->redirect('https://g.page/r/CSa4fL5NJ---EBM/review');
+                }
+            
+                return $this->render('encuesta1_confirm', ['model' => $model]);
+            } else {
+                Yii::error('Error al guardar la encuesta: ' . \yii\helpers\VarDumper::dumpAsString($model->errors), __METHOD__);
+                Yii::$app->session->setFlash(
+                    'error',
+                    'No se pudo guardar la encuesta: ' . implode(', ', $model->getFirstErrors())
+                );
             }
 
-            return $this->render('encuesta1_confirm', ['model' => $model]);
+
+            if ($model->save()) {
+                if ($max < 4) {
+                    return $this->redirect('https://g.page/r/CSa4fL5NJ---EBM/review');
+                }
+
+                return $this->render('encuesta1_confirm', ['model' => $model]);
+            }
         }
 
         return $this->render('encuesta1', ['model' => $model]);
