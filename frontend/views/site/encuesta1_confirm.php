@@ -23,4 +23,7 @@ $labels = [
         <li>Pregunta 4: <?= Html::encode($labels[$model->pregunta4] ?? $model->pregunta4) ?></li>
         <li>Pregunta 5: <?= Html::encode($labels[$model->pregunta5] ?? $model->pregunta5) ?></li>
     </ul>
+    <?php if (!empty($model->sugerencias)) : ?>
+        <p><strong>Sugerencias:</strong> <?= Html::encode($model->sugerencias) ?></p>
+    <?php endif; ?>
 </div>

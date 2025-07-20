@@ -31,6 +31,9 @@ $labels = [
                 <li>Pregunta 4: <?= Html::encode($labels[$valoracion->pregunta4] ?? $valoracion->pregunta4) ?></li>
                 <li>Pregunta 5: <?= Html::encode($labels[$valoracion->pregunta5] ?? $valoracion->pregunta5) ?></li>
             </ul>
+            <?php if (!empty($valoracion->sugerencias)) : ?>
+                <p><strong>Sugerencias:</strong> <?= Html::encode($valoracion->sugerencias) ?></p>
+            <?php endif; ?>
             <p>Su opinión es muy importante para nosotros y ya ha sido registrada.</p>
         </div>
     </div>
