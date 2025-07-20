@@ -9,7 +9,11 @@ use Yii;
  *
  * @property int $id
  * @property int $reserva_id
- * @property int $respuesta
+ * @property int $pregunta1
+ * @property int $pregunta2
+ * @property int $pregunta3
+ * @property int $pregunta4
+ * @property int $pregunta5
  * @property string|null $sugerencias
  */
 class EncuestaInicial extends \yii\db\ActiveRecord
@@ -28,9 +32,24 @@ class EncuestaInicial extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['reserva_id', 'respuesta'], 'required'],
-            [['reserva_id', 'respuesta'], 'integer'],
+            [['reserva_id', 'pregunta1', 'pregunta2', 'pregunta3', 'pregunta4', 'pregunta5'], 'required'],
+            [['reserva_id', 'pregunta1', 'pregunta2', 'pregunta3', 'pregunta4', 'pregunta5'], 'integer'],
             [['sugerencias'], 'string', 'max' => 255],
+            ['sugerencias', 'required', 'when' => function ($model) {
+                return max([
+                    $model->pregunta1,
+                    $model->pregunta2,
+                    $model->pregunta3,
+                    $model->pregunta4,
+                    $model->pregunta5,
+                ]) >= 4;
+            }, 'whenClient' => "function(attribute, value){\n                return Math.max(
+                    parseInt($('input[name=\\"EncuestaInicial[pregunta1]\\"]:checked').val() || 0),
+                    parseInt($('input[name=\\"EncuestaInicial[pregunta2]\\"]:checked').val() || 0),
+                    parseInt($('input[name=\\"EncuestaInicial[pregunta3]\\"]:checked').val() || 0),
+                    parseInt($('input[name=\\"EncuestaInicial[pregunta4]\\"]:checked').val() || 0),
+                    parseInt($('input[name=\\"EncuestaInicial[pregunta5]\\"]:checked').val() || 0)
+                ) >= 4;\n            }"],
         ];
     }
 
@@ -42,7 +61,11 @@ class EncuestaInicial extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'reserva_id' => 'Reserva ID',
-            'respuesta' => 'Respuesta',
+            'pregunta1' => 'Pregunta1',
+            'pregunta2' => 'Pregunta2',
+            'pregunta3' => 'Pregunta3',
+            'pregunta4' => 'Pregunta4',
+            'pregunta5' => 'Pregunta5',
             'sugerencias' => 'Sugerencias',
         ];
     }

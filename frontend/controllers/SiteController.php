@@ -3247,9 +3247,18 @@ class SiteController extends Controller
         }
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            if ($model->respuesta == 1) {
+            $max = max([
+                $model->pregunta1,
+                $model->pregunta2,
+                $model->pregunta3,
+                $model->pregunta4,
+                $model->pregunta5,
+            ]);
+
+            if ($max < 4) {
                 return $this->redirect('https://bit.ly/2OHM1za');
             }
+
             return $this->render('encuesta1_confirm', ['model' => $model]);
         }
 
