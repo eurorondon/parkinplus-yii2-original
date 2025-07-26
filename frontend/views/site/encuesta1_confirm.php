@@ -1,4 +1,5 @@
 <?php
+
 use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\EncuestaInicial */
@@ -22,6 +23,6 @@ $labels = [
         <li>Recomendación: <?= Html::encode($labels[$model->pregunta3] ?? $model->pregunta3) ?></li>
     </ul>
     <?php if (!empty($model->sugerencias)) : ?>
-        <p><strong>Sugerencias:</strong> <?= Html::encode($model->sugerencias) ?></p>
+        <p class="mx-5"><strong>Sugerencias:</strong> <?= Html::encode($model->sugerencias) ?></p>
     <?php endif; ?>
 </div>

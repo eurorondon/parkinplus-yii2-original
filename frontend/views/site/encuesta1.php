@@ -15,7 +15,7 @@ $opciones = [
     5 => 'muy mala',
 ];
 
-// CSS para alinear correctamente los radios
+// CSS para alinear los radios en escritorio y apilarlos en móviles
 $this->registerCss("
 .radio-inline-custom {
     display: inline-flex;
@@ -25,6 +25,13 @@ $this->registerCss("
 }
 .radio-inline-custom input[type=\"radio\"] {
     margin-right: 6px;
+}
+/* En pantallas pequeñas, cada opción en su propia línea */
+@media (max-width: 575.98px) {
+    .radio-inline-custom {
+        display: flex;
+        margin-bottom: 8px;
+    }
 }
 ");
 ?>
