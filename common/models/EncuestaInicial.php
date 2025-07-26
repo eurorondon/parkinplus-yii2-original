@@ -3,30 +3,39 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "encuesta_inicial".
  *
  * @property int $id
  * @property int $reserva_id
- * @property int $pregunta1 Tiempo de espera
- * @property int $pregunta2 Cuidado del vehículo
- * @property int $pregunta3 Recomendación
+ * @property int $pregunta1
+ * @property int $pregunta2
+ * @property int $pregunta3
  * @property string|null $sugerencias
+ * @property string|null $created_at
  */
 class EncuestaInicial extends \yii\db\ActiveRecord
 {
-    /**
-     * {@inheritdoc}
-     */
     public static function tableName()
     {
         return 'encuesta_inicial';
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::class,
+                'createdAtAttribute' => 'created_at',
+                'updatedAtAttribute' => false,
+                'value' => new Expression('NOW()'),
+            ],
+        ];
+    }
+
     public function rules()
     {
         return [
@@ -49,9 +58,6 @@ class EncuestaInicial extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function attributeLabels()
     {
         return [
@@ -61,6 +67,7 @@ class EncuestaInicial extends \yii\db\ActiveRecord
             'pregunta2' => '¿Consideras que su vehículo fue tratado con cuidado durante el tiempo que estuvo bajo custodia del servicio?',
             'pregunta3' => '¿Recomendarías este servicio a otras personas?',
             'sugerencias' => 'Sugerencias',
+            'created_at' => 'Fecha de creación',
         ];
     }
 }

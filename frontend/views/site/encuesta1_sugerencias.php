@@ -1,4 +1,5 @@
 <?php
+
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -15,11 +16,13 @@ $this->title = 'Sugerencias';
         <div class="card-body p-4">
             <?php $form = ActiveForm::begin(); ?>
 
+            <!-- Campos ocultos para conservar los valores del paso anterior -->
             <?= $form->field($model, 'reserva_id')->hiddenInput()->label(false) ?>
             <?= $form->field($model, 'pregunta1')->hiddenInput()->label(false) ?>
             <?= $form->field($model, 'pregunta2')->hiddenInput()->label(false) ?>
             <?= $form->field($model, 'pregunta3')->hiddenInput()->label(false) ?>
 
+            <!-- Campo visible para sugerencias -->
             <?= $form->field($model, 'sugerencias')->textarea(['rows' => 4]) ?>
 
             <div class="d-grid">
