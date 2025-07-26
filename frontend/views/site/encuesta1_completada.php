@@ -25,11 +25,9 @@ $labels = [
                 <p><strong>Fecha:</strong> <?= Yii::$app->formatter->asDate($valoracion->created_at, 'php:d/m/Y') ?></p>
             <?php endif; ?>
             <ul>
-                <li>Pregunta 1: <?= Html::encode($labels[$valoracion->pregunta1] ?? $valoracion->pregunta1) ?></li>
-                <li>Pregunta 2: <?= Html::encode($labels[$valoracion->pregunta2] ?? $valoracion->pregunta2) ?></li>
-                <li>Pregunta 3: <?= Html::encode($labels[$valoracion->pregunta3] ?? $valoracion->pregunta3) ?></li>
-                <li>Pregunta 4: <?= Html::encode($labels[$valoracion->pregunta4] ?? $valoracion->pregunta4) ?></li>
-                <li>Pregunta 5: <?= Html::encode($labels[$valoracion->pregunta5] ?? $valoracion->pregunta5) ?></li>
+                <li>Tiempo de espera: <?= Html::encode($labels[$valoracion->pregunta1] ?? $valoracion->pregunta1) ?></li>
+                <li>Cuidado del vehículo: <?= Html::encode($labels[$valoracion->pregunta2] ?? $valoracion->pregunta2) ?></li>
+                <li>Recomendación: <?= Html::encode($labels[$valoracion->pregunta3] ?? $valoracion->pregunta3) ?></li>
             </ul>
             <?php if (!empty($valoracion->sugerencias)) : ?>
                 <p><strong>Sugerencias:</strong> <?= Html::encode($valoracion->sugerencias) ?></p>

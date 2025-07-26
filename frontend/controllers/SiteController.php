@@ -3251,8 +3251,6 @@ class SiteController extends Controller
                 $model->pregunta1,
                 $model->pregunta2,
                 $model->pregunta3,
-                $model->pregunta4,
-                $model->pregunta5,
             ]);
 
             if ($max >= 4 && empty($model->sugerencias)) {
