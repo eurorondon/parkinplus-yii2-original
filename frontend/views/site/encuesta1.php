@@ -31,12 +31,20 @@ $opciones = [
 
             <?= $form->field($model, 'reserva_id')->hiddenInput()->label(false) ?>
 
-            <?php for ($i = 1; $i <= 5; $i++): ?>
-                <div class="mb-4">
-                    <label class="form-label fw-bold">Pregunta <?= $i ?>:</label>
-                    <?= $form->field($model, 'pregunta' . $i, ['template' => '{input}{error}'])->radioList($opciones) ?>
-                </div>
-            <?php endfor; ?>
+            <div class="mb-4">
+                <label class="form-label fw-bold">Tiempo de espera</label>
+                <?= $form->field($model, 'pregunta1', ['template' => '{input}{error}'])->radioList($opciones) ?>
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label fw-bold">Cuidado del vehículo</label>
+                <?= $form->field($model, 'pregunta2', ['template' => '{input}{error}'])->radioList($opciones) ?>
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label fw-bold">Recomendación</label>
+                <?= $form->field($model, 'pregunta3', ['template' => '{input}{error}'])->radioList($opciones) ?>
+            </div>
 
 
             <div class="d-grid">

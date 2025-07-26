@@ -16,9 +16,9 @@ $this->title = 'Sugerencias';
             <?php $form = ActiveForm::begin(); ?>
 
             <?= $form->field($model, 'reserva_id')->hiddenInput()->label(false) ?>
-            <?php for ($i = 1; $i <= 5; $i++): ?>
-                <?= $form->field($model, 'pregunta' . $i)->hiddenInput()->label(false) ?>
-            <?php endfor; ?>
+            <?= $form->field($model, 'pregunta1')->hiddenInput()->label(false) ?>
+            <?= $form->field($model, 'pregunta2')->hiddenInput()->label(false) ?>
+            <?= $form->field($model, 'pregunta3')->hiddenInput()->label(false) ?>
 
             <?= $form->field($model, 'sugerencias')->textarea(['rows' => 4]) ?>
 
