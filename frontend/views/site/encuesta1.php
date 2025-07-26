@@ -1,4 +1,5 @@
 <?php
+
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -13,14 +14,28 @@ $opciones = [
     4 => 'mala',
     5 => 'muy mala',
 ];
+
+// CSS para alinear correctamente los radios
+$this->registerCss("
+.radio-inline-custom {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 16px;
+    font-weight: 500;
+}
+.radio-inline-custom input[type=\"radio\"] {
+    margin-right: 6px;
+}
+");
 ?>
+
 <div class="container mt-5 mb-5 pt-3">
-    
+
     <?php if (Yii::$app->session->hasFlash('error')): ?>
-    <div class="alert alert-danger">
-        <?= Yii::$app->session->getFlash('error') ?>
-    </div>
-<?php endif; ?>
+        <div class="alert alert-danger">
+            <?= Yii::$app->session->getFlash('error') ?>
+        </div>
+    <?php endif; ?>
 
     <div class="card shadow rounded overflow-hidden">
         <div class="card-header bg-success text-white py-3 px-4">
@@ -31,21 +46,42 @@ $opciones = [
 
             <?= $form->field($model, 'reserva_id')->hiddenInput()->label(false) ?>
 
+            <?php
+            // función reutilizable
+            $renderRadioList = function ($attribute) use ($form, $model, $opciones) {
+                return $form->field($model, $attribute, ['template' => '{input}{error}'])->radioList(
+                    $opciones,
+                    [
+                        'item' => function ($index, $label, $name, $checked, $value) {
+                            $checkedAttr = $checked ? 'checked' : '';
+                            $labelFormatted = ucfirst($label); // Solo primera letra en mayúscula
+                            return "<label class='radio-inline-custom'>
+                                <input type='radio' name='{$name}' value='{$value}' {$checkedAttr}> 
+                                {$labelFormatted}
+                            </label>";
+                        },
+                    ]
+                );
+            };
+            ?>
+
             <div class="mb-4">
                 <label class="form-label fw-bold">Tiempo de espera</label>
-                <?= $form->field($model, 'pregunta1', ['template' => '{input}{error}'])->radioList($opciones) ?>
+                <p class="mb-1 text-muted"><?= Html::encode($model->getAttributeLabel('pregunta1')) ?></p>
+                <?= $renderRadioList('pregunta1') ?>
             </div>
 
             <div class="mb-4">
                 <label class="form-label fw-bold">Cuidado del vehículo</label>
-                <?= $form->field($model, 'pregunta2', ['template' => '{input}{error}'])->radioList($opciones) ?>
+                <p class="mb-1 text-muted"><?= Html::encode($model->getAttributeLabel('pregunta2')) ?></p>
+                <?= $renderRadioList('pregunta2') ?>
             </div>
 
             <div class="mb-4">
                 <label class="form-label fw-bold">Recomendación</label>
-                <?= $form->field($model, 'pregunta3', ['template' => '{input}{error}'])->radioList($opciones) ?>
+                <p class="mb-1 text-muted"><?= Html::encode($model->getAttributeLabel('pregunta3')) ?></p>
+                <?= $renderRadioList('pregunta3') ?>
             </div>
-
 
             <div class="d-grid">
                 <?= Html::submitButton('Enviar', ['class' => 'btn btn-success btn-lg rounded-pill']) ?>
@@ -55,4 +91,3 @@ $opciones = [
         </div>
     </div>
 </div>
-
