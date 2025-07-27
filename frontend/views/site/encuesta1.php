@@ -6,38 +6,58 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model common\models\EncuestaInicial */
 
-$this->title = 'Encuesta de Satisfaccion';
+$this->title = 'Encuesta de Satisfacción';
+
+// Íconos únicos (Font Awesome 5+)
 $opciones = [
-    1 => 'excelente',
-    2 => 'buena',
-    3 => 'normal',
-    4 => 'mala',
-    5 => 'muy mala',
+    1 => '<i class="fa fa-grin-beam text-success"></i>',   // Excelente
+    2 => '<i class="fa fa-smile text-primary"></i>',       // Buena
+    3 => '<i class="fa fa-meh text-warning"></i>',         // Normal
+    4 => '<i class="fa fa-frown text-danger"></i>',        // Mala
+    5 => '<i class="fa fa-angry text-danger"></i>',        // Muy mala
 ];
 
-// CSS para alinear los radios en escritorio y apilarlos en móviles
+// CSS adaptado
 $this->registerCss("
-.radio-inline-custom {
-    display: inline-flex;
+.radio-group-custom {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.radio-option {
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    margin-right: 16px;
-    font-weight: 500;
+    width: 50px;
 }
-.radio-inline-custom input[type=\"radio\"] {
-    margin-right: 6px;
+
+.radio-option i {
+    font-size: 1.6rem;
+    line-height: 1;
+    display: block;
+    text-align: center;
+    margin-bottom: 6px;
 }
-/* En pantallas pequeñas, cada opción en su propia línea */
-@media (max-width: 575.98px) {
-    .radio-inline-custom {
-        display: flex;
-        margin-bottom: 8px;
+
+.radio-option input[type='radio'] {
+    display: block;
+    margin: 0 auto;
+    transform: scale(1.1);
+}
+
+/* Alinear a la izquierda solo en pantallas grandes */
+@media (min-width: 768px) {
+    .radio-group-custom {
+        justify-content: flex-start;
     }
 }
 ");
 ?>
 
 <div class="container mt-5 mb-5 pt-3">
-
     <?php if (Yii::$app->session->hasFlash('error')): ?>
         <div class="alert alert-danger">
             <?= Yii::$app->session->getFlash('error') ?>
@@ -54,19 +74,19 @@ $this->registerCss("
             <?= $form->field($model, 'reserva_id')->hiddenInput()->label(false) ?>
 
             <?php
-            // función reutilizable
             $renderRadioList = function ($attribute) use ($form, $model, $opciones) {
                 return $form->field($model, $attribute, ['template' => '{input}{error}'])->radioList(
                     $opciones,
                     [
                         'item' => function ($index, $label, $name, $checked, $value) {
                             $checkedAttr = $checked ? 'checked' : '';
-                            $labelFormatted = ucfirst($label); // Solo primera letra en mayúscula
-                            return "<label class='radio-inline-custom'>
-                                <input type='radio' name='{$name}' value='{$value}' {$checkedAttr}> 
-                                {$labelFormatted}
-                            </label>";
+                            return "<div class='radio-option'>
+                                {$label}
+                                <input type='radio' name='{$name}' value='{$value}' {$checkedAttr}>
+                            </div>";
                         },
+                        'separator' => '',
+                        'class' => 'radio-group-custom'
                     ]
                 );
             };
@@ -74,19 +94,19 @@ $this->registerCss("
 
             <div class="mb-4">
                 <label class="form-label fw-bold">Tiempo de espera</label>
-                <p class="mb-1 text-muted"><?= Html::encode($model->getAttributeLabel('pregunta1')) ?></p>
+                <p class="mb-1 text-muted">¿Cómo calificarías la eficiencia del servicio de recogida y devolución de tu coche?</p>
                 <?= $renderRadioList('pregunta1') ?>
             </div>
 
             <div class="mb-4">
                 <label class="form-label fw-bold">Cuidado del vehículo</label>
-                <p class="mb-1 text-muted"><?= Html::encode($model->getAttributeLabel('pregunta2')) ?></p>
+                <p class="mb-1 text-muted">¿Consideras que su vehículo fue tratado con cuidado durante el tiempo que estuvo bajo custodia del servicio?</p>
                 <?= $renderRadioList('pregunta2') ?>
             </div>
 
             <div class="mb-4">
                 <label class="form-label fw-bold">Recomendación</label>
-                <p class="mb-1 text-muted"><?= Html::encode($model->getAttributeLabel('pregunta3')) ?></p>
+                <p class="mb-1 text-muted">¿Recomendarías nuestro servicio a otros clientes?</p>
                 <?= $renderRadioList('pregunta3') ?>
             </div>
 
