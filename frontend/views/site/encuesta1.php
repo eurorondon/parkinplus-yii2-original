@@ -8,11 +8,11 @@ use yii\widgets\ActiveForm;
 
 $this->title = 'Encuesta de Satisfaccion';
 $opciones = [
-    1 => 'excelente',
-    2 => 'buena',
-    3 => 'normal',
-    4 => 'mala',
-    5 => 'muy mala',
+    1 => '<i class="fa fa-smile-o text-success"></i>',
+    2 => '<i class="fa fa-smile-o text-primary"></i>',
+    3 => '<i class="fa fa-meh-o text-warning"></i>',
+    4 => '<i class="fa fa-frown-o text-danger"></i>',
+    5 => '<i class="fa fa-frown-o text-danger"></i>',
 ];
 
 // CSS para alinear los radios en escritorio y apilarlos en móviles
@@ -61,10 +61,9 @@ $this->registerCss("
                     [
                         'item' => function ($index, $label, $name, $checked, $value) {
                             $checkedAttr = $checked ? 'checked' : '';
-                            $labelFormatted = ucfirst($label); // Solo primera letra en mayúscula
                             return "<label class='radio-inline-custom'>
-                                <input type='radio' name='{$name}' value='{$value}' {$checkedAttr}> 
-                                {$labelFormatted}
+                                <input type='radio' name='{$name}' value='{$value}' {$checkedAttr}>
+                                {$label}
                             </label>";
                         },
                     ]
