@@ -8,13 +8,29 @@ use yii\widgets\ActiveForm;
 
 $this->title = 'Encuesta de Satisfacción';
 
-// Íconos únicos (Font Awesome 5+)
-$opciones = [
-    1 => '<i class="fa fa-grin-beam text-success"></i>',   // Excelente
-    2 => '<i class="fa fa-smile text-primary"></i>',       // Buena
-    3 => '<i class="fa fa-meh text-warning"></i>',         // Normal
-    4 => '<i class="fa fa-frown text-danger"></i>',        // Mala
-    5 => '<i class="fa fa-angry text-danger"></i>',        // Muy mala
+// Íconos únicos por pregunta (Font Awesome 5+)
+$opcionesPregunta1 = [
+    1 => '<i class="fa fa-grin-beam text-success"></i>',       // Excelente
+    2 => '<i class="fa fa-smile text-primary"></i>',           // Buena
+    3 => '<i class="fa fa-meh text-warning"></i>',             // Normal
+    4 => '<i class="fa fa-frown text-danger"></i>',            // Mala
+    5 => '<i class="fa fa-angry text-danger"></i>',            // Muy mala
+];
+
+$opcionesPregunta2 = [
+    1 => '<i class="fa fa-grin-hearts text-success"></i>',     // Excelente
+    2 => '<i class="fa fa-laugh text-primary"></i>',           // Buena
+    3 => '<i class="fa fa-meh-rolling-eyes text-warning"></i>',// Normal
+    4 => '<i class="fa fa-sad-tear text-danger"></i>',         // Mala
+    5 => '<i class="fa fa-dizzy text-danger"></i>',            // Muy mala
+];
+
+$opcionesPregunta3 = [
+    1 => '<i class="fa fa-grin-beam-sweat text-success"></i>', // Excelente
+    2 => '<i class="fa fa-grin-squint text-primary"></i>',     // Buena
+    3 => '<i class="fa fa-grin text-warning"></i>',            // Normal
+    4 => '<i class="fa fa-sad-cry text-danger"></i>',          // Mala
+    5 => '<i class="fa fa-tired text-danger"></i>',            // Muy mala
 ];
 
 // CSS adaptado
@@ -74,7 +90,7 @@ $this->registerCss("
             <?= $form->field($model, 'reserva_id')->hiddenInput()->label(false) ?>
 
             <?php
-            $renderRadioList = function ($attribute) use ($form, $model, $opciones) {
+            $renderRadioList = function ($attribute, $opciones) use ($form, $model) {
                 return $form->field($model, $attribute, ['template' => '{input}{error}'])->radioList(
                     $opciones,
                     [
@@ -95,19 +111,19 @@ $this->registerCss("
             <div class="mb-4">
                 <label class="form-label fw-bold">Tiempo de espera</label>
                 <p class="mb-1 text-muted">¿Cómo calificarías la eficiencia del servicio de recogida y devolución de tu coche?</p>
-                <?= $renderRadioList('pregunta1') ?>
+                <?= $renderRadioList('pregunta1', $opcionesPregunta1) ?>
             </div>
 
             <div class="mb-4">
                 <label class="form-label fw-bold">Cuidado del vehículo</label>
                 <p class="mb-1 text-muted">¿Consideras que su vehículo fue tratado con cuidado durante el tiempo que estuvo bajo custodia del servicio?</p>
-                <?= $renderRadioList('pregunta2') ?>
+                <?= $renderRadioList('pregunta2', $opcionesPregunta2) ?>
             </div>
 
             <div class="mb-4">
                 <label class="form-label fw-bold">Recomendación</label>
                 <p class="mb-1 text-muted">¿Recomendarías nuestro servicio a otros clientes?</p>
-                <?= $renderRadioList('pregunta3') ?>
+                <?= $renderRadioList('pregunta3', $opcionesPregunta3) ?>
             </div>
 
             <div class="d-grid">
