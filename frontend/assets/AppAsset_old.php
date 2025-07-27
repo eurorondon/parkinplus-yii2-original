@@ -20,7 +20,8 @@ class AppAsset extends AssetBundle
         'css/style.css',
         'css/tooltips.css',
         'vendor/boxicons/css/boxicons.min.css',
-        'vendor/bootstrap-icons/bootstrap-icons.css'
+        'vendor/bootstrap-icons/bootstrap-icons.css',
+        'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css'
     ];
     public $js = [
         'js/jquery.mask.js',
@@ -30,7 +31,6 @@ class AppAsset extends AssetBundle
     public $depends = [
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
-        '\rmrevin\yii\fontawesome\AssetBundle',
     ];
     
     public $jsOptions = [
