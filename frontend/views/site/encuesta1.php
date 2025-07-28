@@ -8,32 +8,14 @@ use yii\widgets\ActiveForm;
 
 $this->title = 'Encuesta de Satisfacción';
 
-// Íconos únicos por pregunta (Font Awesome 5+)
-$opcionesPregunta1 = [
-    1 => '<i class="fa fa-grin-beam text-success"></i>',       // Excelente
-    2 => '<i class="fa fa-smile text-primary"></i>',           // Buena
-    3 => '<i class="fa fa-meh text-warning"></i>',             // Normal
-    4 => '<i class="fa fa-frown text-danger"></i>',            // Mala
-    5 => '<i class="fa fa-angry text-danger"></i>',            // Muy mala
+$opciones = [
+    1 => '<i class="fa fa-grin-hearts text-success"></i>',
+    2 => '<i class="fa fa-grin-beam" style="color:#4CAF50"></i>',
+    3 => '<i class="fa fa-smile text-warning"></i>',
+    4 => '<i class="fa fa-frown" style="color:#ff8c00"></i>',
+    5 => '<i class="fa fa-angry text-danger"></i>',
 ];
 
-$opcionesPregunta2 = [
-    1 => '<i class="fa fa-grin-hearts text-success"></i>',     // Excelente
-    2 => '<i class="fa fa-laugh text-primary"></i>',           // Buena
-    3 => '<i class="fa fa-meh-rolling-eyes text-warning"></i>',// Normal
-    4 => '<i class="fa fa-sad-tear text-danger"></i>',         // Mala
-    5 => '<i class="fa fa-dizzy text-danger"></i>',            // Muy mala
-];
-
-$opcionesPregunta3 = [
-    1 => '<i class="fa fa-grin-beam-sweat text-success"></i>', // Excelente
-    2 => '<i class="fa fa-grin-squint text-primary"></i>',     // Buena
-    3 => '<i class="fa fa-grin text-warning"></i>',            // Normal
-    4 => '<i class="fa fa-sad-cry text-danger"></i>',          // Mala
-    5 => '<i class="fa fa-tired text-danger"></i>',            // Muy mala
-];
-
-// CSS adaptado
 $this->registerCss("
 .radio-group-custom {
     display: flex;
@@ -50,6 +32,13 @@ $this->registerCss("
     width: 50px;
 }
 
+.radio-option label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+
 .radio-option i {
     font-size: 1.6rem;
     line-height: 1;
@@ -64,13 +53,24 @@ $this->registerCss("
     transform: scale(1.1);
 }
 
-/* Alinear a la izquierda solo en pantallas grandes */
+/* Tamaño más grande en móvil */
+@media (max-width: 767.98px) {
+    .radio-option i {
+        font-size: 2.2rem;
+    }
+}
+
+/* Escritorio */
 @media (min-width: 768px) {
     .radio-group-custom {
         justify-content: flex-start;
     }
+    .radio-option i {
+        font-size: 2rem;
+    }
 }
 ");
+
 ?>
 
 <div class="container mt-5 mb-5 pt-3">
@@ -90,15 +90,19 @@ $this->registerCss("
             <?= $form->field($model, 'reserva_id')->hiddenInput()->label(false) ?>
 
             <?php
-            $renderRadioList = function ($attribute, $opciones) use ($form, $model) {
+            $renderRadioList = function ($attribute) use ($form, $model, $opciones) {
                 return $form->field($model, $attribute, ['template' => '{input}{error}'])->radioList(
                     $opciones,
                     [
-                        'item' => function ($index, $label, $name, $checked, $value) {
+                        'item' => function ($index, $label, $name, $checked, $value) use ($attribute) {
+                            $id = $attribute . '-' . $value;
                             $checkedAttr = $checked ? 'checked' : '';
-                            return "<div class='radio-option'>
-                                {$label}
-                                <input type='radio' name='{$name}' value='{$value}' {$checkedAttr}>
+                            return "
+                            <div class='radio-option'>
+                                <label for='{$id}'>
+                                    {$label}
+                                    <input type='radio' id='{$id}' name='{$name}' value='{$value}' {$checkedAttr}>
+                                </label>
                             </div>";
                         },
                         'separator' => '',
@@ -111,19 +115,19 @@ $this->registerCss("
             <div class="mb-4">
                 <label class="form-label fw-bold">Tiempo de espera</label>
                 <p class="mb-1 text-muted">¿Cómo calificarías la eficiencia del servicio de recogida y devolución de tu coche?</p>
-                <?= $renderRadioList('pregunta1', $opcionesPregunta1) ?>
+                <?= $renderRadioList('pregunta1') ?>
             </div>
 
             <div class="mb-4">
                 <label class="form-label fw-bold">Cuidado del vehículo</label>
                 <p class="mb-1 text-muted">¿Consideras que su vehículo fue tratado con cuidado durante el tiempo que estuvo bajo custodia del servicio?</p>
-                <?= $renderRadioList('pregunta2', $opcionesPregunta2) ?>
+                <?= $renderRadioList('pregunta2') ?>
             </div>
 
             <div class="mb-4">
                 <label class="form-label fw-bold">Recomendación</label>
                 <p class="mb-1 text-muted">¿Recomendarías nuestro servicio a otros clientes?</p>
-                <?= $renderRadioList('pregunta3', $opcionesPregunta3) ?>
+                <?= $renderRadioList('pregunta3') ?>
             </div>
 
             <div class="d-grid">
