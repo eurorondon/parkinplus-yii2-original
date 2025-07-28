@@ -9,12 +9,13 @@ use yii\widgets\ActiveForm;
 $this->title = 'Encuesta de Satisfacción';
 
 $opciones = [
-    1 => '<i class="fa fa-grin-hearts text-success"></i>',
-    2 => '<i class="fa fa-grin-beam" style="color:#4CAF50"></i>',
-    3 => '<i class="fa fa-smile text-warning"></i>',
-    4 => '<i class="fa fa-frown" style="color:#ff8c00"></i>',
     5 => '<i class="fa fa-angry text-danger"></i>',
+    4 => '<i class="fa fa-frown" style="color:#ff8c00"></i>',
+    3 => '<i class="fa fa-smile text-warning"></i>',
+    2 => '<i class="fa fa-grin-beam" style="color:#4CAF50"></i>',
+    1 => '<i class="fa fa-grin-hearts text-success"></i>',
 ];
+
 
 $this->registerCss("
 .radio-group-custom {
