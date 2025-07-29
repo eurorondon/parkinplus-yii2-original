@@ -628,6 +628,17 @@ $this->params['breadcrumbs'][] = 'Gestión de Reservas';
                       },
                     ],
                     [
+                      'attribute' => 'evaluacion_enviada',
+                      'label' => 'Evaluación',
+                      'format' => 'raw',
+                      'contentOptions' => ['style' => 'text-align:center; vertical-align:middle'],
+                      'headerOptions' => ['style' => 'text-align:center !important'],
+                      'width' => '70px',
+                      'value' => function ($model) {
+                        return $model->evaluacion_enviada ? Html::tag('label', 'SI', ['class' => 'label label-success lbl']) : Html::tag('label', 'NO', ['class' => 'label label-danger lbl']);
+                      },
+                    ],
+                    [
                       'attribute' => 'canceled_by',
                       'format' => 'raw',
                       'contentOptions' => ['style' => 'text-align:center; vertical-align:middle'],
