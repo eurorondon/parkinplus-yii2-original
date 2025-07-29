@@ -1166,18 +1166,7 @@ class SiteController extends Controller
 
 
 
-            if (empty($modelV->matricula)) {
-                $model->id_coche = 39780;
-            } else {
-                $v = Coches::find()->where(['matricula' => $modelV->matricula])->one();
-
-                if (is_null($v)) {
-                    $modelV->save();
-                    $model->id_coche = $modelV->id;
-                } else {
-                    $model->id_coche = $v->id;
-                }
-            }
+            $model->id_coche = $this->resolveCarId($modelV);
 
             foreach ($servicios as $ser) {
 
@@ -1699,18 +1688,7 @@ class SiteController extends Controller
 
 
 
-            if (empty($modelV->matricula)) {
-                $model->id_coche = 39780;
-            } else {
-                $v = Coches::find()->where(['matricula' => $modelV->matricula])->one();
-
-                if (is_null($v)) {
-                    $modelV->save();
-                    $model->id_coche = $modelV->id;
-                } else {
-                    $model->id_coche = $v->id;
-                }
-            }
+            $model->id_coche = $this->resolveCarId($modelV);
 
             foreach ($servicios as $ser) {
 
@@ -2276,14 +2254,7 @@ class SiteController extends Controller
                 $modelV->created_by = $u->id;
             }
 
-            if (empty($modelV->matricula)) {
-                $model->id_coche = 38536;
-            } else if ($v == null) {
-                $modelV->save();
-                $model->id_coche = $modelV->id;
-            } else {
-                $model->id_coche = $v->id;
-            }
+            $model->id_coche = $this->resolveCarId($modelV);
 
             $newExtras = [];
             foreach ($servicios as $ser) {
@@ -3137,6 +3108,36 @@ class SiteController extends Controller
             ->setTo($user->email)
             ->setSubject('Registro de Cuenta')
             ->send();
+    }
+
+    /**
+     * Resolves the car id associated with the given Coches model.
+     * If the license plate is empty, assigns 'N/D' and saves the model.
+     * If a car with the same plate exists, its id is returned; otherwise the
+     * provided model is saved and its id returned.
+     *
+     * @param Coches $modelV
+     * @return int|null The resolved car id or null on failure
+     */
+    private function resolveCarId($modelV)
+    {
+        if (empty($modelV->matricula)) {
+            $modelV->matricula = 'N/D';
+            if ($modelV->save()) {
+                return $modelV->id;
+            }
+            return null;
+        }
+
+        $v = Coches::find()->where(['matricula' => $modelV->matricula])->one();
+        if ($v === null) {
+            if ($modelV->save()) {
+                return $modelV->id;
+            }
+            return null;
+        }
+
+        return $v->id;
     }
 
     public function actionReserva()
