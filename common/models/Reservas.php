@@ -48,6 +48,7 @@ use yii\db\ActiveRecord;
  * @property string $updated_at
  * @property int $updated_by
  * @property int $actualizada
+ * @property int $evaluacion_enviada
  *
  * @property Clientes $cliente
  * @property Coches $coche
@@ -119,7 +120,7 @@ class Reservas extends \yii\db\ActiveRecord
             [['id_cliente', 'costo_servicios', 'costo_servicios_extra', 'monto_factura', 'monto_impuestos', 'monto_total'], 'required'],
             [['fecha_salida'], 'validateFechaSalida'],
             [['cortesia', 'techado', 'fecha_entrada', 'hora_entrada', 'fecha_salida', 'hora_salida', 'created_at', 'updated_at'], 'safe'],
-            [['id_cliente',  'factura_equipaje', 'factura', 'id_tipo_pago', 'condiciones', 'medio_reserva', 'estatus', 'created_by', 'updated_by', 'canceled_by', 'actualizada'], 'integer'],
+            [['id_cliente',  'factura_equipaje', 'factura', 'id_tipo_pago', 'condiciones', 'medio_reserva', 'estatus', 'created_by', 'updated_by', 'canceled_by', 'actualizada', 'evaluacion_enviada'], 'integer'],
             [['nro_reserva', 'costo_servicios', 'costo_servicios_extra', 'monto_factura', 'monto_impuestos', 'monto_total', 'porcentaje_cupo', 'monto_des'], 'number'],
             [['terminal_entrada', 'terminal_salida', 'nro_vuelo_regreso', 'ciudad_procedencia', 'observaciones', 'razon_social', 'direccion', 'ciudad', 'provincia', 'pais', 'cupon', 'agencia', 'cod_valid'], 'string', 'max' => 255],
             [['nif'], 'string', 'max' => 100],
@@ -177,6 +178,7 @@ class Reservas extends \yii\db\ActiveRecord
             'updated_by' => 'Updated By',
             'actualizada' => 'Actualizada',
             'canceled_by' => 'Cancelada Por',
+            'evaluacion_enviada' => 'Evaluación enviada',
             'correo' => 'Correo Electrónico',
             'tipo_documento' => 'Tipo de Documento',
             'nro_documento' => 'N° de Documento',
