@@ -50,7 +50,7 @@ if ($reserva->nro_vuelo_regreso == null) {
     $vuelo = $reserva->nro_vuelo_regreso;
 }
 
-$this->title = Yii::$app->name.' | Reserva Procesada';
+$this->title = Yii::$app->name . ' | Reserva Procesada';
 ?>
 
 <div class="site-reserva-procesada">
@@ -59,15 +59,15 @@ $this->title = Yii::$app->name.' | Reserva Procesada';
             <div class="col-lg-12">
                 <div class="row">
                     <div class="col-lg-2">
-                        <?= Html::img('@web/images/succes.gif', ['class' => 'img img-responsive img-informa']);?>
+                        <?= Html::img('@web/images/succes.gif', ['class' => 'img img-responsive img-informa']); ?>
                     </div>
-                    <div class="col-lg-10 col-md-10 col-xs-12">      
+                    <div class="col-lg-10 col-md-10 col-xs-12">
                         Su reserva ha sido procesada de manera exitosa. Revise su correo electrónico para mayor información
                         <p class="parrafo-m" style="margin-top: 5px">Si no recibe nuestro correo revise su carpeta de <b>SPAM</b> o comuniquesé con nosotros:</p>
                         <p align="right" style="margin-top: -35px; margin-right: 120px;"><a class="reborde phone-min" style="font-size: 0.9em;" href="tel:+34912147984"> +34 603 28 48 00</a></p>
                     </div>
                 </div>
-                
+
             </div>
         </div>
 
@@ -94,7 +94,7 @@ $this->title = Yii::$app->name.' | Reserva Procesada';
                                     </div>
                                     <div class="col-lg-12">
                                         <?= $fecha_e ?> / <?= $hora_e ?>
-                                    </div>                                    
+                                    </div>
                                 </div>
                                 <div class="row mt-20">
                                     <div class="col-lg-12">
@@ -102,7 +102,7 @@ $this->title = Yii::$app->name.' | Reserva Procesada';
                                     </div>
                                     <div class="col-lg-12">
                                         <?= $fecha_s ?> / <?= $hora_s ?>
-                                    </div>                                    
+                                    </div>
                                 </div>
 
                                 <div class="row mt-20">
@@ -111,8 +111,8 @@ $this->title = Yii::$app->name.' | Reserva Procesada';
                                     </div>
                                     <div class="col-lg-12">
                                         <?= $reserva->terminal_entrada ?>
-                                    </div>                                    
-                                </div> 
+                                    </div>
+                                </div>
 
                                 <div class="row mt-20">
                                     <div class="col-lg-12">
@@ -120,7 +120,7 @@ $this->title = Yii::$app->name.' | Reserva Procesada';
                                     </div>
                                     <div class="col-lg-12">
                                         <?= $reserva->terminal_salida ?>
-                                    </div>                                    
+                                    </div>
                                 </div>
 
 
@@ -131,7 +131,7 @@ $this->title = Yii::$app->name.' | Reserva Procesada';
                                     </div>
                                     <div class="col-lg-12">
                                         <?= $ciudad ?>
-                                    </div>                                    
+                                    </div>
                                 </div>
                             </div>
 
@@ -148,7 +148,7 @@ $this->title = Yii::$app->name.' | Reserva Procesada';
                                     </div>
                                     <div class="col-lg-12">
                                         <?= $reserva->cliente->nombre_completo ?>
-                                    </div>                                    
+                                    </div>
                                 </div>
 
                                 <div class="row mt-20">
@@ -157,7 +157,7 @@ $this->title = Yii::$app->name.' | Reserva Procesada';
                                     </div>
                                     <div class="col-lg-12">
                                         <?= $reserva->cliente->movil ?>
-                                    </div>                                    
+                                    </div>
                                 </div>
                                 <div class="row mt-20">
                                     <div class="col-lg-12">
@@ -165,8 +165,8 @@ $this->title = Yii::$app->name.' | Reserva Procesada';
                                     </div>
                                     <div class="col-lg-12">
                                         <?= $reserva->cliente->correo ?>
-                                    </div>                                    
-                                </div>                                
+                                    </div>
+                                </div>
 
                                 <div class="row mt-30">
                                     <div class="col-lg-12 col-md-12 col-xs-12">
@@ -185,12 +185,18 @@ $this->title = Yii::$app->name.' | Reserva Procesada';
 
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-xs-8">
-                                        <?= !empty($reserva->coche->marca) ? $reserva->coche->marca : 'N/D' ?>
+                                        <?= !empty($reserva->coche->matricula) ? $reserva->coche->matricula : 'N/D' ?>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-xs-4">
-                                        <?= !empty($reserva->coche->marca) ? $reserva->coche->marca : 'N/D' ?>
-                                    </div>                                    
+                                        <?php
+                                        $marca = trim($reserva->coche->marca ?? '');
+                                        $modelo = trim($reserva->coche->modelo ?? '');
+                                        echo (!empty($marca) || !empty($modelo)) ? "$marca $modelo" : 'N/D';
+                                        ?>
+                                    </div>
                                 </div>
+
+
                             </div>
 
                             <div class="col-lg-4 col-md-4 col-xs-12">
@@ -201,17 +207,17 @@ $this->title = Yii::$app->name.' | Reserva Procesada';
                                 </div>
 
                                 <?php
-                                    $total = 0;
-foreach ($service as $s) {
-    $datos = Servicios::find()->where(['id' => $s->id_servicio])->one();
-    $total = $total + $s->precio_total;
-    ?>                                
+                                $total = 0;
+                                foreach ($service as $s) {
+                                    $datos = Servicios::find()->where(['id' => $s->id_servicio])->one();
+                                    $total = $total + $s->precio_total;
+                                ?>
 
-                                <div class="row mt-20">
-                                    <div class="col-lg-12">
-                                        - <?= $datos->nombre_servicio ?>
-                                    </div>                                    
-                                </div>
+                                    <div class="row mt-20">
+                                        <div class="col-lg-12">
+                                            - <?= $datos->nombre_servicio ?>
+                                        </div>
+                                    </div>
 
                                 <?php } ?>
 
@@ -222,11 +228,11 @@ foreach ($service as $s) {
 
                                     <div class="col-lg-6 col-md-6 col-xs-8">
                                         <div class="subtitulo-reserva" style="margin-top: 0;">N° de Reserva</div>
-                                    </div> 
+                                    </div>
 
                                     <div class="col-lg-6 col-md-6 col-xs-4">
                                         <div class="subtitulo-reserva" style="margin-top: 0;">Precio del Servicio</div>
-                                    </div>                                     
+                                    </div>
                                     <div class="col-lg-6 col-md-6 col-xs-8">
                                         <div class="num-reservation"><?= $reserva->nro_reserva ?></div>
                                     </div>
@@ -237,12 +243,12 @@ foreach ($service as $s) {
                                 <div class="row mt-20">
                                     <div class="col-lg-12 col-md-12 col-xs-8">
                                         <div class="subtitulo-reserva" style="margin-top: 0;">Forma de Pago</div>
-                                    </div>                                  
+                                    </div>
                                     <div class="col-lg-6 col-md-6 col-xs-4">
                                         <div class="mt-20"><b><?= $reserva->tipoPago->descripcion ?></b></div>
-                                    </div>                                                         
-                                </div>                               
-                            </div>                            
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -250,8 +256,8 @@ foreach ($service as $s) {
                 <div align="right" style="margin-top: 30px;">
                     <?= Html::a('Volver a la página de Inicio', ['site/index'], ['class' => 'btn btn-success btn-big', 'style' => ['font-size' => '0.85em !important', 'margin-top' => '10px', 'margin-right' => '20px']]) ?>
 
-                    <?= Html::a('Descargar la Reserva en PDF', '@web/pdf/comprobante_'.$reserva->nro_reserva.'.pdf', ['target' => '_blank', 'class' => 'btn btn-success']) ?>
-                       
+                    <?= Html::a('Descargar la Reserva en PDF', '@web/pdf/comprobante_' . $reserva->nro_reserva . '.pdf', ['target' => '_blank', 'class' => 'btn btn-success']) ?>
+
                 </div>
 
             </div>
@@ -263,9 +269,9 @@ foreach ($service as $s) {
 
 
 
-                
+
             </div>
-        </div>        
+        </div>
 
     </div>
 
@@ -275,13 +281,11 @@ foreach ($service as $s) {
 
 
 <script>
-
     window.onload = function() {
         setTimeout("goTo('index')", 60000000);
-    }    
+    }
+
     function goTo(url) {
         window.location = url;
     }
-
-    
 </script>
