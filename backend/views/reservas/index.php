@@ -63,6 +63,17 @@ echo "<div id='modalO'></div>";
 Modal::end();
 
 Modal::begin([
+  'header' => 'Sugerencias de Clientes',
+  'id' => 'sugerencias',
+  'size' => 'modal-lg',
+
+]);
+
+echo "<div id='modalSugerencias'></div>";
+
+Modal::end();
+
+Modal::begin([
   'header' => 'CONFIRMACIÓN DE RECEPCIÓN - COCHE CLIENTE',
   'id' => 'checkin',
   'size' => 'modal-md',
@@ -384,6 +395,16 @@ $this->params['breadcrumbs'][] = 'Gestión de Reservas';
               'id' => 'BtnModalO',
               'data-toggle' => 'modal',
               'data-target' => '#valoracion',
+            ]) ?>
+          </div>
+          <div class="col-lg-2 col-xs-6">
+            <?= Html::button('Ver<br>Sugerencias', [
+              'value' => Yii::$app->urlManager->createUrl('/reservas/sugerencias'),
+              'class' => 'btn btn-full',
+              'style' => ['margin-right' => '50px'],
+              'id' => 'BtnModalSugerencias',
+              'data-toggle' => 'modal',
+              'data-target' => '#sugerencias',
             ]) ?>
           </div>
           <div class="col-lg-2 col-xs-6">
@@ -796,15 +817,23 @@ $this->registerJs("
       return false;
     }); 
 
-    $('#BtnModalO').click(function(e){    
+    $('#BtnModalO').click(function(e){
       e.preventDefault();
       $('#valoracion').modal('show')
       .find('#modalO')
       .load($(this).attr('value'));
       return false;
-    });          
+    });
 
-    $('#BtnModalCheck').click(function(e){    
+    $('#BtnModalSugerencias').click(function(e){
+      e.preventDefault();
+      $('#sugerencias').modal('show')
+      .find('#modalSugerencias')
+      .load($(this).attr('value'));
+      return false;
+    });
+
+    $('#BtnModalCheck').click(function(e){
       e.preventDefault();
       $('#checkin').modal('show')
       .find('#modalCheckin')
