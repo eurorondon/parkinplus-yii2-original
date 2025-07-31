@@ -20,6 +20,7 @@ use common\models\ReservasServicios;
 use common\models\ReservasSearch;
 use common\models\UserAfiliados;
 use common\models\PrecioTemporada;
+use common\models\EncuestaInicialSearch;
 use yii\helpers\BaseArrayHelper;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
@@ -2309,6 +2310,17 @@ class ReservasController extends Controller
 
         return $this->renderAjax('checkin', [
             'listaReservas' => $listaReservas,
+        ]);
+    }
+
+    public function actionSugerencias()
+    {
+        $searchModel = new EncuestaInicialSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->renderAjax('sugerencias', [
+            'searchModel'  => $searchModel,
+            'dataProvider' => $dataProvider,
         ]);
     }
 
