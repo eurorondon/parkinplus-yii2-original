@@ -351,67 +351,67 @@ $this->params['breadcrumbs'][] = 'Gestión de Reservas';
       <div class="panel-body gs1 pad-mob">
         <div class="row">
 
-          <div class="col-lg-2 col-xs-6">
+          <div class="col-lg-1 col-md-2 col-xs-6">
             <?= Html::a('Planning de<br>Reservas', ['/reservas/planning'], [
               'class' => 'btn btn-full',
-              'style' => ['margin-right' => '50px'],
+              'style' => 'margin-right: 10px; width: 90px;',
             ]) ?>
           </div>
-          <div class="col-lg-2 col-xs-6">
+          <div class="col-lg-1 col-md-2 col-xs-6">
             <?= Html::button('Agregar<br>Reserva', [
               'value' => Yii::$app->urlManager->createUrl('/reservas/fechas'),
               'class' => 'btn btn-full',
-              'style' => ['margin-right' => '50px'],
+              'style' => 'margin-right: 10px; width: 90px;',
               'id' => 'BtnModalId',
               'data-toggle' => 'modal',
               'data-target' => '#fecha_reserva',
             ]) ?>
           </div>
-          <div class="col-lg-2 col-xs-6">
+          <div class="col-lg-1 col-md-2 col-xs-6">
             <?= Html::button('Registrar<br>Descuento', [
               'value' => Yii::$app->urlManager->createUrl('/reservas/descuento'),
               'class' => 'btn btn-full',
-              'style' => ['margin-right' => '50px'],
+              'style' => 'margin-right: 10px; width: 90px;',
               'id' => 'BtnModalD',
               'data-toggle' => 'modal',
               'data-target' => '#descuento',
             ]) ?>
           </div>
-          <div class="col-lg-2 col-xs-6">
+          <div class="col-lg-1 col-md-2 col-xs-6">
             <?= Html::button('Estado de<br>Reserva', [
               'value' => Yii::$app->urlManager->createUrl('/reservas/estatus'),
               'class' => 'btn btn-full',
-              'style' => ['margin-right' => '50px'],
+              'style' => 'margin-right: 10px; width: 90px;',
               'id' => 'BtnModalCE',
               'data-toggle' => 'modal',
               'data-target' => '#cambiar_estado',
             ]) ?>
           </div>
-          <div class="col-lg-2 col-xs-6">
+          <div class="col-lg-1 col-md-2 col-xs-6">
             <?= Html::button('Dános tu<br>Opinión', [
               'value' => Yii::$app->urlManager->createUrl('/reservas/valoracion'),
               'class' => 'btn btn-full',
-              'style' => ['margin-right' => '50px'],
+              'style' => 'margin-right: 10px; width: 90px;',
               'id' => 'BtnModalO',
               'data-toggle' => 'modal',
               'data-target' => '#valoracion',
             ]) ?>
           </div>
-          <div class="col-lg-2 col-xs-6">
+          <div class="col-lg-1 col-md-2 col-xs-6">
             <?= Html::button('Ver<br>Sugerencias', [
               'value' => Yii::$app->urlManager->createUrl('/reservas/sugerencias'),
               'class' => 'btn btn-full',
-              'style' => ['margin-right' => '50px'],
+              'style' => 'margin-right: 10px; width: 90px;',
               'id' => 'BtnModalSugerencias',
               'data-toggle' => 'modal',
               'data-target' => '#sugerencias',
             ]) ?>
           </div>
-          <div class="col-lg-2 col-xs-6">
+          <div class="col-lg-1 col-md-2 col-xs-6">
             <?= Html::button('Check<br>In', [
               'value' => Yii::$app->urlManager->createUrl('/reservas/checkin'),
               'class' => 'btn btn-full',
-              'style' => ['margin-right' => '50px'],
+              'style' => 'margin-right: 10px; width: 90px;',
               'id' => 'BtnModalCheck',
               'data-toggle' => 'modal',
               'data-target' => '#checkin',
