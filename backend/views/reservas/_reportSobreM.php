@@ -36,6 +36,9 @@ for ($i = 0; $i < count($model); $i++) {
 	if ($model[$i]->medio_reserva === 4) {
 		$medio[$i] = 'afiliado.png';
 	}
+	if ($model[$i]->medio_reserva === 5) {
+		$medio[$i] = 'organic.png';
+	}
 }
 
 ?>
@@ -59,7 +62,7 @@ for ($i = 0; $i < count($model); $i++) { ?>
 				<?= Html::img('@web/images/techado.png', ['style' => ['width' => '25px']]); ?>
 			</div>
 
-		<?php }
+	<?php }
 	}
 	?>
 
@@ -174,12 +177,12 @@ for ($i = 0; $i < count($model); $i++) { ?>
 
 			if ($servicios[$i][$l]->servicios->fijo == 2) {
 				$c++;
-				?>
+		?>
 				<div style="margin-bottom: 5px; text-transform: uppercase; font-size: 10px;">
 					<?= $servicios[$i][$l]->servicios->nombre_servicio ?>
 				</div>
 
-			<?php }
+		<?php }
 		}
 		?>
 
