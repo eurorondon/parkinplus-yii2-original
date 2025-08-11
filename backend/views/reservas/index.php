@@ -538,6 +538,9 @@ $this->params['breadcrumbs'][] = 'Gestión de Reservas';
                         if ($model->medio_reserva === 4) {
                           return Html::tag('span', '', ['style' => ['color' => '#286090'], 'class' => 'glyphicon glyphicon-education']);
                         }
+                        if ($model->medio_reserva === 5) {
+                          return Html::tag('span', '', ['style' => ['color' => 'green'], 'class' => 'glyphicon glyphicon-link']);
+                        }
                       },
                     ],
 
