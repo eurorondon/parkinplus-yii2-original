@@ -1748,7 +1748,7 @@ class SiteController extends Controller
             $fecha_creacion = date('Y-m-d H:i:s');
             $model->created_at = $fecha_creacion;
             $model->updated_at = $fecha_creacion;
-            $model->medio_reserva = 3;
+            $model->medio_reserva = 5;
 
 
             $model->save();
@@ -1784,7 +1784,7 @@ class SiteController extends Controller
                 $fecha_creacion = date('Y-m-d H:i:s');
                 $model->created_at = $fecha_creacion;
                 $model->updated_at = $fecha_creacion;
-                $model->medio_reserva = 3;
+                $model->medio_reserva = 5;
 
                 $model->save();
 
