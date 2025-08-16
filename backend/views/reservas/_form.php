@@ -629,7 +629,14 @@ $tipo_documento = [
                                             <?= $form->field($model, 'total_seguro', [
                                                 'template' => '<div class="input-group costos-facturas">{input}
                             <span class="input-group-addon eu">€</span></div>{error}{hint}'
-                                            ])->textInput(['id' => 'total_techado', 'readonly' => true, 'class' => 'form-control cantidad', 'name' => 'total_techado', 'value' => $seguro[1]->costo]) ?>
+                                            ])->textInput([
+                                                'id' => 'total_techado',
+                                                'readonly' => true,
+                                                'class' => 'form-control cantidad',
+                                                'name' => 'total_techado',
+                                                'value' => $sel_techado ? $precioTechado : $seguro[1]->costo,
+                                                'disabled' => $sel_techado ? false : true
+                                            ]) ?>
                                         </div>
                                     </div>
 
@@ -773,18 +780,20 @@ $tipo_documento = [
 
 
 <?php
-$this->registerJs(" 
+$this->registerJs("
 
     $(document).ready(function() {
-    
+
       techa = $('#techa').val();
       if (techa == '1') {
-        $('#reservas-techado').click();                
+        $('#reservas-techado').prop('checked', true);
+        $('#total_techado').prop('disabled', false);
+        calcular_monto_total();
       } else {
         $('#total_techado').prop('disabled',true);
-      } 
-      
-      $('.servicios').change();                  
+      }
+
+      $('.servicios').change();
 
       precio_dia = $('#precio_dia').val();
       cant = $('#cant_basico').val();

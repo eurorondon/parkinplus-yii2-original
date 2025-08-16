@@ -1865,6 +1865,8 @@ class ReservasController extends Controller
             }
         }
 
+        $precioTechado = $seguro_sel ? $seguro_sel->precio_total : 0;
+
         $query = new Query();
         $query->select(
             [
@@ -1954,6 +1956,7 @@ class ReservasController extends Controller
 
             $model->save();
 
+            $sel_techado = $model->techado;
 
             if ($_POST["cambiar_costo_servicio"] == 1) {
                 $servicioP = ReservasServicios::find()
@@ -2010,7 +2013,7 @@ class ReservasController extends Controller
                     ->where(['id_reserva' => $model->nro_reserva])
                     ->andWhere(['id_servicio' => $idtechado])
                     ->one();
-                if ($buscaRS) {
+                if (!$sel_techado && $buscaRS) {
                     $buscaRS->delete();
                 }
             }
@@ -2138,6 +2141,7 @@ class ReservasController extends Controller
             'seleccionados' => $seleccionados,
             'descuento' => $descuento,
             'sel_techado' => $sel_techado,
+            'precioTechado' => $precioTechado,
             'nocturno' => $extraNocturno,
             'precio_dia' => $precio_dia->valor_numerico
         ]);
