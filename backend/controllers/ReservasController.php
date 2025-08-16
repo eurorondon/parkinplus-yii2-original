@@ -1837,11 +1837,24 @@ class ReservasController extends Controller
         }
 
         $seguro = Servicios::find()->where(['estatus' => '1'])->andWhere(['fijo' => '1'])->all();
-        $idtechado = $seguro[2]->id;
+        $servicioTechado = Servicios::find()
+            ->where(['estatus' => '1', 'fijo' => '1'])
+            ->andWhere(['like', 'nombre_servicio', 'techado'])
+            ->one();
+        $idtechado = $servicioTechado ? $servicioTechado->id : null;
+        if ($idtechado === null) {
+            Yii::warning('Servicio "techado" no encontrado.', __METHOD__);
+        }
 
 
 
-        $seguro_sel = ReservasServicios::find()->where(['id_reserva' => $model->nro_reserva])->andWhere(['id_servicio' => $idtechado])->one();
+        $seguro_sel = null;
+        if ($idtechado !== null) {
+            $seguro_sel = ReservasServicios::find()
+                ->where(['id_reserva' => $model->nro_reserva])
+                ->andWhere(['id_servicio' => $idtechado])
+                ->one();
+        }
 
         $sel_techado = 0;
         if ($seguro_sel != null) {
@@ -1980,7 +1993,7 @@ class ReservasController extends Controller
                 }
             }
 
-            if (isset($_POST['total_techado'])) {
+            if (isset($_POST['total_techado']) && $idtechado !== null) {
                 $total_techado = $_POST['total_techado'];
                 $modelR = new ReservasServicios();
                 $modelR->id_reserva = $model->nro_reserva;
@@ -1990,8 +2003,13 @@ class ReservasController extends Controller
                 $modelR->precio_total = $total_techado;
                 $modelR->tipo_servicio = 1;
                 $modelR->save();
-            } else {
-                $buscaRS = ReservasServicios::find()->where(['id_reserva' => $model->nro_reserva])->andWhere(['id_servicio' => $idtechado])->one();
+            } elseif (isset($_POST['total_techado']) && $idtechado === null) {
+                Yii::error('No se pudo guardar ReservasServicios: servicio "techado" no encontrado.', __METHOD__);
+            } elseif ($idtechado !== null) {
+                $buscaRS = ReservasServicios::find()
+                    ->where(['id_reserva' => $model->nro_reserva])
+                    ->andWhere(['id_servicio' => $idtechado])
+                    ->one();
                 if ($buscaRS) {
                     $buscaRS->delete();
                 }
