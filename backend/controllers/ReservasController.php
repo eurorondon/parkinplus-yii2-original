@@ -1589,15 +1589,15 @@ class ReservasController extends Controller
                     $modelR->save();
                 }
 
-                if ($model->cortesia == '1') {
+                if (isset($_POST['total_techado'])) {
 
                     if ($seguro[1]->fijo == 1) {
                         $modelR = new ReservasServicios();
                         $modelR->id_reserva = $num_reserva;
                         $modelR->id_servicio = $seguro[1]->id;
-                        $modelR->cantidad = $_POST['cant_seguro'];
-                        $modelR->precio_unitario = $seguro[1]->costo;
-                        $modelR->precio_total = $seguro[1]->costo;
+                        $modelR->cantidad = 1;
+                        $modelR->precio_unitario = $_POST['total_techado'];
+                        $modelR->precio_total = $_POST['total_techado'];
                         $modelR->tipo_servicio = 1;
                         $modelR->save();
                     }
