@@ -1084,8 +1084,20 @@ class SiteController extends Controller
 
             //Eliminando Lavado cortesia si existe lavado completo
 
-            if (($_POST['cantidad2'] > 0 && $_POST['cantidad7'] > 0) || ($_POST['cantidad1'] > 0 && $_POST['cantidad7'] > 0)) {
-                unset($servicios[3]);
+            if (
+                $_POST['cantidad7'] > 0 &&
+                (
+                    $_POST['cantidad1'] > 0 ||
+                    $_POST['cantidad2'] > 0 ||
+                    $_POST['cantidad3'] > 0 ||
+                    $_POST['cantidad8'] > 0
+                )
+            ) {
+                foreach ($servicios as $key => $ser) {
+                    if ($ser == 7) {
+                        unset($servicios[$key]);
+                    }
+                }
             }
 
             $num_reserva = substr(strtotime(date('Y-m-d H:i:s')), 2, 10);
@@ -1606,8 +1618,20 @@ class SiteController extends Controller
 
             //Eliminando Lavado cortesia si existe lavado completo
 
-            if (($_POST['cantidad2'] > 0 && $_POST['cantidad7'] > 0) || ($_POST['cantidad1'] > 0 && $_POST['cantidad7'] > 0)) {
-                unset($servicios[3]);
+            if (
+                $_POST['cantidad7'] > 0 &&
+                (
+                    $_POST['cantidad1'] > 0 ||
+                    $_POST['cantidad2'] > 0 ||
+                    $_POST['cantidad3'] > 0 ||
+                    $_POST['cantidad8'] > 0
+                )
+            ) {
+                foreach ($servicios as $key => $ser) {
+                    if ($ser == 7) {
+                        unset($servicios[$key]);
+                    }
+                }
             }
 
             $num_reserva = substr(strtotime(date('Y-m-d H:i:s')), 2, 10);
@@ -2189,8 +2213,20 @@ class SiteController extends Controller
 
             //Eliminando Lavado cortesia si existe lavado completo
 
-            if (($_POST['cantidad2'] > 0 && $_POST['cantidad7'] > 0) || ($_POST['cantidad1'] > 0 && $_POST['cantidad7'] > 0)) {
-                unset($servicios[3]);
+            if (
+                $_POST['cantidad7'] > 0 &&
+                (
+                    $_POST['cantidad1'] > 0 ||
+                    $_POST['cantidad2'] > 0 ||
+                    $_POST['cantidad3'] > 0 ||
+                    $_POST['cantidad8'] > 0
+                )
+            ) {
+                foreach ($servicios as $key => $ser) {
+                    if ($ser == 7) {
+                        unset($servicios[$key]);
+                    }
+                }
             }
 
             $fecha1 = $model->fecha_entrada;
