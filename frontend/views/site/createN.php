@@ -487,7 +487,7 @@ Modal::end();
 
 
                 <div class="form-group mt-2"
-                  style="<?= (((in_array($s->id, [7, 9])) && $type_reserva == 9) || (in_array($s->id, [2, 12]) && $type_reserva == 12) || ($s->id == 7 && $type_reserva != 9)) ? 'display:none' : '' ?>">
+                  style="<?= (((in_array($s->id, [7, 9])) && $type_reserva == 9) || (in_array($s->id, [2]) && $type_reserva == 12) || ($s->id == 7 && $type_reserva != 9)) ? 'display:none' : '' ?>">
                   <?= $form->field($model, 'tipo_servicio')->hiddenInput(['id' => 'tipo_servicio' . $s->id, 'value' => $s->fijo, 'name' => 'tipo_servicio' . $s->id])->label(false) ?>
 
                   <?= $form->field($model, 'cantidad')->hiddenInput(['id' => 'cantidad' . $s->id, 'value' => 0, 'min' => 1, 'name' => 'cantidad' . $s->id])->label(false) ?>
@@ -725,47 +725,53 @@ $this->registerJs("
               });
 
         $('.servicios').each(function() {
-            
-            if($(this).val() == $('#type_reserva').val()){
+
+            var typeReserva = $('#type_reserva').val();
+            var id = $(this).val();
+
+            if(id == typeReserva && typeReserva != 12){
               $(this).prop('checked',true);
               $(this).prop('disabled',true);
-                
-              var id = $(this).val();
+
               var tipo_servicio = $('#tipo_servicio'+ id).val();
               var precio = $('#precio_unitario'+ id).val();
               $('#cantidad'+ id).prop('readonly',false);
-              cant = $('#cantidad'+ id).val();               
+              cant = $('#cantidad'+ id).val();
               if (cant == 0) {
                 $('#cantidad'+ id).val(1);
-              } 
-              
-              if($('#type_reserva').val() == 12){
-                $('.servi2').prop('checked',true);
-                $('.servi2').prop('disabled',true);
-                var tipo_servicio = $('#tipo_servicio2').val();
-                var precio = $('#precio_unitario2').val();
-                $('#cantidad2').prop('readonly',false);
-                cant = $('#cantidad2').val();               
-                if (cant == 0) {
-                  $('#cantidad2').val(1);
-                } 
               }
-              
-              if(Number($('#type_reserva').val()) == 9){
-              
-                $('.servi7').prop('checked',true);
-                $('.servi7').prop('disabled',true);
-                var tipo_servicio = $('#tipo_servicio7').val();
-                
-                var precio = $('#precio_unitario7').val();
-                $('#cantidad7').prop('readonly',false);
-                cant = $('#cantidad7').val();               
-                if (cant == 0) {
-                  $('#cantidad7').val(1);
-                  $('#precio_total7').val(precio);
-                } 
+
+              $('.totales-facturas').click();
+            }
+
+            if(typeReserva == 12 && id == 2){
+              $(this).prop('checked',true);
+              $(this).prop('disabled',true);
+              var tipo_servicio = $('#tipo_servicio2').val();
+              var precio = $('#precio_unitario2').val();
+              $('#cantidad2').prop('readonly',false);
+              cant = $('#cantidad2').val();
+              if (cant == 0) {
+                $('#cantidad2').val(1);
               }
-          
+
+              $('.totales-facturas').click();
+            }
+
+            if(Number(typeReserva) == 9 && id == 7){
+
+              $(this).prop('checked',true);
+              $(this).prop('disabled',true);
+              var tipo_servicio = $('#tipo_servicio7').val();
+
+              var precio = $('#precio_unitario7').val();
+              $('#cantidad7').prop('readonly',false);
+              cant = $('#cantidad7').val();
+              if (cant == 0) {
+                $('#cantidad7').val(1);
+                $('#precio_total7').val(precio);
+              }
+
               $('.totales-facturas').click();
             }
         });
