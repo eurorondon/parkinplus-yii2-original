@@ -2025,7 +2025,7 @@ class SiteController extends Controller
         $hora_s = $model->hora_salida;
 
         $cant_dias = $_GET['cdias'];
-        $type_reserva = $_GET['type'];
+        $type_reserva = Yii::$app->request->get('type', 0);
 
         $fecha_entrada = strtotime($entrada . ' ' . $hora_e);
         $fecha_salida = strtotime($salida . ' ' . $hora_s);
@@ -2035,8 +2035,6 @@ class SiteController extends Controller
 
         $fhns = strtotime($salida . ' 00:30:00');
         $fhnss = strtotime($salida . ' 03:45:00');
-
-        $type_reserva = 0;
 
 
         $extraNocturno = Servicios::find()->where(['id' => '11'])->all();
@@ -2081,8 +2079,6 @@ class SiteController extends Controller
             }
             if ($serSel->id_servicio == 9) {
                 $type_reserva = 9;
-            } else if ($serSel->id_servicio == 12) {
-                $type_reserva = 12;
             }
         }
 
