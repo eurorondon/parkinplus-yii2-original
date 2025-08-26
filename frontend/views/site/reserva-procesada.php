@@ -210,6 +210,9 @@ $this->title = Yii::$app->name . ' | Reserva Procesada';
                                 $total = 0;
                                 foreach ($service as $s) {
                                     $datos = Servicios::find()->where(['id' => $s->id_servicio])->one();
+                                    if (stripos($datos->nombre_servicio, 'plaza reservada') !== false && (int)$s->precio_total === 0) {
+                                        continue;
+                                    }
                                     if (stripos($datos->nombre_servicio, 'techado') !== false && (int)$s->precio_total === 0) {
                                         continue;
                                     }
