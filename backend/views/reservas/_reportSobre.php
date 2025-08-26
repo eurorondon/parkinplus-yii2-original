@@ -10,14 +10,6 @@ if ($char_color < 3) {
 	$color = empty($model->coche->matricula) ? 'N/D' : $model->coche->color;
 }
 
-/*if (empty($model->coche->matricula)) { 
-    $model->coche->matricula = 'N/D';
-}
-
-if (empty($model->coche->marca)) {
-    $model->coche->marca = 'N/D';
-}*/
-
 if (empty($model->cliente->movil)) {
 	$model->cliente->movil = 'N/D';
 }
@@ -35,24 +27,31 @@ if ($model->medio_reserva === 4) {
 	$medio = 'afiliado.png';
 }
 if ($model->medio_reserva === 5) {
-        $medio = 'organic.png';
+	$medio = 'organic.png';
 }
+
 $tiene_techo = "";
 
-foreach ($servicios as $servicie) {
-        $id_s = $servicie->id_servicio;
-        if ($id_s == 9) {
-                $tiene_techo = 'techado.png';
-        }
-}
-
-$planes = [1 => 'Plan Bronce', 2 => 'Plan Plata', 3 => 'Plan Oro'];
+// Planes
+$planes = [1 => 'Plan Estandar', 2 => 'Plan Premiun', 3 => 'Plan Priority'];
 $planName = $planes[$model->plan] ?? '';
 
+// Flags
+$IS_PREMIUM   = ((int)$model->plan === 2);
+$IS_PRIORITY  = ((int)$model->plan === 3);
+$TECHADO_ID   = 9;   // "Techado"
+$PLAZA_RES_ID = 12;  // "Plaza reservada"
+
+// Detecta si tiene Techado (icono), pero NO lo marca si el plan es Premium
+foreach ($servicios as $servicie) {
+	$id_s = $servicie->id_servicio ?? 0;
+	if (!$IS_PREMIUM && (int)$id_s === $TECHADO_ID) {
+		$tiene_techo = 'techado.png';
+	}
+}
 ?>
 
-
-<div style="position: absolute; font-size: 17px; font-weight: bolder; font-family: sans-serif;"><b><?= $model->nro_reserva ?></b></div>
+<div style="position: absolute; font-size: 17px; font-weight: bolder; font-family: sans-serif;"><b><?= Html::encode($model->nro_reserva) ?></b></div>
 <div style="position: absolute; top: 43px; font-size: 12px; font-weight: bolder; font-family: sans-serif;">
 	<b>FC: <?= date('d m Y', strtotime($model->created_at)) ?></b>
 </div>
@@ -64,31 +63,30 @@ $planName = $planes[$model->plan] ?? '';
 	<?= Html::img('@web/images/' . $medio, ['style' => ['width' => '20px']]); ?>
 </div>
 
-<?php if ($tiene_techo != "") { ?>
+<?php if ($tiene_techo !== ""): ?>
 	<div style="position: absolute; top: 110px; font-size: 17px; font-weight: bolder; font-family: sans-serif;">
 		<?= Html::img('@web/images/' . $tiene_techo, ['style' => ['width' => '25px']]); ?>
 	</div>
-<?php } ?>
+<?php endif; ?>
 
-<div align="right" style="text-transform: uppercase; font-size: 12px">Importe : <b><?= $model->monto_total ?> €</b>
-	<?php if ($model->cupon != NULL || $model->descuento == 'SI') { ?>
+<div align="right" style="text-transform: uppercase; font-size: 12px">Importe : <b><?= Html::encode($model->monto_total) ?> €</b>
+	<?php if ($model->cupon != NULL || $model->descuento == 'SI'): ?>
 		<br><span style="font-size:9px;">(Descuento Aplicado)</span>
-	<?php } ?>
+	<?php endif; ?>
 </div>
-<div align="right" style="text-transform: uppercase; font-size: 12px">Teléfono : <b><?= $model->cliente->movil ?></b></div>
-
+<div align="right" style="text-transform: uppercase; font-size: 12px">Teléfono : <b><?= Html::encode($model->cliente->movil) ?></b></div>
 
 <table style="margin-top: 30px; margin-left: -3px;">
 	<tr>
 		<td colspan="2" align="center" style="width: 7cm; text-transform: uppercase;">
 			Matrícula
-			<div align="center" style="width: 7cm; font-size: 36px"><?= empty($model->coche->matricula) ? 'N/D' : $model->coche->matricula ?></div>
+			<div align="center" style="width: 7cm; font-size: 36px"><?= empty($model->coche->matricula) ? 'N/D' : Html::encode($model->coche->matricula) ?></div>
 		</td>
 	</tr>
 	<tr>
 		<td colspan="2" align="center" style="width: 3.5cm; text-transform: uppercase; padding-top: 10px">
 			Marca - Modelo
-			<div align="center" style="width: 3.5cm; font-size: 20px"><?= empty($model->coche->matricula) ? 'N/D' : $model->coche->marca . " " . $model->coche->modelo ?></div>
+			<div align="center" style="width: 3.5cm; font-size: 20px"><?= empty($model->coche->matricula) ? 'N/D' : Html::encode($model->coche->marca . " " . $model->coche->modelo) ?></div>
 		</td>
 	</tr>
 
@@ -118,7 +116,7 @@ $planName = $planes[$model->plan] ?? '';
 
 	<tr>
 		<td style="width: 7cm; text-transform: uppercase; padding-left: 50px;">
-			<span align="center" style="font-size: 22px"><?= $model->hora_entrada ?></span>
+			<span align="center" style="font-size: 22px"><?= Html::encode($model->hora_entrada) ?></span>
 		</td>
 	</tr>
 
@@ -148,31 +146,48 @@ $planName = $planes[$model->plan] ?? '';
 
 	<tr>
 		<td style="width: 7cm; text-transform: uppercase; padding-left: 50px;">
-			<span align="center" style="font-size: 22px"><?= $model->hora_salida ?></span>
+			<span align="center" style="font-size: 22px"><?= Html::encode($model->hora_salida) ?></span>
 		</td>
 	</tr>
 
 </table>
 
 <hr style="margin: 5px 0px">
-<div style="margin-bottom: 10px"><b><?= $planName ?></b></div>
-<?php if ($contS > 0) { ?>
-        <div style="margin-bottom: 10px"><b>INCLUYE:</b></div>
+<div style="margin-bottom: 10px"><b><?= Html::encode($planName) ?></b></div>
 
+<?php if ($contS > 0): ?>
+	<div style="margin-bottom: 10px"><b>INCLUYE:</b></div>
 
-        <?php
-        for ($i = 0; $i < count($servicios); $i++) {
-                if ($servicios[$i]->servicios->fijo == 2) { ?>
-                        <div style="margin-bottom: 5px; text-transform: uppercase; font-size: 10px;"><?= $servicios[$i]->servicios->nombre_servicio ?></div>
-        <?php }
-        } ?>
+	<?php for ($i = 0; $i < count($servicios); $i++):
+		$srv = $servicios[$i]->servicios ?? null;
+		if (!$srv) continue;
 
-<?php } ?>
+		$srvId     = isset($srv->id) ? (int)$srv->id : 0;
+		$srvNombre = isset($srv->nombre_servicio) ? trim((string)$srv->nombre_servicio) : '';
+		$srvFijo   = isset($srv->fijo) ? (int)$srv->fijo : 0;
+
+		// Ocultar "Techado" (id 9 o nombre) cuando el plan es Premium
+		if ($IS_PREMIUM && ($srvId === $TECHADO_ID || strcasecmp($srvNombre, 'Techado') === 0)) {
+			continue;
+		}
+		// Ocultar "Plaza reservada" (id 12 o nombre) cuando el plan es Priority
+		if ($IS_PRIORITY && ($srvId === $PLAZA_RES_ID || strcasecmp($srvNombre, 'Plaza reservada') === 0)) {
+			continue;
+		}
+
+		if ($srvFijo === 2): ?>
+			<div style="margin-bottom: 5px; text-transform: uppercase; font-size: 10px;">
+				<?= Html::encode($srvNombre) ?>
+			</div>
+		<?php endif; ?>
+	<?php endfor; ?>
+
+<?php endif; ?>
 
 <div style="position: absolute; bottom: 0.5cm; font-size:10px; margin-right: 20px;">
-	<?php if ($model['id_tipo_pago'] == 5) { ?>
+	<?php if ($model['id_tipo_pago'] == 5): ?>
 		NOTA: LA RESERVA FUÉ PAGADA ONLINE
-	<?php } ?>
+	<?php endif; ?>
 	<hr style="margin: 10px 0px">
-	Cliente: <?= $model->cliente->nombre_completo ?>
+	Cliente: <?= Html::encode($model->cliente->nombre_completo) ?>
 </div>

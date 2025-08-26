@@ -211,10 +211,10 @@ if (!is_null($temporada)) {
 		<input class="form-control" style="margin-bottom: 20px" type="hidden" id="temporada"
 			value="<?= !is_null($temporada) ? 1 : 0 ?>">
 
-                <input type="hidden" id="cantdias" name="cantdias" value="<?= $cant_dias ?>">
-                <input type="hidden" id="type_service" name="type">
-                <input type="hidden" id="plan" name="plan">
-                <input type="hidden" id="precio_dia" name="precio_dia" value="<?= $precio_dia ?>">
+		<input type="hidden" id="cantdias" name="cantdias" value="<?= $cant_dias ?>">
+		<input type="hidden" id="type_service" name="type">
+		<input type="hidden" id="plan" name="plan">
+		<input type="hidden" id="precio_dia" name="precio_dia" value="<?= $precio_dia ?>">
 		<div class="container">
 
 			<div class="row">
@@ -588,9 +588,9 @@ if (!is_null($temporada)) {
 						</g>
 					</svg>
 					<div id="costo_i" style="font-weight: 700; margin:5px 0px; font-size: 2rem;"></div>
-					<!--<button type="submit" id="oro" class="btn"-->
-					<!--	style="background-color:#961007; color:#fff; padding: 15px 10px">Proceder a Reservar <span-->
-					<!--		class="glyphicon glyphicon-send"></span></button>-->
+					<button type="submit" id="oro" class="btn"
+						style="background-color:#961007; color:#fff; padding: 15px 10px">Proceder a Reservar <span
+							class="glyphicon glyphicon-send"></span></button>
 				</div>
 			</div>
 
