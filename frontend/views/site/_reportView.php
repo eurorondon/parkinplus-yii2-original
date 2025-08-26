@@ -363,6 +363,22 @@ if ($model->nro_vuelo_regreso == NULL) {
 
 				<p align="justify"><b>Importante:</b> El fraude con tarjeta de crédito es un delito, y PARKING PLUS ejercerá las acciones judiciales pertinentes contra todo aquel que realice una transacción fraudulenta en nuestra tienda on-line.</p>
 
+				<p align="left" style="font-weight: bold; margin-bottom: 15px; color: #921007">
+					TRASLADO Y USO COMPARTIDO DE VEHÍCULO
+				</p>
+
+				<p align="justify">
+					El cliente autoriza expresamente al personal de Marichal 4 Parking S.L. a trasladar su vehículo entre las distintas instalaciones de la empresa (parking A, parking B o zonas vinculadas).
+				</p>
+
+				<p align="justify">
+					Asimismo, el cliente consiente que, en el marco de dichos traslados, puedan viajar en su vehículo dos trabajadores de la empresa de forma simultánea, únicamente con la finalidad de organizar la logística de entrega y recogida de vehículos entre parkings.
+				</p>
+
+				<p align="justify">
+					La empresa se compromete a que dichos traslados se realizarán únicamente por personal autorizado, con el debido cuidado, y asume la responsabilidad frente al cliente por cualquier incidencia que pudiera ocurrir durante los mismos.
+				</p>
+
 
 				<p align="left" style="font-weight: bold; margin-bottom: 15px; color: #921007">PROPIEDAD INTELECTUAL E INDUSTRIAL</p>
 
