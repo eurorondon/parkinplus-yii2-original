@@ -211,9 +211,10 @@ if (!is_null($temporada)) {
 		<input class="form-control" style="margin-bottom: 20px" type="hidden" id="temporada"
 			value="<?= !is_null($temporada) ? 1 : 0 ?>">
 
-		<input type="hidden" id="cantdias" name="cantdias" value="<?= $cant_dias ?>">
-		<input type="hidden" id="type_service" name="type">
-		<input type="hidden" id="precio_dia" name="precio_dia" value="<?= $precio_dia ?>">
+                <input type="hidden" id="cantdias" name="cantdias" value="<?= $cant_dias ?>">
+                <input type="hidden" id="type_service" name="type">
+                <input type="hidden" id="plan" name="plan">
+                <input type="hidden" id="precio_dia" name="precio_dia" value="<?= $precio_dia ?>">
 		<div class="container">
 
 			<div class="row">
@@ -840,50 +841,53 @@ $this->registerJs("
   
 		});
 	
-		$('#bronce').click(function(e){
-			e.preventDefault();
-				/*$('#oro, #plata').css('background-color', '#000');
-				$(this).css('background-color', '#b0cb21');*/
-				$('#type_service').val(0);
-				//$('#boton-reserva').attr('disabled', false);
-			$(this)
-				.text('')
-				.removeClass('btn-success')
-				.addClass('btn-primary')
+                        $('#bronce').click(function(e){
+                                e.preventDefault();
+                                /*$('#oro, #plata').css('background-color', '#000');
+                                $(this).css('background-color', '#b0cb21');*/
+                                $('#type_service').val(0);
+                                $('#plan').val(1);
+                                //$('#boton-reserva').attr('disabled', false);
+                                $(this)
+                                        .text('')
+                                        .removeClass('btn-success')
+                                        .addClass('btn-primary')
 				.html('<span class=\"spinner-border spinner-border-sm\" role=\"status\" aria-hidden=\"true\"></span> Espere por favor...')
 				.attr('disabled', 'disabled')
 				.trigger('submit');
 		  
 			});
-			$('#plata').click(function(e){
-				e.preventDefault();
-				$(this)
-				.text('')
-				.removeClass('btn-success')
-				.addClass('btn-primary')
-				.html('<span class=\"spinner-border spinner-border-sm\" role=\"status\" aria-hidden=\"true\"></span> Espere por favor...')
-				.attr('disabled', 'disabled')
-				.trigger('submit');
-				/*$('#oro, #bronce').css('background-color', '#000');
-				$(this).css('background-color', '#b0cb21');*/
-				$('#type_service').val(9);
-				//$('#boton-reserva').attr('disabled', false);
-			});
+                        $('#plata').click(function(e){
+                                e.preventDefault();
+                                $(this)
+                                .text('')
+                                .removeClass('btn-success')
+                                .addClass('btn-primary')
+                                .html('<span class=\"spinner-border spinner-border-sm\" role=\"status\" aria-hidden=\"true\"></span> Espere por favor...')
+                                .attr('disabled', 'disabled')
+                                .trigger('submit');
+                                /*$('#oro, #bronce').css('background-color', '#000');
+                                $(this).css('background-color', '#b0cb21');*/
+                                $('#type_service').val(9);
+                                $('#plan').val(2);
+                                //$('#boton-reserva').attr('disabled', false);
+                        });
 
-			$('#oro').click(function(e){
-				e.preventDefault();
-				$(this)
-				.text('')
-				.removeClass('btn-success')
-				.addClass('btn-primary')
-				.html('<span class=\"spinner-border spinner-border-sm\" role=\"status\" aria-hidden=\"true\"></span> Espere por favor...')
-				.attr('disabled', 'disabled')
-				.trigger('submit');
-				/*$('#plata, #bronce').css('background-color', '#000');
-				$(this).css('background-color', '#b0cb21');*/
-				$('#type_service').val(12);
-				//$('#boton-reserva').attr('disabled', false);
-			});
+                        $('#oro').click(function(e){
+                                e.preventDefault();
+                                $(this)
+                                .text('')
+                                .removeClass('btn-success')
+                                .addClass('btn-primary')
+                                .html('<span class=\"spinner-border spinner-border-sm\" role=\"status\" aria-hidden=\"true\"></span> Espere por favor...')
+                                .attr('disabled', 'disabled')
+                                .trigger('submit');
+                                /*$('#plata, #bronce').css('background-color', '#000');
+                                $(this).css('background-color', '#b0cb21');*/
+                                $('#type_service').val(12);
+                                $('#plan').val(3);
+                                //$('#boton-reserva').attr('disabled', false);
+                        });
 			
 		function convertDateFormat(string) {
 			var info = string.split('-');

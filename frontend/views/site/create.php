@@ -44,6 +44,7 @@ for ($i = 0; $i < $cant; $i++) { ?>
 
       <?= $form->field($model, 'iva')->hiddenInput(['value' => $iva])->label(false) ?>
       <?= $form->field($model, 'dias')->hiddenInput(['value' => $cant_dias])->label(false) ?>
+      <?= $form->field($model, 'plan')->hiddenInput()->label(false) ?>
 
       <div class="col-lg-6">
         <div class="panel panel-default panel-d">

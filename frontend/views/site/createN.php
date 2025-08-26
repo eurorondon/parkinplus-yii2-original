@@ -66,6 +66,7 @@ Modal::end();
 
       <?= $form->field($model, 'iva')->hiddenInput(['value' => $iva])->label(false) ?>
       <?= $form->field($model, 'dias')->hiddenInput(['value' => $cant_dias])->label(false) ?>
+      <?= $form->field($model, 'plan')->hiddenInput()->label(false) ?>
       <?= $form->field($model, 'monto_impuestos')->hiddenInput()->label(false) ?>
       <?= $form->field($model, 'monto_total')->hiddenInput()->label(false) ?>
       <?= $form->field($model, 'type')->hiddenInput(['id' => 'type_reserva', 'value' => $type_reserva, 'name' => 'type'])->label(false) ?>

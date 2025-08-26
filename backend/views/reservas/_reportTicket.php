@@ -35,8 +35,11 @@ if ($model->medio_reserva === 4) {
 	$medio = 'afiliado.png';
 }
 if ($model->medio_reserva === 5) {
-	$medio = 'organic.png';
+        $medio = 'organic.png';
 }
+
+$planes = [1 => 'Plan Bronce', 2 => 'Plan Plata', 3 => 'Plan Oro'];
+$planName = $planes[$model->plan] ?? '';
 
 
 ?>
@@ -112,15 +115,16 @@ if ($model->medio_reserva === 5) {
 </table>
 
 <hr style="margin: 5px 0px">
+<div style="margin-bottom: 12px"><b><?= $planName ?></b></div>
 <?php if ($contS > 0) { ?>
-	<div style="margin-bottom: 12px"><b>INCLUYE:</b></div>
+        <div style="margin-bottom: 12px"><b>INCLUYE:</b></div>
 
 
-	<?php for ($i = 0; $i < count($servicios); $i++) {
-		if ($servicios[$i]->servicios->fijo == 2) { ?>
-			<div style="margin-bottom: 10px; text-transform: uppercase;"><?= $servicios[$i]->servicios->nombre_servicio ?></div>
-	<?php }
-	} ?>
+        <?php for ($i = 0; $i < count($servicios); $i++) {
+                if ($servicios[$i]->servicios->fijo == 2) { ?>
+                        <div style="margin-bottom: 10px; text-transform: uppercase;"><?= $servicios[$i]->servicios->nombre_servicio ?></div>
+        <?php }
+        } ?>
 
 <?php } ?>
 
