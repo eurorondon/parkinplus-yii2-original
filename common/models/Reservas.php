@@ -49,6 +49,7 @@ use yii\db\ActiveRecord;
  * @property int $updated_by
  * @property int $actualizada
  * @property int $evaluacion_enviada
+ * @property int $plan
  *
  * @property Clientes $cliente
  * @property Coches $coche
@@ -118,10 +119,12 @@ class Reservas extends \yii\db\ActiveRecord
             [['fecha_entrada'], 'required', 'message' => 'Debe Seleccionar la fecha de entrada'],
             [['fecha_salida'], 'required', 'message' => 'Debe Seleccionar la fecha de salida'],
             [['id_cliente', 'costo_servicios', 'costo_servicios_extra', 'monto_factura', 'monto_impuestos', 'monto_total'], 'required'],
+            [['plan'], 'required'],
             [['fecha_salida'], 'validateFechaSalida'],
             [['cortesia', 'techado', 'fecha_entrada', 'hora_entrada', 'fecha_salida', 'hora_salida', 'created_at', 'updated_at'], 'safe'],
-            [['id_cliente',  'factura_equipaje', 'factura', 'id_tipo_pago', 'condiciones', 'medio_reserva', 'estatus', 'created_by', 'updated_by', 'canceled_by', 'actualizada', 'evaluacion_enviada'], 'integer'],
+            [['id_cliente',  'factura_equipaje', 'factura', 'id_tipo_pago', 'condiciones', 'medio_reserva', 'estatus', 'created_by', 'updated_by', 'canceled_by', 'actualizada', 'evaluacion_enviada', 'plan'], 'integer'],
             [['nro_reserva', 'costo_servicios', 'costo_servicios_extra', 'monto_factura', 'monto_impuestos', 'monto_total', 'porcentaje_cupo', 'monto_des'], 'number'],
+            [['plan'], 'in', 'range' => [1, 2, 3]],
             [['terminal_entrada', 'terminal_salida', 'nro_vuelo_regreso', 'ciudad_procedencia', 'observaciones', 'razon_social', 'direccion', 'ciudad', 'provincia', 'pais', 'cupon', 'agencia', 'cod_valid'], 'string', 'max' => 255],
             [['nif'], 'string', 'max' => 100],
             [['cod_postal', 'impreso', 'descuento'], 'string', 'max' => 5],
@@ -186,7 +189,8 @@ class Reservas extends \yii\db\ActiveRecord
             'cortesia' => 'Limpieza de Cortesía',
             'techado' => 'Chofer Express',
             'descuento' => 'Descuento',
-            'monto_des' => 'Monto descuento'
+            'monto_des' => 'Monto descuento',
+            'plan' => 'Plan'
         ];
     }
 

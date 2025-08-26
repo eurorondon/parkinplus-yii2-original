@@ -35,16 +35,19 @@ if ($model->medio_reserva === 4) {
 	$medio = 'afiliado.png';
 }
 if ($model->medio_reserva === 5) {
-	$medio = 'organic.png';
+        $medio = 'organic.png';
 }
 $tiene_techo = "";
 
 foreach ($servicios as $servicie) {
-	$id_s = $servicie->id_servicio;
-	if ($id_s == 9) {
-		$tiene_techo = 'techado.png';
-	}
+        $id_s = $servicie->id_servicio;
+        if ($id_s == 9) {
+                $tiene_techo = 'techado.png';
+        }
 }
+
+$planes = [1 => 'Plan Bronce', 2 => 'Plan Plata', 3 => 'Plan Oro'];
+$planName = $planes[$model->plan] ?? '';
 
 ?>
 
@@ -152,16 +155,17 @@ foreach ($servicios as $servicie) {
 </table>
 
 <hr style="margin: 5px 0px">
+<div style="margin-bottom: 10px"><b><?= $planName ?></b></div>
 <?php if ($contS > 0) { ?>
-	<div style="margin-bottom: 10px"><b>INCLUYE:</b></div>
+        <div style="margin-bottom: 10px"><b>INCLUYE:</b></div>
 
 
-	<?php
-	for ($i = 0; $i < count($servicios); $i++) {
-		if ($servicios[$i]->servicios->fijo == 2) { ?>
-			<div style="margin-bottom: 5px; text-transform: uppercase; font-size: 10px;"><?= $servicios[$i]->servicios->nombre_servicio ?></div>
-	<?php }
-	} ?>
+        <?php
+        for ($i = 0; $i < count($servicios); $i++) {
+                if ($servicios[$i]->servicios->fijo == 2) { ?>
+                        <div style="margin-bottom: 5px; text-transform: uppercase; font-size: 10px;"><?= $servicios[$i]->servicios->nombre_servicio ?></div>
+        <?php }
+        } ?>
 
 <?php } ?>
 
