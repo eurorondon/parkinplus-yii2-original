@@ -138,10 +138,13 @@ if ($model->nro_vuelo_regreso == NULL) {
 
 	<?php 
 	    $total = 0;
-	    foreach ($service as $s) {
-	    $datos = Servicios::find()->where(['id'=> $s->id_servicio])->one();
-	    $total = $total + $s->precio_total; 
-	?>
+            foreach ($service as $s) {
+            $datos = Servicios::find()->where(['id'=> $s->id_servicio])->one();
+            if (stripos($datos->nombre_servicio, 'techado') !== false && (int)$s->precio_total === 0) {
+                continue;
+            }
+            $total = $total + $s->precio_total;
+        ?>
 
 	<tr>
 		<td colspan="2" width="20cm"><div class="titleR"><?= $datos->nombre_servicio ?></div></td>
