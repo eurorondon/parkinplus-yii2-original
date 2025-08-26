@@ -745,10 +745,15 @@ $this->registerJs("
                 var tipo_servicio = $('#tipo_servicio2').val();
                 var precio = $('#precio_unitario2').val();
                 $('#cantidad2').prop('readonly',false);
-                cant = $('#cantidad2').val();               
+                cant = $('#cantidad2').val();
                 if (cant == 0) {
                   $('#cantidad2').val(1);
-                } 
+                }
+                $('#precio_unitario12').val(0);
+                if ($('#precio_total12').length) {
+                  $('#precio_total12').val(0);
+                }
+                $('#cantidad12').val(1);
               }
               
               if(Number($('#type_reserva').val()) == 9){
