@@ -696,11 +696,11 @@ $this->registerJs("
 		var costo = total + nocturnidad;
 		var costo_t = parseFloat($('#servicio-9').val()) + nocturnidad + total;
 
-            var costo_i = parseFloat($('#servicio-12').val()) + nocturnidad + total;
-	  
-		/*console.log(parseFloat($('#servicio-12').val()));
-		console.log(nocturnidad );
-		console.log(parseFloat($('#servicio-2').val()));*/
+            var costo_i = parseFloat($('#servicio-2').val()) + nocturnidad + total;
+
+                /*console.log(parseFloat($('#servicio-2').val()));
+                console.log(nocturnidad );
+                console.log(parseFloat($('#servicio-2').val()));*/
 		
 	  $('#costo').append(costo.toFixed(2)+ '€');
 	  $('#costo_t').append( costo_t.toFixed(2) + '€');
@@ -810,7 +810,7 @@ $this->registerJs("
 
 		  var costo = total + nocturnidad
 		  var costo_t = parseFloat($('#servicio-9').val()) + nocturnidad + total;
-              var costo_i = parseFloat($('#servicio-12').val()) + nocturnidad + total;
+              var costo_i = parseFloat($('#servicio-2').val()) + nocturnidad + total;
 		    
 		  $('#costo, #costo_t, #costo_i').html('');
 		  $('#fentrada').html('').append(fecha_in);
@@ -868,7 +868,7 @@ $this->registerJs("
 				.trigger('submit');
 				/*$('#plata, #bronce').css('background-color', '#000');
 				$(this).css('background-color', '#b0cb21');*/
-				$('#type_service').val(12);
+                                $('#type_service').val(2);
 				//$('#boton-reserva').attr('disabled', false);
 			});
 			
