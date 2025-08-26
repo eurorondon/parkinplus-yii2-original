@@ -114,7 +114,7 @@ Devolución. Al regreso de su viaje, y una vez tenga recogido todo el equipaje d
 
         <p align='left' style='font-weight: bold; margin-bottom: 15px; margin-top: 30px; color: #921007'>Servicio premium</p>
 
-        <p align='justify'>Servicio de aparcamiento en recinto cerrado al aire libre, techado y vigilado 24hrs, le incluye servicio de lavado exterior de cortesía. (si usted requiere una limpieza con más detalle puede contratar el servicio de limpieza exterior lo que supondrá un recargo adicional).</p>
+        <p align='justify'>Servicio de aparcamiento en recinto cerrado al aire libre y vigilado 24hrs, le incluye servicio de lavado exterior. (si usted requiere una limpieza con más detalle puede contratar el servicio de limpieza exterior lo que supondrá un recargo adicional).</p>
 
     </div>
 </div> 
@@ -452,8 +452,7 @@ if (!is_null($temporada)) {
 				<div class="col-lg-2"
 					style="display: flex;align-items: center;justify-content: center;flex-direction: column;">
 					<h4>Servicios</h4>
-					<p>- Lavado exterior cortesia</p>
-					<p>- Parking techado</p>
+					<p>- Lavado exterior</p>
 					<p class="noctur" style="display:none">- Especial nocturnidad entre 00:30 y 03:45</p>
 					<?= Html::button('más inf +', [
 						'class' => 'btn btn-default btn-sm text-dark',
