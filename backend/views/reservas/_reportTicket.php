@@ -38,7 +38,7 @@ if ($model->medio_reserva === 5) {
         $medio = 'organic.png';
 }
 
-$planes = [1 => 'Plan Bronce', 2 => 'Plan Plata', 3 => 'Plan Oro'];
+$planes = [1 => 'Plan Bronce', 2 => 'Plan Plata', 3 => 'Plan Premium'];
 $planName = $planes[$model->plan] ?? '';
 
 
@@ -121,6 +121,9 @@ $planName = $planes[$model->plan] ?? '';
 
 
         <?php for ($i = 0; $i < count($servicios); $i++) {
+                if ($model->plan === 3 && strtolower($servicios[$i]->servicios->nombre_servicio) === 'techado') {
+                        continue;
+                }
                 if ($servicios[$i]->servicios->fijo == 2) { ?>
                         <div style="margin-bottom: 10px; text-transform: uppercase;"><?= $servicios[$i]->servicios->nombre_servicio ?></div>
         <?php }
