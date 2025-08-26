@@ -150,10 +150,7 @@ Modal::end();
 
               <?php if ($type_reserva == 9) { ?>
                 <p>
-                  Techado
-                </p>
-                <p>
-                  Lavado Exterior Cortesia
+                  Lavado Exterior
                 </p>
               <?php } ?>
 
@@ -487,7 +484,7 @@ Modal::end();
 
 
                 <div class="form-group mt-2"
-                  style="<?= (((in_array($s->id, [7, 9])) && $type_reserva == 9) || (in_array($s->id, [2, 12]) && $type_reserva == 12) || ($s->id == 7 && $type_reserva != 9)) ? 'display:none' : '' ?>">
+                  style="<?= (((in_array($s->id, [1, 9])) && $type_reserva == 9) || (in_array($s->id, [2, 12]) && $type_reserva == 12)) ? 'display:none' : '' ?>">
                   <?= $form->field($model, 'tipo_servicio')->hiddenInput(['id' => 'tipo_servicio' . $s->id, 'value' => $s->fijo, 'name' => 'tipo_servicio' . $s->id])->label(false) ?>
 
                   <?= $form->field($model, 'cantidad')->hiddenInput(['id' => 'cantidad' . $s->id, 'value' => 0, 'min' => 1, 'name' => 'cantidad' . $s->id])->label(false) ?>
@@ -645,8 +642,7 @@ Modal::end();
             <p>Recogida y entrega de Vehiculo</p>
 
             <?php if ($type_reserva == 9) { ?>
-              <p>Techado</p>
-              <p>Lavado Exterior Cortesia</p>
+              <p>Lavado Exterior</p>
             <?php } ?>
 
             <?php if ($type_reserva == 12) { ?>
@@ -757,18 +753,22 @@ $this->registerJs("
               }
               
               if(Number($('#type_reserva').val()) == 9){
-              
-                $('.servi7').prop('checked',true);
-                $('.servi7').prop('disabled',true);
-                var tipo_servicio = $('#tipo_servicio7').val();
-                
-                var precio = $('#precio_unitario7').val();
-                $('#cantidad7').prop('readonly',false);
-                cant = $('#cantidad7').val();               
+
+                $('.servi1').prop('checked',true);
+                $('.servi1').prop('disabled',true);
+                var tipo_servicio = $('#tipo_servicio1').val();
+
+                var precio = $('#precio_unitario1').val();
+                $('#cantidad1').prop('readonly',false);
+                cant = $('#cantidad1').val();
                 if (cant == 0) {
-                  $('#cantidad7').val(1);
-                  $('#precio_total7').val(precio);
-                } 
+                  $('#cantidad1').val(1);
+                  $('#precio_total1').val(precio);
+                }
+                $('#precio_unitario9').val(0);
+                if ($('#precio_total9').length) {
+                  $('#precio_total9').val(0);
+                }
               }
           
               $('.totales-facturas').click();
