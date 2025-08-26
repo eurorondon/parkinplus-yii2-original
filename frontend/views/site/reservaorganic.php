@@ -710,7 +710,7 @@ $this->registerJs("
 		var costo = total + nocturnidad;
 		var costo_t = parseFloat($('#servicio-9').val()) + nocturnidad + total;
 
-		var costo_i = parseFloat($('#servicio-12').val()) + nocturnidad  +parseFloat($('#servicio-2').val()) + total;
+                var costo_i = nocturnidad + parseFloat($('#servicio-2').val()) + total;
 	  
 		/*console.log(parseFloat($('#servicio-12').val()));
 		console.log(nocturnidad );
@@ -824,7 +824,7 @@ $this->registerJs("
 
 		  var costo = total + nocturnidad
 		  var costo_t = parseFloat($('#servicio-9').val()) + nocturnidad + total;
-		  var costo_i = parseFloat($('#servicio-12').val()) + nocturnidad  +parseFloat($('#servicio-2').val()) + total;
+                  var costo_i = nocturnidad + parseFloat($('#servicio-2').val()) + total;
 		    
 		  $('#costo, #costo_t, #costo_i').html('');
 		  $('#fentrada').html('').append(fecha_in);
