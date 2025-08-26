@@ -181,16 +181,16 @@ $num = 1;
 for ($i = 0; $i < $cant; $i++) { ?>
 	<input class="form-control" style="margin-bottom: 20px" type="hidden" id="precio-diario<?= $num ?>"
 		value="<?= $precio_diario[$i]['precio'] ?>">
-	<?php $num++;
+<?php $num++;
 } ?>
 
 <?php foreach ($servicios as $ser) { ?>
 	<input class="form-control" style="margin-bottom: 20px" type="hidden" id="servicio-<?= $ser['id'] ?>"
 		value="<?= $ser['costo'] ?>">
-	<?php
+<?php
 }
 if (!is_null($temporada)) {
-	?>
+?>
 	<input class="form-control" style="margin-bottom: 20px" type="hidden" id="pre_dia_temp"
 		value="<?= $temporada->precio ?>">
 	<input class="form-control" style="margin-bottom: 20px" type="hidden" id="fecha_ini_temp"
@@ -361,7 +361,7 @@ if (!is_null($temporada)) {
 				<div class="col-lg-2"
 					style="display: flex;align-items: center;justify-content: center;flex-direction: column;">
 					<h4>Servicios</h4>
-					<p>- Parking exterior</p>
+					<p>- Plaza reservada</p>
 					<p class="noctur" style="display:none">- Especial nocturnidad entre 00:30 y 03:45</p>
 					<?= Html::button('más inf +', [
 						'class' => 'btn btn-default btn-sm text-dark',
@@ -538,7 +538,7 @@ if (!is_null($temporada)) {
 						style="border: 1px solid #961007;    width: 160px;height: 160px;background: #fff;">
 						<div class="counter__text">
 							<div class="icon">
-								<?= Html::img('@web/images/interior.png', ['class' => 'counter__icon']) ?>
+								<?= Html::img('@web/images/llaves.png', ['class' => 'counter__icon']) ?>
 							</div>
 						</div>
 					</div>
@@ -549,7 +549,7 @@ if (!is_null($temporada)) {
 					<h4>Servicios</h4>
 					<p>- Lavado interior</p>
 					<p>- Lavado exterior</p>
-					<p>- Parking interior</p>
+					<p>- Custodia de llaves</p>
 					<p class="noctur" style="display:none">- Especial nocturnidad entre 00:30 y 03:45</p>
 					<?= Html::button('más inf +', [
 						'class' => 'btn btn-default btn-sm text-dark',
@@ -710,7 +710,7 @@ $this->registerJs("
 		var costo = total + nocturnidad;
 		var costo_t = parseFloat($('#servicio-9').val()) + nocturnidad + total;
 
-		var costo_i = parseFloat($('#servicio-12').val()) + nocturnidad  +parseFloat($('#servicio-2').val()) + total;
+            var costo_i = parseFloat($('#servicio-12').val()) + nocturnidad + total;
 	  
 		/*console.log(parseFloat($('#servicio-12').val()));
 		console.log(nocturnidad );
@@ -824,7 +824,7 @@ $this->registerJs("
 
 		  var costo = total + nocturnidad
 		  var costo_t = parseFloat($('#servicio-9').val()) + nocturnidad + total;
-		  var costo_i = parseFloat($('#servicio-12').val()) + nocturnidad  +parseFloat($('#servicio-2').val()) + total;
+              var costo_i = parseFloat($('#servicio-12').val()) + nocturnidad + total;
 		    
 		  $('#costo, #costo_t, #costo_i').html('');
 		  $('#fentrada').html('').append(fecha_in);
