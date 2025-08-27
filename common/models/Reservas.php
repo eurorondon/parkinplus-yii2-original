@@ -119,7 +119,6 @@ class Reservas extends \yii\db\ActiveRecord
             [['fecha_entrada'], 'required', 'message' => 'Debe Seleccionar la fecha de entrada'],
             [['fecha_salida'], 'required', 'message' => 'Debe Seleccionar la fecha de salida'],
             [['id_cliente', 'costo_servicios', 'costo_servicios_extra', 'monto_factura', 'monto_impuestos', 'monto_total'], 'required'],
-            [['plan'], 'required'],
             [['fecha_salida'], 'validateFechaSalida'],
             [['cortesia', 'techado', 'fecha_entrada', 'hora_entrada', 'fecha_salida', 'hora_salida', 'created_at', 'updated_at'], 'safe'],
             [['id_cliente',  'factura_equipaje', 'factura', 'id_tipo_pago', 'condiciones', 'medio_reserva', 'estatus', 'created_by', 'updated_by', 'canceled_by', 'actualizada', 'evaluacion_enviada', 'plan'], 'integer'],

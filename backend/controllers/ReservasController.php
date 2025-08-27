@@ -28,6 +28,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\web\ServerErrorHttpException;
 use yii\filters\VerbFilter;
 use kartik\mpdf\Pdf;
 use yii\db\Query;
@@ -1647,7 +1648,11 @@ class ReservasController extends Controller
             $model->id_cliente = $id_cliente;
             $model->id_coche = $id_coche;
 
-            $model->save();
+            if (!$model->save()) {
+                Yii::error($model->errors, __METHOD__);
+                Yii::$app->session->setFlash('error', implode(', ', $model->getFirstErrors()));
+                throw new \yii\web\ServerErrorHttpException('No se pudo guardar la reserva.');
+            }
 
             $content = $this->renderPartial('_reportView', ['model' => $this->findModel($model->id)]);
 
@@ -1952,7 +1957,11 @@ class ReservasController extends Controller
             }
 
 
-            $model->save();
+            if (!$model->save()) {
+                Yii::error($model->errors, __METHOD__);
+                Yii::$app->session->setFlash('error', implode(', ', $model->getFirstErrors()));
+                throw new \yii\web\ServerErrorHttpException('No se pudo guardar la reserva.');
+            }
 
 
             if ($_POST["cambiar_costo_servicio"] == 1) {
