@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 
+$planes = [1 => 'Plan Estandar', 2 => 'Plan Premiun', 3 => 'Plan Priority'];
 
 for ($i = 0; $i < count($model); $i++) {
 
@@ -41,9 +42,11 @@ for ($i = 0; $i < count($model); $i++) {
 	if ($model[$i]->medio_reserva === 4) {
 		$medio[$i] = 'afiliado.png';
 	}
-	if ($model[$i]->medio_reserva === 5) {
-		$medio[$i] = 'organic.png';
-	}
+        if ($model[$i]->medio_reserva === 5) {
+                $medio[$i] = 'organic.png';
+        }
+
+        $planName[$i] = $planes[(int)$model[$i]->plan] ?? '';
 }
 
 ?>
@@ -125,9 +128,11 @@ for ($i = 0; $i < count($model); $i++) { ?>
 
 	</table>
 
-	<hr style="margin: 6px 0px">
+        <hr style="margin: 6px 0px">
 
-	<?php if ($contS[$i] > 0) { ?>
+        <div><b><?= Html::encode($planName[$i]) ?></b></div>
+
+        <?php if ($contS[$i] > 0) { ?>
 		<div style="height: 3cm">
 			<b>INCLUYE:</b><br />
 			<?php for ($l = 0; $l < count($servicios[$i]); $l++) {
