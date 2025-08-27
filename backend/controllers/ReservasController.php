@@ -28,6 +28,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\web\BadRequestHttpException;
 use yii\filters\VerbFilter;
 use kartik\mpdf\Pdf;
 use yii\db\Query;
@@ -1336,12 +1337,27 @@ class ReservasController extends Controller
      */
     public function actionCreate()
     {
+        $request = Yii::$app->request;
 
-        $entrada = $_GET['entrada'];
-        $salida = $_GET['salida'];
+        $entrada = $request->get('entrada');
+        if ($entrada === null || $entrada === '') {
+            throw new BadRequestHttpException('Parámetro entrada requerido');
+        }
 
-        $hora_e = $_GET['hora_e'];
-        $hora_s = $_GET['hora_s'];
+        $salida = $request->get('salida');
+        if ($salida === null || $salida === '') {
+            throw new BadRequestHttpException('Parámetro salida requerido');
+        }
+
+        $hora_e = $request->get('hora_e');
+        if ($hora_e === null || $hora_e === '') {
+            throw new BadRequestHttpException('Parámetro hora_e requerido');
+        }
+
+        $hora_s = $request->get('hora_s');
+        if ($hora_s === null || $hora_s === '') {
+            throw new BadRequestHttpException('Parámetro hora_s requerido');
+        }
 
 
         /*$extraNocturno = Servicios::find()->where(['id' => '11'])->all();
@@ -1361,8 +1377,15 @@ class ReservasController extends Controller
         $extraNocturno[0]['id'] .= (($fecha_entrada >= $fhne && $fecha_entrada <= $fhnes) || ($fecha_salida >= $fhns && $fecha_salida <= $fhnss)) ? '-1' : '-0';
 
 
-        $medio = $_GET['medio'];
-        $agencia = $_GET['agencia'];
+        $medio = $request->get('medio');
+        if ($medio === null || $medio === '') {
+            throw new BadRequestHttpException('Parámetro medio requerido');
+        }
+
+        $agencia = $request->get('agencia');
+        if ($agencia === null || $agencia === '') {
+            throw new BadRequestHttpException('Parámetro agencia requerido');
+        }
 
         $model = new Reservas();
 
