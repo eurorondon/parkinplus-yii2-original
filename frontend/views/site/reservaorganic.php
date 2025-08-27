@@ -211,10 +211,11 @@ if (!is_null($temporada)) {
 		<input class="form-control" style="margin-bottom: 20px" type="hidden" id="temporada"
 			value="<?= !is_null($temporada) ? 1 : 0 ?>">
 
-		<input type="hidden" id="cantdias" name="cantdias" value="<?= $cant_dias ?>">
-		<input type="hidden" id="type_service" name="type">
-		<input type="hidden" id="precio_dia" name="precio_dia" value="<?= $precio_dia ?>">
-		<div class="container">
+                <input type="hidden" id="cantdias" name="cantdias" value="<?= $cant_dias ?>">
+                <input type="hidden" id="type_service" name="type">
+                <input type="hidden" id="plan" name="plan">
+                <input type="hidden" id="precio_dia" name="precio_dia" value="<?= $precio_dia ?>">
+                <div class="container">
 
 			<div class="row">
 				<div class="col-lg-12">
@@ -840,8 +841,9 @@ $this->registerJs("
   
 		});
 	
-		$('#bronce').click(function(e){
-			e.preventDefault();
+               $('#bronce').click(function(e){
+                       $('#plan').val(1);
+                       e.preventDefault();
 				/*$('#oro, #plata').css('background-color', '#000');
 				$(this).css('background-color', '#b0cb21');*/
 				$('#type_service').val(0);
@@ -855,8 +857,9 @@ $this->registerJs("
 				.trigger('submit');
 		  
 			});
-			$('#plata').click(function(e){
-				e.preventDefault();
+                       $('#plata').click(function(e){
+                               $('#plan').val(2);
+                               e.preventDefault();
 				$(this)
 				.text('')
 				.removeClass('btn-success')
@@ -870,8 +873,9 @@ $this->registerJs("
 				//$('#boton-reserva').attr('disabled', false);
 			});
 
-			$('#oro').click(function(e){
-				e.preventDefault();
+                       $('#oro').click(function(e){
+                               $('#plan').val(3);
+                               e.preventDefault();
 				$(this)
 				.text('')
 				.removeClass('btn-success')
