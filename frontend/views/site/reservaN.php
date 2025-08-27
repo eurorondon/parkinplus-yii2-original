@@ -453,6 +453,7 @@ if (!is_null($temporada)) {
 				<div class="col-lg-2"
 					style="display: flex;align-items: center;justify-content: center;flex-direction: column;">
 					<h4>Servicios</h4>
+					<p>- Plaza reservada</p>
 					<p>- Lavado exterior</p>
 					<p class="noctur" style="display:none">- Especial nocturnidad entre 00:30 y 03:45</p>
 					<?= Html::button('más inf +', [
@@ -547,6 +548,7 @@ if (!is_null($temporada)) {
 				<div class="col-lg-2 text-left"
 					style="display: flex;align-items: center;justify-content: center;flex-direction: column;">
 					<h4>Servicios</h4>
+					<p>- Plaza reservada</p>
 					<p>- Lavado interior</p>
 					<p>- Lavado exterior</p>
 					<p>- Custodia de llaves</p>
