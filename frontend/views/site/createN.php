@@ -488,7 +488,7 @@ Modal::end();
 
 
                 <div class="form-group mt-2"
-                  style="<?= (((in_array($s->id, [1, 9])) && $type_reserva == 9) || (in_array($s->id, [2, 12]) && $type_reserva == 12)) ? 'display:none' : '' ?>">
+                  style="<?= in_array($s->id, [9, 12]) ? 'display:none' : '' ?>">
                   <?= $form->field($model, 'tipo_servicio')->hiddenInput(['id' => 'tipo_servicio' . $s->id, 'value' => $s->fijo, 'name' => 'tipo_servicio' . $s->id])->label(false) ?>
 
                   <?= $form->field($model, 'cantidad')->hiddenInput(['id' => 'cantidad' . $s->id, 'value' => 0, 'min' => 1, 'name' => 'cantidad' . $s->id])->label(false) ?>
