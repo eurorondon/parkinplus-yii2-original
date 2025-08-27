@@ -721,60 +721,45 @@ $this->registerJs("
                 return false;
               });
 
-        $('.servicios').each(function() {
-            
-            if($(this).val() == $('#type_reserva').val()){
-              $(this).prop('checked',true);
-              $(this).prop('disabled',true);
-                
-              var id = $(this).val();
-              var tipo_servicio = $('#tipo_servicio'+ id).val();
-              var precio = $('#precio_unitario'+ id).val();
-              $('#cantidad'+ id).prop('readonly',false);
-              cant = $('#cantidad'+ id).val();               
-              if (cant == 0) {
-                $('#cantidad'+ id).val(1);
-              } 
-              
-              if($('#type_reserva').val() == 12){
-                $('.servi2').prop('checked',true);
-                $('.servi2').prop('disabled',true);
-                var tipo_servicio = $('#tipo_servicio2').val();
-                var precio = $('#precio_unitario2').val();
-                $('#cantidad2').prop('readonly',false);
-                cant = $('#cantidad2').val();
-                if (cant == 0) {
-                  $('#cantidad2').val(1);
-                }
-                $('#precio_unitario12').val(0);
-                if ($('#precio_total12').length) {
-                  $('#precio_total12').val(0);
-                }
-                $('#cantidad12').val(1);
-              }
-              
-              if(Number($('#type_reserva').val()) == 9){
-
-                $('.servi1').prop('checked',true);
-                $('.servi1').prop('disabled',true);
-                var tipo_servicio = $('#tipo_servicio1').val();
-
-                var precio = $('#precio_unitario1').val();
-                $('#cantidad1').prop('readonly',false);
-                cant = $('#cantidad1').val();
-                if (cant == 0) {
-                  $('#cantidad1').val(1);
-                  $('#precio_total1').val(precio);
-                }
-                $('#precio_unitario9').val(0);
-                if ($('#precio_total9').length) {
-                  $('#precio_total9').val(0);
-                }
-              }
-          
-              $('.totales-facturas').click();
+        var planType = $('#type_reserva').val();
+        var planCheckbox = $('.servicios[value=' + planType + ']').first();
+        if (planCheckbox.length) {
+            planCheckbox.prop('checked', true);
+            planCheckbox.prop('disabled', true);
+            var id = planType;
+            $('#cantidad' + id).prop('readonly', false);
+            if ($('#cantidad' + id).val() == 0) {
+                $('#cantidad' + id).val(1);
             }
-        });
+        }
+
+        if (planType == 12) {
+            $('.servi2').prop('checked', true);
+            $('.servi2').prop('disabled', true);
+            $('#cantidad2').prop('readonly', false);
+            if ($('#cantidad2').val() == 0) {
+                $('#cantidad2').val(1);
+            }
+            if ($('#precio_unitario12').length) { $('#precio_unitario12').val(0); }
+            if ($('#precio_total12').length) { $('#precio_total12').val(0); }
+            if ($('#cantidad12').length) { $('#cantidad12').val(1); }
+        }
+
+        if (Number(planType) == 9) {
+            $('.servi1').prop('checked', true);
+            $('.servi1').prop('disabled', true);
+            $('#cantidad1').prop('readonly', false);
+            if ($('#cantidad1').val() == 0) {
+                var precio = $('#precio_unitario1').val();
+                $('#cantidad1').val(1);
+                if ($('#precio_total1').length) { $('#precio_total1').val(precio); }
+            }
+            if ($('#precio_unitario9').length) { $('#precio_unitario9').val(0); }
+            if ($('#precio_total9').length) { $('#precio_total9').val(0); }
+            if ($('#cantidad9').length) { $('#cantidad9').val(1); }
+        }
+
+        $('.totales-facturas').click();
 			
         precio_dia = $('#precio_dia').val();
 
