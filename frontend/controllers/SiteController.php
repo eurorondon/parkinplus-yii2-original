@@ -252,12 +252,22 @@ class SiteController extends Controller
         if ($model->load(Yii::$app->request->post())) {
             $cdias = $_POST['cantdias'];
             $type = $_POST['type'];
+            $plan = $_POST['plan'];
             $entrada = $model->fecha_entrada;
             $salida = $model->fecha_salida;
             $hora_e = $model->hora_entrada;
             $hora_s = $model->hora_salida;
 
-            return Yii::$app->response->redirect(['site/createorganic', 'cdias' => $cdias, 'entrada' => $entrada, 'salida' => $salida, 'hora_e' => $hora_e, 'hora_s' => $hora_s, 'type' => $type])->send();
+            return Yii::$app->response->redirect([
+                'site/createorganic',
+                'cdias' => $cdias,
+                'entrada' => $entrada,
+                'salida' => $salida,
+                'hora_e' => $hora_e,
+                'hora_s' => $hora_s,
+                'type' => $type,
+                'plan' => $plan
+            ])->send();
         }
         return $this->renderAjax('fechas', [
             'model' => $model,
@@ -954,6 +964,7 @@ class SiteController extends Controller
         $cant_dias = $_GET['cdias'];
         $type_reserva = $_GET['type'];
         $plan = $_GET['plan'];
+        $plan = $_GET['plan'];
 
         $fecha_entrada = strtotime($entrada . ' ' . $hora_e);
         $fecha_salida = strtotime($salida . ' ' . $hora_s);
@@ -1479,6 +1490,7 @@ class SiteController extends Controller
 
         $cant_dias = $_GET['cdias'];
         $type_reserva = $_GET['type'];
+        $plan = $_GET['plan'];
 
         $fecha_entrada = strtotime($entrada . ' ' . $hora_e);
         $fecha_salida = strtotime($salida . ' ' . $hora_s);
@@ -1500,6 +1512,7 @@ class SiteController extends Controller
         $modelC = new Clientes();
         $modelV = new Coches();
 
+        $model->plan = $plan;
         $model->cod_valid = $this->Obtener_token(48);
 
         $tipo_documento = [
@@ -1608,6 +1621,7 @@ class SiteController extends Controller
         $precio_dia = Configuracion::find()->where(['estatus' => '1'])->andWhere(['tipo_campo' => '0'])->one();
 
         if ($model->load(Yii::$app->request->post()) && $modelC->load(Yii::$app->request->post()) && $modelV->load(Yii::$app->request->post())) {
+            $model->plan = Yii::$app->request->post('Reservas')['plan'];
 
             //Eliminando Lavado cortesia si existe lavado completo
 
@@ -1984,7 +1998,8 @@ class SiteController extends Controller
             'cant_dias' => $cant_dias,
             'nocturno' => $extraNocturno,
             'type_reserva' => $type_reserva,
-            'precio_dia' => $precio_dia->valor_numerico
+            'precio_dia' => $precio_dia->valor_numerico,
+            'plan' => $plan
         ]);
     }
     // end ER
