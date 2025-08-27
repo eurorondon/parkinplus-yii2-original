@@ -1184,6 +1184,9 @@ class SiteController extends Controller
             $model->id_coche = $this->resolveCarId($modelV);
 
             foreach ($servicios as $ser) {
+                if (in_array($ser->id, [9, 12])) {
+                    continue; // omitir “Plaza reservada” y “Techado”
+                }
 
                 $modelR = new ReservasServicios();
                 $precio_unitario = $_POST['precio_unitario' . $ser->id];
@@ -1710,6 +1713,9 @@ class SiteController extends Controller
             $model->id_coche = $this->resolveCarId($modelV);
 
             foreach ($servicios as $ser) {
+                if (in_array($ser->id, [9, 12])) {
+                    continue; // omitir “Plaza reservada” y “Techado”
+                }
 
                 $modelR = new ReservasServicios();
                 $precio_unitario = $_POST['precio_unitario' . $ser->id];
@@ -2278,6 +2284,9 @@ class SiteController extends Controller
 
             $newExtras = [];
             foreach ($servicios as $ser) {
+                if (in_array($ser->id, [9, 12])) {
+                    continue; // omitir “Plaza reservada” y “Techado”
+                }
                 if ($ser->fijo == 2) {
                     $newExtras[$ser->id] = (int)$_POST['cantidad' . $ser->id];
                 }
@@ -2301,6 +2310,9 @@ class SiteController extends Controller
             }
 
             foreach ($servicios as $ser) {
+                if (in_array($ser->id, [9, 12])) {
+                    continue; // omitir “Plaza reservada” y “Techado”
+                }
 
                 $modelR = new ReservasServicios();
                 $precio_unitario = $_POST['precio_unitario' . $ser->id];

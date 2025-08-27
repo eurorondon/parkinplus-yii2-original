@@ -254,6 +254,9 @@ for ($i = 0; $i < $cant; $i++) { ?>
 
             <?php
             foreach ($servicios as $s) {
+              if (in_array($s->id, [9, 12])) {
+                continue; // omitir “Plaza reservada” y “Techado”
+              }
               $service = array($s->id => $s->nombre_servicio);
             ?>
 
