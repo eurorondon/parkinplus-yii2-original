@@ -213,6 +213,7 @@ if (!is_null($temporada)) {
 
 		<input type="hidden" id="cantdias" name="cantdias" value="<?= $cant_dias ?>">
 		<input type="hidden" id="type_service" name="type">
+		<!-- Selected plan will be stored here -->
 		<input type="hidden" id="plan" name="plan">
 		<input type="hidden" id="precio_dia" name="precio_dia" value="<?= $precio_dia ?>">
 		<div class="container">
