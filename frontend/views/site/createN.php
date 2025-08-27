@@ -465,6 +465,9 @@ Modal::end();
             <div style="display:<?= $model->factura == 1 ? 'none !important' : '' ?>">
               <?php
               foreach ($servicios as $s) {
+                if (in_array($s->id, [9, 12])) {
+                  continue; // omitir “Plaza reservada” y “Techado”
+                }
                 $service = array($s->id => $s->nombre_servicio);
                 $checked = "";
 
