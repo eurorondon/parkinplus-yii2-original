@@ -1474,7 +1474,8 @@ class SiteController extends Controller
             'nocturno' => $extraNocturno,
             'type_reserva' => $type_reserva,
             'precio_dia' => $precio_dia->valor_numerico,
-            'plan' => $plan
+            'plan' => $plan,
+            'solicitud_factura' => isset($_GET['invoice']) && !empty($_GET['invoice']) ? true : false
         ]);
     }
 
@@ -1999,7 +2000,8 @@ class SiteController extends Controller
             'nocturno' => $extraNocturno,
             'type_reserva' => $type_reserva,
             'precio_dia' => $precio_dia->valor_numerico,
-            'plan' => $plan
+            'plan' => $plan,
+            'solicitud_factura' => isset($_GET['invoice']) && !empty($_GET['invoice']) ? true : false
         ]);
     }
     // end ER
