@@ -1186,10 +1186,15 @@ class SiteController extends Controller
             foreach ($servicios as $ser) {
 
                 $modelR = new ReservasServicios();
-                $precio_unitario = $_POST['precio_unitario' . $ser->id];
-                $cantidad = $_POST['cantidad' . $ser->id];
-                $precio_total = $_POST['precio_unitario' . $ser->id];
-                $tipo_servicio = $_POST['tipo_servicio' . $ser->id];
+                $precio_unitario = Yii::$app->request->post('precio_unitario' . $ser->id, 0);
+                $cantidad        = Yii::$app->request->post('cantidad' . $ser->id, 0);
+                $precio_total    = Yii::$app->request->post('precio_total' . $ser->id, 0);
+                $tipo_servicio   = Yii::$app->request->post('tipo_servicio' . $ser->id, 0);
+
+                if ($precio_unitario === 0 && $cantidad === 0 && $precio_total === 0 && $tipo_servicio === 0) {
+                    Yii::warning("Missing service fields for ID {$ser->id}", __METHOD__);
+                    continue;
+                }
 
                 if ($cantidad != 0) {
                     $modelR->id_reserva = $model->nro_reserva;
@@ -1712,10 +1717,15 @@ class SiteController extends Controller
             foreach ($servicios as $ser) {
 
                 $modelR = new ReservasServicios();
-                $precio_unitario = $_POST['precio_unitario' . $ser->id];
-                $cantidad = $_POST['cantidad' . $ser->id];
-                $precio_total = $_POST['precio_unitario' . $ser->id];
-                $tipo_servicio = $_POST['tipo_servicio' . $ser->id];
+                $precio_unitario = Yii::$app->request->post('precio_unitario' . $ser->id, 0);
+                $cantidad        = Yii::$app->request->post('cantidad' . $ser->id, 0);
+                $precio_total    = Yii::$app->request->post('precio_total' . $ser->id, 0);
+                $tipo_servicio   = Yii::$app->request->post('tipo_servicio' . $ser->id, 0);
+
+                if ($precio_unitario === 0 && $cantidad === 0 && $precio_total === 0 && $tipo_servicio === 0) {
+                    Yii::warning("Missing service fields for ID {$ser->id}", __METHOD__);
+                    continue;
+                }
 
                 if ($cantidad != 0) {
                     $modelR->id_reserva = $model->nro_reserva;
@@ -2279,7 +2289,7 @@ class SiteController extends Controller
             $newExtras = [];
             foreach ($servicios as $ser) {
                 if ($ser->fijo == 2) {
-                    $newExtras[$ser->id] = (int)$_POST['cantidad' . $ser->id];
+                    $newExtras[$ser->id] = (int)Yii::$app->request->post('cantidad' . $ser->id, 0);
                 }
             }
 
@@ -2303,10 +2313,15 @@ class SiteController extends Controller
             foreach ($servicios as $ser) {
 
                 $modelR = new ReservasServicios();
-                $precio_unitario = $_POST['precio_unitario' . $ser->id];
-                $cantidad = $_POST['cantidad' . $ser->id];
-                $precio_total = $_POST['precio_unitario' . $ser->id];
-                $tipo_servicio = $_POST['tipo_servicio' . $ser->id];
+                $precio_unitario = Yii::$app->request->post('precio_unitario' . $ser->id, 0);
+                $cantidad        = Yii::$app->request->post('cantidad' . $ser->id, 0);
+                $precio_total    = Yii::$app->request->post('precio_total' . $ser->id, 0);
+                $tipo_servicio   = Yii::$app->request->post('tipo_servicio' . $ser->id, 0);
+
+                if ($precio_unitario === 0 && $cantidad === 0 && $precio_total === 0 && $tipo_servicio === 0) {
+                    Yii::warning("Missing service fields for ID {$ser->id}", __METHOD__);
+                    continue;
+                }
 
                 if ($cantidad != 0) {
                     $modelR->id_reserva = $model->nro_reserva;
