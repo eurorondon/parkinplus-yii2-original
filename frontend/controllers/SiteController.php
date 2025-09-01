@@ -1099,7 +1099,11 @@ class SiteController extends Controller
 
             //Eliminando Lavado cortesia si existe lavado completo
 
-            if (($_POST['cantidad2'] > 0 && $_POST['cantidad7'] > 0) || ($_POST['cantidad1'] > 0 && $_POST['cantidad7'] > 0)) {
+            $cantidad1 = Yii::$app->request->post('cantidad1', 0);
+            $cantidad2 = Yii::$app->request->post('cantidad2', 0);
+            $cantidad7 = Yii::$app->request->post('cantidad7', 0);
+
+            if (($cantidad2 > 0 && $cantidad7 > 0) || ($cantidad1 > 0 && $cantidad7 > 0)) {
                 unset($servicios[3]);
             }
 
@@ -1630,7 +1634,11 @@ class SiteController extends Controller
 
             //Eliminando Lavado cortesia si existe lavado completo
 
-            if (($_POST['cantidad2'] > 0 && $_POST['cantidad7'] > 0) || ($_POST['cantidad1'] > 0 && $_POST['cantidad7'] > 0)) {
+            $cantidad1 = Yii::$app->request->post('cantidad1', 0);
+            $cantidad2 = Yii::$app->request->post('cantidad2', 0);
+            $cantidad7 = Yii::$app->request->post('cantidad7', 0);
+
+            if (($cantidad2 > 0 && $cantidad7 > 0) || ($cantidad1 > 0 && $cantidad7 > 0)) {
                 unset($servicios[3]);
             }
 
@@ -2219,7 +2227,11 @@ class SiteController extends Controller
 
             //Eliminando Lavado cortesia si existe lavado completo
 
-            if (($_POST['cantidad2'] > 0 && $_POST['cantidad7'] > 0) || ($_POST['cantidad1'] > 0 && $_POST['cantidad7'] > 0)) {
+            $cantidad1 = Yii::$app->request->post('cantidad1', 0);
+            $cantidad2 = Yii::$app->request->post('cantidad2', 0);
+            $cantidad7 = Yii::$app->request->post('cantidad7', 0);
+
+            if (($cantidad2 > 0 && $cantidad7 > 0) || ($cantidad1 > 0 && $cantidad7 > 0)) {
                 unset($servicios[3]);
             }
 
