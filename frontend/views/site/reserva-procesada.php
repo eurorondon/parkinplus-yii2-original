@@ -31,6 +31,9 @@ $hora_s = $reserva->hora_salida;
 
 foreach ($service as $s) {
     $datos = Servicios::find()->where(['id' => $s->id_servicio])->one();
+    if ($s->id_servicio == 12 && (int)$s->precio_total === 0) {
+        continue;
+    }
     if ($datos->fijo == 2) {
         $lavado = $datos->nombre_servicio;
     } else {
@@ -210,6 +213,9 @@ $this->title = Yii::$app->name . ' | Reserva Procesada';
                                 $total = 0;
                                 foreach ($service as $s) {
                                     $datos = Servicios::find()->where(['id' => $s->id_servicio])->one();
+                                    if ($s->id_servicio == 12 && (int)$s->precio_total === 0) {
+                                        continue;
+                                    }
                                     if (stripos($datos->nombre_servicio, 'techado') !== false && (int)$s->precio_total === 0) {
                                         continue;
                                     }

@@ -235,7 +235,11 @@ if ($model->factura === 0) {
 
               <?php 
               $num = 1;
-              foreach ($ser as $s): $datos = Servicios::find()->where(['id'=> $s->id_servicio])->one(); 
+              foreach ($ser as $s):
+                $datos = Servicios::find()->where(['id'=> $s->id_servicio])->one();
+                if ($s->id_servicio == 12 && (int)$s->precio_total === 0) {
+                  continue;
+                }
                 if ($datos->fijo === 0) {
                   ?>
               
