@@ -1285,4 +1285,10 @@ $this->registerJs("
       $('.reserva__detail__monto').html('').append(total.toFixed(2));
     }
   }, 1000);
+
+  $('#w0').on('beforeSubmit', function() {
+    $('#precio_unitario9, #precio_total9, #cantidad9').each(function() {
+      $(this).prop('disabled', true).removeAttr('name');
+    });
+  });
 </script>
