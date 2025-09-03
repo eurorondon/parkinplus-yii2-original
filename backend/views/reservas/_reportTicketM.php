@@ -42,17 +42,22 @@ for ($i = 0; $i < count($model); $i++) {
 	if ($model[$i]->medio_reserva === 4) {
 		$medio[$i] = 'afiliado.png';
 	}
-        if ($model[$i]->medio_reserva === 5) {
-                $medio[$i] = 'organic.png';
-        }
+	if ($model[$i]->medio_reserva === 5) {
+		$medio[$i] = 'organic.png';
+	}
 
-        $planName[$i] = $planes[(int)$model[$i]->plan] ?? '';
+	$planName[$i] = $planes[(int)$model[$i]->plan] ?? '';
 }
 
 ?>
 
 <?php
-for ($i = 0; $i < count($model); $i++) { ?>
+for ($i = 0; $i < count($model); $i++) {
+	$IS_PREMIUM   = ((int)$model[$i]->plan === 2);
+	$IS_PRIORITY  = ((int)$model[$i]->plan === 3);
+	$TECHADO_ID   = 9;
+	$PLAZA_RES_ID = 12;
+?>
 
 	<div style="margin-top: 1cm;font-size: 17px; font-weight: bolder; font-family: sans-serif;"><b><?= $model[$i]->nro_reserva ?></b></div>
 
@@ -128,18 +133,36 @@ for ($i = 0; $i < count($model); $i++) { ?>
 
 	</table>
 
-        <hr style="margin: 6px 0px">
+	<hr style="margin: 6px 0px">
 
-        <div><b><?= Html::encode($planName[$i]) ?></b></div>
+	<div><b><?= Html::encode($planName[$i]) ?></b></div>
 
-        <?php if ($contS[$i] > 0) { ?>
+	<?php if ($contS[$i] > 0) { ?>
 		<div style="height: 3cm">
 			<b>INCLUYE:</b><br />
-			<?php for ($l = 0; $l < count($servicios[$i]); $l++) {
-				if ($servicios[$i][$l]->servicios->fijo == 2) { ?>
-					<?= strtoupper($servicios[$i][$l]->servicios->nombre_servicio) ?><br />
-			<?php }
-			} ?>
+			<?php
+			for ($l = 0; $l < count($servicios[$i]); $l++) {
+				$srv = $servicios[$i][$l]->servicios ?? null;
+				if (!$srv) {
+					continue;
+				}
+
+				$srvId     = isset($srv->id) ? (int)$srv->id : 0;
+				$srvNombre = isset($srv->nombre_servicio) ? trim((string)$srv->nombre_servicio) : '';
+				$srvFijo   = isset($srv->fijo) ? (int)$srv->fijo : 0;
+
+				if ($IS_PREMIUM && ($srvId === $TECHADO_ID || strcasecmp($srvNombre, 'Techado') === 0)) {
+					continue;
+				}
+				if ($IS_PRIORITY && ($srvId === $PLAZA_RES_ID || strcasecmp($srvNombre, 'Plaza reservada') === 0)) {
+					continue;
+				}
+
+				if ($srvFijo == 2) {
+					echo strtoupper($srvNombre) . "<br />";
+				}
+			}
+			?>
 		</div>
 	<?php } else { ?>
 		<div style="height: 3cm">
