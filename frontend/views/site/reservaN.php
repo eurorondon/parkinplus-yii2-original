@@ -703,6 +703,7 @@ $this->registerJs("
 
 	  precio_dia = $('#precio_dia').val();
       cant = $('#cantdias').val();
+      var cantBase = cant;
       precio1 = $('#precio-diario1').val();
       precio2 = $('#precio-diario2').val();
       precio3 = $('#precio-diario3').val();
@@ -800,16 +801,17 @@ $this->registerJs("
 		nocturnidad = parseFloat($('#nocturno').val());
 		$('.noctur').css('display', 'block');
 	  } 
-		var costo = total + nocturnidad;
-		var costo_t = parseFloat($('#servicio-9').val()) + nocturnidad + total;
+                var costo = total + nocturnidad;
+                var costo_t = parseFloat($('#servicio-9').val()) + nocturnidad + total;
 
                 var costo_i = nocturnidad + parseFloat($('#servicio-2').val()) + total;
+                var costoEconomic = costo - cantBase;
 	  
 		/*console.log(parseFloat($('#servicio-12').val()));
 		console.log(nocturnidad );
 		console.log(parseFloat($('#servicio-2').val()));*/
 		
-          $('#costo_e').append(costo.toFixed(2)+ '€');
+          $('#costo_e').append(costoEconomic.toFixed(2)+ '€');
           $('#costo').append(costo.toFixed(2)+ '€');
           $('#costo_t').append( costo_t.toFixed(2) + '€');
           $('#costo_i').append(costo_i.toFixed(2)+ '€');
@@ -882,9 +884,10 @@ $this->registerJs("
 		  $('#fechas_r').css('display', 'none');
 		  $('.loading').css('display', 'block');
 		  
-		  $('#cantdias').val(cant);
+                  $('#cantdias').val(cant);
+                  var cantBase = cant;
 
-		 if(cant > 30){
+                 if(cant > 30){
 			while (cant > 30) {
 				total +=  parseFloat(precio30);
 				cant =  cant - 30;
@@ -919,6 +922,7 @@ $this->registerJs("
                   var costo = total + nocturnidad
                   var costo_t = parseFloat($('#servicio-9').val()) + nocturnidad + total;
                   var costo_i = nocturnidad + parseFloat($('#servicio-2').val()) + total;
+                  var costoEconomic = costo - cantBase;
 
                   $('#costo_e, #costo, #costo_t, #costo_i').html('');
 		  $('#fentrada').html('').append(fecha_in);
@@ -928,7 +932,7 @@ $this->registerJs("
 		  
 		  setTimeout(() => {
 		  		$('.loading').css('display', 'none');
-                          $('#costo_e').append(costo.toFixed(2)+ '€');
+                          $('#costo_e').append(costoEconomic.toFixed(2)+ '€');
                           $('#costo').append(costo.toFixed(2)+ '€');
                           $('#costo_t').append( costo_t.toFixed(2) + '€');
                           $('#costo_i').append(costo_i.toFixed(2)+ '€');
