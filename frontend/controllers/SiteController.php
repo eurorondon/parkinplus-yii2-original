@@ -443,7 +443,6 @@ class SiteController extends Controller
             } else {
                 Yii::$app->session->setFlash('error', 'Hubo un error al enviar tu mensaje.');
             }
-
             return $this->refresh();
         } else {
             return $this->render('contact', [
@@ -3145,6 +3144,12 @@ class SiteController extends Controller
                 }
             }
 
+            foreach ($precios_diarios as $key => $diario) {
+                if ($diario['id_lista'] == 4) {
+                    $precios_diarios[$key]['precio'] -= $diario['cantidad'];
+                }
+            }
+
 
             $precio_dia = Configuracion::find()->where(['estatus' => '1'])->andWhere(['tipo_campo' => '0'])->one();
 
@@ -3283,7 +3288,15 @@ class SiteController extends Controller
                 foreach ($precios_diarios as $key => $diario) {
                     $precios_diarios[$key]['precio'] = $precios_diarios[$key]['costo'] + ($precios_diarios[$key]['cantidad'] * $precioTemporada->precio);
                 }
+
+
             }
+            foreach ($precios_diarios as $key => $diario) {
+                if ($diario['id_lista'] == 4) {
+                    $precios_diarios[$key]['precio'] -= $diario['cantidad'];
+                }
+            }
+
 
 
             $precio_dia = Configuracion::find()->where(['estatus' => '1'])->andWhere(['tipo_campo' => '0'])->one();
