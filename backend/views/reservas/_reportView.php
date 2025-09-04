@@ -29,17 +29,13 @@ $fecha_s = date("d-m-Y", strtotime($fecha_s));
 $hora_e = $model->hora_entrada;
 $hora_s = $model->hora_salida;
 
-$lavado = '';
+$lavado = 'N/A';
 
 foreach ($service as $s) {
-        if ($s->id_servicio == 12 && (int)$s->precio_total === 0) {
-                continue;
-        }
         $datos = Servicios::find()->where(['id' => $s->id_servicio])->one();
         if ($datos->fijo == 2) {
                 $lavado = $datos->nombre_servicio;
-        } else {
-                $lavado = 'N/A';
+                break;
         }
 }
 
