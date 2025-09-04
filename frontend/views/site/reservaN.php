@@ -317,29 +317,26 @@ if (!is_null($temporada)) {
 				</div>
 			</div>
 
-			<div class="row mt-4 p-4"
-				style="border: 1px solid #961007; border-radius: 5px; display: flex;align-items: center;justify-content: space-between; background: #eee;">
+                    <div class="row mt-4 plan-card">
 
-				<div class="col-lg-2"
-					style="display: flex;align-items: center;justify-content: center;flex-direction: column;">
-					<div class="counter_container"
-						style="border: 1px solid #961007;    width: 160px;height: 160px;background: #fff;">
-						<div class="counter__text">
-							<div class="icon">
-								<?= Html::img('@web/images/bronce.png', ['class' => 'counter__icon']) ?>
+                                <div class="col-lg-2 d-flex flex-column align-items-center justify-content-center">
+                                        <div class="counter_container"
+                                                style="border: 1px solid #961007;    width: 160px;height: 160px;background: #fff;">
+                                                <div class="counter__text">
+                                                        <div class="icon">
+                                                                <?= Html::img('@web/images/bronce.png', ['class' => 'counter__icon']) ?>
 							</div>
 						</div>
 						<div class="counter__description">ECONOMIC</div>
 					</div>
 				</div>
 
-				<div class="col-lg-2"
-					style="display: flex;align-items: center;justify-content: center;flex-direction: column;">
-					<div class="counter_container"
-						style="border: 1px solid #961007;    width: 160px;height: 160px;background: #fff;">
-						<div class="counter__text">
-							<div class="icon">
-								<?= Html::img('@web/images/chofer1.png', ['class' => 'counter__icon']) ?>
+                                <div class="col-lg-2 d-flex flex-column align-items-center justify-content-center">
+                                        <div class="counter_container"
+                                                style="border: 1px solid #961007;    width: 160px;height: 160px;background: #fff;">
+                                                <div class="counter__text">
+                                                        <div class="icon">
+                                                                <?= Html::img('@web/images/chofer1.png', ['class' => 'counter__icon']) ?>
 							</div>
 
 						</div>
@@ -347,41 +344,40 @@ if (!is_null($temporada)) {
 					</div>
 				</div>
 
-				<div class="col-lg-2"
-					style="display: flex;align-items: center;justify-content: center;flex-direction: column;">
-					<div class="counter_container"
-						style="border: 1px solid #961007;    width: 160px;height: 160px;background: #fff;">
-						<div class="counter__text">
-							<div class="icon">
-								<?= Html::img('@web/images/car.png', ['class' => 'counter__icon']) ?>
+                                <div class="col-lg-2 d-flex flex-column align-items-center justify-content-center">
+                                        <div class="counter_container"
+                                                style="border: 1px solid #961007;    width: 160px;height: 160px;background: #fff;">
+                                                <div class="counter__text">
+                                                        <div class="icon">
+                                                                <?= Html::img('@web/images/car.png', ['class' => 'counter__icon']) ?>
 							</div>
 						</div>
 					</div>
 				</div>
 
-				<div class="col-lg-2"
-					style="display: flex;align-items: center;justify-content: center;flex-direction: column;">
-					<h4>Servicios</h4>
-					<p>- Plaza reservada</p>
-					<p>- Traslado desde el aparcamiento a cualquier terminal.</p>
-					<p>- Traslado desde la terminal de llegada hasta el aparcamiento.</p>
-					<p class="noctur" style="display:none">- Especial nocturnidad entre 00:30 y 03:45</p>
-					<?= Html::button('más inf +', [
-						'class' => 'btn btn-default btn-sm text-dark',
-						'style' => ['font-size' => '12px'],
-						'id' => 'BtnModalId',
-						'data-toggle' => 'modal',
-						'data-target' => '#mas_info_st',
-					]) ?>
-				</div>
+                                <div class="col-lg-4 d-flex flex-column align-items-center justify-content-center">
+                                        <h4>Servicios</h4>
+                                        <ul class="list-unstyled services">
+                                                <li>Plaza reservada</li>
+                                                <li>Traslado desde el aparcamiento a cualquier terminal.</li>
+                                                <li>Traslado desde la terminal de llegada hasta el aparcamiento.</li>
+                                                <li class="noctur" style="display:none">Especial nocturnidad entre 00:30 y 03:45</li>
+                                        </ul>
+                                        <?= Html::button('más inf +', [
+                                                'class' => 'btn btn-default btn-sm text-dark',
+                                                'style' => ['font-size' => '12px'],
+                                                'id' => 'BtnModalId',
+                                                'data-toggle' => 'modal',
+                                                'data-target' => '#mas_info_st',
+                                        ]) ?>
+                                </div>
 
-				<div class="col-lg-3"
-					style="display: flex;flex-direction: column;justify-content: center;align-items: center;">
-					<svg width="48" height="48" viewBox="0 0 45 45" xmlns="http://www.w3.org/2000/svg" stroke="#000"
-						style="display:none" class="loading">
-						<g fill="none" fill-rule="evenodd" transform="translate(1 1)" stroke-width="2">
-							<circle cx="22" cy="22" r="6" stroke-opacity="0">
-								<animate attributeName="r" begin="1.5s" dur="3s" values="6;22" calcMode="linear"
+                                <div class="col-lg-2 d-flex flex-column justify-content-center align-items-center">
+                                        <svg width="48" height="48" viewBox="0 0 45 45" xmlns="http://www.w3.org/2000/svg" stroke="#000"
+                                                style="display:none" class="loading">
+                                                <g fill="none" fill-rule="evenodd" transform="translate(1 1)" stroke-width="2">
+                                                        <circle cx="22" cy="22" r="6" stroke-opacity="0">
+                                                                <animate attributeName="r" begin="1.5s" dur="3s" values="6;22" calcMode="linear"
 									repeatCount="indefinite" />
 								<animate attributeName="stroke-opacity" begin="1.5s" dur="3s" values="1;0"
 									calcMode="linear" repeatCount="indefinite" />
@@ -410,29 +406,26 @@ if (!is_null($temporada)) {
 
 			</div>
 
-			<div class="row mt-4 p-4"
-				style="border: 1px solid #961007; border-radius: 5px; display: flex;align-items: center;justify-content: space-between; background: #eee;">
+                        <div class="row mt-4 plan-card">
 
-				<div class="col-lg-2"
-					style="display: flex;align-items: center;justify-content: center;flex-direction: column;">
-					<div class="counter_container"
-						style="border: 1px solid #961007;    width: 160px;height: 160px;background: #fff;">
-						<div class="counter__text">
-							<div class="icon">
-								<?= Html::img('@web/images/bronce.png', ['class' => 'counter__icon']) ?>
+                                <div class="col-lg-2 d-flex flex-column align-items-center justify-content-center">
+                                        <div class="counter_container"
+                                                style="border: 1px solid #961007;    width: 160px;height: 160px;background: #fff;">
+                                                <div class="counter__text">
+                                                        <div class="icon">
+                                                                <?= Html::img('@web/images/bronce.png', ['class' => 'counter__icon']) ?>
 							</div>
 						</div>
 						<div class="counter__description">STANDAR</div>
 					</div>
 				</div>
 
-				<div class="col-lg-2"
-					style="display: flex;align-items: center;justify-content: center;flex-direction: column;">
-					<div class="counter_container"
-						style="border: 1px solid #961007;    width: 160px;height: 160px;background: #fff;">
-						<div class="counter__text">
-							<div class="icon">
-								<?= Html::img('@web/images/chofer1.png', ['class' => 'counter__icon']) ?>
+                                <div class="col-lg-2 d-flex flex-column align-items-center justify-content-center">
+                                        <div class="counter_container"
+                                                style="border: 1px solid #961007;    width: 160px;height: 160px;background: #fff;">
+                                                <div class="counter__text">
+                                                        <div class="icon">
+                                                                <?= Html::img('@web/images/chofer1.png', ['class' => 'counter__icon']) ?>
 							</div>
 
 						</div>
@@ -440,40 +433,39 @@ if (!is_null($temporada)) {
 					</div>
 				</div>
 
-				<div class="col-lg-2"
-					style="display: flex;align-items: center;justify-content: center;flex-direction: column;">
-					<div class="counter_container"
-						style="border: 1px solid #961007;    width: 160px;height: 160px;background: #fff;">
-						<div class="counter__text">
-							<div class="icon">
-								<?= Html::img('@web/images/car.png', ['class' => 'counter__icon']) ?>
+                                <div class="col-lg-2 d-flex flex-column align-items-center justify-content-center">
+                                        <div class="counter_container"
+                                                style="border: 1px solid #961007;    width: 160px;height: 160px;background: #fff;">
+                                                <div class="counter__text">
+                                                        <div class="icon">
+                                                                <?= Html::img('@web/images/car.png', ['class' => 'counter__icon']) ?>
 							</div>
 						</div>
 					</div>
 				</div>
 
-				<div class="col-lg-2"
-					style="display: flex;align-items: center;justify-content: center;flex-direction: column;">
-					<h4>Servicios</h4>
-					<p>- Plaza reservada</p>
-					<p>- Recogida y entrega del vehículo en la terminal.</p>
-					<p class="noctur" style="display:none">- Especial nocturnidad entre 00:30 y 03:45</p>
-					<?= Html::button('más inf +', [
-						'class' => 'btn btn-default btn-sm text-dark',
-						'style' => ['font-size' => '12px'],
-						'id' => 'BtnModalId',
-						'data-toggle' => 'modal',
-						'data-target' => '#mas_info_st',
-					]) ?>
-				</div>
+                                <div class="col-lg-4 d-flex flex-column align-items-center justify-content-center">
+                                        <h4>Servicios</h4>
+                                        <ul class="list-unstyled services">
+                                                <li>Plaza reservada</li>
+                                                <li>Recogida y entrega del vehículo en la terminal.</li>
+                                                <li class="noctur" style="display:none">Especial nocturnidad entre 00:30 y 03:45</li>
+                                        </ul>
+                                        <?= Html::button('más inf +', [
+                                                'class' => 'btn btn-default btn-sm text-dark',
+                                                'style' => ['font-size' => '12px'],
+                                                'id' => 'BtnModalId',
+                                                'data-toggle' => 'modal',
+                                                'data-target' => '#mas_info_st',
+                                        ]) ?>
+                                </div>
 
-				<div class="col-lg-3"
-					style="display: flex;flex-direction: column;justify-content: center;align-items: center;">
-					<svg width="48" height="48" viewBox="0 0 45 45" xmlns="http://www.w3.org/2000/svg" stroke="#000"
-						style="display:none" class="loading">
-						<g fill="none" fill-rule="evenodd" transform="translate(1 1)" stroke-width="2">
-							<circle cx="22" cy="22" r="6" stroke-opacity="0">
-								<animate attributeName="r" begin="1.5s" dur="3s" values="6;22" calcMode="linear"
+                                <div class="col-lg-2 d-flex flex-column justify-content-center align-items-center">
+                                        <svg width="48" height="48" viewBox="0 0 45 45" xmlns="http://www.w3.org/2000/svg" stroke="#000"
+                                                style="display:none" class="loading">
+                                                <g fill="none" fill-rule="evenodd" transform="translate(1 1)" stroke-width="2">
+                                                        <circle cx="22" cy="22" r="6" stroke-opacity="0">
+                                                                <animate attributeName="r" begin="1.5s" dur="3s" values="6;22" calcMode="linear"
 									repeatCount="indefinite" />
 								<animate attributeName="stroke-opacity" begin="1.5s" dur="3s" values="1;0"
 									calcMode="linear" repeatCount="indefinite" />
@@ -502,29 +494,26 @@ if (!is_null($temporada)) {
 
 			</div>
 
-			<div class="row mt-4 p-4"
-				style="border: 1px solid #961007; border-radius: 5px; display: flex;align-items: center;justify-content: space-between; background: #eee;">
+                        <div class="row mt-4 plan-card">
 
-				<div class="col-lg-2"
-					style="display: flex;align-items: center;justify-content: center;flex-direction: column;">
-					<div class="counter_container "
-						style="border: 1px solid #961007;    width: 160px;height: 160px;background: #fff;">
-						<div class="counter__text">
-							<div class="icon">
-								<?= Html::img('@web/images/plata.png', ['class' => 'counter__icon']) ?>
+                                <div class="col-lg-2 d-flex flex-column align-items-center justify-content-center">
+                                        <div class="counter_container "
+                                                style="border: 1px solid #961007;    width: 160px;height: 160px;background: #fff;">
+                                                <div class="counter__text">
+                                                        <div class="icon">
+                                                                <?= Html::img('@web/images/plata.png', ['class' => 'counter__icon']) ?>
 							</div>
 						</div>
 						<div class="counter__description">PREMIUM</div>
 					</div>
 				</div>
 
-				<div class="col-lg-2"
-					style="display: flex;align-items: center;justify-content: center;flex-direction: column;">
-					<div class="counter_container"
-						style="border: 1px solid #961007;    width: 160px;height: 160px;background: #fff;">
-						<div class="counter__text">
-							<div class="icon">
-								<?= Html::img('@web/images/chofer1.png', ['class' => 'counter__icon']) ?>
+                                <div class="col-lg-2 d-flex flex-column align-items-center justify-content-center">
+                                        <div class="counter_container"
+                                                style="border: 1px solid #961007;    width: 160px;height: 160px;background: #fff;">
+                                                <div class="counter__text">
+                                                        <div class="icon">
+                                                                <?= Html::img('@web/images/chofer1.png', ['class' => 'counter__icon']) ?>
 							</div>
 
 						</div>
@@ -532,40 +521,39 @@ if (!is_null($temporada)) {
 					</div>
 				</div>
 
-				<div class="col-lg-2"
-					style="display: flex;align-items: center;justify-content: center;flex-direction: column;">
-					<div class="counter_container"
-						style="border: 1px solid #6c757d;    width: 160px;height: 160px;background: #fff;">
-						<div class="counter__text">
-							<div class="icon">
-								<?= Html::img('@web/images/garage-car.png', ['class' => 'counter__icon']) ?>
+                                <div class="col-lg-2 d-flex flex-column align-items-center justify-content-center">
+                                        <div class="counter_container"
+                                                style="border: 1px solid #6c757d;    width: 160px;height: 160px;background: #fff;">
+                                                <div class="counter__text">
+                                                        <div class="icon">
+                                                                <?= Html::img('@web/images/garage-car.png', ['class' => 'counter__icon']) ?>
 							</div>
 						</div>
 					</div>
 				</div>
 
-				<div class="col-lg-2"
-					style="display: flex;align-items: center;justify-content: center;flex-direction: column;">
-					<h4>Servicios</h4>
-					<p>- Plaza reservada</p>
-					<p>- Lavado exterior</p>
-					<p class="noctur" style="display:none">- Especial nocturnidad entre 00:30 y 03:45</p>
-					<?= Html::button('más inf +', [
-						'class' => 'btn btn-default btn-sm text-dark',
-						'style' => ['font-size' => '12px'],
-						'id' => 'BtnModalId',
-						'data-toggle' => 'modal',
-						'data-target' => '#mas_info_pre',
-					]) ?>
-				</div>
+                                <div class="col-lg-4 d-flex flex-column align-items-center justify-content-center">
+                                        <h4>Servicios</h4>
+                                        <ul class="list-unstyled services">
+                                                <li>Plaza reservada</li>
+                                                <li>Lavado exterior</li>
+                                                <li class="noctur" style="display:none">Especial nocturnidad entre 00:30 y 03:45</li>
+                                        </ul>
+                                        <?= Html::button('más inf +', [
+                                                'class' => 'btn btn-default btn-sm text-dark',
+                                                'style' => ['font-size' => '12px'],
+                                                'id' => 'BtnModalId',
+                                                'data-toggle' => 'modal',
+                                                'data-target' => '#mas_info_pre',
+                                        ]) ?>
+                                </div>
 
-				<div class="col-lg-3"
-					style="display: flex;flex-direction: column;justify-content: center;align-items: center;">
-					<svg width="48" height="48" viewBox="0 0 45 45" xmlns="http://www.w3.org/2000/svg" stroke="#000"
-						style="display:none" class="loading">
-						<g fill="none" fill-rule="evenodd" transform="translate(1 1)" stroke-width="2">
-							<circle cx="22" cy="22" r="6" stroke-opacity="0">
-								<animate attributeName="r" begin="1.5s" dur="3s" values="6;22" calcMode="linear"
+                                <div class="col-lg-2 d-flex flex-column justify-content-center align-items-center">
+                                        <svg width="48" height="48" viewBox="0 0 45 45" xmlns="http://www.w3.org/2000/svg" stroke="#000"
+                                                style="display:none" class="loading">
+                                                <g fill="none" fill-rule="evenodd" transform="translate(1 1)" stroke-width="2">
+                                                        <circle cx="22" cy="22" r="6" stroke-opacity="0">
+                                                                <animate attributeName="r" begin="1.5s" dur="3s" values="6;22" calcMode="linear"
 									repeatCount="indefinite" />
 								<animate attributeName="stroke-opacity" begin="1.5s" dur="3s" values="1;0"
 									calcMode="linear" repeatCount="indefinite" />
@@ -594,16 +582,14 @@ if (!is_null($temporada)) {
 
 			</div>
 
-			<div class="row mt-4 p-4"
-				style="border: 1px solid #961007; border-radius: 5px; display: flex;align-items: center;justify-content: space-between; background: #eee;">
+                        <div class="row mt-4 plan-card">
 
-				<div class="col-lg-2"
-					style="display: flex;align-items: center;justify-content: center;flex-direction: column;">
-					<div class="counter_container"
-						style="border: 1px solid #961007;    width: 160px;height: 160px;background: #fff;">
-						<div class="counter__text">
-							<div class="icon">
-								<?= Html::img('@web/images/oro.png', ['class' => 'counter__icon']) ?>
+                                <div class="col-lg-2 d-flex flex-column align-items-center justify-content-center">
+                                        <div class="counter_container"
+                                                style="border: 1px solid #961007;    width: 160px;height: 160px;background: #fff;">
+                                                <div class="counter__text">
+                                                        <div class="icon">
+                                                                <?= Html::img('@web/images/oro.png', ['class' => 'counter__icon']) ?>
 							</div>
 						</div>
 						<div class="counter__description">
@@ -612,13 +598,12 @@ if (!is_null($temporada)) {
 					</div>
 				</div>
 
-				<div class="col-lg-2"
-					style="display: flex;align-items: center;justify-content: center;flex-direction: column;">
-					<div class="counter_container"
-						style="border: 1px solid #961007;    width: 160px;height: 160px;background: #fff;">
-						<div class="counter__text">
-							<div class="icon">
-								<?= Html::img('@web/images/chofer1.png', ['class' => 'counter__icon']) ?>
+                                <div class="col-lg-2 d-flex flex-column align-items-center justify-content-center">
+                                        <div class="counter_container"
+                                                style="border: 1px solid #961007;    width: 160px;height: 160px;background: #fff;">
+                                                <div class="counter__text">
+                                                        <div class="icon">
+                                                                <?= Html::img('@web/images/chofer1.png', ['class' => 'counter__icon']) ?>
 							</div>
 
 						</div>
@@ -626,43 +611,42 @@ if (!is_null($temporada)) {
 					</div>
 				</div>
 
-				<div class="col-lg-2"
-					style="display: flex;align-items: center;justify-content: center;flex-direction: column;">
+                                <div class="col-lg-2 d-flex flex-column align-items-center justify-content-center">
 
-					<div class="counter_container"
-						style="border: 1px solid #961007;    width: 160px;height: 160px;background: #fff;">
-						<div class="counter__text">
-							<div class="icon">
-								<?= Html::img('@web/images/llaves.png', ['class' => 'counter__icon']) ?>
+                                        <div class="counter_container"
+                                                style="border: 1px solid #961007;    width: 160px;height: 160px;background: #fff;">
+                                                <div class="counter__text">
+                                                        <div class="icon">
+                                                                <?= Html::img('@web/images/llaves.png', ['class' => 'counter__icon']) ?>
 							</div>
 						</div>
 					</div>
 				</div>
 
-				<div class="col-lg-2 text-left"
-					style="display: flex;align-items: center;justify-content: center;flex-direction: column;">
-					<h4>Servicios</h4>
-					<p>- Plaza reservada</p>
-					<p>- Lavado interior</p>
-					<p>- Lavado exterior</p>
-					<p>- Custodia de llaves</p>
-					<p class="noctur" style="display:none">- Especial nocturnidad entre 00:30 y 03:45</p>
-					<?= Html::button('más inf +', [
-						'class' => 'btn btn-default btn-sm text-dark',
-						'style' => ['font-size' => '12px'],
-						'id' => 'BtnModalId',
-						'data-toggle' => 'modal',
-						'data-target' => '#mas_info_pri',
-					]) ?>
-				</div>
+                                <div class="col-lg-4 text-left d-flex flex-column align-items-center justify-content-center">
+                                        <h4>Servicios</h4>
+                                        <ul class="list-unstyled services">
+                                                <li>Plaza reservada</li>
+                                                <li>Lavado interior</li>
+                                                <li>Lavado exterior</li>
+                                                <li>Custodia de llaves</li>
+                                                <li class="noctur" style="display:none">Especial nocturnidad entre 00:30 y 03:45</li>
+                                        </ul>
+                                        <?= Html::button('más inf +', [
+                                                'class' => 'btn btn-default btn-sm text-dark',
+                                                'style' => ['font-size' => '12px'],
+                                                'id' => 'BtnModalId',
+                                                'data-toggle' => 'modal',
+                                                'data-target' => '#mas_info_pri',
+                                        ]) ?>
+                                </div>
 
-				<div class="col-lg-3"
-					style="display: flex;flex-direction: column;justify-content: center;align-items: center;">
-					<svg width="48" height="48" viewBox="0 0 45 45" xmlns="http://www.w3.org/2000/svg" stroke="#000"
-						style="display:none" class="loading">
-						<g fill="none" fill-rule="evenodd" transform="translate(1 1)" stroke-width="2">
-							<circle cx="22" cy="22" r="6" stroke-opacity="0">
-								<animate attributeName="r" begin="1.5s" dur="3s" values="6;22" calcMode="linear"
+                                <div class="col-lg-2 d-flex flex-column justify-content-center align-items-center">
+                                        <svg width="48" height="48" viewBox="0 0 45 45" xmlns="http://www.w3.org/2000/svg" stroke="#000"
+                                                style="display:none" class="loading">
+                                                <g fill="none" fill-rule="evenodd" transform="translate(1 1)" stroke-width="2">
+                                                        <circle cx="22" cy="22" r="6" stroke-opacity="0">
+                                                                <animate attributeName="r" begin="1.5s" dur="3s" values="6;22" calcMode="linear"
 									repeatCount="indefinite" />
 								<animate attributeName="stroke-opacity" begin="1.5s" dur="3s" values="1;0"
 									calcMode="linear" repeatCount="indefinite" />

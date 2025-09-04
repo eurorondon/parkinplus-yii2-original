@@ -86,10 +86,11 @@
 }
 
 @media screen and (max-device-width : 480px) {
-	 .plan {
-    	flex-direction: column;
-    	gap: 10px;
-	}	
+         .plan,
+         .plan-card {
+        flex-direction: column;
+        gap: 10px;
+        }
 	
 	#fechas_r{
 		height: auto !important;
