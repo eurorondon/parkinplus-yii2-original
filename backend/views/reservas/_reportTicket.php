@@ -32,7 +32,7 @@ if ($model->medio_reserva === 5) {
 	$medio = 'organic.png';
 }
 
-$planes = [1 => 'Plan Estandar', 2 => 'Plan Premiun', 3 => 'Plan Priority'];
+$planes = [1 => 'Plan Estandar', 2 => 'Plan Premiun', 3 => 'Plan Priority', 4 => 'Plan Economic'];
 $planName = $planes[(int)$model->plan] ?? '';
 
 // Flags/constantes para filtrado de servicios
