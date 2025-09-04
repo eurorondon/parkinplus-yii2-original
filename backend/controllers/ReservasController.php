@@ -1025,22 +1025,23 @@ class ReservasController extends Controller
         ];
 
         $servicios = Servicios::find()->where(['estatus' => '1'])->andWhere(['fijo' => '2'])->all();
+        $planId = isset($servicios[0]) ? $servicios[0]->id_listas_precios : null;
+        $table  = $planId == 4 ? 'registro_precios' : 'registro_precios2';
 
         $query = new Query();
-        $query->select(
-            [
-                'registro_precios2.id_lista',
-                'registro_precios2.cantidad',
-                'registro_precios2.costo AS precio',
+        $query->select([
+                $table . '.id_lista',
+                $table . '.cantidad',
+                $table . '.costo AS precio',
                 'servicios.*'
-            ]
-        )
-            ->from('registro_precios2')
+            ])
+            ->from($table)
             ->join(
                 'LEFT JOIN',
                 'servicios',
-                'registro_precios2.id_lista = servicios.id_listas_precios'
+                $table . '.id_lista = servicios.id_listas_precios'
             );
+        $query->where([$table . '.id_lista' => $planId]);
 
         $command = $query->createCommand();
         $precio_diario = $command->queryAll();
@@ -1176,22 +1177,23 @@ class ReservasController extends Controller
         ];
 
         $servicios = Servicios::find()->where(['estatus' => '1'])->andWhere(['fijo' => '2'])->all();
+        $planId = isset($servicios[0]) ? $servicios[0]->id_listas_precios : null;
+        $table  = $planId == 4 ? 'registro_precios' : 'registro_precios2';
 
         $query = new Query();
-        $query->select(
-            [
-                'registro_precios2.id_lista',
-                'registro_precios2.cantidad',
-                'registro_precios2.costo AS precio',
+        $query->select([
+                $table . '.id_lista',
+                $table . '.cantidad',
+                $table . '.costo AS precio',
                 'servicios.*'
-            ]
-        )
-            ->from('registro_precios2')
+            ])
+            ->from($table)
             ->join(
                 'LEFT JOIN',
                 'servicios',
-                'registro_precios2.id_lista = servicios.id_listas_precios'
+                $table . '.id_lista = servicios.id_listas_precios'
             );
+        $query->where([$table . '.id_lista' => $planId]);
 
         $command = $query->createCommand();
         $precio_diario = $command->queryAll();
@@ -1412,21 +1414,23 @@ class ReservasController extends Controller
 
         $seguro = Servicios::find()->where(['estatus' => '1'])->andWhere(['fijo' => '1'])->all();
 
+        $planId = isset($servicios[0]) ? $servicios[0]->id_listas_precios : null;
+        $table  = $planId == 4 ? 'registro_precios' : 'registro_precios2';
+
         $query = new Query();
-        $query->select(
-            [
-                'registro_precios2.id_lista',
-                'registro_precios2.cantidad',
-                'registro_precios2.costo AS precio',
+        $query->select([
+                $table . '.id_lista',
+                $table . '.cantidad',
+                $table . '.costo AS precio',
                 'servicios.*'
-            ]
-        )
-            ->from('registro_precios2')
+            ])
+            ->from($table)
             ->join(
                 'LEFT JOIN',
                 'servicios',
-                'registro_precios2.id_lista = servicios.id_listas_precios'
+                $table . '.id_lista = servicios.id_listas_precios'
             );
+        $query->where([$table . '.id_lista' => $planId]);
 
         $command = $query->createCommand();
 
@@ -1870,21 +1874,23 @@ class ReservasController extends Controller
             }
         }
 
+        $planId = $model->plan ? $model->plan : (isset($servicios[0]) ? $servicios[0]->id_listas_precios : null);
+        $table  = $planId == 4 ? 'registro_precios' : 'registro_precios2';
+
         $query = new Query();
-        $query->select(
-            [
-                'registro_precios2.id_lista',
-                'registro_precios2.cantidad',
-                'registro_precios2.costo AS precio',
+        $query->select([
+                $table . '.id_lista',
+                $table . '.cantidad',
+                $table . '.costo AS precio',
                 'servicios.*'
-            ]
-        )
-            ->from('registro_precios2')
+            ])
+            ->from($table)
             ->join(
                 'LEFT JOIN',
                 'servicios',
-                'registro_precios2.id_lista = servicios.id_listas_precios'
+                $table . '.id_lista = servicios.id_listas_precios'
             );
+        $query->where([$table . '.id_lista' => $planId]);
 
         $command = $query->createCommand();
         $precio_diario = $command->queryAll();
