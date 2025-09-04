@@ -771,7 +771,7 @@ $this->registerJs("
 			
         precio_dia = $('#precio_dia').val();
 
-      cant = $('#cant_basico').val();
+      cant = parseFloat($('#cant_basico').val());
       precio1 = $('#precio-diario1').val();
       precio2 = $('#precio-diario2').val();
       precio3 = $('#precio-diario3').val();
@@ -837,7 +837,9 @@ $this->registerJs("
       if (cant == 27) { total = parseFloat(precio27); }
       if (cant == 28) { total = parseFloat(precio28); }
       if (cant == 29) { total = parseFloat(precio29); }
-      if (cant == 30) { total = parseFloat(precio30); }       
+      if (cant == 30) { total = parseFloat(precio30); }
+
+      var cantBase = cant;
 	  
 
       /*if (cant > 30) { 
@@ -864,9 +866,10 @@ $this->registerJs("
         }
       }
 
-      $('#reservas-costo_servicios').val(total.toFixed(2));
+      var costoEconomic = total - cantBase;
+      $('#reservas-costo_servicios').val(costoEconomic.toFixed(2));
       $('.totales-facturas').click();
-      });      
+      });
 	  
   $('#solFactura').on('click', function(){
       
@@ -1085,7 +1088,7 @@ $this->registerJs("
       },
       success: function(data) {
         $('#cant_basico').val(data);
-        dias = $('#cant_basico').val();
+        dias = parseFloat($('#cant_basico').val());
         precio_dia = $('#precio_dia').val();
         var total = 0;
         if (dias == 1) {
@@ -1181,6 +1184,8 @@ $this->registerJs("
           total = parseFloat(precio30);
         }
 
+        var diasBase = dias;
+
         /*if (dias > 30) {
           var cant_dias = dias - 30;
           var precio_relativo = parseFloat(precio30);
@@ -1207,7 +1212,8 @@ $this->registerJs("
           total = parseFloat($('#precio-diario' + dias).val());
         }
 
-        $('#reservas-costo_servicios').val(total.toFixed(2));
+        var costoEconomic = total - diasBase;
+        $('#reservas-costo_servicios').val(costoEconomic.toFixed(2));
 
         console.log(hora_entrada >= '00:30');
         if ((hora_entrada >= '00:30' && hora_entrada <= '03:45') || (hora_salida >= '00:30' && hora_salida <= '03:45')) {
