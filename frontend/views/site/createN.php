@@ -772,6 +772,8 @@ $this->registerJs("
         precio_dia = $('#precio_dia').val();
 
       cant = $('#cant_basico').val();
+      var planValue = $('#reservas-plan').val();
+      var cantBase = cant;
       precio1 = $('#precio-diario1').val();
       precio2 = $('#precio-diario2').val();
       precio3 = $('#precio-diario3').val();
@@ -864,9 +866,13 @@ $this->registerJs("
         }
       }
 
+      if (Number(planValue) === 4) {
+        total -= parseFloat(cantBase);
+      }
+
       $('#reservas-costo_servicios').val(total.toFixed(2));
       $('.totales-facturas').click();
-      });      
+      });
 	  
   $('#solFactura').on('click', function(){
       
@@ -1086,6 +1092,8 @@ $this->registerJs("
       success: function(data) {
         $('#cant_basico').val(data);
         dias = $('#cant_basico').val();
+        var planValue = $('#reservas-plan').val();
+        var diasBase = dias;
         precio_dia = $('#precio_dia').val();
         var total = 0;
         if (dias == 1) {
@@ -1205,6 +1213,10 @@ $this->registerJs("
           }
         } else {
           total = parseFloat($('#precio-diario' + dias).val());
+        }
+
+        if (Number(planValue) === 4) {
+          total -= parseFloat(diasBase);
         }
 
         $('#reservas-costo_servicios').val(total.toFixed(2));
