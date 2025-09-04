@@ -317,99 +317,99 @@ if (!is_null($temporada)) {
 				</div>
 			</div>
 
-                        <div class="row mt-4 p-4"
-                                style="border: 1px solid #961007; border-radius: 5px; display: flex;align-items: center;justify-content: space-between; background: #eee;">
+			<div class="row mt-4 p-4"
+				style="border: 1px solid #961007; border-radius: 5px; display: flex;align-items: center;justify-content: space-between; background: #eee;">
 
-                                <div class="col-lg-2"
-                                        style="display: flex;align-items: center;justify-content: center;flex-direction: column;">
-                                        <div class="counter_container"
-                                                style="border: 1px solid #961007;    width: 160px;height: 160px;background: #fff;">
-                                                <div class="counter__text">
-                                                        <div class="icon">
-                                                                <?= Html::img('@web/images/bronce.png', ['class' => 'counter__icon']) ?>
-                                                        </div>
-                                                </div>
-                                                <div class="counter__description">ECONOMIC</div>
-                                        </div>
-                                </div>
+				<div class="col-lg-2"
+					style="display: flex;align-items: center;justify-content: center;flex-direction: column;">
+					<div class="counter_container"
+						style="border: 1px solid #961007;    width: 160px;height: 160px;background: #fff;">
+						<div class="counter__text">
+							<div class="icon">
+								<?= Html::img('@web/images/bronce.png', ['class' => 'counter__icon']) ?>
+							</div>
+						</div>
+						<div class="counter__description">ECONOMIC</div>
+					</div>
+				</div>
 
-                                <div class="col-lg-2"
-                                        style="display: flex;align-items: center;justify-content: center;flex-direction: column;">
-                                        <div class="counter_container"
-                                                style="border: 1px solid #961007;    width: 160px;height: 160px;background: #fff;">
-                                                <div class="counter__text">
-                                                        <div class="icon">
-                                                                <?= Html::img('@web/images/chofer1.png', ['class' => 'counter__icon']) ?>
-                                                        </div>
+				<div class="col-lg-2"
+					style="display: flex;align-items: center;justify-content: center;flex-direction: column;">
+					<div class="counter_container"
+						style="border: 1px solid #961007;    width: 160px;height: 160px;background: #fff;">
+						<div class="counter__text">
+							<div class="icon">
+								<?= Html::img('@web/images/chofer1.png', ['class' => 'counter__icon']) ?>
+							</div>
 
-                                                </div>
-                                                <div class="counter__description">Recogida por<br> chofer</div>
-                                        </div>
-                                </div>
+						</div>
+						<div class="counter__description">Recogida por<br> chofer</div>
+					</div>
+				</div>
 
-                                <div class="col-lg-2"
-                                        style="display: flex;align-items: center;justify-content: center;flex-direction: column;">
-                                        <div class="counter_container"
-                                                style="border: 1px solid #961007;    width: 160px;height: 160px;background: #fff;">
-                                                <div class="counter__text">
-                                                        <div class="icon">
-                                                                <?= Html::img('@web/images/car.png', ['class' => 'counter__icon']) ?>
-                                                        </div>
-                                                </div>
-                                        </div>
-                                </div>
+				<div class="col-lg-2"
+					style="display: flex;align-items: center;justify-content: center;flex-direction: column;">
+					<div class="counter_container"
+						style="border: 1px solid #961007;    width: 160px;height: 160px;background: #fff;">
+						<div class="counter__text">
+							<div class="icon">
+								<?= Html::img('@web/images/car.png', ['class' => 'counter__icon']) ?>
+							</div>
+						</div>
+					</div>
+				</div>
 
-                                <div class="col-lg-2"
-                                        style="display: flex;align-items: center;justify-content: center;flex-direction: column;">
-                                        <h4>Servicios</h4>
-                                        <p>- Plaza reservada</p>
-                                        <p class="noctur" style="display:none">- Especial nocturnidad entre 00:30 y 03:45</p>
-                                        <?= Html::button('más inf +', [
-                                                'class' => 'btn btn-default btn-sm text-dark',
-                                                'style' => ['font-size' => '12px'],
-                                                'id' => 'BtnModalId',
-                                                'data-toggle' => 'modal',
-                                                'data-target' => '#mas_info_st',
-                                        ]) ?>
-                                </div>
+				<div class="col-lg-2"
+					style="display: flex;align-items: center;justify-content: center;flex-direction: column;">
+					<h4>Servicios</h4>
+					<p>- Plaza reservada</p>
+					<p class="noctur" style="display:none">- Especial nocturnidad entre 00:30 y 03:45</p>
+					<?= Html::button('más inf +', [
+						'class' => 'btn btn-default btn-sm text-dark',
+						'style' => ['font-size' => '12px'],
+						'id' => 'BtnModalId',
+						'data-toggle' => 'modal',
+						'data-target' => '#mas_info_st',
+					]) ?>
+				</div>
 
-                                <div class="col-lg-3"
-                                        style="display: flex;flex-direction: column;justify-content: center;align-items: center;">
-                                        <svg width="48" height="48" viewBox="0 0 45 45" xmlns="http://www.w3.org/2000/svg" stroke="#000"
-                                                style="display:none" class="loading">
-                                                <g fill="none" fill-rule="evenodd" transform="translate(1 1)" stroke-width="2">
-                                                        <circle cx="22" cy="22" r="6" stroke-opacity="0">
-                                                                <animate attributeName="r" begin="1.5s" dur="3s" values="6;22" calcMode="linear"
-                                                                        repeatCount="indefinite" />
-                                                                <animate attributeName="stroke-opacity" begin="1.5s" dur="3s" values="1;0"
-                                                                        calcMode="linear" repeatCount="indefinite" />
-                                                                <animate attributeName="stroke-width" begin="1.5s" dur="3s" values="2;0"
-                                                                        calcMode="linear" repeatCount="indefinite" />
-                                                        </circle>
-                                                        <circle cx="22" cy="22" r="6" stroke-opacity="0">
-                                                                <animate attributeName="r" begin="3s" dur="3s" values="6;22" calcMode="linear"
-                                                                        repeatCount="indefinite" />
-                                                                <animate attributeName="stroke-opacity" begin="3s" dur="3s" values="1;0"
-                                                                        calcMode="linear" repeatCount="indefinite" />
-                                                                <animate attributeName="stroke-width" begin="3s" dur="3s" values="2;0"
-                                                                        calcMode="linear" repeatCount="indefinite" />
-                                                        </circle>
-                                                        <circle cx="22" cy="22" r="8">
-                                                                <animate attributeName="r" begin="0s" dur="1.5s" values="6;1;2;3;4;5;6"
-                                                                        calcMode="linear" repeatCount="indefinite" />
-                                                        </circle>
-                                                </g>
-                                        </svg>
-                                        <div id="costo_e" style="font-weight: 700; margin:5px 0px; font-size: 2rem;"></div>
-                                        <button type="submit" id="economic" class="btn"
-                                                style="background-color:#961007; color:#FFF; padding: 15px 10px">Proceder a Reservar <span
-                                                        class="glyphicon glyphicon-send"></span></button>
-                                </div>
+				<div class="col-lg-3"
+					style="display: flex;flex-direction: column;justify-content: center;align-items: center;">
+					<svg width="48" height="48" viewBox="0 0 45 45" xmlns="http://www.w3.org/2000/svg" stroke="#000"
+						style="display:none" class="loading">
+						<g fill="none" fill-rule="evenodd" transform="translate(1 1)" stroke-width="2">
+							<circle cx="22" cy="22" r="6" stroke-opacity="0">
+								<animate attributeName="r" begin="1.5s" dur="3s" values="6;22" calcMode="linear"
+									repeatCount="indefinite" />
+								<animate attributeName="stroke-opacity" begin="1.5s" dur="3s" values="1;0"
+									calcMode="linear" repeatCount="indefinite" />
+								<animate attributeName="stroke-width" begin="1.5s" dur="3s" values="2;0"
+									calcMode="linear" repeatCount="indefinite" />
+							</circle>
+							<circle cx="22" cy="22" r="6" stroke-opacity="0">
+								<animate attributeName="r" begin="3s" dur="3s" values="6;22" calcMode="linear"
+									repeatCount="indefinite" />
+								<animate attributeName="stroke-opacity" begin="3s" dur="3s" values="1;0"
+									calcMode="linear" repeatCount="indefinite" />
+								<animate attributeName="stroke-width" begin="3s" dur="3s" values="2;0"
+									calcMode="linear" repeatCount="indefinite" />
+							</circle>
+							<circle cx="22" cy="22" r="8">
+								<animate attributeName="r" begin="0s" dur="1.5s" values="6;1;2;3;4;5;6"
+									calcMode="linear" repeatCount="indefinite" />
+							</circle>
+						</g>
+					</svg>
+					<div id="costo_e" style="font-weight: 700; margin:5px 0px; font-size: 2rem;"></div>
+					<button type="submit" id="economic" class="btn"
+						style="background-color:#961007; color:#FFF; padding: 15px 10px">Proceder a Reservar <span
+							class="glyphicon glyphicon-send"></span></button>
+				</div>
 
-                        </div>
+			</div>
 
-                        <div class="row mt-4 p-4"
-                                style="border: 1px solid #961007; border-radius: 5px; display: flex;align-items: center;justify-content: space-between; background: #eee;">
+			<div class="row mt-4 p-4"
+				style="border: 1px solid #961007; border-radius: 5px; display: flex;align-items: center;justify-content: space-between; background: #eee;">
 
 				<div class="col-lg-2"
 					style="display: flex;align-items: center;justify-content: center;flex-direction: column;">
@@ -703,6 +703,7 @@ $this->registerJs("
 
 	  precio_dia = $('#precio_dia').val();
       cant = $('#cantdias').val();
+      var cantBase = cant;
       precio1 = $('#precio-diario1').val();
       precio2 = $('#precio-diario2').val();
       precio3 = $('#precio-diario3').val();
@@ -800,16 +801,17 @@ $this->registerJs("
 		nocturnidad = parseFloat($('#nocturno').val());
 		$('.noctur').css('display', 'block');
 	  } 
-		var costo = total + nocturnidad;
-		var costo_t = parseFloat($('#servicio-9').val()) + nocturnidad + total;
+                var costo = total + nocturnidad;
+                var costo_t = parseFloat($('#servicio-9').val()) + nocturnidad + total;
 
                 var costo_i = nocturnidad + parseFloat($('#servicio-2').val()) + total;
+                var costoEconomic = costo - cantBase;
 	  
 		/*console.log(parseFloat($('#servicio-12').val()));
 		console.log(nocturnidad );
 		console.log(parseFloat($('#servicio-2').val()));*/
 		
-          $('#costo_e').append(costo.toFixed(2)+ '€');
+          $('#costo_e').append(costoEconomic.toFixed(2)+ '€');
           $('#costo').append(costo.toFixed(2)+ '€');
           $('#costo_t').append( costo_t.toFixed(2) + '€');
           $('#costo_i').append(costo_i.toFixed(2)+ '€');
@@ -882,9 +884,10 @@ $this->registerJs("
 		  $('#fechas_r').css('display', 'none');
 		  $('.loading').css('display', 'block');
 		  
-		  $('#cantdias').val(cant);
+                  $('#cantdias').val(cant);
+                  var cantBase = cant;
 
-		 if(cant > 30){
+                 if(cant > 30){
 			while (cant > 30) {
 				total +=  parseFloat(precio30);
 				cant =  cant - 30;
@@ -919,6 +922,7 @@ $this->registerJs("
                   var costo = total + nocturnidad
                   var costo_t = parseFloat($('#servicio-9').val()) + nocturnidad + total;
                   var costo_i = nocturnidad + parseFloat($('#servicio-2').val()) + total;
+                  var costoEconomic = costo - cantBase;
 
                   $('#costo_e, #costo, #costo_t, #costo_i').html('');
 		  $('#fentrada').html('').append(fecha_in);
@@ -928,7 +932,7 @@ $this->registerJs("
 		  
 		  setTimeout(() => {
 		  		$('.loading').css('display', 'none');
-                          $('#costo_e').append(costo.toFixed(2)+ '€');
+                          $('#costo_e').append(costoEconomic.toFixed(2)+ '€');
                           $('#costo').append(costo.toFixed(2)+ '€');
                           $('#costo_t').append( costo_t.toFixed(2) + '€');
                           $('#costo_i').append(costo_i.toFixed(2)+ '€');
