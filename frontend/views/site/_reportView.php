@@ -32,12 +32,15 @@ $hora_s = $model->hora_salida;
 $lavado = '';
 
 foreach ($service as $s) {
-	$datos = Servicios::find()->where(['id' => $s->id_servicio])->one();
-	if ($datos->fijo == 2) {
-		$lavado = $datos->nombre_servicio;
-	} else {
-		$lavado = 'N/A';
-	}
+        if ($s->id_servicio == 12 && (int)$s->precio_total === 0) {
+                continue;
+        }
+        $datos = Servicios::find()->where(['id' => $s->id_servicio])->one();
+        if ($datos->fijo == 2) {
+                $lavado = $datos->nombre_servicio;
+        } else {
+                $lavado = 'N/A';
+        }
 }
 
 if ($model->ciudad_procedencia == NULL) {
@@ -160,14 +163,17 @@ if ($model->nro_vuelo_regreso == NULL) {
 <table style="margin-bottom: 0px">
 
 	<?php
-	$total = 0;
-	foreach ($service as $s) {
-		$datos = Servicios::find()->where(['id' => $s->id_servicio])->one();
-		if (stripos($datos->nombre_servicio, 'techado') !== false && (int)$s->precio_total === 0) {
-			continue;
-		}
-		$total = $total + $s->precio_total;
-	?>
+        $total = 0;
+        foreach ($service as $s) {
+                if ($s->id_servicio == 12 && (int)$s->precio_total === 0) {
+                        continue;
+                }
+                $datos = Servicios::find()->where(['id' => $s->id_servicio])->one();
+                if (stripos($datos->nombre_servicio, 'techado') !== false && (int)$s->precio_total === 0) {
+                        continue;
+                }
+                $total = $total + $s->precio_total;
+        ?>
 
 		<tr>
 			<td colspan="2" width="20cm">
