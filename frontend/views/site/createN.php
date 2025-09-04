@@ -725,6 +725,11 @@ $this->registerJs("
               });
 
         var planType = $('#type_reserva').val();
+        var planValue = $('#reservas-plan').val();
+        if (Number(planValue) === 4) {
+            planType = 0;
+            $('#type_reserva').val(0);
+        }
         var planCheckbox = $('.servicios[value=' + planType + ']').first();
         if (planCheckbox.length) {
             planCheckbox.prop('checked', true);
