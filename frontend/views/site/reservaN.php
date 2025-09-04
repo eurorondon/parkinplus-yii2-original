@@ -363,6 +363,8 @@ if (!is_null($temporada)) {
 					style="display: flex;align-items: center;justify-content: center;flex-direction: column;">
 					<h4>Servicios</h4>
 					<p>- Plaza reservada</p>
+					<p>- Traslado desde el aparcamiento a cualquier terminal.</p>
+					<p>- Traslado desde la terminal de llegada hasta el aparcamiento.</p>
 					<p class="noctur" style="display:none">- Especial nocturnidad entre 00:30 y 03:45</p>
 					<?= Html::button('más inf +', [
 						'class' => 'btn btn-default btn-sm text-dark',
@@ -454,6 +456,7 @@ if (!is_null($temporada)) {
 					style="display: flex;align-items: center;justify-content: center;flex-direction: column;">
 					<h4>Servicios</h4>
 					<p>- Plaza reservada</p>
+					<p>- Recogida y entrega del vehículo en la terminal.</p>
 					<p class="noctur" style="display:none">- Especial nocturnidad entre 00:30 y 03:45</p>
 					<?= Html::button('más inf +', [
 						'class' => 'btn btn-default btn-sm text-dark',
