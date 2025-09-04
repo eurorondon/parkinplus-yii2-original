@@ -145,10 +145,26 @@ class SiteController extends Controller
         $command = $query->createCommand();
         $precio_diario = $command->queryAll();
 
+        $planId = Yii::$app->request->get('planId', 'N/A');
+        if (empty($precio_diario)) {
+            Yii::warning("No se encontraron precios para el plan ID: {$planId}", __METHOD__);
+            Yii::$app->session->setFlash('error', 'No se encontraron precios disponibles.');
+            return $this->render('index', [
+                'model' => $model,
+                'precio_diario' => [],
+                'agregado' => 0,
+            ]);
+        }
+
         $milista = $precio_diario[0]['id_lista'];
 
         $buscaAgregado = ListasPrecios::find()->where(['id' => $milista])->all();
-
+        if (empty($buscaAgregado)) {
+            Yii::warning("No se encontró lista de precios para el plan ID: {$planId}", __METHOD__);
+            $agregado = 0;
+        } else {
+            $agregado = $buscaAgregado[0]->agregado;
+        }
         $precioTemporada = PrecioTemporada::find()->where(['status' => 'activo'])->all();
 
         if (count($precioTemporada) > 0) {
@@ -156,8 +172,6 @@ class SiteController extends Controller
                 $precio_diario[$key]['precio'] = $precio_diario[$key]['costo'] + ($precio_diario[$key]['cantidad'] * $precioTemporada[0]['precio']);
             }
         }
-
-        $agregado = $buscaAgregado[0]->agregado;
 
         return $this->render('index', [
             'model' => $model,
@@ -205,9 +219,26 @@ class SiteController extends Controller
         $command = $query->createCommand();
         $precio_diario = $command->queryAll();
 
+        $planId = Yii::$app->request->get('planId', 'N/A');
+        if (empty($precio_diario)) {
+            Yii::warning("No se encontraron precios para el plan ID: {$planId}", __METHOD__);
+            Yii::$app->session->setFlash('error', 'No se encontraron precios disponibles.');
+            return $this->render('organic', [
+                'model' => $model,
+                'precio_diario' => [],
+                'agregado' => 0,
+            ]);
+        }
+
         $milista = $precio_diario[0]['id_lista'];
 
         $buscaAgregado = ListasPrecios::find()->where(['id' => $milista])->all();
+        if (empty($buscaAgregado)) {
+            Yii::warning("No se encontró lista de precios para el plan ID: {$planId}", __METHOD__);
+            $agregado = 0;
+        } else {
+            $agregado = $buscaAgregado[0]->agregado;
+        }
 
         $precioTemporada = PrecioTemporada::find()->where(['status' => 'activo'])->all();
 
@@ -216,8 +247,6 @@ class SiteController extends Controller
                 $precio_diario[$key]['precio'] = $precio_diario[$key]['costo'] + ($precio_diario[$key]['cantidad'] * $precioTemporada[0]['precio']);
             }
         }
-
-        $agregado = $buscaAgregado[0]->agregado;
 
         return $this->render('organic', [
             'model' => $model,
@@ -975,7 +1004,11 @@ class SiteController extends Controller
         $fhnss = strtotime($salida . ' 03:45:00');
 
         $extraNocturno = Servicios::find()->where(['id' => '11'])->all();
-        $extraNocturno[0]['id'] .= (($fecha_entrada >= $fhne && $fecha_entrada <= $fhnes) || ($fecha_salida >= $fhns && $fecha_salida <= $fhnss)) ? '-1' : '-0';
+        if (!empty($extraNocturno)) {
+            $extraNocturno[0]['id'] .= (($fecha_entrada >= $fhne && $fecha_entrada <= $fhnes) || ($fecha_salida >= $fhns && $fecha_salida <= $fhnss)) ? '-1' : '-0';
+        } else {
+            Yii::warning('No se encontró servicio nocturno', __METHOD__);
+        }
 
         $model = new Reservas();
         $model->plan = $plan;
@@ -1423,7 +1456,11 @@ class SiteController extends Controller
 
         $extraNocturno = Servicios::find()->where(['id' => '11'])->all();
 
-        $extraNocturno[0]['id'] .= (($fecha_entrada >= $fhne && $fecha_entrada <= $fhnes) || ($fecha_salida >= $fhns && $fecha_salida <= $fhnss)) ? '-1' : '-0';
+        if (!empty($extraNocturno)) {
+            $extraNocturno[0]['id'] .= (($fecha_entrada >= $fhne && $fecha_entrada <= $fhnes) || ($fecha_salida >= $fhns && $fecha_salida <= $fhnss)) ? '-1' : '-0';
+        } else {
+            Yii::warning('No se encontró servicio nocturno', __METHOD__);
+        }
 
 
 
@@ -1647,7 +1684,7 @@ class SiteController extends Controller
                 }
             }
 
-            if ($precio_dia[0]->fijo == 0) {
+            if (!empty($precio_dia) && $precio_dia[0]->fijo == 0) {
                 $modelR = new ReservasServicios();
                 $modelR->id_reserva = $model->nro_reserva;
                 $modelR->id_servicio = $precio_dia[0]->id;
@@ -1656,9 +1693,11 @@ class SiteController extends Controller
                 $modelR->precio_total = $model->costo_servicios;
                 $modelR->tipo_servicio = 0;
                 $modelR->save();
+            } else {
+                Yii::warning("No se encontraron precios diarios para el plan ID: {$model->plan}", __METHOD__);
             }
 
-            if ($seguro[0]->fijo == 1) {
+            if (!empty($seguro) && $seguro[0]->fijo == 1) {
                 $modelR = new ReservasServicios();
                 $modelR->id_reserva = $model->nro_reserva;
                 $modelR->id_servicio = $seguro[0]->id;
@@ -1667,6 +1706,8 @@ class SiteController extends Controller
                 $modelR->precio_total = $seguro[0]->costo;
                 $modelR->tipo_servicio = 1;
                 $modelR->save();
+            } else {
+                Yii::warning("No se encontraron precios de seguro para el plan ID: {$model->plan}", __METHOD__);
             }
 
 
@@ -1980,7 +2021,11 @@ class SiteController extends Controller
 
         $extraNocturno = Servicios::find()->where(['id' => '11'])->all();
 
-        $extraNocturno[0]['id'] .= (($fecha_entrada > $fhne && $fecha_entrada < $fhnes) || ($fecha_salida > $fhns && $fecha_salida < $fhnss)) ? '-1' : '-0';
+        if (!empty($extraNocturno)) {
+            $extraNocturno[0]['id'] .= (($fecha_entrada > $fhne && $fecha_entrada < $fhnes) || ($fecha_salida > $fhns && $fecha_salida < $fhnss)) ? '-1' : '-0';
+        } else {
+            Yii::warning('No se encontró servicio nocturno', __METHOD__);
+        }
 
 
         $modelC = Clientes::find()->where(['id' => $model->id_cliente])->one();
@@ -2240,7 +2285,7 @@ class SiteController extends Controller
 
             $precio_dia = Servicios::find()->where(['estatus' => '1'])->andWhere(['fijo' => '0'])->all();
 
-            if ($precio_dia[0]->fijo == 0) {
+            if (!empty($precio_dia) && $precio_dia[0]->fijo == 0) {
                 $modelR = new ReservasServicios();
                 $modelR->id_reserva = $model->nro_reserva;
                 $modelR->id_servicio = $precio_dia[0]->id;
@@ -2249,9 +2294,11 @@ class SiteController extends Controller
                 $modelR->precio_total = $model->costo_servicios;
                 $modelR->tipo_servicio = 0;
                 $modelR->save();
+            } else {
+                Yii::warning("No se encontraron precios diarios para el plan ID: {$model->plan}", __METHOD__);
             }
 
-            if ($seguro[0]->fijo == 1) {
+            if (!empty($seguro) && $seguro[0]->fijo == 1) {
                 $modelR = new ReservasServicios();
                 $modelR->id_reserva = $model->nro_reserva;
                 $modelR->id_servicio = $seguro[0]->id;
@@ -2260,6 +2307,8 @@ class SiteController extends Controller
                 $modelR->precio_total = $seguro[0]->costo;
                 $modelR->tipo_servicio = 1;
                 $modelR->save();
+            } else {
+                Yii::warning("No se encontraron precios de seguro para el plan ID: {$model->plan}", __METHOD__);
             }
 
 
