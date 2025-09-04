@@ -1031,7 +1031,7 @@ class ReservasController extends Controller
             [
                 'registro_precios2.id_lista',
                 'registro_precios2.cantidad',
-                'registro_precios2.costo AS precio',
+                "CASE\n       WHEN :plan = 4\n       THEN registro_precios2.costo - LEAST(registro_precios2.cantidad,18)\n       ELSE registro_precios2.costo\n   END AS precio",
                 'servicios.*'
             ]
         )
@@ -1042,7 +1042,8 @@ class ReservasController extends Controller
                 'registro_precios2.id_lista = servicios.id_listas_precios'
             );
 
-        $command = $query->createCommand();
+        $plan = Yii::$app->request->post('plan', Yii::$app->request->get('plan'));
+        $command = $query->createCommand()->bindValue(':plan', $plan);
         $precio_diario = $command->queryAll();
 
         $pagos = TipoPago::find()->where(['estatus' => '1'])->all();
@@ -1182,7 +1183,7 @@ class ReservasController extends Controller
             [
                 'registro_precios2.id_lista',
                 'registro_precios2.cantidad',
-                'registro_precios2.costo AS precio',
+                "CASE\n       WHEN :plan = 4\n       THEN registro_precios2.costo - LEAST(registro_precios2.cantidad,18)\n       ELSE registro_precios2.costo\n   END AS precio",
                 'servicios.*'
             ]
         )
@@ -1193,7 +1194,7 @@ class ReservasController extends Controller
                 'registro_precios2.id_lista = servicios.id_listas_precios'
             );
 
-        $command = $query->createCommand();
+        $command = $query->createCommand()->bindValue(':plan', $model->plan);
         $precio_diario = $command->queryAll();
 
         $pagos = TipoPago::find()->where(['estatus' => '1'])->all();
@@ -1417,7 +1418,7 @@ class ReservasController extends Controller
             [
                 'registro_precios2.id_lista',
                 'registro_precios2.cantidad',
-                'registro_precios2.costo AS precio',
+                "CASE\n       WHEN :plan = 4\n       THEN registro_precios2.costo - LEAST(registro_precios2.cantidad,18)\n       ELSE registro_precios2.costo\n   END AS precio",
                 'servicios.*'
             ]
         )
@@ -1428,7 +1429,8 @@ class ReservasController extends Controller
                 'registro_precios2.id_lista = servicios.id_listas_precios'
             );
 
-        $command = $query->createCommand();
+        $plan = Yii::$app->request->post('plan', Yii::$app->request->get('plan'));
+        $command = $query->createCommand()->bindValue(':plan', $plan);
 
         $precio_diario = $command->queryAll();
 
@@ -1875,7 +1877,7 @@ class ReservasController extends Controller
             [
                 'registro_precios2.id_lista',
                 'registro_precios2.cantidad',
-                'registro_precios2.costo AS precio',
+                "CASE\n       WHEN :plan = 4\n       THEN registro_precios2.costo - LEAST(registro_precios2.cantidad,18)\n       ELSE registro_precios2.costo\n   END AS precio",
                 'servicios.*'
             ]
         )
@@ -1886,7 +1888,7 @@ class ReservasController extends Controller
                 'registro_precios2.id_lista = servicios.id_listas_precios'
             );
 
-        $command = $query->createCommand();
+        $command = $query->createCommand()->bindValue(':plan', $model->plan);
         $precio_diario = $command->queryAll();
 
         $pagos = TipoPago::find()->where(['estatus' => '1'])->all();
