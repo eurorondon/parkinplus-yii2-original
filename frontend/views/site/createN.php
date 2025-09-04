@@ -84,7 +84,7 @@ Modal::end();
       <input type="hidden" id="url" value="<?= $Url ?>">
       <input type="hidden" id="urlAnu" value="<?= $UrlAnu ?>">
       <input type="hidden" id="reserva" value="<?= $model->nro_reserva ?>">
-      <input type="hidden" name="solicitud_factura" value="<?= $solicitud_factura ?>">
+      <input type="hidden" name="solicitud_factura" value="<?= $solicitud_factura ?? '' ?>">
       <input type="hidden" id="precio_dia" name="precio_dia" value="<?= $precio_dia ?>">
 
 
@@ -159,9 +159,9 @@ Modal::end();
                 <p>
                   Lavado Interior/Exterior
                 </p>
-                <p>
+                <!-- <p>
                   Parking Interior
-                </p>
+                </p> -->
               <?php } ?>
             </div>
           </div>
@@ -651,7 +651,7 @@ Modal::end();
 
             <?php if ($type_reserva == 12) { ?>
               <p>Lavado Interior/Exterior</p>
-              <p>Parking Interior</p>
+              <!-- <p>Parking Interior</p> -->
             <?php } ?>
           </div>
         </div>

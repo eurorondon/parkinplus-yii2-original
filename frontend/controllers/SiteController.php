@@ -954,7 +954,6 @@ class SiteController extends Controller
 
     public function actionCreate()
     {
-
         $entrada = $_GET['entrada'];
         $salida = $_GET['salida'];
 
@@ -969,18 +968,14 @@ class SiteController extends Controller
         $fecha_entrada = strtotime($entrada . ' ' . $hora_e);
         $fecha_salida = strtotime($salida . ' ' . $hora_s);
 
-        $fhne = strtotime($entrada . ' 00:30:00');
+        $fhne  = strtotime($entrada . ' 00:30:00');
         $fhnes = strtotime($entrada . ' 03:45:00');
 
-        $fhns = strtotime($salida . ' 00:30:00');
+        $fhns  = strtotime($salida . ' 00:30:00');
         $fhnss = strtotime($salida . ' 03:45:00');
 
-
         $extraNocturno = Servicios::find()->where(['id' => '11'])->all();
-
         $extraNocturno[0]['id'] .= (($fecha_entrada >= $fhne && $fecha_entrada <= $fhnes) || ($fecha_salida >= $fhns && $fecha_salida <= $fhnss)) ? '-1' : '-0';
-
-
 
         $model = new Reservas();
         $model->plan = $plan;
@@ -1004,8 +999,7 @@ class SiteController extends Controller
         ];
 
         $servicios = Servicios::find()->where(['estatus' => '1'])->andWhere(['fijo' => '2'])->all();
-
-        $seguro = Servicios::find()->where(['estatus' => '1'])->andWhere(['fijo' => '1'])->all();
+        $seguro    = Servicios::find()->where(['estatus' => '1'])->andWhere(['fijo' => '1'])->all();
 
         $query = new Query();
         $query->select(
@@ -1028,28 +1022,11 @@ class SiteController extends Controller
 
         $precioTemporada = PrecioTemporada::find()->where(['status' => 'activo'])->all();
 
-        $day1 = $entrada . ' ' . $hora_e;
-        $day1 = strtotime($day1);
-        $day2 = $salida . ' ' . $hora_s;
-        $day2 = strtotime($day2);
-
+        $day1 = strtotime($entrada . ' ' . $hora_e);
+        $day2 = strtotime($salida  . ' ' . $hora_s);
         $diffHours = round(($day2 - $day1) / 3600);
-
         $dias = $diffHours / 24;
-
         $partes = explode('.', $dias);
-
-
-        /*$horaInicio = new DateTime($entrada.' '.$hora_e);
-        $horaTermino = new DateTime($salida.' '.$hora_s);
-
-        $interval = $horaInicio->diff($horaTermino);
-
-        if($interval->d > 0 && ($interval->h > 0 || $interval->i > 0)) {
-            $cant_dias = $interval->d + 1;
-        } else {
-            $cant_dias = $interval->d == 0 ? 1 : $interval->d;
-        }*/
 
         if (count($partes) == 1) {
             $cant_dias = $dias;
@@ -1057,29 +1034,12 @@ class SiteController extends Controller
             $cant_dias = intval($dias) + 1;
         }
 
-
         $precioTemporada = PrecioTemporada::find()->where(['status' => 'activo'])->one();
-
         if (!is_null($precioTemporada)) {
             foreach ($precio_diario as $key => $diario) {
                 $precio_diario[$key]['precio'] = $precio_diario[$key]['costo'] + ($precio_diario[$key]['cantidad'] * $precioTemporada->precio);
             }
         }
-
-        /*$position = null;
-        foreach ($precio_diario as $key => $data) {
-            if ($data['cantidad'] == $cant_dias) {
-                $position = $key;
-            }
-        }
-
-
-        if (!is_null($precioTemporada)) {
-            if ($fecha_entrada > strtotime($precioTemporada->fecha_inicio . ' ' . $precioTemporada->hora_inicio) && $fecha_entrada < strtotime($precioTemporada->fecha_fin . ' ' . $precioTemporada->hora_fin)) {
-                $precio_diario[$position]['precio'] = $precio_diario[$position]['costo'] + ($cant_dias * $precioTemporada->precio);
-            }
-        }*/
-
 
         $pagos = TipoPago::find()->where(['estatus' => '1'])->all();
         $tipos_pago = ArrayHelper::map($pagos, 'id', 'descripcion');
@@ -1092,33 +1052,28 @@ class SiteController extends Controller
             }
         }
 
-        $precio_dia = Configuracion::find()->where(['estatus' => '1'])->andWhere(['tipo_campo' => '0'])->one();
+        $precio_dia_cfg = Configuracion::find()->where(['estatus' => '1'])->andWhere(['tipo_campo' => '0'])->one();
 
         if ($model->load(Yii::$app->request->post()) && $modelC->load(Yii::$app->request->post()) && $modelV->load(Yii::$app->request->post())) {
             $model->plan = Yii::$app->request->post('Reservas')['plan'];
 
-            //Eliminando Lavado cortesia si existe lavado completo
-
-            if (($_POST['cantidad2'] > 0 && $_POST['cantidad7'] > 0) || ($_POST['cantidad1'] > 0 && $_POST['cantidad7'] > 0)) {
+            // Eliminando Lavado cortesia si existe lavado completo (mantener lógica del main)
+            $cantidad1 = Yii::$app->request->post('cantidad1', 0);
+            $cantidad2 = Yii::$app->request->post('cantidad2', 0);
+            $cantidad7 = Yii::$app->request->post('cantidad7', 0);
+            if (($cantidad2 > 0 && $cantidad7 > 0) || ($cantidad1 > 0 && $cantidad7 > 0)) {
                 unset($servicios[3]);
             }
 
             $num_reserva = substr(strtotime(date('Y-m-d H:i:s')), 2, 10);
-
             $buscarReserva = Reservas::find()->where(['nro_reserva' => $num_reserva])->one();
-
             if ($buscarReserva != null) {
                 $num_reserva = substr(strtotime(date('Y-m-d H:i:s')), 2, 10);
             }
-
             $model->nro_reserva = $num_reserva;
 
-            //$num_reserva = ;
-            //$model->nro_reserva = substr(strtotime(date('Y-m-d h:i:s')), 6, 7).substr(strtotime(date('Y-m-d h:i:s')), 0, 3);
-
             $precio_dia = Servicios::find()->where(['estatus' => '1'])->andWhere(['fijo' => '0'])->all();
-
-            $seguro = Servicios::find()->where(['estatus' => '1'])->andWhere(['fijo' => '1'])->all();
+            $seguro     = Servicios::find()->where(['estatus' => '1'])->andWhere(['fijo' => '1'])->all();
 
             $fecha1 = $model->fecha_entrada;
             $model->fecha_entrada = date("Y-m-d", strtotime($fecha1));
@@ -1132,9 +1087,7 @@ class SiteController extends Controller
             $iduc = $idmax + 1;
             $fecha_creacion = date('Y-m-d H:i:s');
 
-
             $client = Clientes::find()->where(['movil' => $modelC->movil])->one();
-
 
             if ($client == null) {
                 $modelC->estatus = 1;
@@ -1144,7 +1097,6 @@ class SiteController extends Controller
                 $modelC->save();
 
                 $errorC = count($modelC->getErrors());
-
                 if ($errorC > 0) {
                     Yii::$app->session->setFlash('error', 'Error en Carga de Datos');
                     return $this->redirect(Yii::$app->request->referrer);
@@ -1159,17 +1111,12 @@ class SiteController extends Controller
 
             $modelV->estatus_coche = 1;
 
-
             $u = UserCliente::find()->where(['id_cliente' => $modelV->id_cliente])->one();
-
             $busca_user = User::find()->where(['email' => $modelC->correo])->one();
-
 
             $fecha_creacion = date('Y-m-d H:i:s');
             $modelV->created_at = $fecha_creacion;
             $modelV->updated_at = $fecha_creacion;
-
-
 
             if ($u == null) {
                 $idmax = UserCliente::find()->max('id');
@@ -1179,60 +1126,65 @@ class SiteController extends Controller
                 $modelV->created_by = $u->id;
             }
 
-
-
             $model->id_coche = $this->resolveCarId($modelV);
 
+            // === Bucle de servicios (igual que main, pero sin "Undefined index") ===
             foreach ($servicios as $ser) {
-
                 $modelR = new ReservasServicios();
-                $precio_unitario = $_POST['precio_unitario' . $ser->id];
-                $cantidad = $_POST['cantidad' . $ser->id];
-                $precio_total = $_POST['precio_unitario' . $ser->id];
-                $tipo_servicio = $_POST['tipo_servicio' . $ser->id];
+
+                // Leer con defaults para evitar Undefined index
+                $precio_unitario = Yii::$app->request->post('precio_unitario' . $ser->id, 0);
+                $cantidad        = Yii::$app->request->post('cantidad'        . $ser->id, 0);
+                // En main: $precio_total = $_POST['precio_unitario{id}']; replicamos el comportamiento
+                $precio_total    = Yii::$app->request->post('precio_total'    . $ser->id, 0);
+                $tipo_servicio   = Yii::$app->request->post('tipo_servicio'   . $ser->id, 0);
+
+                // Compatibilidad con main si no llega precio_total: igualarlo al unitario
+                if ($precio_total === 0 && $precio_unitario > 0) {
+                    $precio_total = $precio_unitario;
+                }
 
                 if ($cantidad != 0) {
-                    $modelR->id_reserva = $model->nro_reserva;
-                    $modelR->id_servicio = $ser->id;
-                    $modelR->cantidad = $cantidad;
+                    $modelR->id_reserva      = $model->nro_reserva;
+                    $modelR->id_servicio     = $ser->id;
+                    $modelR->cantidad        = $cantidad;
                     $modelR->precio_unitario = $precio_unitario;
-                    $modelR->precio_total = $precio_total;
-                    $modelR->tipo_servicio = $tipo_servicio;
+                    $modelR->precio_total    = $precio_total;
+                    $modelR->tipo_servicio   = $tipo_servicio;
                     $modelR->save();
                 }
             }
 
-            if ($precio_dia[0]->fijo == 0) {
+            if ($precio_dia && isset($precio_dia[0]) && $precio_dia[0]->fijo == 0) {
                 $modelR = new ReservasServicios();
-                $modelR->id_reserva = $model->nro_reserva;
-                $modelR->id_servicio = $precio_dia[0]->id;
-                $modelR->cantidad = $_POST['cant_basico'];
+                $modelR->id_reserva      = $model->nro_reserva;
+                $modelR->id_servicio     = $precio_dia[0]->id;
+                $modelR->cantidad        = isset($_POST['cant_basico']) ? (int)$_POST['cant_basico'] : 0;
                 $modelR->precio_unitario = $precio_dia[0]->costo;
-                $modelR->precio_total = $model->costo_servicios;
-                $modelR->tipo_servicio = 0;
+                $modelR->precio_total    = $model->costo_servicios;
+                $modelR->tipo_servicio   = 0;
                 $modelR->save();
             }
 
-            if ($seguro[0]->fijo == 1) {
+            if ($seguro && isset($seguro[0]) && $seguro[0]->fijo == 1) {
                 $modelR = new ReservasServicios();
-                $modelR->id_reserva = $model->nro_reserva;
-                $modelR->id_servicio = $seguro[0]->id;
-                $modelR->cantidad = $_POST['cant_seguro'];
+                $modelR->id_reserva      = $model->nro_reserva;
+                $modelR->id_servicio     = $seguro[0]->id;
+                $modelR->cantidad        = isset($_POST['cant_seguro']) ? (int)$_POST['cant_seguro'] : 0;
                 $modelR->precio_unitario = $seguro[0]->costo;
-                $modelR->precio_total = $seguro[0]->costo;
-                $modelR->tipo_servicio = 1;
+                $modelR->precio_total    = $seguro[0]->costo;
+                $modelR->tipo_servicio   = 1;
                 $modelR->save();
             }
 
-
-            if ($_POST['is_noc'] == '11-1') {
+            if (isset($_POST['is_noc']) && $_POST['is_noc'] == '11-1') {
                 $modelR = new ReservasServicios();
-                $modelR->id_reserva = $model->nro_reserva;
-                $modelR->id_servicio = $_POST['servicio_noc_id'];
-                $modelR->cantidad = 1;
+                $modelR->id_reserva      = $model->nro_reserva;
+                $modelR->id_servicio     = $_POST['servicio_noc_id'];
+                $modelR->cantidad        = 1;
                 $modelR->precio_unitario = $_POST['servicio_noc_costo'];
-                $modelR->precio_total = $_POST['servicio_noc_costo'];
-                $modelR->tipo_servicio = 2;
+                $modelR->precio_total    = $_POST['servicio_noc_costo'];
+                $modelR->tipo_servicio   = 2;
                 $modelR->save();
 
                 $model->monto_total += $_POST['servicio_noc_costo'];
@@ -1243,11 +1195,9 @@ class SiteController extends Controller
             $model->updated_at = $fecha_creacion;
             $model->medio_reserva = 3;
 
-
             $model->save();
 
             if ($model->save()) {
-
                 if (($u == null) && ($busca_user == null)) {
                     $modelU = new User();
                     $user_name = $modelC->correo;
@@ -1266,7 +1216,6 @@ class SiteController extends Controller
 
                     $model->created_by = $modelU->id;
                 } else {
-
                     $modelUC = new UserCliente();
                     $modelUC->id_usuario = $busca_user->id;
                     $modelUC->id_cliente = $modelV->id_cliente;
@@ -1279,20 +1228,15 @@ class SiteController extends Controller
                 $model->updated_at = $fecha_creacion;
                 $model->medio_reserva = 3;
 
-                $model->actualizada = 1;
+                // Mantener EXACTO el comportamiento del main:
+                $model->actualizada = 0;
                 $model->save();
-
 
                 if ($model->factura == 1) {
                     $correo = Yii::$app->mailer->compose(
-                        [
-                            'html' => 'emailFactura-html',
-                        ],
-                        [
-                            'nro_reserva' => $model->nro_reserva,
-                        ]
+                        ['html' => 'emailFactura-html'],
+                        ['nro_reserva' => $model->nro_reserva]
                     );
-
                     $correo->setTo("parkingplus01@gmail.com")
                         ->setFrom([Yii::$app->params['reservasEmail'] => 'Reservas - ' . Yii::$app->name])
                         ->setSubject('Reservación ParkingPlus con Factura')
@@ -1302,24 +1246,11 @@ class SiteController extends Controller
                 if ($model->id_tipo_pago == 5) {
                     $this->layout = 'secondary';
 
-                    /*
-                    $res = Reservas:: find()->where(['nro_reserva' => $reserva])->one();
-                    $mtotal = $res->monto_total;
-                    return $this->render('pagos', [
-                        'reserva' => $reserva,
-                        'monto' => $mtotal,
-                    ]);
-                    */
-
                     \Yii::$app->session->open();
                     \Yii::$app->session['reserva'] = $model;
                     \Yii::$app->session->close();
 
-
                     $miObj = new RedsysAPI();
-
-                    // URL PARA PRUEBAS TPV
-                    //$url_tpv = 'https://sis-t.redsys.es:25443/sis/realizarPago';
 
                     // URL REAL
                     $url_tpv = 'https://sis.redsys.es/sis/realizarPago';
@@ -1328,8 +1259,6 @@ class SiteController extends Controller
 
                     // Clave Real
                     $clave = '5DaR9u4Tqw9gJpF36v44FZ+r+Q++qkl8';
-                    // Clave Pruebas
-                    //$clave = 'sq7HjrUOBfKmC576ILgskD5srU870gJ7';
 
                     $name = 'PARKING PLUS';
                     $code = '350165395';
@@ -1344,13 +1273,7 @@ class SiteController extends Controller
                     $urlweb_ok = 'https://parkingplus.es/aparcamiento/site/tpvok';
                     $urlweb_ko = 'https://parkingplus.es/aparcamiento/site/tpvko';
 
-                    // URLS PARA PRUEBAS EN LOCALHOST
-
-                    //$urlweb_ok = 'https://localhost/aparcamiento/site/tpvok';
-                    //$urlweb_ko = 'https://localhost/aparcamiento/site/tpvko';
-
-
-                    $miObj->setParameter("DS_MERCHANT_AMOUNT", (string) $amount);
+                    $miObj->setParameter("DS_MERCHANT_AMOUNT", (string)$amount);
                     $miObj->setParameter("DS_MERCHANT_CURRENCY", $currency);
                     $miObj->setParameter("DS_MERCHANT_MERCHANTCODE", $code);
                     $miObj->setParameter("DS_MERCHANT_MERCHANTURL", $urlMerchant);
@@ -1359,19 +1282,19 @@ class SiteController extends Controller
                     $miObj->setParameter("DS_MERCHANT_TRANSACTIONTYPE", $transactionType);
                     $miObj->setParameter("DS_MERCHANT_URLKO", $urlweb_ko);
                     $miObj->setParameter("DS_MERCHANT_URLOK", $urlweb_ok);
-
                     $miObj->setParameter("DS_MERCHANT_MERCHANTNAME", $name);
                     $miObj->setParameter("DS_MERCHANT_CONSUMERLANGUAGE", $consumerlng);
+
                     $params = $miObj->createMerchantParameters();
                     $signature = $miObj->createMerchantSignature($clave);
+
                     return $this->render('procesar-pago', [
-                        'url_tpv' => $url_tpv,
-                        'version' => $version,
-                        'params' => $params,
+                        'url_tpv'   => $url_tpv,
+                        'version'   => $version,
+                        'params'    => $params,
                         'signature' => $signature
                     ]);
                 } else {
-
                     $content = $this->renderPartial('_reportView', ['model' => $this->findModel($model->id)]);
 
                     $pdf = new Pdf([
@@ -1390,10 +1313,6 @@ class SiteController extends Controller
 
                     $pdf->render();
 
-                    //$reserva = $model->nro_reserva;
-
-                    //$mensaje = '';
-
                     if ($modelC->correo != null) {
                         try {
                             $correo = Yii::$app->mailer->compose(
@@ -1402,13 +1321,13 @@ class SiteController extends Controller
                                     'text' => 'emailReserva-text'
                                 ],
                                 [
-                                    'nro_reserva' => $model->nro_reserva,
+                                    'nro_reserva'     => $model->nro_reserva,
                                     'coche_matricula' => $modelV->matricula,
-                                    'fecha_entrada' => $fecha1,
-                                    'hora_entrada' => $model->hora_entrada,
-                                    'fecha_salida' => $fecha2,
-                                    'hora_salida' => $model->hora_salida,
-                                    'token' => $model->cod_valid
+                                    'fecha_entrada'   => $fecha1,
+                                    'hora_entrada'    => $model->hora_entrada,
+                                    'fecha_salida'    => $fecha2,
+                                    'hora_salida'     => $model->hora_salida,
+                                    'token'           => $model->cod_valid
                                 ]
                             );
 
@@ -1418,18 +1337,17 @@ class SiteController extends Controller
                                 ->attach('../web/pdf/comprobante_' . $model->nro_reserva . '.pdf')
                                 ->send();
 
-
                             $correo2 = Yii::$app->mailer->compose(
                                 [
                                     'html' => 'emailReserva2-html',
                                     'text' => 'emailReserva-text'
                                 ],
                                 [
-                                    'nro_reserva' => $model->nro_reserva,
+                                    'nro_reserva'   => $model->nro_reserva,
                                     'fecha_entrada' => $fecha1,
-                                    'hora_entrada' => $model->hora_entrada,
-                                    'fecha_salida' => $fecha2,
-                                    'hora_salida' => $model->hora_salida,
+                                    'hora_entrada'  => $model->hora_entrada,
+                                    'fecha_salida'  => $fecha2,
+                                    'hora_salida'   => $model->hora_salida,
                                 ]
                             );
                             $correo2->setTo('asistenciaplus00@gmail.com')
@@ -1454,29 +1372,30 @@ class SiteController extends Controller
             return $this->redirect(['site/index']);
         }
 
-
+        // Render inicial
         return $this->render('createN', [
-            'model' => $model,
-            'modelC' => $modelC,
-            'modelV' => $modelV,
+            'model'         => $model,
+            'modelC'        => $modelC,
+            'modelV'        => $modelV,
             'tipo_documento' => $tipo_documento,
-            'terminales' => $terminales,
-            'servicios' => $servicios,
-            'seguro' => $seguro,
+            'terminales'    => $terminales,
+            'servicios'     => $servicios,
+            'seguro'        => $seguro,
             'precio_diario' => $precio_diario,
-            'tipos_pago' => $tipos_pago,
-            'iva' => $iva,
-            'entrada' => $entrada,
-            'salida' => $salida,
-            'hora_e' => $hora_e,
-            'hora_s' => $hora_s,
-            'cant_dias' => $cant_dias,
-            'nocturno' => $extraNocturno,
-            'type_reserva' => $type_reserva,
-            'precio_dia' => $precio_dia->valor_numerico,
-            'plan' => $plan
+            'tipos_pago'    => $tipos_pago,
+            'iva'           => $iva,
+            'entrada'       => $entrada,
+            'salida'        => $salida,
+            'hora_e'        => $hora_e,
+            'hora_s'        => $hora_s,
+            'cant_dias'     => $cant_dias,
+            'nocturno'      => $extraNocturno,
+            'type_reserva'  => $type_reserva,
+            'precio_dia'    => $precio_dia_cfg->valor_numerico,
+            'plan'          => $plan
         ]);
     }
+
 
     // agg ER
     public function actionCreateorganic()

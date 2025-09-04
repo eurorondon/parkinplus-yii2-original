@@ -1,6 +1,7 @@
 <?php
 
 use \yii\web\Request;
+
 $baseUrl = str_replace('/frontend/web', '', (new Request)->getBaseUrl());
 
 $params = array_merge(
@@ -12,16 +13,16 @@ $params = array_merge(
 
 return [
     'id' => 'app-frontend',
-    'language' => 'es/ES',
+    'language' => 'es-ES',
     'name' => 'Parking Plus',
     'basePath' => dirname(__DIR__),
-    'homeUrl'=>array('site/index'),
+    'homeUrl' => array('site/index'),
     'bootstrap' => ['log'],
     'modules' => [
         'gridview' =>  [
             'class' => '\kartik\grid\Module',
         ],
-    ],    
+    ],
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
         'request' => [
@@ -48,9 +49,9 @@ return [
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
-        ], 
+        ],
 
-              
+
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
@@ -60,8 +61,8 @@ return [
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
             ],
-        ],    
-        
+        ],
+
     ],
     'params' => $params,
 ];
