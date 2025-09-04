@@ -1469,14 +1469,14 @@ class ReservasController extends Controller
 
         foreach ($precioTemporada as $temporada) {
             if (strtotime($entrada . ' ' . $hora_e) >= strtotime($temporada->fecha_inicio . ' ' . $temporada->hora_inicio) && strtotime($entrada . ' ' . $hora_e) <= strtotime($temporada->fecha_fin . ' ' . $temporada->hora_fin)) {
-                $precio_diario[$position]['precio'] = $precio_diario[$position]['costo'] + ($cant_dias * $temporada->precio);
+                $precio_diario[$position]['precio'] = $precio_diario[$position]['precio'] + ($cant_dias * $temporada->precio);
             }
         }*/
 
         $precioTemporada = PrecioTemporada::find()->where(['status' => 'activo'])->one();
         if (!is_null($precioTemporada)) {
             foreach ($precio_diario as $key => $diario) {
-                $precio_diario[$key]['precio'] = $precio_diario[$key]['costo'] + ($precio_diario[$key]['cantidad'] * $precioTemporada->precio);
+                $precio_diario[$key]['precio'] = $precio_diario[$key]['precio'] + ($precio_diario[$key]['cantidad'] * $precioTemporada->precio);
             }
         }
 
@@ -1913,7 +1913,7 @@ class ReservasController extends Controller
 
         if (!is_null($precioTemporada)) {
             foreach ($precio_diario as $key => $diario) {
-                $precio_diario[$key]['precio'] = $precio_diario[$key]['costo'] + ($precio_diario[$key]['cantidad'] * $precioTemporada->precio);
+                $precio_diario[$key]['precio'] = $precio_diario[$key]['precio'] + ($precio_diario[$key]['cantidad'] * $precioTemporada->precio);
             }
         }
 

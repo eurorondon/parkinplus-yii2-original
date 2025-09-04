@@ -153,7 +153,7 @@ class SiteController extends Controller
 
         if (count($precioTemporada) > 0) {
             foreach ($precio_diario as $key => $data) {
-                $precio_diario[$key]['precio'] = $precio_diario[$key]['costo'] + ($precio_diario[$key]['cantidad'] * $precioTemporada[0]['precio']);
+                $precio_diario[$key]['precio'] = $precio_diario[$key]['precio'] + ($precio_diario[$key]['cantidad'] * $precioTemporada[0]['precio']);
             }
         }
 
@@ -213,7 +213,7 @@ class SiteController extends Controller
 
         if (count($precioTemporada) > 0) {
             foreach ($precio_diario as $key => $data) {
-                $precio_diario[$key]['precio'] = $precio_diario[$key]['costo'] + ($precio_diario[$key]['cantidad'] * $precioTemporada[0]['precio']);
+                $precio_diario[$key]['precio'] = $precio_diario[$key]['precio'] + ($precio_diario[$key]['cantidad'] * $precioTemporada[0]['precio']);
             }
         }
 
@@ -1037,7 +1037,7 @@ class SiteController extends Controller
         $precioTemporada = PrecioTemporada::find()->where(['status' => 'activo'])->one();
         if (!is_null($precioTemporada)) {
             foreach ($precio_diario as $key => $diario) {
-                $precio_diario[$key]['precio'] = $precio_diario[$key]['costo'] + ($precio_diario[$key]['cantidad'] * $precioTemporada->precio);
+                $precio_diario[$key]['precio'] = $precio_diario[$key]['precio'] + ($precio_diario[$key]['cantidad'] * $precioTemporada->precio);
             }
         }
 
@@ -1507,7 +1507,7 @@ class SiteController extends Controller
 
         if (!is_null($precioTemporada)) {
             foreach ($precio_diario as $key => $diario) {
-                $precio_diario[$key]['precio'] = $precio_diario[$key]['costo'] + ($precio_diario[$key]['cantidad'] * $precioTemporada->precio);
+                $precio_diario[$key]['precio'] = $precio_diario[$key]['precio'] + ($precio_diario[$key]['cantidad'] * $precioTemporada->precio);
             }
         }
 
@@ -1521,7 +1521,7 @@ class SiteController extends Controller
 
         if (!is_null($precioTemporada)) {
             if ($fecha_entrada > strtotime($precioTemporada->fecha_inicio . ' ' . $precioTemporada->hora_inicio) && $fecha_entrada < strtotime($precioTemporada->fecha_fin . ' ' . $precioTemporada->hora_fin)) {
-                $precio_diario[$position]['precio'] = $precio_diario[$position]['costo'] + ($cant_dias * $precioTemporada->precio);
+                $precio_diario[$position]['precio'] = $precio_diario[$position]['precio'] + ($cant_dias * $precioTemporada->precio);
             }
         }*/
 
@@ -2085,7 +2085,7 @@ class SiteController extends Controller
 
         if (!is_null($precioTemporada)) {
             foreach ($precio_diario as $key => $diario) {
-                $precio_diario[$key]['precio'] = $precio_diario[$key]['costo'] + ($precio_diario[$key]['cantidad'] * $precioTemporada->precio);
+                $precio_diario[$key]['precio'] = $precio_diario[$key]['precio'] + ($precio_diario[$key]['cantidad'] * $precioTemporada->precio);
             }
         }
 
@@ -3141,7 +3141,7 @@ class SiteController extends Controller
 
             if (!is_null($precioTemporada)) {
                 foreach ($precios_diarios as $key => $diario) {
-                    $precios_diarios[$key]['precio'] = $precios_diarios[$key]['costo'] + ($precios_diarios[$key]['cantidad'] * $precioTemporada->precio);
+                    $precios_diarios[$key]['precio'] = $precios_diarios[$key]['precio'] + ($precios_diarios[$key]['cantidad'] * $precioTemporada->precio);
                 }
             }
 
@@ -3281,7 +3281,7 @@ class SiteController extends Controller
 
             if (!is_null($precioTemporada)) {
                 foreach ($precios_diarios as $key => $diario) {
-                    $precios_diarios[$key]['precio'] = $precios_diarios[$key]['costo'] + ($precios_diarios[$key]['cantidad'] * $precioTemporada->precio);
+                    $precios_diarios[$key]['precio'] = $precios_diarios[$key]['precio'] + ($precios_diarios[$key]['cantidad'] * $precioTemporada->precio);
                 }
             }
 
