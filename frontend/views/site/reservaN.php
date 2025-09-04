@@ -809,9 +809,10 @@ $this->registerJs("
 		console.log(nocturnidad );
 		console.log(parseFloat($('#servicio-2').val()));*/
 		
-	  $('#costo').append(costo.toFixed(2)+ '€');
-	  $('#costo_t').append( costo_t.toFixed(2) + '€');
-	  $('#costo_i').append(costo_i.toFixed(2)+ '€');
+          $('#costo_e').append(costo.toFixed(2)+ '€');
+          $('#costo').append(costo.toFixed(2)+ '€');
+          $('#costo_t').append( costo_t.toFixed(2) + '€');
+          $('#costo_i').append(costo_i.toFixed(2)+ '€');
     });      
 	
 	$('#change_f').on('click', function(){
