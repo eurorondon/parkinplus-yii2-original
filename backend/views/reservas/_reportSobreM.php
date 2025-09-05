@@ -48,27 +48,20 @@ for ($i = 0; $i < count($model); $i++) {
 ?>
 
 <?php
-for ($i = 0; $i < count($model); $i++) { ?>
+for ($i = 0; $i < count($model); $i++) {
+        $IS_PREMIUM   = ((int)$model[$i]->plan === 2);
+        $IS_PRIORITY  = ((int)$model[$i]->plan === 3);
+        $TECHADO_ID   = 9;
+        $PLAZA_RES_ID = 12;
+?>
 
-	<div style="margin-top: 1cm;font-size: 17px; font-weight: bolder; font-family: sans-serif;">
-		<b><?= $model[$i]->nro_reserva ?></b>
-	</div>
+        <div style="margin-top: 1cm;font-size: 17px; font-weight: bolder; font-family: sans-serif;">
+                <b><?= $model[$i]->nro_reserva ?></b>
+        </div>
 
-	<div style="margin-top: 1cm;">
-		<?= Html::img('@web/images/' . $medio[$i], ['style' => ['width' => '20px']]); ?>
-	</div>
-
-	<?php
-	for ($l = 0; $l < count($servicios[$i]); $l++) {
-		if ($servicios[$i][$l]->servicios->id == 9) { ?>
-
-			<div style="position: absolute; top: 110px; font-size: 17px; font-weight: bolder; font-family: sans-serif;">
-				<?= Html::img('@web/images/techado.png', ['style' => ['width' => '25px']]); ?>
-			</div>
-
-	<?php }
-	}
-	?>
+        <div style="margin-top: 1cm;">
+                <?= Html::img('@web/images/' . $medio[$i], ['style' => ['width' => '20px']]); ?>
+        </div>
 
 	<div style="margin-top: -1.6cm; font-size: 17px; font-weight: bolder; font-family: sans-serif;">
 	</div>
@@ -175,23 +168,35 @@ for ($i = 0; $i < count($model); $i++) { ?>
         <?php if ($contS[$i] > 0) { ?>
                 <div style="margin-bottom: 10px"><b>INCLUYE:</b></div>
 
+                <?php
+                for ($l = 0; $l < count($servicios[$i]); $l++) {
+                        $srv = $servicios[$i][$l]->servicios ?? null;
+                        if (!$srv) {
+                                continue;
+                        }
 
-		<?php
-		for ($l = 0; $l < count($servicios[$i]); $l++) {
-			$c = 0;
+                        $srvId     = isset($srv->id) ? (int)$srv->id : 0;
+                        $srvNombre = isset($srv->nombre_servicio) ? trim((string)$srv->nombre_servicio) : '';
+                        $srvFijo   = isset($srv->fijo) ? (int)$srv->fijo : 0;
 
-			if ($servicios[$i][$l]->servicios->fijo == 2) {
-				$c++;
-		?>
-				<div style="margin-bottom: 5px; text-transform: uppercase; font-size: 10px;">
-					<?= $servicios[$i][$l]->servicios->nombre_servicio ?>
-				</div>
+                        if ($IS_PREMIUM && ($srvId === $TECHADO_ID || strcasecmp($srvNombre, 'Techado') === 0)) {
+                                continue;
+                        }
+                        if ($IS_PRIORITY && ($srvId === $PLAZA_RES_ID || strcasecmp($srvNombre, 'Plaza reservada') === 0)) {
+                                continue;
+                        }
 
-		<?php }
-		}
-		?>
+                        if ($srvFijo == 2) {
+                ?>
+                                <div style="margin-bottom: 5px; text-transform: uppercase; font-size: 10px;">
+                                        <?= $srvNombre ?>
+                                </div>
 
-	<?php } ?>
+                <?php }
+                }
+                ?>
+
+        <?php } ?>
 
 	<?php
 	if ($contS[$i] == 0) {
