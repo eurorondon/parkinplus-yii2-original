@@ -176,6 +176,36 @@ Devolución. Al regreso de su viaje, y una vez tenga recogido todo el equipaje d
 
 Modal::end();
 
+Modal::begin([
+        'header' => '<strong>Información del servicio</strong>',
+        'id' => 'info_economic',
+        'size' => 'modal-lg',
+]); ?>
+<div class="row">
+        <div class="col-lg-12">
+                <p class="text-justify">PARKINGPLUS es la solución económica para aparcar cerca del Aeropuerto: aparque en nuestro recinto y le llevamos a su terminal en nuestra lanzadera.</p>
+                <p class="text-justify">Máxima seguridad: acceso restringido, plazas limitadas, vigilancia 24h, llaves en cajas de seguridad y CCTV conectado a central de alarmas.</p>
+
+                <h4 class="text-brand" style="margin-top:24px;">¿Cómo funciona?</h4>
+                <p class="text-justify"><strong>Llegada al parking:</strong> veinte minutos antes de llegar a nuestras instalaciones, llame al 603 284 800 para coordinar su check-in y la salida de la lanzadera.</p>
+                <p class="text-justify"><strong>Recepción:</strong> se emite ticket y se realiza el CFEV (control fotográfico del estado del vehículo). Si no es posible por condiciones, se hace dentro del recinto.</p>
+                <p class="text-justify"><strong>Traslado a la terminal:</strong> suba a nuestra lanzadera PARKINGPLUS. El trayecto habitual es de 8–12 minutos (puede variar según tráfico). Le dejamos en Salidas de su terminal.</p>
+
+                <h4 class="text-brand" style="margin-top:24px;">Puntos de encuentro (vuelta)</h4>
+                <p class="text-justify">T1: puertas 4–5. T2: puerta 7. T4: puertas 5–6.</p>
+                <p class="text-justify"><strong>Hora de recogida (vuelta):</strong> cuando aterrice y tenga su equipaje, llame al 603 284 800 y diríjase al punto de encuentro indicado para la lanzadera.</p>
+
+                <h4 class="text-brand" style="margin-top:24px;">Devolución</h4>
+                <p class="text-justify">Le llevamos de vuelta al parking para la entrega de su vehículo. Si su vuelo se retrasa, lo sabemos; cambios no avisados pueden suponer esperas de hasta 2h y/o recargos.</p>
+
+                <h4 class="text-brand" style="margin-top:24px;">Plan Economic</h4>
+                <p class="text-justify">Aparcamiento en recinto cerrado al aire libre y vigilado 24h + lanzadera ida y vuelta con la terminal.</p>
+        </div>
+
+</div>
+<?php Modal::end(); ?>
+
+<?php
 $cant = count($precio_diario);
 $num = 1;
 for ($i = 0; $i < $cant; $i++) { ?>
@@ -327,7 +357,7 @@ if (!is_null($temporada)) {
                                                 style="border: 1px solid #961007;    width: 160px;height: 160px;background: #fff;">
                                                 <div class="counter__text">
                                                         <div class="icon">
-                                                                <?= Html::img('@web/images/bronce.png', ['class' => 'counter__icon']) ?>
+                                                                <?= Html::img('@web/images/economico.png', ['class' => 'counter__icon']) ?>
                                                         </div>
                                                 </div>
                                                 <div class="counter__description">ECONOMIC</div>
@@ -370,7 +400,7 @@ if (!is_null($temporada)) {
                                                 'style' => ['font-size' => '12px'],
                                                 'id' => 'BtnModalId',
                                                 'data-toggle' => 'modal',
-                                                'data-target' => '#mas_info_st',
+                                                'data-target' => '#info_economic',
                                         ]) ?>
                                 </div>
 
@@ -937,18 +967,19 @@ $this->registerJs("
   
 		});
 	
-               $('#economic').click(function(e){
-                       $('#plan').val(4);
-                       e.preventDefault();
-                                $('#type_service').val(0);
-                        $(this)
-                                .text('')
-                                .removeClass('btn-success')
-                                .addClass('btn-primary')
-                                .html('<span class=\"spinner-border spinner-border-sm\" role=\"status\" aria-hidden=\"true\"></span> Espere por favor...')
-                                .attr('disabled', 'disabled')
-                                .trigger('submit');
+               function lockAndSubmit(btnId, type, plan){
+                       var btn = document.getElementById(btnId);
+                       btn.setAttribute('disabled','disabled');
+                       btn.innerHTML = '<span class=\'spinner-border spinner-border-sm\' role=\'status\' aria-hidden=\'true\'></span> Espere por favor...';
 
+                       document.getElementById('type_service').value = type;
+                       document.getElementById('plan').value = plan;
+
+                       btn.closest('form').submit();
+               }
+
+               document.getElementById('economic').addEventListener('click', function(e){
+                       e.preventDefault(); lockAndSubmit('economic', 0, 4);
                });
 
                $('#bronce').click(function(e){
