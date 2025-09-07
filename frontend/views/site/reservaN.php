@@ -421,12 +421,12 @@ endfor; ?>
 	<div class="plan-card">
 		<div class="plan-title">ECONOMIC</div>
 		<div class="plan-badge">
-			<?= Html::img('@web/images/bronce.png', ['style' => 'width:64px;height:64px;']) ?>
+			<?= Html::img('@web/images/economico.png', ['style' => 'width:68px;height:68px;']) ?>
 			<div class="label">ECONOMIC</div>
 		</div>
 		<div class="plan-badge">
-			<?= Html::img('@web/images/chofer1.png', ['style' => 'width:48px;height:48px;']) ?>
-			<div class="muted" style="text-align:center">Recogida por<br>chofer</div>
+			<?= Html::img('@web/images/minivan.png', ['style' => 'width:68px;height:68px;']) ?>
+			<div class="muted" style="text-align:center">Translado a<br>terminal</div>
 		</div>
 		<div class="plan-badge">
 			<?= Html::img('@web/images/car.png', ['style' => 'width:48px;height:48px;']) ?>
@@ -434,7 +434,8 @@ endfor; ?>
 		<div style="flex:1;">
 			<h4>Servicios</h4>
 			<ul class="services">
-				<li>Plaza reservada</li>
+				<!-- <li>Plaza reservada</li> -->
+				<li>Llegas a nuestro aparcamiento</li>
 				<li>Traslado aparcamiento ⇄ terminal</li>
 				<li class="noctur hidden">Especial nocturnidad (00:30–03:45)</li>
 			</ul>
@@ -501,7 +502,7 @@ endfor; ?>
 			<div class="muted" style="text-align:center">Recogida por<br>chofer</div>
 		</div>
 		<div class="plan-badge">
-			<?= Html::img('@web/images/garage-car.png', ['style' => 'width:48px;height:48px;']) ?>
+			<?= Html::img('@web/images/limpiezaext.png', ['style' => 'width:58px;height:58px;']) ?>
 		</div>
 		<div style="flex:1;">
 			<h4>Servicios</h4>
@@ -537,7 +538,7 @@ endfor; ?>
 			<div class="muted" style="text-align:center">Recogida por<br>chofer</div>
 		</div>
 		<div class="plan-badge">
-			<?= Html::img('@web/images/llaves.png', ['style' => 'width:48px;height:48px;']) ?>
+			<?= Html::img('@web/images/llaves.png', ['style' => 'width:58px;height:58px;']) ?>
 		</div>
 		<div style="flex:1;">
 			<h4>Servicios</h4>
