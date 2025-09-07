@@ -267,28 +267,85 @@ $this->title = Yii::$app->name . ' | Nueva Reserva';
 	}
 </style>
 
-<?php
 /* =================== Modales =================== */
+<?php
+Modal::begin([
+	'header' => '<strong>Información del servicio</strong>',
+	'id' => 'info_economic',
+	'size' => 'modal-lg',
+]); ?>
+<div class="row">
+	<div class="col-lg-12">
+		<p class="text-justify">PARKINGPLUS es la solución económica para aparcar cerca del Aeropuerto: aparque en nuestro recinto y le llevamos a su terminal en nuestra lanzadera.</p>
+		<p class="text-justify">Máxima seguridad: acceso restringido, plazas limitadas, vigilancia 24h, llaves en cajas de seguridad y CCTV conectado a central de alarmas.</p>
+
+		<h4 class="text-brand" style="margin-top:24px;">¿Cómo funciona?</h4>
+		<p class="text-justify"><strong>Llegada al parking:</strong> veinte minutos antes de llegar a nuestras instalaciones, llame al 603 284 800 para coordinar su check-in y la salida de la lanzadera.</p>
+		<p class="text-justify"><strong>Recepción:</strong> se emite ticket y se realiza el CFEV (control fotográfico del estado del vehículo). Si no es posible por condiciones, se hace dentro del recinto.</p>
+		<p class="text-justify"><strong>Traslado a la terminal:</strong> suba a nuestra lanzadera PARKINGPLUS. El trayecto habitual es de 8–12 minutos (puede variar según tráfico). Le dejamos en Salidas de su terminal.</p>
+
+		<h4 class="text-brand" style="margin-top:24px;">Puntos de encuentro (vuelta)</h4>
+		<p class="text-justify">T1: puertas 4–5. T2: puerta 7. T4: puertas 5–6.</p>
+		<p class="text-justify"><strong>Hora de recogida (vuelta):</strong> cuando aterrice y tenga su equipaje, llame al 603 284 800 y diríjase al punto de encuentro indicado para la lanzadera.</p>
+
+		<h4 class="text-brand" style="margin-top:24px;">Devolución</h4>
+		<p class="text-justify">Le llevamos de vuelta al parking para la entrega de su vehículo. Si su vuelo se retrasa, lo sabemos; cambios no avisados pueden suponer esperas de hasta 2h y/o recargos.</p>
+
+		<h4 class="text-brand" style="margin-top:24px;">Plan Economic</h4>
+		<p class="text-justify">Aparcamiento en recinto cerrado al aire libre y vigilado 24h + lanzadera ida y vuelta con la terminal.</p>
+	</div>
+
+</div>
+<?php Modal::end(); ?>
+
+<?php
 Modal::begin([
 	'header' => '<strong>Información del servicio</strong>',
 	'id' => 'info_standard',
 	'size' => 'modal-lg',
 ]); ?>
-<div class="row">
-	<div class="col-lg-12">
-		<p class="text-justify">PARKINGPLUS es la solución a su problema de estacionamiento en el Aeropuerto, evitando las molestias de buscar aparcamiento y desplazarse a la terminal con equipaje.</p>
-		<p class="text-justify">Máxima seguridad: acceso restringido, plazas limitadas, vigilancia 24h, llaves en cajas de seguridad y CCTV conectado a central de alarmas.</p>
-		<h4 class="text-brand" style="margin-top:24px;">¿Cómo funciona?</h4>
-		<p class="text-justify">Recogida: veinte minutos antes de llegar a la terminal de salida, llame al 603 284 800.</p>
-		<h4 class="text-brand" style="margin-top:24px;">Puntos de encuentro</h4>
-		<p class="text-justify">T1: puerta 4 de salidas. T2: puerta 7 de salidas. T4: frente a puertas 5–6.</p>
-		<p class="text-justify">Hora de recogida: la de su reserva es aproximada; si llega antes o después, llame y recogemos su vehículo.</p>
-		<p class="text-justify">Recepción: se emite ticket y registro fotográfico del estado del vehículo (CFEV). Si no es posible por condiciones, se hace en instalaciones.</p>
-		<h4 class="text-brand" style="margin-top:24px;">Devolución</h4>
-		<p class="text-justify">Al regreso, con equipaje en mano, llame al 603 284 800 y diríjase al punto de encuentro: T1 (puerta 4–5), T2 (puerta 7), T4 (puertas 5–6).</p>
-		<p class="text-justify">Si su vuelo se retrasa, lo sabemos; cambios sin aviso pueden suponer esperas hasta 2h y/o recargos.</p>
-		<h4 class="text-brand" style="margin-top:24px;">Servicio estándar</h4>
-		<p class="text-justify">Aparcamiento en recinto cerrado al aire libre y vigilado 24h.</p>
+<div id='modalContent'>
+	<div class='row'>
+		<div class='col-lg-12'>
+
+			<p align='justify'>PARKINGPLUS es la solución a su problema de estacionamiento en el Aeropuerto, evitándole así las molestias de buscar aparcamiento e ir desde el parking a la terminal y viceversa, cargado con su equipaje.</p>
+
+			<p align='justify'>Además ofrecemos la máxima seguridad, ya que, los aparcamientos son de acceso restringido, con plazas limitadas, están vigilados las 24h, las llaves de los vehículos se depositan en cajas de seguridad y poseen CCTV conectados a central de alarmas. </p>
+
+			<p align='left' style='font-weight: bold; margin-bottom: 15px; margin-top: 30px; color: #921007'>¿Cómo funciona?</p>
+
+			<p align='justify'>Recogida. veinte minutos antes de llegar a la terminal de salida debe llamar a los conductores al 603284800 para que procedan a la recogida de su vehículo.
+			</p>
+
+			<p align='left' style='font-weight: bold; margin-bottom: 15px; margin-top: 30px; color: #921007'>Puntos de encuentro </p>
+
+			<p align='justify'>T1 Diríjase a la T1 de salidas y sitúese en la puerta 4. </p>
+
+			<p align='justify'>T2 Diríjase a la T2 de salidas y sitúese en la puerta 7.</p>
+
+			<p align='justify'>T4 Diríjase a la T4 de salidas y sitúese frente a la puerta 5 ò 6.</p>
+
+			<p align='justify'>Hora de recogida. La hora que aparece en su reserva es una hora aproximada, no se preocupe si llega antes o después, llame al conductor y procederá a la recogida de su vehículo..</p>
+
+			<p align='justify'>Información de recepción. A la recepción de su vehículo, Parking plus le entregara un tiket de confirmación de recogida, compruébe los datos. El conductor realizara el parte de daños y el CFEV (Certificado Fotográfico del Estado del Vehículo), salvo que las condiciones de luminosidad, climatológicas, de tráfico u otras condicionantes no lo permitieran, entonces este se realizará en las instalaciones de PARKING PLUS.
+				Devolución. Al regreso de su viaje, y una vez tenga recogido todo el equipaje debe llamar al teléfono de los conductores 603284800 y dirigirse al punto de encuentro de la devolución.</p>
+
+			<p align='left' style='font-weight: bold; margin-bottom: 15px; margin-top: 30px; color: #921007'>Punto de encuentro</p>
+
+			<p align='justify'>T1 Diríjase a la T1 de salidas, suban por los ascensores o rampas mecánicas a la planta superior, salgan al exterior y sitúese al final de la terminal en la puerta 4 ò 5. </p>
+
+			<p align='justify'>T2 Diríjase a la T2 de salidas tomando el ascensor o las rampas mecánicas, siga las indicaciones de chek in- facturación y sitúese en la puerta 7. </p>
+
+			<p align='justify'>T4 Diríjase a la T4 de salidas. Tome un ascensor de cristal y suba a salidas. Salgan al exterior y cruce los carriles de taxi, giren a la derecha para situarse al final de la terminal en la puerta 5 ò 6.</p>
+
+			<p align='justify'>Hora de devolución. No se preocupe si su vuelo se retrasa, nosotros conocemos que los horarios de vuelos pueden sufrir modificaciones. pero les recordamos que la modificación de horarios y/o vuelos, así como cambios de fecha en su devolución sin aviso previo puede suponer esperas de hasta 2 horas y/o recargos en el importe final.</p>
+
+
+			<p align='left' style='font-weight: bold; margin-bottom: 15px; margin-top: 30px; color: #921007'>Servicio estándar</p>
+
+			<p align='justify'>Servicio de aparcamiento en recinto cerrado al aire libre y vigilado 24hrs.</p>
+
+		</div>
 	</div>
 </div>
 <?php Modal::end(); ?>
@@ -299,11 +356,48 @@ Modal::begin([
 	'id' => 'info_premium',
 	'size' => 'modal-lg',
 ]); ?>
-<div class="row">
-	<div class="col-lg-12">
-		<p class="text-justify">PARKINGPLUS: misma operativa y seguridad anterior.</p>
-		<h4 class="text-brand" style="margin-top:24px;">Servicio premium</h4>
-		<p class="text-justify">Incluye lavado exterior (para limpieza más detallada, puede contratar “Limpieza exterior” con recargo).</p>
+<div id='modalContent'>
+	<div class='row'>
+		<div class='col-lg-12'>
+
+			<p align='justify'>PARKINGPLUS es la solución a su problema de estacionamiento en el Aeropuerto, evitándole así las molestias de buscar aparcamiento e ir desde el parking a la terminal y viceversa, cargado con su equipaje.</p>
+
+			<p align='justify'>Además ofrecemos la máxima seguridad, ya que, los aparcamientos son de acceso restringido, con plazas limitadas, están vigilados las 24h, las llaves de los vehículos se depositan en cajas de seguridad y poseen CCTV conectados a central de alarmas. </p>
+
+			<p align='left' style='font-weight: bold; margin-bottom: 15px; margin-top: 30px; color: #921007'>¿Cómo funciona?</p>
+
+			<p align='justify'>Recogida. veinte minutos antes de llegar a la terminal de salida debe llamar a los conductores al 603284800 para que procedan a la recogida de su vehículo.
+			</p>
+
+			<p align='left' style='font-weight: bold; margin-bottom: 15px; margin-top: 30px; color: #921007'>Puntos de encuentro </p>
+
+			<p align='justify'>T1 Diríjase a la T1 de salidas y sitúese en la puerta 4. </p>
+
+			<p align='justify'>T2 Diríjase a la T2 de salidas y sitúese en la puerta 7.</p>
+
+			<p align='justify'>T4 Diríjase a la T4 de salidas y sitúese frente a la puerta 5 ò 6.</p>
+
+			<p align='justify'>Hora de recogida. La hora que aparece en su reserva es una hora aproximada, no se preocupe si llega antes o después, llame al conductor y procederá a la recogida de su vehículo..</p>
+
+			<p align='justify'>Información de recepción. A la recepción de su vehículo, Parking plus le entregara un tiket de confirmación de recogida, compruébe los datos. El conductor realizara el parte de daños y el CFEV (Certificado Fotográfico del Estado del Vehículo), salvo que las condiciones de luminosidad, climatológicas, de tráfico u otras condicionantes no lo permitieran, entonces este se realizará en las instalaciones de PARKING PLUS.
+				Devolución. Al regreso de su viaje, y una vez tenga recogido todo el equipaje debe llamar al teléfono de los conductores 603284800 y dirigirse al punto de encuentro de la devolución.</p>
+
+			<p align='left' style='font-weight: bold; margin-bottom: 15px; margin-top: 30px; color: #921007'>Punto de encuentro</p>
+
+			<p align='justify'>T1 Diríjase a la T1 de salidas, suban por los ascensores o rampas mecánicas a la planta superior, salgan al exterior y sitúese al final de la terminal en la puerta 4 ò 5. </p>
+
+			<p align='justify'>T2 Diríjase a la T2 de salidas tomando el ascensor o las rampas mecánicas, siga las indicaciones de chek in- facturación y sitúese en la puerta 7. </p>
+
+			<p align='justify'>T4 Diríjase a la T4 de salidas. Tome un ascensor de cristal y suba a salidas. Salgan al exterior y cruce los carriles de taxi, giren a la derecha para situarse al final de la terminal en la puerta 5 ò 6.</p>
+
+			<p align='justify'>Hora de devolución. No se preocupe si su vuelo se retrasa, nosotros conocemos que los horarios de vuelos pueden sufrir modificaciones. pero les recordamos que la modificación de horarios y/o vuelos, así como cambios de fecha en su devolución sin aviso previo puede suponer esperas de hasta 2 horas y/o recargos en el importe final.</p>
+
+
+			<p align='left' style='font-weight: bold; margin-bottom: 15px; margin-top: 30px; color: #921007'>Servicio premium</p>
+
+			<p align='justify'>Servicio de aparcamiento en recinto cerrado al aire libre y vigilado 24hrs, le incluye servicio de lavado exterior. (si usted requiere una limpieza con más detalle puede contratar el servicio de limpieza exterior lo que supondrá un recargo adicional).</p>
+
+		</div>
 	</div>
 </div>
 <?php Modal::end(); ?>
@@ -314,11 +408,48 @@ Modal::begin([
 	'id' => 'info_priority',
 	'size' => 'modal-lg',
 ]); ?>
-<div class="row">
-	<div class="col-lg-12">
-		<p class="text-justify">PARKINGPLUS: misma operativa y seguridad anterior.</p>
-		<h4 class="text-brand" style="margin-top:24px;">Servicio priority</h4>
-		<p class="text-justify">Incluye lavado interior y exterior, y custodia de llaves.</p>
+echo "<div id='modalContent'>
+	<div class='row'>
+		<div class='col-lg-12'>
+
+			<p align='justify'>PARKINGPLUS es la solución a su problema de estacionamiento en el Aeropuerto, evitándole así las molestias de buscar aparcamiento e ir desde el parking a la terminal y viceversa, cargado con su equipaje.</p>
+
+			<p align='justify'>Además ofrecemos la máxima seguridad, ya que, los aparcamientos son de acceso restringido, con plazas limitadas, están vigilados las 24h, las llaves de los vehículos se depositan en cajas de seguridad y poseen CCTV conectados a central de alarmas. </p>
+
+			<p align='left' style='font-weight: bold; margin-bottom: 15px; margin-top: 30px; color: #921007'>¿Cómo funciona?</p>
+
+			<p align='justify'>Recogida. veinte minutos antes de llegar a la terminal de salida debe llamar a los conductores al 603284800 para que procedan a la recogida de su vehículo.
+			</p>
+
+			<p align='left' style='font-weight: bold; margin-bottom: 15px; margin-top: 30px; color: #921007'>Puntos de encuentro </p>
+
+			<p align='justify'>T1 Diríjase a la T1 de salidas y sitúese en la puerta 4. </p>
+
+			<p align='justify'>T2 Diríjase a la T2 de salidas y sitúese en la puerta 7.</p>
+
+			<p align='justify'>T4 Diríjase a la T4 de salidas y sitúese frente a la puerta 5 ò 6.</p>
+
+			<p align='justify'>Hora de recogida. La hora que aparece en su reserva es una hora aproximada, no se preocupe si llega antes o después, llame al conductor y procederá a la recogida de su vehículo..</p>
+
+			<p align='justify'>Información de recepción. A la recepción de su vehículo, Parking plus le entregara un tiket de confirmación de recogida, compruébe los datos. El conductor realizara el parte de daños y el CFEV (Certificado Fotográfico del Estado del Vehículo), salvo que las condiciones de luminosidad, climatológicas, de tráfico u otras condicionantes no lo permitieran, entonces este se realizará en las instalaciones de PARKING PLUS.
+				Devolución. Al regreso de su viaje, y una vez tenga recogido todo el equipaje debe llamar al teléfono de los conductores 603284800 y dirigirse al punto de encuentro de la devolución.</p>
+
+			<p align='left' style='font-weight: bold; margin-bottom: 15px; margin-top: 30px; color: #921007'>Punto de encuentro</p>
+
+			<p align='justify'>T1 Diríjase a la T1 de salidas, suban por los ascensores o rampas mecánicas a la planta superior, salgan al exterior y sitúese al final de la terminal en la puerta 4 ò 5. </p>
+
+			<p align='justify'>T2 Diríjase a la T2 de salidas tomando el ascensor o las rampas mecánicas, siga las indicaciones de chek in- facturación y sitúese en la puerta 7. </p>
+
+			<p align='justify'>T4 Diríjase a la T4 de salidas. Tome un ascensor de cristal y suba a salidas. Salgan al exterior y cruce los carriles de taxi, giren a la derecha para situarse al final de la terminal en la puerta 5 ò 6.</p>
+
+			<p align='justify'>Hora de devolución. No se preocupe si su vuelo se retrasa, nosotros conocemos que los horarios de vuelos pueden sufrir modificaciones. pero les recordamos que la modificación de horarios y/o vuelos, así como cambios de fecha en su devolución sin aviso previo puede suponer esperas de hasta 2 horas y/o recargos en el importe final.</p>
+
+
+			<p align='left' style='font-weight: bold; margin-bottom: 15px; margin-top: 30px; color: #921007'>Servicio priority</p>
+
+			<p align='justify'>Servicio de aparcamiento en recinto cerrado y vigilado 24hrs, le incluye servicio de lavado completo interior y exterior.</p>
+
+		</div>
 	</div>
 </div>
 <?php Modal::end(); ?>
@@ -442,7 +573,7 @@ endfor; ?>
 			<?= Html::button('Más info', [
 				'class' => 'btn-link-soft',
 				'data-toggle' => 'modal',
-				'data-target' => '#info_standard',
+				'data-target' => '#info_economic',
 			]) ?>
 		</div>
 		<div class="price-box">
