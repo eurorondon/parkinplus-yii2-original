@@ -32,12 +32,15 @@ $hora_s = $model->hora_salida;
 $lavado = 'N/A';
 
 foreach ($service as $s) {
-        $datos = Servicios::find()->where(['id' => $s->id_servicio])->one();
-        if ($datos->fijo == 2) {
-                $lavado = $datos->nombre_servicio;
-                break;
-        }
+	$datos = Servicios::find()->where(['id' => $s->id_servicio])->one();
+	if ($datos->fijo == 2) {
+		$lavado = $datos->nombre_servicio;
+		break;
+	}
 }
+
+$planes = [1 => 'Plan Estandar', 2 => 'Plan Premiun', 3 => 'Plan Priority', 4 => 'Plan Economic'];
+$plan = $planes[(int)$model->plan] ?? 'N/D';
 
 if ($model->ciudad_procedencia == NULL) {
 	$ciudad = 'N/D';
@@ -145,6 +148,15 @@ if ($model->nro_vuelo_regreso == NULL) {
 					</tr>
 				<?php } ?>
 
+				<tr>
+					<td width="6.5cm" class="texto-title">Plan</td>
+					<td class="texto-title"></td>
+				</tr>
+				<tr>
+					<td width="6.5cm" class="titleR1"><?= $plan ?></td>
+					<td class="titleR1"></td>
+				</tr>
+
 			</table>
 		</td>
 	</tr>
@@ -159,14 +171,14 @@ if ($model->nro_vuelo_regreso == NULL) {
 <table style="margin-bottom: 0px">
 
 	<?php
-        $total = 0;
-        foreach ($service as $s) {
-                if ($s->id_servicio == 12 && (int)$s->precio_total === 0) {
-                        continue;
-                }
-                $datos = Servicios::find()->where(['id' => $s->id_servicio])->one();
-                $total = $total + $s->precio_total;
-        ?>
+	$total = 0;
+	foreach ($service as $s) {
+		if ($s->id_servicio == 12 && (int)$s->precio_total === 0) {
+			continue;
+		}
+		$datos = Servicios::find()->where(['id' => $s->id_servicio])->one();
+		$total = $total + $s->precio_total;
+	?>
 
 		<tr>
 			<td colspan="2" width="20cm">
