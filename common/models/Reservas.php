@@ -123,7 +123,7 @@ class Reservas extends \yii\db\ActiveRecord
             [['cortesia', 'techado', 'fecha_entrada', 'hora_entrada', 'fecha_salida', 'hora_salida', 'created_at', 'updated_at'], 'safe'],
             [['id_cliente',  'factura_equipaje', 'factura', 'id_tipo_pago', 'condiciones', 'medio_reserva', 'estatus', 'created_by', 'updated_by', 'canceled_by', 'actualizada', 'evaluacion_enviada', 'plan'], 'integer'],
             [['nro_reserva', 'costo_servicios', 'costo_servicios_extra', 'monto_factura', 'monto_impuestos', 'monto_total', 'porcentaje_cupo', 'monto_des'], 'number'],
-            [['plan'], 'in', 'range' => [1, 2, 3]],
+            [['plan'], 'in', 'range' => [1, 2, 3, 4]],
             [['terminal_entrada', 'terminal_salida', 'nro_vuelo_regreso', 'ciudad_procedencia', 'observaciones', 'razon_social', 'direccion', 'ciudad', 'provincia', 'pais', 'cupon', 'agencia', 'cod_valid'], 'string', 'max' => 255],
             [['nif'], 'string', 'max' => 100],
             [['cod_postal', 'impreso', 'descuento'], 'string', 'max' => 5],
