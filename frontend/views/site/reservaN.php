@@ -788,7 +788,7 @@ $this->registerJs(<<<'JS'
     var costoPriority = parseFloatSafe(document.getElementById('servicio-2')?.value) + nocturnidad + totalBase;
 
     // Económico = costoStandard - días base (regla de descuento)
-    var costoEconomic = (totalBase + nocturnidad) - cantBase;
+	var costoEconomic = (totalBase + nocturnidad) - Math.min(cantBase, 18);
 
     // Pintar
     function put(id, val){
