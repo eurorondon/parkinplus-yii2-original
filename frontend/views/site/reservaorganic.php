@@ -177,12 +177,10 @@ Devolución. Al regreso de su viaje, y una vez tenga recogido todo el equipaje d
 Modal::end();
 
 $cant = count($precio_diario);
-$num = 1;
 for ($i = 0; $i < $cant; $i++) { ?>
-	<input class="form-control" style="margin-bottom: 20px" type="hidden" id="precio-diario<?= $num ?>"
-		value="<?= $precio_diario[$i]['precio'] ?>">
-<?php $num++;
-} ?>
+        <input class="form-control" style="margin-bottom: 20px" type="hidden" id="precio-diario<?= $precio_diario[$i]['cantidad'] ?>"
+                value="<?= $precio_diario[$i]['precio'] ?>">
+<?php } ?>
 
 <?php foreach ($servicios as $ser) { ?>
 	<input class="form-control" style="margin-bottom: 20px" type="hidden" id="servicio-<?= $ser['id'] ?>"
