@@ -140,7 +140,8 @@ class SiteController extends Controller
                 'LEFT JOIN',
                 'servicios',
                 'registro_precios2.id_lista = servicios.id_listas_precios'
-            );
+            )
+            ->orderBy(['registro_precios2.cantidad' => SORT_ASC]);
 
         $command = $query->createCommand();
         $precio_diario = $command->queryAll();
@@ -200,7 +201,8 @@ class SiteController extends Controller
                 'LEFT JOIN',
                 'servicios',
                 'registro_precios2.id_lista = servicios.id_listas_precios'
-            );
+            )
+            ->orderBy(['registro_precios2.cantidad' => SORT_ASC]);
 
         $command = $query->createCommand();
         $precio_diario = $command->queryAll();
@@ -1015,7 +1017,8 @@ class SiteController extends Controller
                 'LEFT JOIN',
                 'servicios',
                 'registro_precios2.id_lista = servicios.id_listas_precios'
-            );
+            )
+            ->orderBy(['registro_precios2.cantidad' => SORT_ASC]);
 
         $command = $query->createCommand();
         $precio_diario = $command->queryAll();
@@ -1466,7 +1469,8 @@ class SiteController extends Controller
                 'LEFT JOIN',
                 'servicios',
                 'registro_precios2.id_lista = servicios.id_listas_precios'
-            );
+            )
+            ->orderBy(['registro_precios2.cantidad' => SORT_ASC]);
 
         $command = $query->createCommand();
         $precio_diario = $command->queryAll();
@@ -2055,7 +2059,8 @@ class SiteController extends Controller
                 'LEFT JOIN',
                 'servicios',
                 'registro_precios2.id_lista = servicios.id_listas_precios'
-            );
+            )
+            ->orderBy(['registro_precios2.cantidad' => SORT_ASC]);
 
         $command = $query->createCommand();
         $precio_diario = $command->queryAll();
@@ -3130,7 +3135,8 @@ class SiteController extends Controller
                     'LEFT JOIN',
                     'servicios',
                     'registro_precios2.id_lista = servicios.id_listas_precios'
-                );
+                )
+                ->orderBy(['registro_precios2.cantidad' => SORT_ASC]);
 
             $command = $query->createCommand();
             $precios_diarios = $command->queryAll();
@@ -3270,7 +3276,8 @@ class SiteController extends Controller
                     'LEFT JOIN',
                     'servicios',
                     'registro_precios2.id_lista = servicios.id_listas_precios'
-                );
+                )
+                ->orderBy(['registro_precios2.cantidad' => SORT_ASC]);
 
             $command = $query->createCommand();
             $precios_diarios = $command->queryAll();
