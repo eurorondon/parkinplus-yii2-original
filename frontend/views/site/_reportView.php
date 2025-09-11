@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use common\models\Servicios;
 use common\models\Clientes;
 use common\models\ReservasServicios;
+use frontend\controllers\SiteController;
 
 $service = ReservasServicios::find()->where(['id_reserva' => $model->nro_reserva])
 	->orderBy(['tipo_servicio' => SORT_ASC])
@@ -251,8 +252,8 @@ if ($model->nro_vuelo_regreso == NULL) {
 	<p align="justify">
 		Llama al parking para solicitar la entrega del vehículo. El teléfono al que
 		debes llamar es el +34 603284800. Durante la llamada, una persona te
-		confirmará el punto de encuentro. <b>Nota: </b>Todo servicio que se encuentre entre las 00:30 y
-		03:45 tendra un incremento de 10€ por costo de nocturnidad.
+                confirmará el punto de encuentro. <b>Nota: </b>Todo servicio que se encuentre entre las <?= SiteController::NIGHT_START ?> y
+                <?= SiteController::NIGHT_END ?> tendrá un incremento de 10€ por costo de nocturnidad.
 	</p>
 
 </div>
@@ -334,7 +335,7 @@ if ($model->nro_vuelo_regreso == NULL) {
 
 				<p align="justify" style="margin-bottom: 20px">Después de la retirada del vehículo por parte del CLIENTE PARKING PLUS no admite reclamaciones del estado del vehículo, de los servicios extras realizados y del pago en metálico, no obstante en nuestro afán por ofrecer al cliente el mejor servicio cualquier duda será atendida por correo electrónico <b>contacto p parkingplus01@gmail.com</b>.</p>
 
-				<p align="justify">Si su vuelo sufre un cambio de horario y se extiende al horario de nocturnidad deberá abonar un incremento de €10, lo pagará al conductor al momento de la entrega de su vehículo. El horario de nocturnidad de 00:30 hasta las 6:00 h de la mañana.</p>
+                                <p align="justify">Si su vuelo sufre un cambio de horario y se extiende al horario de nocturnidad deberá abonar un incremento de €10, lo pagará al conductor al momento de la entrega de su vehículo. El horario de nocturnidad de <?= SiteController::NIGHT_START ?> a <?= SiteController::NIGHT_END ?> h de la mañana.</p>
 
 				<p align="justify">Al momento de solicitar su coche cuenta con un margen de hasta 30 minutos para llegar a salidas. Si solicita el coche y pasan estos 30 minutos y no llega al punto de encuentro, se llevará el coche de nuevo al parking y deberá esperar disponibilidad de conductor para un próximo envío, así como también podrá suponer un incremento en el servicio ya que deberá abonar el servicio de valet parking adicional €18.</p>
 

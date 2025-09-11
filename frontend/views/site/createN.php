@@ -7,6 +7,7 @@ use kartik\date\DatePicker;
 use kartik\time\TimePicker;
 use yii\helpers\Url;
 use yii\bootstrap\Modal;
+use frontend\controllers\SiteController;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Reservas */
@@ -22,6 +23,8 @@ $model->fecha_salida = date('d-m-Y', strtotime($salida));
 $model->hora_salida = $hora_s;
 
 $this->title = Yii::$app->name;
+$nightStart = SiteController::NIGHT_START;
+$nightEnd   = SiteController::NIGHT_END;
 
 $cant = count($precio_diario);
 $num = 1;
@@ -1214,8 +1217,8 @@ $this->registerJs("
 
         $('#reservas-costo_servicios').val(total.toFixed(2));
 
-        console.log(hora_entrada >= '00:30');
-        if ((hora_entrada >= '00:30' && hora_entrada <= '03:45') || (hora_salida >= '00:30' && hora_salida <= '03:45')) {
+        console.log(hora_entrada >= '<?= $nightStart ?>');
+        if ((hora_entrada >= '<?= $nightStart ?>' && hora_entrada <= '<?= $nightEnd ?>') || (hora_salida >= '<?= $nightStart ?>' && hora_salida <= '<?= $nightEnd ?>')) {
           $('#is_noc').val('11-1');
           $('#nocturnidad').css('display', 'block');
         } else {

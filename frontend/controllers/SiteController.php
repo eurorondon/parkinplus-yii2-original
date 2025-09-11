@@ -54,6 +54,9 @@ use yii\base\ErrorException;
  */
 class SiteController extends Controller
 {
+    public const NIGHT_START = '00:30';
+    public const NIGHT_END   = '03:45';
+
     /**
      * {@inheritdoc}
      */

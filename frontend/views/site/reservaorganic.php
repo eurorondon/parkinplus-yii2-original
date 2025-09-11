@@ -5,12 +5,15 @@ use yii\bootstrap\Modal;
 use yii\widgets\ActiveForm;
 use kartik\date\DatePicker;
 use kartik\time\TimePicker;
+use frontend\controllers\SiteController;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Reservas */
 /* @var $form yii\widgets\ActiveForm */
 
 $this->title = Yii::$app->name . ' | Nueva Reserva';
+$nightStart = SiteController::NIGHT_START;
+$nightEnd   = SiteController::NIGHT_END;
 ?>
 
 <style>
@@ -567,7 +570,7 @@ endfor; ?>
 				<!-- <li>Plaza reservada</li> -->
 				<li>Llegas a nuestro aparcamiento</li>
 				<li>Traslado aparcamiento ⇄ terminal</li>
-				<li class="noctur hidden">Especial nocturnidad (00:30–03:45)</li>
+                                <li class="noctur hidden">Especial nocturnidad (<?= $nightStart ?>–<?= $nightEnd ?>)</li>
 			</ul>
 			<?= Html::button('Más info', [
 				'class' => 'btn-link-soft',
@@ -603,7 +606,7 @@ endfor; ?>
 			<ul class="services">
 				<li>Plaza reservada</li>
 				<li>Recogida y entrega en terminal</li>
-				<li class="noctur hidden">Especial nocturnidad (00:30–03:45)</li>
+                                <li class="noctur hidden">Especial nocturnidad (<?= $nightStart ?>–<?= $nightEnd ?>)</li>
 			</ul>
 			<?= Html::button('Más info', [
 				'class' => 'btn-link-soft',
@@ -639,7 +642,7 @@ endfor; ?>
 			<ul class="services">
 				<li>Plaza reservada</li>
 				<li>Lavado exterior</li>
-				<li class="noctur hidden">Especial nocturnidad (00:30–03:45)</li>
+                                <li class="noctur hidden">Especial nocturnidad (<?= $nightStart ?>–<?= $nightEnd ?>)</li>
 			</ul>
 			<?= Html::button('Más info', [
 				'class' => 'btn-link-soft',
@@ -677,7 +680,7 @@ endfor; ?>
 				<li>Lavado interior</li>
 				<li>Lavado exterior</li>
 				<li>Custodia de llaves</li>
-				<li class="noctur hidden">Especial nocturnidad (00:30–03:45)</li>
+                                <li class="noctur hidden">Especial nocturnidad (<?= $nightStart ?>–<?= $nightEnd ?>)</li>
 			</ul>
 			<?= Html::button('Más info', [
 				'class' => 'btn-link-soft',
@@ -740,7 +743,7 @@ $this->registerJs(
     return total;
   }
 
-  function isNocturnal(hhmm){ return (hhmm >= '00:30' && hhmm <= '03:45'); }
+  function isNocturnal(hhmm){ return (hhmm >= '<?= $nightStart ?>' && hhmm <= '<?= $nightEnd ?>'); }
 
   function convertDateFormat(dstr){
     var info = (dstr||'').split('-'); // dd-mm-YYYY

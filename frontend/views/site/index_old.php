@@ -14,6 +14,7 @@ use yii\bootstrap\ActiveForm;
 use kartik\time\TimePicker;
 use yii\bootstrap\Modal;
 use yii\captcha\Captcha;
+use frontend\controllers\SiteController;
 
 Modal::begin([
     'header' => 'SERVICIO DE PARKING',
@@ -21,6 +22,8 @@ Modal::begin([
     'size' => 'modal-lg',
     'headerOptions' => ['style' => 'display:block']
 ]); ?>
+$nightStart = SiteController::NIGHT_START;
+$nightEnd   = SiteController::NIGHT_END;
 <div id='modalContent'>
 	<div class="row">
 		<div class="img-min" style="color: #fff !important;padding-top: 18px;font-size: 1em;border-radius: 10px;width: 47vw;height: 100%;display:flex;">
@@ -1305,7 +1308,7 @@ $this->registerJs("
             	$('#costo-servicio').val(total_servicio);
             } 		                                  
     
-            if((hora_in >= '00:30' && hora_in <= '03:45') || (hora_out >= '00:30' && hora_out <= '03:45')){
+            if((hora_in >= '<?= $nightStart ?>' && hora_in <= '<?= $nightEnd ?>') || (hora_out >= '<?= $nightStart ?>' && hora_out <= '<?= $nightEnd ?>')){
 				    valorcosto = parseFloat($('#costo-servicio').val()) + parseFloat('10,00');
 				    $('#costo-servicio').val(valorcosto.toFixed(2));
             } 

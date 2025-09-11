@@ -20,6 +20,7 @@ use yii\bootstrap\ActiveForm;
 use kartik\time\TimePicker;
 use yii\bootstrap\Modal;
 use yii\captcha\Captcha;
+use frontend\controllers\SiteController;
 
 Modal::begin([
 	'header' => '<h1 class="modal-title">COSTO DEL SERVICIO</h1>',
@@ -27,6 +28,8 @@ Modal::begin([
 	'size' => 'modal-xl',
 
 ]); ?>
+$nightStart = SiteController::NIGHT_START;
+$nightEnd   = SiteController::NIGHT_END;
 
 <!--
 <input type="hidden" id="id_reserva" value="<?= $model->id; ?>">
@@ -1279,7 +1282,7 @@ $this->registerJs("
             	$('#costo-servicio').val(total_servicio);
             } 
 
-			if((hora_in >= '00:30' && hora_in <= '03:45') || (hora_out >= '00:30' && hora_out <= '03:45')){
+                   if((hora_in >= '<?= $nightStart ?>' && hora_in <= '<?= $nightEnd ?>') || (hora_out >= '<?= $nightStart ?>' && hora_out <= '<?= $nightEnd ?>')){
 				valorcosto = parseFloat($('#costo-servicio').val()) + parseFloat('10,00');
 				$('#costo-servicio').val(valorcosto.toFixed(2));
 			} 
@@ -1409,7 +1412,7 @@ $this->registerJs("
             	$('#costo-servicio').val(total_servicio);
             } 		                                  
 
-			if((hora_in >= '00:30' && hora_in <= '03:45') || (hora_out >= '00:30' && hora_out <= '03:45')){
+                   if((hora_in >= '<?= $nightStart ?>' && hora_in <= '<?= $nightEnd ?>') || (hora_out >= '<?= $nightStart ?>' && hora_out <= '<?= $nightEnd ?>')){
 				valorcosto = parseFloat($('#costo-servicio').val()) + parseFloat('10,00');
 				$('#costo-servicio').val(valorcosto.toFixed(2));
 			} 
