@@ -267,7 +267,7 @@ $this->title = Yii::$app->name . ' | Nueva Reserva';
 	}
 </style>
 
-/* =================== Modales =================== */
+<!-- =================== Modales =================== -->
 <?php
 Modal::begin([
 	'header' => '<strong>Información del servicio</strong>',
@@ -408,7 +408,7 @@ Modal::begin([
 	'id' => 'info_priority',
 	'size' => 'modal-lg',
 ]); ?>
-echo "<div id='modalContent'>
+<div id='modalContent'>
 	<div class='row'>
 		<div class='col-lg-12'>
 
@@ -443,7 +443,6 @@ echo "<div id='modalContent'>
 			<p align='justify'>T4 Diríjase a la T4 de salidas. Tome un ascensor de cristal y suba a salidas. Salgan al exterior y cruce los carriles de taxi, giren a la derecha para situarse al final de la terminal en la puerta 5 ò 6.</p>
 
 			<p align='justify'>Hora de devolución. No se preocupe si su vuelo se retrasa, nosotros conocemos que los horarios de vuelos pueden sufrir modificaciones. pero les recordamos que la modificación de horarios y/o vuelos, así como cambios de fecha en su devolución sin aviso previo puede suponer esperas de hasta 2 horas y/o recargos en el importe final.</p>
-
 
 			<p align='left' style='font-weight: bold; margin-bottom: 15px; margin-top: 30px; color: #921007'>Servicio priority</p>
 
@@ -557,7 +556,7 @@ endfor; ?>
 		</div>
 		<div class="plan-badge">
 			<?= Html::img('@web/images/minivan.png', ['style' => 'width:68px;height:68px;']) ?>
-			<div class="muted" style="text-align:center">Translado a<br>terminal</div>
+			<div class="muted" style="text-align:center">Traslado a<br>terminal</div>
 		</div>
 		<div class="plan-badge">
 			<?= Html::img('@web/images/car.png', ['style' => 'width:48px;height:48px;']) ?>
@@ -702,7 +701,8 @@ endfor; ?>
 
 <?php
 /* =================== JS =================== */
-$this->registerJs(<<<'JS'
+$this->registerJs(
+	<<<'JS'
 (function(){
   function parseFloatSafe(v){ var n = parseFloat(v); return isNaN(n) ? 0 : n; }
 
@@ -788,7 +788,7 @@ $this->registerJs(<<<'JS'
     var costoPriority = parseFloatSafe(document.getElementById('servicio-2')?.value) + nocturnidad + totalBase;
 
     // Económico = costoStandard - días base (regla de descuento)
-	var costoEconomic = (totalBase + nocturnidad) - Math.min(cantBase, 18);
+    var costoEconomic = (totalBase + nocturnidad) - Math.min(cantBase, 18);
 
     // Pintar
     function put(id, val){
@@ -884,5 +884,6 @@ $this->registerJs(<<<'JS'
   });
 
 })();
-JS);
+JS
+);
 ?>
