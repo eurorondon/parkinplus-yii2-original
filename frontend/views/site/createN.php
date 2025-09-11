@@ -143,11 +143,9 @@ Modal::end();
               <p>
                 Recogida y entrega de Vehiculo
               </p>
-              <?php if (!is_null($nocturno)) { ?>
-                <p>
-                  Servicio de Nocturnidad
-                </p>
-              <?php } ?>
+              <p class="nocturnidad" style="display: <?= is_null($nocturno) ? 'none' : 'block'; ?>;">
+                Servicio de Nocturnidad
+              </p>
 
               <?php if ($type_reserva == 9) { ?>
                 <p>
@@ -644,6 +642,7 @@ Modal::end();
           <div class="col-md-12 col-lg-12 d-flex flex-column pt-3">
             <p>Parking - Plan Standar</p>
             <p>Recogida y entrega de Vehiculo</p>
+            <p class="nocturnidad" style="display: <?= is_null($nocturno) ? 'none' : 'block'; ?>;">Servicio de Nocturnidad</p>
 
             <?php if ($type_reserva == 9) { ?>
               <p>Lavado Exterior</p>
@@ -1226,10 +1225,10 @@ $this->registerJs("
         console.log(hora_entrada >= '00:30');
         if ((hora_entrada >= '00:30' && hora_entrada <= '03:45') || (hora_salida >= '00:30' && hora_salida <= '03:45')) {
           $('#is_noc').val('11-1');
-          $('#nocturnidad').css('display', 'block');
+          $('.nocturnidad').css('display', 'block');
         } else {
           $('#is_noc').val('11-0');
-          $('#nocturnidad').css('display', 'none');
+          $('.nocturnidad').css('display', 'none');
         }
 
         $('#subtotal-factura').click();
