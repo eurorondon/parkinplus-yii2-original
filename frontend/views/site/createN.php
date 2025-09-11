@@ -864,9 +864,14 @@ $this->registerJs("
         }
       }
 
+      if ($('#reservas-plan').val() == 4) {
+        var dias = parseInt($('#cant_basico').val(), 10);
+        total -= Math.min(dias, 18);
+      }
+
       $('#reservas-costo_servicios').val(total.toFixed(2));
       $('.totales-facturas').click();
-      });      
+      });
 	  
   $('#solFactura').on('click', function(){
       
