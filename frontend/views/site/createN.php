@@ -1003,15 +1003,17 @@ $this->registerJs("
                         var total_seguro = $('#reservas-total_seguro').val();
                         var costo_servicios = $('#reservas-costo_servicios').val();
                         var stotal_reserva = monto_subtotal + parseFloat(total_seguro) + parseFloat(costo_servicios);
+                        if ($('#is_noc').val() === '11-1') {
+                          stotal_reserva += parseFloat($('#servicio_noc').val());
+                        }
 
-                        
                         $('#reservas-monto_factura').val(stotal_reserva.toFixed(2));
                         var impuestos = 0;
                         $('#reservas-monto_impuestos').val(impuestos.toFixed(2));
                         var total_monto = parseFloat(stotal_reserva) + parseFloat(impuestos);
                         $('#reservas-monto_total').val(total_monto.toFixed(2));
-						            $('.reserva__detail__monto').html('').append(total_monto.toFixed(2));
-                        }); 
+                                                            $('.reserva__detail__monto').html('').append(total_monto.toFixed(2));
+                        });
                         
                         $('#reservas-factura').click(function(){ 
                             if( $('#reservas-factura').prop('checked') ) {
