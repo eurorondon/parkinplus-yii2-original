@@ -990,24 +990,27 @@ $this->registerJs("
                       var imp = $('#reservas-iva').val();
                       $('.servicios:checked').each(function() {
                         var id = $(this).val();
-						            var precio = $('#precio_unitario'+ id).val();
+                        var precio = $('#precio_unitario' + id).val();
                         monto_subtotal = parseFloat(monto_subtotal) + parseFloat(precio);
-                      });             
-	
-	
-                        $('#reservas-costo_servicios_extra').val(monto_subtotal.toFixed(2));
-                        var total_seguro = $('#reservas-total_seguro').val();
-                        var costo_servicios = $('#reservas-costo_servicios').val();
-                        var stotal_reserva = monto_subtotal + parseFloat(total_seguro) + parseFloat(costo_servicios);
+                      });
 
-                        
-                        $('#reservas-monto_factura').val(stotal_reserva.toFixed(2));
-                        var impuestos = 0;
-                        $('#reservas-monto_impuestos').val(impuestos.toFixed(2));
-                        var total_monto = parseFloat(stotal_reserva) + parseFloat(impuestos);
-                        $('#reservas-monto_total').val(total_monto.toFixed(2));
-						            $('.reserva__detail__monto').html('').append(total_monto.toFixed(2));
-                        }); 
+                      $('#reservas-costo_servicios_extra').val(monto_subtotal.toFixed(2));
+                      var total_seguro = $('#reservas-total_seguro').val();
+                      var costo_servicios = $('#reservas-costo_servicios').val();
+                      var stotal_reserva = monto_subtotal + parseFloat(total_seguro) + parseFloat(costo_servicios);
+
+                      var impuestos = 0;
+                      $('#reservas-monto_impuestos').val(impuestos.toFixed(2));
+                      var total_monto = parseFloat(stotal_reserva) + parseFloat(impuestos);
+
+                      if ($('#is_noc').val() === '11-1') {
+                        total_monto += parseFloat($('#servicio_noc').val());
+                      }
+
+                      $('#reservas-monto_factura').val(total_monto.toFixed(2));
+                      $('#reservas-monto_total').val(total_monto.toFixed(2));
+                      $('.reserva__detail__monto').html('').append(total_monto.toFixed(2));
+                    });
                         
                         $('#reservas-factura').click(function(){ 
                             if( $('#reservas-factura').prop('checked') ) {
@@ -1284,15 +1287,4 @@ $this->registerJs("
     return new bootstrap.Tooltip(tooltipTriggerEl)
   })
 
-  setTimeout(() => {
-    var extraNocturno = $('#is_noc').val();
-
-    if (extraNocturno == '11-1') {
-      var total = $('#reservas-monto_total').val();
-      total = parseFloat(total) + parseFloat($('#servicio_noc').val());
-
-      $('#reservas-monto_factura').val(total.toFixed(2));
-      $('.reserva__detail__monto').html('').append(total.toFixed(2));
-    }
-  }, 1000);
 </script>
