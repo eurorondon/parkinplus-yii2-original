@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 
-$planes = [1 => 'Plan Estandar', 2 => 'Plan Premiun', 3 => 'Plan Priority'];
+$planes = [1 => 'Plan Estandar', 2 => 'Plan Premiun', 3 => 'Plan Priority', 4 => 'Plan Economic'];
 
 for ($i = 0; $i < count($model); $i++) {
 
