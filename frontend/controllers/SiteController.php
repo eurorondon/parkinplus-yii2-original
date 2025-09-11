@@ -1187,7 +1187,8 @@ class SiteController extends Controller
                 $modelR->tipo_servicio   = 2;
                 $modelR->save();
 
-                $model->monto_total += $_POST['servicio_noc_costo'];
+                // El monto total ya incluye el costo del servicio nocturno,
+                // por lo que no se debe sumar nuevamente.
             }
 
             $fecha_creacion = date('Y-m-d H:i:s');
@@ -1642,7 +1643,8 @@ class SiteController extends Controller
                     $modelR->tipo_servicio   = 2;
                     $modelR->save();
 
-                    $model->monto_total += $servicio_noc_costo;
+                    // El costo del servicio nocturno ya está contemplado en
+                    // el monto total, se evita sumarlo nuevamente.
                 }
             }
 
@@ -2182,7 +2184,8 @@ class SiteController extends Controller
                 $modelR->tipo_servicio = 2;
                 $modelR->save();
 
-                $model->monto_total += $_POST['servicio_noc_costo'];
+                // El costo del servicio nocturno ya está considerado en el
+                // monto total, evitando una doble suma.
             }
 
             // Normalizar fechas y horas para evitar diferencias de formato
