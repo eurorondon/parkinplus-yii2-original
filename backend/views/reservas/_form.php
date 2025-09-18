@@ -64,6 +64,54 @@ if (($cant_dias == 0) && ($model->hora_salida > $model->hora_entrada)) {
 }
 */
 
+$serviciosReservaMap = $serviciosReservaMap ?? [];
+$formatCurrency = static function ($value) {
+    return number_format((float) $value, 2, '.', '');
+};
+
+$servicioBasicoId = $precio_diario[0]['id'] ?? null;
+$servicioBasicoDatos = ($servicioBasicoId !== null && isset($serviciosReservaMap[$servicioBasicoId])) ? $serviciosReservaMap[$servicioBasicoId] : null;
+$valorServicioBasico = $servicioBasicoDatos ? $formatCurrency($servicioBasicoDatos['precio_total']) : $formatCurrency($model->costo_servicios);
+$cantidadServicioBasico = $servicioBasicoDatos ? $servicioBasicoDatos['cantidad'] : $cant_dias;
+
+$valorSeguroPrincipal = isset($seguro[0]) ? $formatCurrency($seguro[0]->costo) : '0.00';
+$cantidadSeguroPrincipal = 1;
+if (isset($seguro[0])) {
+    $seguroPrincipalId = $seguro[0]->id;
+    if (isset($serviciosReservaMap[$seguroPrincipalId])) {
+        $valorSeguroPrincipal = $formatCurrency($serviciosReservaMap[$seguroPrincipalId]['precio_total']);
+        $cantidadSeguroPrincipal = $serviciosReservaMap[$seguroPrincipalId]['cantidad'];
+    }
+}
+
+$valorTechado = isset($seguro[1]) ? $formatCurrency($seguro[1]->costo) : '0.00';
+if (isset($seguro[1])) {
+    $seguroTechadoId = $seguro[1]->id;
+    if (isset($serviciosReservaMap[$seguroTechadoId])) {
+        $valorTechado = $formatCurrency($serviciosReservaMap[$seguroTechadoId]['precio_total']);
+    }
+}
+
+$totalServiciosExtras = 0.0;
+$cantidadServiciosExtras = 0;
+foreach ($servicios as $servicioExtra) {
+    if (isset($serviciosReservaMap[$servicioExtra->id])) {
+        $totalServiciosExtras += (float) $serviciosReservaMap[$servicioExtra->id]['precio_total'];
+        $cantidadServiciosExtras += (int) $serviciosReservaMap[$servicioExtra->id]['cantidad'];
+    }
+}
+$costoServiciosExtra = $formatCurrency($totalServiciosExtras);
+
+$valorNocturno = isset($nocturno[0]['costo']) ? $formatCurrency($nocturno[0]['costo']) : '0.00';
+$nocturnoServicioId = null;
+if (!empty($nocturno[0]['id'])) {
+    $nocturnoIdParts = explode('-', $nocturno[0]['id']);
+    $nocturnoServicioId = isset($nocturnoIdParts[0]) ? (int) $nocturnoIdParts[0] : null;
+    if ($nocturnoServicioId && isset($serviciosReservaMap[$nocturnoServicioId])) {
+        $valorNocturno = $formatCurrency($serviciosReservaMap[$nocturnoServicioId]['precio_total']);
+    }
+}
+
 $tipo_documento = [
     'NIF' => 'NIF',
     'NIE' => 'NIE',
@@ -397,6 +445,10 @@ $tipo_documento = [
                                 $service = array($s->id => $s->nombre_servicio);
                                 $checked = "";
 
+                                $servicioExtraDatos = isset($serviciosReservaMap[$s->id]) ? $serviciosReservaMap[$s->id] : null;
+                                $cantidadExtra = $servicioExtraDatos ? $servicioExtraDatos['cantidad'] : 0;
+                                $precioTotalExtra = $servicioExtraDatos ? $formatCurrency($servicioExtraDatos['precio_total']) : '0.00';
+
                                 if (!$model->isNewRecord) {
                                     if ($seleccionados != null) {
                                         foreach ($seleccionados as $selec) {
@@ -461,14 +513,14 @@ $tipo_documento = [
                                     <?= $form->field($model, 'cantidad', [
                                         'template' => '<div class="input-group costos-facturas">{input}
                             </div>{error}{hint}'
-                                    ])->textInput(['id' => 'cantidad' . $s->id, 'type' => 'number', 'min' => 1, 'readonly' => true, 'class' => 'form-control cantidad', 'style' => 'border-radius:8px !important; text-align:center !important', 'name' => 'cantidad' . $s->id]) ?>
+                                    ])->textInput(['id' => 'cantidad' . $s->id, 'type' => 'number', 'min' => 1, 'readonly' => true, 'class' => 'form-control cantidad', 'style' => 'border-radius:8px !important; text-align:center !important', 'name' => 'cantidad' . $s->id, 'value' => $cantidadExtra]) ?>
                                 </div>
 
                                 <div class="col-lg-2" style="margin-top:10px">
                                     <?= $form->field($model, 'precio_total', [
                                         'template' => '<div class="input-group costos-facturas">{input}
                             <span class="input-group-addon">€</span></div>{error}{hint}'
-                                    ])->textInput(['id' => 'precio_total' . $s->id, 'readonly' => true, 'class' => 'form-control cantidad', 'name' => 'precio_total' . $s->id]) ?>
+                                    ])->textInput(['id' => 'precio_total' . $s->id, 'readonly' => true, 'class' => 'form-control cantidad', 'name' => 'precio_total' . $s->id, 'value' => $precioTotalExtra]) ?>
                                 </div>
 
                                 <div class="col-lg-12"></div>
@@ -499,7 +551,7 @@ $tipo_documento = [
                             <input type="hidden" name="is_noc" id="is_noc" value="<?= $nocturno[0]['id'] ?>">
                             <input type="hidden" name="servicio_noc_id" value="<?= explode('-', $nocturno[0]['id'])[0] ?>">
                             <input type="hidden" id="servicio_noc" name="servicio_noc_costo"
-                                value="<?= $nocturno[0]['costo'] ?>">
+                                value="<?= $valorNocturno ?>">
 
                             <?php //print_r($nocturno);
                             if ($nocturno[0]['id'] === '11-1') { ?>
@@ -551,7 +603,7 @@ $tipo_documento = [
 
                                     <input type="hidden" id="servicio_basico" name="servicio_basico"
                                         value="<?= $precio_diario[0]['costo'] ?>">
-                                    <input type="hidden" id="cant_basico" name="cant_basico" value="<?= $cant_dias ?>">
+                                    <input type="hidden" id="cant_basico" name="cant_basico" value="<?= $cantidadServicioBasico ?>">
                                     <input type="hidden" class="btn-success" id="actualiza_montos" name="actualiza_montos">
                                     <input type="hidden" id="cambiar_costo_servicio" value="0"
                                         name="cambiar_costo_servicio">
@@ -561,7 +613,7 @@ $tipo_documento = [
                                         <?= $form->field($model, 'costo_servicios', [
                                             'template' => '<div class="input-group costos-facturas">{input}
                             <span class="input-group-addon">€</span></div>{error}{hint}'
-                                        ])->textInput(['onblur' => 'calcular_monto_total()', 'step' => 'any', 'type' => 'number', 'readonly' => false, 'class' => 'form-control cantidad', 'value' => '0.00']) ?>
+                                        ])->textInput(['onblur' => 'calcular_monto_total()', 'step' => 'any', 'type' => 'number', 'readonly' => false, 'class' => 'form-control cantidad', 'value' => $valorServicioBasico, 'data-from-storage' => $servicioBasicoDatos ? 1 : 0]) ?>
                                     </div>
 
                                     <div class="col-lg-12"><br></div>
@@ -577,7 +629,7 @@ $tipo_documento = [
                                     </div>
 
                                     <input type="hidden" id="seguro" name="seguro" value="<?= $seguro[0]['costo'] ?>">
-                                    <input type="hidden" id="cant_seguro" name="cant_seguro" value="1">
+                                    <input type="hidden" id="cant_seguro" name="cant_seguro" value="<?= $cantidadSeguroPrincipal ?>">
 
                                     <div class="col-lg-3"></div>
 
@@ -585,7 +637,7 @@ $tipo_documento = [
                                         <?= $form->field($model, 'total_seguro', [
                                             'template' => '<div class="input-group costos-facturas">{input}
                             <span class="input-group-addon">€</span></div>{error}{hint}'
-                                        ])->textInput(['id' => 'total_seguro', 'readonly' => true, 'class' => 'form-control cantidad', 'name' => 'total_seguro', 'value' => $seguro[0]->costo]) ?>
+                                        ])->textInput(['id' => 'total_seguro', 'readonly' => true, 'class' => 'form-control cantidad', 'name' => 'total_seguro', 'value' => $valorSeguroPrincipal]) ?>
                                     </div>
 
                                     <div class="col-lg-12"><br></div>
@@ -601,13 +653,13 @@ $tipo_documento = [
 
                                     <div class="col-lg-3"></div>
 
-                                    <input type="hidden" id="cant_extras" name="cant_extras" value="0">
+                                    <input type="hidden" id="cant_extras" name="cant_extras" value="<?= $cantidadServiciosExtras ?>">
 
                                     <div class="col-lg-2" style="margin-top:-8px">
                                         <?= $form->field($model, 'costo_servicios_extra', [
                                             'template' => '<div class="input-group costos-facturas">{input}
                             <span class="input-group-addon">€</span></div>{error}{hint}'
-                                        ])->textInput(['readonly' => true, 'class' => 'form-control cantidad', 'value' => '0.00']) ?>
+                                        ])->textInput(['readonly' => true, 'class' => 'form-control cantidad', 'value' => $costoServiciosExtra]) ?>
                                     </div>
 
                                     <div id="techado">
@@ -629,7 +681,7 @@ $tipo_documento = [
                                             <?= $form->field($model, 'total_seguro', [
                                                 'template' => '<div class="input-group costos-facturas">{input}
                             <span class="input-group-addon eu">€</span></div>{error}{hint}'
-                                            ])->textInput(['id' => 'total_techado', 'readonly' => true, 'class' => 'form-control cantidad', 'name' => 'total_techado', 'value' => $seguro[1]->costo]) ?>
+                                            ])->textInput(['id' => 'total_techado', 'readonly' => true, 'class' => 'form-control cantidad', 'name' => 'total_techado', 'value' => $valorTechado]) ?>
                                         </div>
                                     </div>
 
@@ -744,7 +796,7 @@ $tipo_documento = [
                                     <?= $form->field($model, 'monto_total', [
                                         'template' => '<div class="input-group costos-facturas">{input}
                             <span class="input-group-addon">€</span></div>{error}{hint}'
-                                    ])->textInput(['maxlength' => true, 'readonly' => true, 'value' => '0.00']) ?>
+                                    ])->textInput(['maxlength' => true, 'readonly' => true, 'value' => $formatCurrency($model->monto_total)]) ?>
                                 </div>
 
                                 <div class="col-lg-12">
@@ -776,7 +828,10 @@ $tipo_documento = [
 $this->registerJs(" 
 
     $(document).ready(function() {
-    
+
+      var isUpdate = Number($('#nueva_reserva').val()) === 1;
+      var baseServiceFromStorage = $('#reservas-costo_servicios').data('from-storage') === 1;
+
       techa = $('#techa').val();
       if (techa == '1') {
         $('#reservas-techado').click();                
@@ -787,7 +842,8 @@ $this->registerJs("
       $('.servicios').change();                  
 
       precio_dia = $('#precio_dia').val();
-      cant = $('#cant_basico').val();
+      cant = parseInt($('#cant_basico').val());
+      cant = isNaN(cant) ? 0 : cant;
       descuento = $('#dcto').val();
       precio1 = $('#precio-diario1').val() - descuento;
       precio2 = $('#precio-diario2').val() - descuento;
@@ -822,46 +878,50 @@ $this->registerJs("
       precio29 = $('#precio-diario29').val() - descuento; 
       precio30 = $('#precio-diario30').val() - descuento; 
 
-      if (cant == 1) { var total = parseFloat(precio1); }                     
-      if (cant == 2) { var total = parseFloat(precio2); }
-      if (cant == 3) { var total = parseFloat(precio3); }
-      if (cant == 4) { var total = parseFloat(precio4); }
-      if (cant == 5) { var total = parseFloat(precio5); }
-      if (cant == 6) { var total = parseFloat(precio6); }
-      if (cant == 7) { var total = parseFloat(precio7); }
-      if (cant == 8) { var total = parseFloat(precio8); }
-      if (cant == 9) { var total = parseFloat(precio9); }
-      if (cant == 10) { var total = parseFloat(precio10); }
+      var total = 0;
+      if (cant == 1) { total = parseFloat(precio1); }
+      if (cant == 2) { total = parseFloat(precio2); }
+      if (cant == 3) { total = parseFloat(precio3); }
+      if (cant == 4) { total = parseFloat(precio4); }
+      if (cant == 5) { total = parseFloat(precio5); }
+      if (cant == 6) { total = parseFloat(precio6); }
+      if (cant == 7) { total = parseFloat(precio7); }
+      if (cant == 8) { total = parseFloat(precio8); }
+      if (cant == 9) { total = parseFloat(precio9); }
+      if (cant == 10) { total = parseFloat(precio10); }
 
-      if (cant == 11) { var total = parseFloat(precio11); }                     
-      if (cant == 12) { var total = parseFloat(precio12); }
-      if (cant == 13) { var total = parseFloat(precio13); }
-      if (cant == 14) { var total = parseFloat(precio14); }
-      if (cant == 15) { var total = parseFloat(precio15); }
-      if (cant == 16) { var total = parseFloat(precio16); }
-      if (cant == 17) { var total = parseFloat(precio17); }
-      if (cant == 18) { var total = parseFloat(precio18); }
-      if (cant == 19) { var total = parseFloat(precio19); }
-      if (cant == 20) { var total = parseFloat(precio20); }
+      if (cant == 11) { total = parseFloat(precio11); }
+      if (cant == 12) { total = parseFloat(precio12); }
+      if (cant == 13) { total = parseFloat(precio13); }
+      if (cant == 14) { total = parseFloat(precio14); }
+      if (cant == 15) { total = parseFloat(precio15); }
+      if (cant == 16) { total = parseFloat(precio16); }
+      if (cant == 17) { total = parseFloat(precio17); }
+      if (cant == 18) { total = parseFloat(precio18); }
+      if (cant == 19) { total = parseFloat(precio19); }
+      if (cant == 20) { total = parseFloat(precio20); }
 
-      if (cant == 21) { var total = parseFloat(precio21); }                     
-      if (cant == 22) { var total = parseFloat(precio22); }
-      if (cant == 23) { var total = parseFloat(precio23); }
-      if (cant == 24) { var total = parseFloat(precio24); }
-      if (cant == 25) { var total = parseFloat(precio25); }
-      if (cant == 26) { var total = parseFloat(precio26); }
-      if (cant == 27) { var total = parseFloat(precio27); }
-      if (cant == 28) { var total = parseFloat(precio28); }
-      if (cant == 29) { var total = parseFloat(precio29); }
-      if (cant == 30) { var total = parseFloat(precio30); }                        
+      if (cant == 21) { total = parseFloat(precio21); }
+      if (cant == 22) { total = parseFloat(precio22); }
+      if (cant == 23) { total = parseFloat(precio23); }
+      if (cant == 24) { total = parseFloat(precio24); }
+      if (cant == 25) { total = parseFloat(precio25); }
+      if (cant == 26) { total = parseFloat(precio26); }
+      if (cant == 27) { total = parseFloat(precio27); }
+      if (cant == 28) { total = parseFloat(precio28); }
+      if (cant == 29) { total = parseFloat(precio29); }
+      if (cant == 30) { total = parseFloat(precio30); }
 
-      if (cant > 30) { 
-        var cant_dias = cant - 30;
-        var precio_relativo = parseFloat(precio30);
-        var total = precio_relativo + (cant_dias * parseFloat(precio_dia)); 
+      if (cant > 30) {
+        var cantDias = cant - 30;
+        var precioRelativo = parseFloat(precio30);
+        total = precioRelativo + (cantDias * parseFloat(precio_dia));
       }
-      
-      $('#reservas-costo_servicios').val(total.toFixed(2));
+
+      var currentBase = parseFloat($('#reservas-costo_servicios').val());
+      if (!isUpdate || !baseServiceFromStorage || $('#reservas-costo_servicios').val() === '' || isNaN(currentBase)) {
+        $('#reservas-costo_servicios').val(total.toFixed(2));
+      }
       $('.totales-facturas').click();
       });            
 
@@ -1179,12 +1239,15 @@ $this->registerJs("
                       });
 
                       
-                      if(Number($('#nueva_reserva').val()) === 1){
+                      if(isUpdate){
                       var parking = parseFloat($('#monto_serv_p').val());
+                      var currentBaseParking = parseFloat($('#reservas-costo_servicios').val());
 
-                      setTimeout(() =>{
-                        $('#reservas-costo_servicios').val(parking.toFixed(2)).blur();
-                      }, 500);
+                      if(!baseServiceFromStorage && !isNaN(parking) && (isNaN(currentBaseParking) || currentBaseParking === 0)) {
+                        setTimeout(() =>{
+                          $('#reservas-costo_servicios').val(parking.toFixed(2)).blur();
+                        }, 500);
+                      }
 
                     }
                         ");

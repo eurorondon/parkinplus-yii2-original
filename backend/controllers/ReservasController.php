@@ -1820,11 +1820,16 @@ class ReservasController extends Controller
         }
 
         $servicios_sel = ReservasServicios::find()->where(['id_reserva' => $model->nro_reserva])->all();
+        $serviciosReservaMap = [];
         foreach ($servicios_sel as $serSel) {
             $fijo = $serSel->servicios['fijo'];
             if ($fijo == 2) {
                 $ids_sel[] = $serSel['id_servicio'];
             }
+            $serviciosReservaMap[$serSel->id_servicio] = [
+                'precio_total' => (float) $serSel->precio_total,
+                'cantidad' => (int) $serSel->cantidad,
+            ];
         }
 
         if (isset($ids_sel)) {
@@ -2148,7 +2153,8 @@ class ReservasController extends Controller
             'descuento' => $descuento,
             'sel_techado' => $sel_techado,
             'nocturno' => $extraNocturno,
-            'precio_dia' => $precio_dia->valor_numerico
+            'precio_dia' => $precio_dia->valor_numerico,
+            'serviciosReservaMap' => $serviciosReservaMap,
         ]);
     }
 
