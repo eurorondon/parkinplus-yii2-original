@@ -25,6 +25,8 @@ class ReservasController extends Controller
     public function actionActualizarEstatus(): int
     {
         try {
+            Yii::info('Iniciando actualización masiva de estatus de reservas.', __METHOD__);
+
             $finalizadas = Reservas::updateAll(
                 ['estatus' => '2'],
                 [
@@ -35,6 +37,7 @@ class ReservasController extends Controller
             );
 
             $this->stdout("Reservas marcadas como finalizadas: {$finalizadas}\n");
+            Yii::info("Reservas marcadas como finalizadas: {$finalizadas}", __METHOD__);
 
             $enCurso = Reservas::updateAll(
                 ['estatus' => '3'],
@@ -47,6 +50,9 @@ class ReservasController extends Controller
             );
 
             $this->stdout("Reservas marcadas como en curso: {$enCurso}\n");
+            Yii::info("Reservas marcadas como en curso: {$enCurso}", __METHOD__);
+
+            Yii::info('Finalizó la actualización masiva de estatus de reservas.', __METHOD__);
         } catch (\Throwable $exception) {
             Yii::error(
                 sprintf('Error actualizando estatus de reservas: %s', $exception->getMessage()),
