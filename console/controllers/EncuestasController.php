@@ -13,7 +13,7 @@ use yii\db\Expression;
  */
 class EncuestasController extends Controller
 {
-    private const MAX_EMAILS_PER_HOUR = 20;
+    private const MAX_EMAILS_PER_HOUR = 100;
 
     /**
      * Sends pending service evaluation surveys by email.
@@ -32,7 +32,7 @@ class EncuestasController extends Controller
             ->andWhere(new Expression('TIMESTAMP(fecha_salida, hora_salida) <= NOW() - INTERVAL 2 DAY'))
             ->orderBy(['fecha_salida' => SORT_ASC, 'hora_salida' => SORT_ASC]);
 
-        $totalPendientes = (clone $query)->count();
+        $totalPendientes = (int) (clone $query)->count();
         if ($totalPendientes === 0) {
             $this->logInfo("No hay encuestas pendientes de envío.");
             return ExitCode::OK;
