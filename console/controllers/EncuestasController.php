@@ -18,11 +18,6 @@ class EncuestasController extends Controller
     /**
      * Sends pending service evaluation surveys by email.
      *
-     * This command should be executed by a cron job instead of triggering the
-     * process from a web request. You may optionally limit the number of
-     * processed reservations and define the batch size used when iterating
-     * through the result set in order to control memory usage.
-     *
      * @param int|null $limit     Maximum number of reservations to process.
      * @param int      $batchSize Amount of records fetched per batch.
      *
@@ -39,58 +34,63 @@ class EncuestasController extends Controller
 
         $totalPendientes = (clone $query)->count();
         if ($totalPendientes === 0) {
-            $this->stdoutConTimestamp("No hay encuestas pendientes de envío.\n");
+            $this->logInfo("No hay encuestas pendientes de envío.");
             return ExitCode::OK;
         }
 
         if ($limit === null) {
-            $this->stdoutConTimestamp(
-                sprintf(
-                    "Se enviarán hasta %d correos en esta ejecución (máximo permitido por hora).\n",
-                    $effectiveLimit
-                )
-            );
+            $this->logInfo(sprintf(
+                "Se enviarán hasta %d correos en esta ejecución (máximo permitido por hora).",
+                $effectiveLimit
+            ));
         } elseif ($limit > $effectiveLimit) {
-            $this->stdoutConTimestamp(
-                sprintf(
-                    "El límite solicitado (%d) supera el máximo configurado (%d). Se enviarán %d correos.\n",
-                    $limit,
-                    $this->getMaxEmailsPerHour(),
-                    $effectiveLimit
-                )
-            );
+            $this->logInfo(sprintf(
+                "El límite solicitado (%d) supera el máximo configurado (%d). Se enviarán %d correos.",
+                $limit,
+                $this->getMaxEmailsPerHour(),
+                $effectiveLimit
+            ));
         }
 
         if ($totalPendientes > $effectiveLimit) {
-            $this->stdoutConTimestamp(
-                sprintf(
-                    "Hay %d encuestas pendientes. Se procesarán las primeras %d y el resto quedará para próximas ejecuciones.\n",
-                    $totalPendientes,
-                    $effectiveLimit
-                )
-            );
+            $this->logInfo(sprintf(
+                "Hay %d encuestas pendientes. Se procesarán las primeras %d y el resto quedará para próximas ejecuciones.",
+                $totalPendientes,
+                $effectiveLimit
+            ));
         }
 
         $query->limit($effectiveLimit);
 
         $frontendBaseUrl = rtrim((string) (Yii::$app->params['frontendBaseUrl'] ?? ''), '/');
         if ($frontendBaseUrl === '') {
-            $this->stderrConTimestamp("El parámetro 'frontendBaseUrl' no está configurado.\n");
+            $this->logWarn("El parámetro 'frontendBaseUrl' no está configurado.");
             return ExitCode::UNSPECIFIED_ERROR;
         }
 
         $enviadas = 0;
+        $sinCorreo = 0;
+        $excluidasDominio = 0;
+        $destinatarioInvalido = 0;
         $huboError = false;
+
         foreach ($query->each($batchSize) as $reserva) {
             try {
                 $cliente = $reserva->cliente->nombre_completo;
                 $emailCliente = trim((string) $reserva->cliente->correo);
+
+                // Sin correo -> marcar como no enviable (2) y continuar
                 if ($emailCliente === '') {
+                    $sinCorreo++;
+                    $reserva->evaluacion_enviada = 2; // 2 = no enviable
+                    $reserva->save(false);
                     continue;
                 }
 
-                if (preg_match('/@parkingplus\\.es$/i', $emailCliente)) {
-                    $reserva->evaluacion_enviada = 1;
+                // Excluir dominio propio
+                if (preg_match('/@parkingplus\.es$/i', $emailCliente)) {
+                    $excluidasDominio++;
+                    $reserva->evaluacion_enviada = 1; // 1 = enviado/descartado OK
                     $reserva->save(false);
                     continue;
                 }
@@ -107,9 +107,9 @@ class EncuestasController extends Controller
                         'text' => 'evaluacionServicio-text',
                     ],
                     [
-                        'cliente' => $cliente,
+                        'cliente'     => $cliente,
                         'nro_reserva' => $reserva->nro_reserva,
-                        'correo' => $emailCliente,
+                        'correo'      => $emailCliente,
                         'urlEncuesta' => $urlEncuesta,
                     ]
                 );
@@ -118,16 +118,12 @@ class EncuestasController extends Controller
                     ->setSubject('Evalúe su reserva de aparcamiento');
 
                 if (!$correo->send()) {
-                    Yii::warning(
-                        sprintf(
-                            'El proveedor rechazó el envío de la evaluación para la reserva %s.',
-                            $reserva->id
-                        ),
-                        __METHOD__
-                    );
-                    $this->stderrConTimestamp(
-                        "Se detuvo el proceso porque el proveedor de correo rechazó un envío. Intente más tarde.\n"
-                    );
+                    Yii::warning(sprintf(
+                        'El proveedor rechazó el envío de la evaluación para la reserva %s.',
+                        $reserva->id
+                    ), __METHOD__);
+
+                    $this->logWarn("Se detuvo el proceso porque el proveedor de correo rechazó un envío. Intente más tarde.");
                     $huboError = true;
                     break;
                 }
@@ -141,41 +137,35 @@ class EncuestasController extends Controller
                 }
             } catch (\Throwable $exception) {
                 if ($this->esErrorDeDestinatarioInvalido($exception)) {
-                    Yii::warning(
-                        sprintf(
-                            'Se omitió la reserva %s por dirección de correo inválida (%s).',
-                            $reserva->id,
-                            $reserva->cliente->correo
-                        ),
-                        __METHOD__
-                    );
-                    $reserva->evaluacion_enviada = 2;
+                    $destinatarioInvalido++;
+                    Yii::warning(sprintf(
+                        'Se omitió la reserva %s por dirección de correo inválida (%s).',
+                        $reserva->id,
+                        $reserva->cliente->correo
+                    ), __METHOD__);
+
+                    $reserva->evaluacion_enviada = 2; // no enviable
                     $reserva->save(false);
                     continue;
                 }
 
-                Yii::error(
-                    sprintf(
-                        'Error enviando evaluación a reserva %s: %s',
-                        $reserva->id,
-                        $exception->getMessage()
-                    ),
-                    __METHOD__
-                );
-                $this->stderrConTimestamp(
-                    "Se detuvo el proceso por un error al enviar una evaluación. Revise los logs para más detalles.\n"
-                );
+                Yii::error(sprintf(
+                    'Error enviando evaluación a reserva %s: %s',
+                    $reserva->id,
+                    $exception->getMessage()
+                ), __METHOD__);
+
+                $this->logWarn("Se detuvo el proceso por un error al enviar una evaluación. Revise los logs para más detalles.");
                 $huboError = true;
                 break;
             }
         }
 
-        $this->stdoutConTimestamp("Encuestas enviadas: {$enviadas}\n");
+        $this->logInfo("Encuestas enviadas: {$enviadas}");
+        $this->logInfo("Sin correo: {$sinCorreo} | Excluidas dominio: {$excluidasDominio} | Destinatario inválido: {$destinatarioInvalido}");
 
         if ($totalPendientes > $effectiveLimit && $enviadas >= $effectiveLimit) {
-            $this->stdoutConTimestamp(
-                "Se alcanzó el máximo de correos permitido para esta hora. Ejecute el cron nuevamente después del próximo ciclo para continuar con los envíos pendientes.\n"
-            );
+            $this->logInfo("Se alcanzó el máximo de correos permitido para esta hora. Ejecute el cron nuevamente después del próximo ciclo para continuar con los envíos pendientes.");
         }
 
         if ($huboError) {
@@ -233,14 +223,20 @@ class EncuestasController extends Controller
         return false;
     }
 
-    private function stdoutConTimestamp(string $message): void
+    /** ----- Helpers de logging (consola + app.log) ----- */
+
+    private function logInfo(string $message): void
     {
-        $this->stdout($this->formatWithTimestamp($message));
+        $formatted = $this->formatWithTimestamp($message);
+        $this->stdout($formatted);                  // consola/cron
+        Yii::info(rtrim($message, "\r\n"));         // app.log (console)
     }
 
-    private function stderrConTimestamp(string $message): void
+    private function logWarn(string $message): void
     {
-        $this->stderr($this->formatWithTimestamp($message));
+        $formatted = $this->formatWithTimestamp($message);
+        $this->stderr($formatted);                  // consola/cron
+        Yii::warning(rtrim($message, "\r\n"));      // app.log (console)
     }
 
     private function formatWithTimestamp(string $message): string
@@ -253,8 +249,12 @@ class EncuestasController extends Controller
         }
 
         $lines = preg_split('/\r\n|\r|\n/', $trimmedMessage);
+
+        // Closure compatible con PHP < 7.4
         $prefixedLines = array_map(
-            static fn (string $line): string => sprintf('%s %s', $timestamp, $line),
+            function ($line) use ($timestamp) {
+                return sprintf('%s %s', $timestamp, $line);
+            },
             $lines
         );
 
