@@ -209,43 +209,10 @@ class ReservasController extends Controller
         }
 
         // 1.2 ENVÍO AUTOMÁTICO DE ENCUESTAS DE VALORACIÓN
-        // $reservasParaEvaluar = Reservas::find()
-        //     ->where(['estatus' => 2, 'evaluacion_enviada' => 0])
-        //     ->andWhere(new Expression("TIMESTAMP(fecha_salida, hora_salida) <= NOW() - INTERVAL 2 DAY"))
-        //     ->all();
-
-        // foreach ($reservasParaEvaluar as $reserva) {
-        //     try {
-        //         $cliente = $reserva->cliente->nombre_completo;
-        //         $email_cliente = trim($reserva->cliente->correo);
-        //         $urlEncuesta = Yii::$app->urlManagerFrontend->createAbsoluteUrl([
-        //             'site/encuesta1',
-        //             'reserva' => $reserva->nro_reserva,
-        //         ]);
-
-        //         $correo = Yii::$app->mailer->compose(
-        //             [
-        //                 'html' => 'evaluacionServicio-html',
-        //                 'text' => 'evaluacionServicio-text',
-        //             ],
-        //             [
-        //                 'cliente' => $cliente,
-        //                 'nro_reserva' => $reserva->nro_reserva,
-        //                 'correo' => $email_cliente,
-        //                 'urlEncuesta' => $urlEncuesta,
-        //             ]
-        //         );
-        //         $correo->setTo($email_cliente)
-        //             ->setFrom([Yii::$app->params['contactEmail'] => Yii::$app->name])
-        //             ->setSubject('Evalúe su reserva de aparcamiento')
-        //             ->send();
-
-        //         $reserva->evaluacion_enviada = 1;
-        //         $reserva->save(false);
-        //     } catch (\Exception $e) {
-        //         Yii::error("Error enviando evaluación a reserva {$reserva->id}: " . $e->getMessage());
-        //     }
-        // }
+        // Este proceso ahora se realiza mediante el comando de consola
+        // `php yii encuestas/enviar-valoracion` para evitar ralentizar la carga
+        // del listado de reservas. Configure una tarea cron que ejecute dicho
+        // comando según la frecuencia deseada.
 
 
         // 2. CONSULTA DE AÑOS DISPONIBLES PARA FILTRO
