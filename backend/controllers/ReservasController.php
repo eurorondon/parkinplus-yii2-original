@@ -158,55 +158,11 @@ class ReservasController extends Controller
             ->orderBy(['reservas_log_cambios.fecha' => SORT_DESC])
             ->all();
 
-        // 1. ACTUALIZACIÓN DE ESTATUS AUTOMÁTICA (FINALIZADAS)
-        $reservasVencidas = Reservas::find()
-            ->where(new \yii\db\Expression("TIMESTAMP(fecha_salida, hora_salida) <= NOW()"))
-            ->andWhere(['NOT IN', 'estatus', ['0', '2', '4']])
-            ->all();
-
-        foreach ($reservasVencidas as $reserva) {
-            try {
-                $reserva->estatus = '2'; // Finalizada
-                if (!$reserva->save(false)) {
-                    throw new \Exception('Error al guardar: ' . json_encode($reserva->errors));
-                }
-            } catch (\Exception $e) {
-                $noActualizadas[] = [
-                    'id' => $reserva->id,
-                    'nro_reserva' => $reserva->nro_reserva,
-                    'error' => $e->getMessage(),
-                    'fecha_salida' => $reserva->fecha_salida,
-                    'estatus_actual' => $reserva->estatus
-                ];
-                Yii::error("Error actualizando reserva ID {$reserva->id}: " . $e->getMessage());
-            }
-        }
-
-        // 1.1 ACTUALIZACIÓN DE ESTATUS AUTOMÁTICA (EN CURSO / ACTIVAS)
-        $reservasEnCurso = Reservas::find()
-            ->where(new \yii\db\Expression("TIMESTAMP(fecha_entrada, hora_entrada) <= NOW()"))
-            ->andWhere(new \yii\db\Expression("TIMESTAMP(fecha_salida, hora_salida) > NOW()"))
-            ->andWhere(['NOT IN', 'estatus', ['0', '2', '3', '4']]) // Excluye canceladas, finalizadas, ya activas y especiales
-            ->all();
-
-
-        foreach ($reservasEnCurso as $reserva) {
-            try {
-                $reserva->estatus = '3'; // En curso
-                if (!$reserva->save(false)) {
-                    throw new \Exception('Error al guardar (estatus 3): ' . json_encode($reserva->errors));
-                }
-            } catch (\Exception $e) {
-                $noActualizadas[] = [
-                    'id' => $reserva->id,
-                    'nro_reserva' => $reserva->nro_reserva,
-                    'error' => $e->getMessage(),
-                    'fecha_entrada' => $reserva->fecha_entrada,
-                    'estatus_actual' => $reserva->estatus
-                ];
-                Yii::error("Error actualizando a activa reserva ID {$reserva->id}: " . $e->getMessage());
-            }
-        }
+        // 1. ACTUALIZACIÓN DE ESTATUS AUTOMÁTICA
+        // Este proceso ahora se realiza mediante el comando de consola
+        // `php yii reservas/actualizar-estatus` para que no impacte la carga del
+        // listado. Configure una tarea cron que ejecute dicho comando con la
+        // frecuencia deseada.
 
         // 1.2 ENVÍO AUTOMÁTICO DE ENCUESTAS DE VALORACIÓN
         // Este proceso ahora se realiza mediante el comando de consola
