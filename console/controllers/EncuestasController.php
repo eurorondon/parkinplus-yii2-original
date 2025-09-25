@@ -140,6 +140,20 @@ class EncuestasController extends Controller
                     break;
                 }
             } catch (\Throwable $exception) {
+                if ($this->esErrorDeDestinatarioInvalido($exception)) {
+                    Yii::warning(
+                        sprintf(
+                            'Se omitió la reserva %s por dirección de correo inválida (%s).',
+                            $reserva->id,
+                            $reserva->cliente->correo
+                        ),
+                        __METHOD__
+                    );
+                    $reserva->evaluacion_enviada = 2;
+                    $reserva->save(false);
+                    continue;
+                }
+
                 Yii::error(
                     sprintf(
                         'Error enviando evaluación a reserva %s: %s',
@@ -194,5 +208,28 @@ class EncuestasController extends Controller
         }
 
         return $configured;
+    }
+
+    private function esErrorDeDestinatarioInvalido(\Throwable $exception): bool
+    {
+        $mensaje = $exception->getMessage();
+        $patrones = [
+            'All RCPT commands were rejected',
+            'Valid RCPT command must precede DATA',
+            'Invalid recipient',
+            'could not deliver mail to',
+        ];
+
+        foreach ($patrones as $patron) {
+            if (stripos($mensaje, $patron) !== false) {
+                return true;
+            }
+        }
+
+        if ($exception instanceof \Swift_TransportException) {
+            return true;
+        }
+
+        return false;
     }
 }
