@@ -39,19 +39,19 @@ class EncuestasController extends Controller
 
         $totalPendientes = (clone $query)->count();
         if ($totalPendientes === 0) {
-            $this->stdout("No hay encuestas pendientes de envío.\n");
+            $this->stdoutConTimestamp("No hay encuestas pendientes de envío.\n");
             return ExitCode::OK;
         }
 
         if ($limit === null) {
-            $this->stdout(
+            $this->stdoutConTimestamp(
                 sprintf(
                     "Se enviarán hasta %d correos en esta ejecución (máximo permitido por hora).\n",
                     $effectiveLimit
                 )
             );
         } elseif ($limit > $effectiveLimit) {
-            $this->stdout(
+            $this->stdoutConTimestamp(
                 sprintf(
                     "El límite solicitado (%d) supera el máximo configurado (%d). Se enviarán %d correos.\n",
                     $limit,
@@ -62,7 +62,7 @@ class EncuestasController extends Controller
         }
 
         if ($totalPendientes > $effectiveLimit) {
-            $this->stdout(
+            $this->stdoutConTimestamp(
                 sprintf(
                     "Hay %d encuestas pendientes. Se procesarán las primeras %d y el resto quedará para próximas ejecuciones.\n",
                     $totalPendientes,
@@ -75,7 +75,7 @@ class EncuestasController extends Controller
 
         $frontendBaseUrl = rtrim((string) (Yii::$app->params['frontendBaseUrl'] ?? ''), '/');
         if ($frontendBaseUrl === '') {
-            $this->stderr("El parámetro 'frontendBaseUrl' no está configurado.\n");
+            $this->stderrConTimestamp("El parámetro 'frontendBaseUrl' no está configurado.\n");
             return ExitCode::UNSPECIFIED_ERROR;
         }
 
@@ -125,7 +125,7 @@ class EncuestasController extends Controller
                         ),
                         __METHOD__
                     );
-                    $this->stderr(
+                    $this->stderrConTimestamp(
                         "Se detuvo el proceso porque el proveedor de correo rechazó un envío. Intente más tarde.\n"
                     );
                     $huboError = true;
@@ -162,7 +162,7 @@ class EncuestasController extends Controller
                     ),
                     __METHOD__
                 );
-                $this->stderr(
+                $this->stderrConTimestamp(
                     "Se detuvo el proceso por un error al enviar una evaluación. Revise los logs para más detalles.\n"
                 );
                 $huboError = true;
@@ -170,10 +170,10 @@ class EncuestasController extends Controller
             }
         }
 
-        $this->stdout("Encuestas enviadas: {$enviadas}\n");
+        $this->stdoutConTimestamp("Encuestas enviadas: {$enviadas}\n");
 
         if ($totalPendientes > $effectiveLimit && $enviadas >= $effectiveLimit) {
-            $this->stdout(
+            $this->stdoutConTimestamp(
                 "Se alcanzó el máximo de correos permitido para esta hora. Ejecute el cron nuevamente después del próximo ciclo para continuar con los envíos pendientes.\n"
             );
         }
@@ -231,5 +231,35 @@ class EncuestasController extends Controller
         }
 
         return false;
+    }
+
+    private function stdoutConTimestamp(string $message): void
+    {
+        $this->stdout($this->formatWithTimestamp($message));
+    }
+
+    private function stderrConTimestamp(string $message): void
+    {
+        $this->stderr($this->formatWithTimestamp($message));
+    }
+
+    private function formatWithTimestamp(string $message): string
+    {
+        $timestamp = date('Y-m-d H:i:s');
+        $trimmedMessage = rtrim($message, "\r\n");
+
+        if ($trimmedMessage === '') {
+            return sprintf("%s\n", $timestamp);
+        }
+
+        $lines = preg_split('/\r\n|\r|\n/', $trimmedMessage);
+        $prefixedLines = array_map(
+            static function (string $line) use ($timestamp): string {
+                return sprintf('%s %s', $timestamp, $line);
+            },
+            $lines
+        );
+
+        return implode(PHP_EOL, $prefixedLines) . PHP_EOL;
     }
 }
