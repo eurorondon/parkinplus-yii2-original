@@ -13,6 +13,8 @@ use yii\db\Expression;
  */
 class EncuestasController extends Controller
 {
+    private const MAX_EMAILS_PER_HOUR = 20;
+
     /**
      * Sends pending service evaluation surveys by email.
      *
@@ -26,16 +28,50 @@ class EncuestasController extends Controller
      *
      * @return int Exit code
      */
-    public function actionEnviarValoracion(int $limit = null, int $batchSize = 50): int
+    public function actionEnviarValoracion(?int $limit = null, int $batchSize = 50): int
     {
+        $effectiveLimit = $this->resolveEmailLimit($limit);
+
         $query = Reservas::find()
             ->where(['estatus' => 2, 'evaluacion_enviada' => 0])
             ->andWhere(new Expression('TIMESTAMP(fecha_salida, hora_salida) <= NOW() - INTERVAL 2 DAY'))
             ->orderBy(['fecha_salida' => SORT_ASC, 'hora_salida' => SORT_ASC]);
 
-        if ($limit !== null) {
-            $query->limit($limit);
+        $totalPendientes = (clone $query)->count();
+        if ($totalPendientes === 0) {
+            $this->stdout("No hay encuestas pendientes de envío.\n");
+            return ExitCode::OK;
         }
+
+        if ($limit === null) {
+            $this->stdout(
+                sprintf(
+                    "Se enviarán hasta %d correos en esta ejecución (máximo permitido por hora).\n",
+                    $effectiveLimit
+                )
+            );
+        } elseif ($limit > $effectiveLimit) {
+            $this->stdout(
+                sprintf(
+                    "El límite solicitado (%d) supera el máximo configurado (%d). Se enviarán %d correos.\n",
+                    $limit,
+                    $this->getMaxEmailsPerHour(),
+                    $effectiveLimit
+                )
+            );
+        }
+
+        if ($totalPendientes > $effectiveLimit) {
+            $this->stdout(
+                sprintf(
+                    "Hay %d encuestas pendientes. Se procesarán las primeras %d y el resto quedará para próximas ejecuciones.\n",
+                    $totalPendientes,
+                    $effectiveLimit
+                )
+            );
+        }
+
+        $query->limit($effectiveLimit);
 
         $frontendBaseUrl = rtrim((string) (Yii::$app->params['frontendBaseUrl'] ?? ''), '/');
         if ($frontendBaseUrl === '') {
@@ -99,6 +135,10 @@ class EncuestasController extends Controller
                 $reserva->evaluacion_enviada = 1;
                 $reserva->save(false);
                 ++$enviadas;
+
+                if ($enviadas >= $effectiveLimit) {
+                    break;
+                }
             } catch (\Throwable $exception) {
                 Yii::error(
                     sprintf(
@@ -118,10 +158,41 @@ class EncuestasController extends Controller
 
         $this->stdout("Encuestas enviadas: {$enviadas}\n");
 
+        if ($totalPendientes > $effectiveLimit && $enviadas >= $effectiveLimit) {
+            $this->stdout(
+                "Se alcanzó el máximo de correos permitido para esta hora. Ejecute el cron nuevamente después del próximo ciclo para continuar con los envíos pendientes.\n"
+            );
+        }
+
         if ($huboError) {
             return ExitCode::UNSPECIFIED_ERROR;
         }
 
         return ExitCode::OK;
+    }
+
+    private function resolveEmailLimit(?int $requestedLimit): int
+    {
+        $maxPerHour = $this->getMaxEmailsPerHour();
+
+        if ($requestedLimit === null) {
+            return $maxPerHour;
+        }
+
+        if ($requestedLimit < 1) {
+            return 1;
+        }
+
+        return min($requestedLimit, $maxPerHour);
+    }
+
+    private function getMaxEmailsPerHour(): int
+    {
+        $configured = (int) (Yii::$app->params['cronEmailLimitPerHour'] ?? self::MAX_EMAILS_PER_HOUR);
+        if ($configured < 1) {
+            return self::MAX_EMAILS_PER_HOUR;
+        }
+
+        return $configured;
     }
 }
