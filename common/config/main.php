@@ -1,4 +1,29 @@
 <?php
+
+$smtpHost = getenv('SMTP_HOST') ?: 'mail.parkingplus.es';
+$smtpUsername = getenv('SMTP_USERNAME') ?: 'postmaster@parkingplus.es';
+$smtpPassword = getenv('SMTP_PASSWORD');
+$smtpPort = getenv('SMTP_PORT') ?: '587';
+$smtpEncryption = getenv('SMTP_ENCRYPTION') ?: 'tls';
+
+$mailerConfig = [
+    'class' => 'yii\swiftmailer\Mailer',
+    'viewPath' => '@common/mail',
+    'useFileTransport' => false,
+    'transport' => [
+        'class' => 'Swift_SmtpTransport',
+        'host' => $smtpHost,
+        'username' => $smtpUsername,
+        'password' => $smtpPassword !== false ? $smtpPassword : '',
+        'port' => $smtpPort,
+        'encryption' => $smtpEncryption,
+    ],
+];
+
+if ($smtpPassword === false || $smtpPassword === '') {
+    $mailerConfig['useFileTransport'] = true;
+}
+
 return [
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
@@ -26,7 +51,8 @@ return [
             ],
             'timeZone' => 'UTC',
             'locale' => 'es'
-        ],               
+        ],
+        'mailer' => $mailerConfig,
     ],
     'modules' => [
         'admin' => [

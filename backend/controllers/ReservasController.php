@@ -158,61 +158,22 @@ class ReservasController extends Controller
             ->orderBy(['reservas_log_cambios.fecha' => SORT_DESC])
             ->all();
 
-        // 1. ACTUALIZACIÓN DE ESTATUS AUTOMÁTICA (FINALIZADAS)
-        $reservasVencidas = Reservas::find()
-            ->where(new \yii\db\Expression("TIMESTAMP(fecha_salida, hora_salida) <= NOW()"))
-            ->andWhere(['NOT IN', 'estatus', ['0', '2', '4']])
-            ->all();
-
-        foreach ($reservasVencidas as $reserva) {
-            try {
-                $reserva->estatus = '2'; // Finalizada
-                if (!$reserva->save(false)) {
-                    throw new \Exception('Error al guardar: ' . json_encode($reserva->errors));
-                }
-            } catch (\Exception $e) {
-                $noActualizadas[] = [
-                    'id' => $reserva->id,
-                    'nro_reserva' => $reserva->nro_reserva,
-                    'error' => $e->getMessage(),
-                    'fecha_salida' => $reserva->fecha_salida,
-                    'estatus_actual' => $reserva->estatus
-                ];
-                Yii::error("Error actualizando reserva ID {$reserva->id}: " . $e->getMessage());
-            }
-        }
-
-        // 1.1 ACTUALIZACIÓN DE ESTATUS AUTOMÁTICA (EN CURSO / ACTIVAS)
-        $reservasEnCurso = Reservas::find()
-            ->where(new \yii\db\Expression("TIMESTAMP(fecha_entrada, hora_entrada) <= NOW()"))
-            ->andWhere(new \yii\db\Expression("TIMESTAMP(fecha_salida, hora_salida) > NOW()"))
-            ->andWhere(['NOT IN', 'estatus', ['0', '2', '3', '4']]) // Excluye canceladas, finalizadas, ya activas y especiales
-            ->all();
-
-
-        foreach ($reservasEnCurso as $reserva) {
-            try {
-                $reserva->estatus = '3'; // En curso
-                if (!$reserva->save(false)) {
-                    throw new \Exception('Error al guardar (estatus 3): ' . json_encode($reserva->errors));
-                }
-            } catch (\Exception $e) {
-                $noActualizadas[] = [
-                    'id' => $reserva->id,
-                    'nro_reserva' => $reserva->nro_reserva,
-                    'error' => $e->getMessage(),
-                    'fecha_entrada' => $reserva->fecha_entrada,
-                    'estatus_actual' => $reserva->estatus
-                ];
-                Yii::error("Error actualizando a activa reserva ID {$reserva->id}: " . $e->getMessage());
-            }
-        }
+        // 1. ACTUALIZACIÓN DE ESTATUS AUTOMÁTICA
+        // Este proceso ahora se realiza mediante el comando de consola
+        // `php yii reservas/actualizar-estatus` para que no impacte la carga del
+        // listado. Configure una tarea cron que ejecute dicho comando con la
+        // frecuencia deseada, por ejemplo:
+        //
+        // /usr/local/bin/php /home/tn5qqzxx/public_html/aparcamiento/yii reservas/actualizar-estatus \
+        //     >> /home/tn5qqzxx/public_html/aparcamiento/backend/runtime/logs/reservas.log 2>&1
 
         // 1.2 ENVÍO AUTOMÁTICO DE ENCUESTAS DE VALORACIÓN
         // Este proceso ahora se realiza mediante el comando de consola
-        // `php yii encuestas/enviar-valoracion` para evitar ralentizar la carga
-        // del listado de reservas. Configure una tarea cron que ejecute dicho
-        // comando según la frecuencia deseada.
+        // `php yii reservas/enviar-valoracion` (o `php yii encuestas/enviar-valoracion`)
+        // para evitar ralentizar la carga del listado de reservas. Configure una
+        // tarea cron que ejecute dicho comando, preferiblemente cada hora, para
+        // procesar un máximo de 20 correos por ejecución y evitar bloqueos por
+        // envíos masivos.
 
 
         // 2. CONSULTA DE AÑOS DISPONIBLES PARA FILTRO
@@ -3198,13 +3159,42 @@ class ReservasController extends Controller
                 ]
             );
 
-            $correo->setTo($email_cliente)
-                ->setFrom([Yii::$app->params['reservasEmail'] => 'Reservas - ' . Yii::$app->name])
-                ->setSubject('Reservación Parking Plus')
-                ->attach('../web/pdf/comprobante_' . $nro_reserva . '.pdf')
-                ->send();
+            try {
+                $correo->setTo($email_cliente)
+                    ->setFrom([Yii::$app->params['reservasEmail'] => 'Reservas - ' . Yii::$app->name])
+                    ->setSubject('Reservación Parking Plus')
+                    ->attach('../web/pdf/comprobante_' . $nro_reserva . '.pdf')
+                    ->send();
 
-            Yii::$app->session->setFlash('success', 'El envio del Comprobante ha sido enviada de manera exitosa.');
+                Yii::$app->session->setFlash('success', 'El envio del Comprobante ha sido enviada de manera exitosa.');
+            } catch (\Swift_TransportException $exception) {
+                Yii::error(
+                    sprintf(
+                        'Fallo de autenticación SMTP al reenviar el comprobante de la reserva %s: %s',
+                        $nro_reserva,
+                        $exception->getMessage()
+                    ),
+                    __METHOD__
+                );
+                Yii::$app->session->setFlash(
+                    'error',
+                    'No fue posible enviar el comprobante. Verifique las credenciales del servidor de correo.'
+                );
+            } catch (\Throwable $exception) {
+                Yii::error(
+                    sprintf(
+                        'Error al reenviar el comprobante de la reserva %s: %s',
+                        $nro_reserva,
+                        $exception->getMessage()
+                    ),
+                    __METHOD__
+                );
+                Yii::$app->session->setFlash(
+                    'error',
+                    'Ocurrió un error inesperado al reenviar el comprobante. Consulte los registros para más detalles.'
+                );
+            }
+
             return $this->redirect(['reservas/index']);
         }
 

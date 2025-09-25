@@ -9,4 +9,5 @@ return [
     'senderName' => 'Parking Plus',
     'frontendBaseUrl' => getenv('FRONTEND_BASE_URL') ?: 'https://ngplus.es/aparcamiento',
     'user.passwordResetTokenExpire' => 3600,
+    'cronEmailLimitPerHour' => 20,
 ];

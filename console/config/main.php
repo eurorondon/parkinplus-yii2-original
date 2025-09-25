@@ -28,6 +28,14 @@ return [
                     'class' => 'yii\log\FileTarget',
                     'levels' => ['error', 'warning'],
                 ],
+                [
+                    'class' => 'yii\log\FileTarget',
+                    'categories' => ['console\controllers\ReservasController::actionActualizarEstatus'],
+                    'levels' => ['info'],
+                    'logFile' => '@backend/runtime/logs/reservas.log',
+                    'logVars' => [],
+                    'exportInterval' => 1,
+                ],
             ],
         ],
         'authManager' => [

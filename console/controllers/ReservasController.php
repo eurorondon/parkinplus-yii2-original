@@ -1,0 +1,130 @@
+<?php
+
+namespace console\controllers;
+
+use common\models\Reservas;
+use Yii;
+use yii\console\Controller;
+use yii\console\ExitCode;
+use yii\db\Expression;
+
+/**
+ * Console commands related to reservations maintenance.
+ */
+class ReservasController extends Controller
+{
+    private const MAX_EMAILS_PER_HOUR = 20;
+
+    /**
+     * Actualiza los estatus de las reservas basándose en las fechas de entrada y salida.
+     *
+     * - Marca como finalizadas las reservas cuya fecha y hora de salida ya expiraron.
+     * - Marca como en curso las reservas cuya entrada ya comenzó pero todavía no finalizan.
+     *
+     * Este comando debe programarse mediante cron para que el cambio de estatus no
+     * afecte el tiempo de carga del panel administrativo.
+     */
+    public function actionActualizarEstatus(): int
+    {
+        try {
+            Yii::info('Iniciando actualización masiva de estatus de reservas.', __METHOD__);
+
+            $finalizadas = Reservas::updateAll(
+                ['estatus' => '2'],
+                [
+                    'and',
+                    new Expression('TIMESTAMP(fecha_salida, hora_salida) <= NOW()'),
+                    ['not in', 'estatus', ['0', '2', '4']],
+                ]
+            );
+
+            $this->stdout("Reservas marcadas como finalizadas: {$finalizadas}\n");
+            Yii::info("Reservas marcadas como finalizadas: {$finalizadas}", __METHOD__);
+
+            $enCurso = Reservas::updateAll(
+                ['estatus' => '3'],
+                [
+                    'and',
+                    new Expression('TIMESTAMP(fecha_entrada, hora_entrada) <= NOW()'),
+                    new Expression('TIMESTAMP(fecha_salida, hora_salida) > NOW()'),
+                    ['not in', 'estatus', ['0', '2', '3', '4']],
+                ]
+            );
+
+            $this->stdout("Reservas marcadas como en curso: {$enCurso}\n");
+            Yii::info("Reservas marcadas como en curso: {$enCurso}", __METHOD__);
+
+            Yii::info('Finalizó la actualización masiva de estatus de reservas.', __METHOD__);
+        } catch (\Throwable $exception) {
+            Yii::error(
+                sprintf('Error actualizando estatus de reservas: %s', $exception->getMessage()),
+                __METHOD__
+            );
+            $this->stderr("Error al actualizar los estatus. Revise los logs para más detalles.\n");
+
+            return ExitCode::UNSPECIFIED_ERROR;
+        }
+
+        return ExitCode::OK;
+    }
+
+    /**
+     * Envía encuestas de valoración delegando en el comando especializado y aplicando un
+     * límite automático para evitar bloqueos por envíos masivos.
+     *
+     * @param int|null $limit     Número máximo de correos a enviar en esta ejecución.
+     * @param int      $batchSize Tamaño del lote utilizado al iterar sobre la consulta.
+     */
+    public function actionEnviarValoracion(?int $limit = null, int $batchSize = 50): int
+    {
+        $effectiveLimit = $this->resolveEmailLimit($limit);
+
+        try {
+            $this->stdout(
+                sprintf(
+                    "Delegando envío de encuestas con un máximo de %d correos.\n",
+                    $effectiveLimit
+                )
+            );
+
+            $result = Yii::$app->runAction('encuestas/enviar-valoracion', [
+                'limit' => $effectiveLimit,
+                'batchSize' => $batchSize,
+            ]);
+
+            return is_int($result) ? $result : ExitCode::OK;
+        } catch (\Throwable $exception) {
+            Yii::error(
+                sprintf(
+                    'No se pudo ejecutar el envío de encuestas desde reservas: %s',
+                    $exception->getMessage()
+                ),
+                __METHOD__
+            );
+
+            $this->stderr(
+                "Error al ejecutar el envío de encuestas. Revise los logs para más detalles.\n"
+            );
+
+            return ExitCode::UNSPECIFIED_ERROR;
+        }
+    }
+
+    private function resolveEmailLimit(?int $requestedLimit): int
+    {
+        $configuredMax = (int) (Yii::$app->params['cronEmailLimitPerHour'] ?? self::MAX_EMAILS_PER_HOUR);
+        if ($configuredMax < 1) {
+            $configuredMax = self::MAX_EMAILS_PER_HOUR;
+        }
+
+        if ($requestedLimit === null) {
+            return $configuredMax;
+        }
+
+        if ($requestedLimit < 1) {
+            return 1;
+        }
+
+        return min($requestedLimit, $configuredMax);
+    }
+}
