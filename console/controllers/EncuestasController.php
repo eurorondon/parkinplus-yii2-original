@@ -44,11 +44,18 @@ class EncuestasController extends Controller
         }
 
         $enviadas = 0;
+        $huboError = false;
         foreach ($query->each($batchSize) as $reserva) {
             try {
                 $cliente = $reserva->cliente->nombre_completo;
                 $emailCliente = trim((string) $reserva->cliente->correo);
                 if ($emailCliente === '') {
+                    continue;
+                }
+
+                if (preg_match('/@parkingplus\\.es$/i', $emailCliente)) {
+                    $reserva->evaluacion_enviada = 1;
+                    $reserva->save(false);
                     continue;
                 }
 
@@ -72,8 +79,22 @@ class EncuestasController extends Controller
                 );
                 $correo->setTo($emailCliente)
                     ->setFrom([Yii::$app->params['contactEmail'] => Yii::$app->name])
-                    ->setSubject('Evalúe su reserva de aparcamiento')
-                    ->send();
+                    ->setSubject('Evalúe su reserva de aparcamiento');
+
+                if (!$correo->send()) {
+                    Yii::warning(
+                        sprintf(
+                            'El proveedor rechazó el envío de la evaluación para la reserva %s.',
+                            $reserva->id
+                        ),
+                        __METHOD__
+                    );
+                    $this->stderr(
+                        "Se detuvo el proceso porque el proveedor de correo rechazó un envío. Intente más tarde.\n"
+                    );
+                    $huboError = true;
+                    break;
+                }
 
                 $reserva->evaluacion_enviada = 1;
                 $reserva->save(false);
@@ -87,10 +108,19 @@ class EncuestasController extends Controller
                     ),
                     __METHOD__
                 );
+                $this->stderr(
+                    "Se detuvo el proceso por un error al enviar una evaluación. Revise los logs para más detalles.\n"
+                );
+                $huboError = true;
+                break;
             }
         }
 
         $this->stdout("Encuestas enviadas: {$enviadas}\n");
+
+        if ($huboError) {
+            return ExitCode::UNSPECIFIED_ERROR;
+        }
 
         return ExitCode::OK;
     }
