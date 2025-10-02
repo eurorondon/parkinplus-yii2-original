@@ -32,6 +32,9 @@ $this->title = 'Sugerencias de Clientes';
             'attribute' => 'sugerencias',
             'format' => 'ntext',
             'contentOptions' => ['style' => 'white-space: normal'],
+            'value' => function ($model) {
+              return $model->sugerencias ?: 'Sin comentarios (sugerencia positiva)';
+            },
           ],
           [
             'attribute' => 'created_at',
