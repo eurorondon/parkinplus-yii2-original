@@ -1,4 +1,5 @@
 <?php
+
 use yii\helpers\Html;
 use kartik\grid\GridView;
 use yii\widgets\Pjax;
@@ -13,14 +14,15 @@ $this->title = 'Sugerencias de Clientes';
 ?>
 <div class="sugerencias-index">
   <div class="panel panel-default panel-index">
-    <div class="panel-heading caja-title">Sugerencias de Clientes</div>
     <div class="panel-body gs1">
       <div class="alert alert-info">
         <strong>Resumen global:</strong>
         <span>Sugerencias positivas: <?= Html::encode($totalPositivas) ?></span>
         <span class="m-l-15">Sugerencias negativas: <?= Html::encode($totalNegativas) ?></span>
       </div>
-      <p class="help-block">Los totales mostrados corresponden al acumulado general de encuestas, independientemente de los filtros aplicados.</p>
+      <p class="help-block">
+        Los totales mostrados corresponden al acumulado general de encuestas, independientemente de los filtros aplicados.
+      </p>
       <?php Pjax::begin(); ?>
       <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -33,7 +35,7 @@ $this->title = 'Sugerencias de Clientes';
             'format' => 'ntext',
             'contentOptions' => ['style' => 'white-space: normal'],
             'value' => function ($model) {
-              return $model->sugerencias ?: 'Sin comentarios (sugerencia positiva)';
+              return $model->sugerencias ?: 'Encuesta Positiva ✅';
             },
           ],
           [
