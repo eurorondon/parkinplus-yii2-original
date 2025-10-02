@@ -21,6 +21,7 @@ use common\models\ReservasSearch;
 use common\models\UserAfiliados;
 use common\models\PrecioTemporada;
 use common\models\EncuestaInicialSearch;
+use common\models\EncuestaInicial;
 use yii\helpers\BaseArrayHelper;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
@@ -2274,9 +2275,20 @@ class ReservasController extends Controller
         $searchModel = new EncuestaInicialSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
+        $totalPositivas = EncuestaInicial::find()
+            ->where(['or', ['sugerencias' => null], ['sugerencias' => '']])
+            ->count();
+
+        $totalNegativas = EncuestaInicial::find()
+            ->where(['not', ['sugerencias' => null]])
+            ->andWhere(['<>', 'sugerencias', ''])
+            ->count();
+
         return $this->renderAjax('sugerencias', [
             'searchModel'  => $searchModel,
             'dataProvider' => $dataProvider,
+            'totalPositivas' => $totalPositivas,
+            'totalNegativas' => $totalNegativas,
         ]);
     }
 
