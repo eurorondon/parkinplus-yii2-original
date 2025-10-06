@@ -41,6 +41,36 @@ use yii\db\Expression;
 class ReservasController extends Controller
 {
     /**
+     * Obtiene la lista de precios diarios según el plan asociado.
+     *
+     * Cuando la reserva pertenece al plan económico (plan = 4) se utilizan
+     * los registros de la tabla `registro_precios`, mientras que para el resto
+     * de los planes se mantiene la tabla `registro_precios2`.
+     *
+     * @param int|null $plan Identificador del plan seleccionado para la reserva.
+     * @return array
+     */
+    private function obtenerTarifasPorPlan(?int $plan): array
+    {
+        $tablaPrecios = ((int) $plan === 4) ? 'registro_precios' : 'registro_precios2';
+
+        return (new Query())
+            ->select([
+                "{$tablaPrecios}.id_lista",
+                "{$tablaPrecios}.cantidad",
+                "{$tablaPrecios}.costo AS precio",
+                'servicios.*',
+            ])
+            ->from($tablaPrecios)
+            ->join(
+                'LEFT JOIN',
+                'servicios',
+                "{$tablaPrecios}.id_lista = servicios.id_listas_precios"
+            )
+            ->all();
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function behaviors()
@@ -950,24 +980,7 @@ class ReservasController extends Controller
 
         $servicios = Servicios::find()->where(['estatus' => '1'])->andWhere(['fijo' => '2'])->all();
 
-        $query = new Query();
-        $query->select(
-            [
-                'registro_precios2.id_lista',
-                'registro_precios2.cantidad',
-                'registro_precios2.costo AS precio',
-                'servicios.*'
-            ]
-        )
-            ->from('registro_precios2')
-            ->join(
-                'LEFT JOIN',
-                'servicios',
-                'registro_precios2.id_lista = servicios.id_listas_precios'
-            );
-
-        $command = $query->createCommand();
-        $precio_diario = $command->queryAll();
+        $precio_diario = $this->obtenerTarifasPorPlan($model->plan);
 
         $pagos = TipoPago::find()->where(['estatus' => '1'])->all();
         $tipos_pago = ArrayHelper::map($pagos, 'id', 'descripcion');
@@ -1101,24 +1114,7 @@ class ReservasController extends Controller
 
         $servicios = Servicios::find()->where(['estatus' => '1'])->andWhere(['fijo' => '2'])->all();
 
-        $query = new Query();
-        $query->select(
-            [
-                'registro_precios2.id_lista',
-                'registro_precios2.cantidad',
-                'registro_precios2.costo AS precio',
-                'servicios.*'
-            ]
-        )
-            ->from('registro_precios2')
-            ->join(
-                'LEFT JOIN',
-                'servicios',
-                'registro_precios2.id_lista = servicios.id_listas_precios'
-            );
-
-        $command = $query->createCommand();
-        $precio_diario = $command->queryAll();
+        $precio_diario = $this->obtenerTarifasPorPlan($model->plan);
 
         $pagos = TipoPago::find()->where(['estatus' => '1'])->all();
         $tipos_pago = ArrayHelper::map($pagos, 'id', 'descripcion');
@@ -1336,25 +1332,7 @@ class ReservasController extends Controller
 
         $seguro = Servicios::find()->where(['estatus' => '1'])->andWhere(['fijo' => '1'])->all();
 
-        $query = new Query();
-        $query->select(
-            [
-                'registro_precios2.id_lista',
-                'registro_precios2.cantidad',
-                'registro_precios2.costo AS precio',
-                'servicios.*'
-            ]
-        )
-            ->from('registro_precios2')
-            ->join(
-                'LEFT JOIN',
-                'servicios',
-                'registro_precios2.id_lista = servicios.id_listas_precios'
-            );
-
-        $command = $query->createCommand();
-
-        $precio_diario = $command->queryAll();
+        $precio_diario = $this->obtenerTarifasPorPlan($model->plan);
 
         $day1 = $entrada . ' ' . $hora_e;
         $day1 = strtotime($day1);
@@ -1799,24 +1777,7 @@ class ReservasController extends Controller
             }
         }
 
-        $query = new Query();
-        $query->select(
-            [
-                'registro_precios2.id_lista',
-                'registro_precios2.cantidad',
-                'registro_precios2.costo AS precio',
-                'servicios.*'
-            ]
-        )
-            ->from('registro_precios2')
-            ->join(
-                'LEFT JOIN',
-                'servicios',
-                'registro_precios2.id_lista = servicios.id_listas_precios'
-            );
-
-        $command = $query->createCommand();
-        $precio_diario = $command->queryAll();
+        $precio_diario = $this->obtenerTarifasPorPlan($model->plan);
 
         $pagos = TipoPago::find()->where(['estatus' => '1'])->all();
         $tipos_pago = ArrayHelper::map($pagos, 'id', 'descripcion');
