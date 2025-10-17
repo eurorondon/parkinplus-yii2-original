@@ -1,8 +1,8 @@
 <?php
 
-use \yii\web\Request;
+use yii\web\Request;
 
-$baseUrl = str_replace('/frontend/web', '', (new Request)->getBaseUrl());
+$baseUrl = str_replace('/frontend/web', '', (new Request())->getBaseUrl());
 
 $params = array_merge(
     require __DIR__ . '/../../common/config/params.php',
@@ -13,17 +13,22 @@ $params = array_merge(
 
 return [
     'id' => 'app-frontend',
-    'language' => 'es-ES',
+    'language' => 'es-ES',                  // ✅ guion, no slash
     'name' => 'Parking Plus',
     'basePath' => dirname(__DIR__),
-    'homeUrl' => array('site/index'),
+    'homeUrl' => ['site/index'],            // ✅ opción válida (también puedes usar '/')
+    'defaultRoute' => 'site/index',         // ✅ por si acceden a /aparcamiento/
     'bootstrap' => ['log'],
+
     'modules' => [
-        'gridview' =>  [
-            'class' => '\kartik\grid\Module',
+        'gridview' => [
+            'class' => \kartik\grid\Module::class,
         ],
     ],
+
+    // ✅ namespace correcto
     'controllerNamespace' => 'frontend\controllers',
+
     'components' => [
         'request' => [
             'baseUrl' => $baseUrl,
@@ -35,15 +40,15 @@ return [
             'identityCookie' => ['name' => '_identity-frontend', 'httpOnly' => true],
         ],
         'session' => [
-            // this is the name of the session cookie used for login on the frontend
             'name' => 'advanced-frontend',
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
                 [
-                    'class' => 'yii\log\FileTarget',
+                    'class' => yii\log\FileTarget::class,
                     'levels' => ['error', 'warning'],
+                    'logFile' => '@frontend/runtime/logs/app.log',
                 ],
             ],
         ],
@@ -51,18 +56,23 @@ return [
             'errorAction' => 'site/error',
         ],
 
-
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'enableStrictParsing' => true,
             'rules' => [
+                // ✅ regla para la home (necesaria con strictParsing)
+                '' => 'site/index',
+
+                // ✅ mapea correctamente con "/"
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+
+                // 🔧 HOTFIX opcional para peticiones viejas/marcadores rotos
+                'siteindex' => 'site/index',
             ],
         ],
-
     ],
     'params' => $params,
 ];
