@@ -2088,14 +2088,14 @@ class ReservasController extends Controller
             $id_reserva = Yii::$app->request->post('id_reserva');
             $estatus = Yii::$app->request->post('estatus');
 
-            if (empty($id_reserva)) {
+            if ($id_reserva === null || $id_reserva === '') {
                 Yii::$app->session->setFlash('error', 'Debe seleccionar una reserva válida.');
                 return $this->redirect(['reservas/index']);
             }
 
             $reserva = Reservas::find()->where(['id' => $id_reserva])->one();
 
-            if (!$reserva instanceof Reservas) {
+            if (!$reserva instanceof Reservas && $id_reserva !== '') {
                 $reserva = Reservas::find()->where(['nro_reserva' => $id_reserva])->one();
             }
 
