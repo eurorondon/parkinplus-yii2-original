@@ -11,14 +11,19 @@ use common\models\UserAfiliados;
 /* @var $this yii\web\View */
 /* @var $model common\models\ReservasSearch */
 /* @var $form yii\widgets\ActiveForm */
+
 $terminales = [
-    'TERMINAL 1'=>'TERMINAL 1', 'TERMINAL 2'=>'TERMINAL 2',
-    'TERMINAL 3'=>'TERMINAL 3','TERMINAL 4'=>'TERMINAL 4'
+    'TERMINAL 1' => 'TERMINAL 1',
+    'TERMINAL 2' => 'TERMINAL 2',
+    'TERMINAL 3' => 'TERMINAL 3',
+    'TERMINAL 4' => 'TERMINAL 4'
 ];
 $estados = [
-    0 =>'Canceladas', 1 =>'Pendientes', 
-    2 =>'Finalizadas', 3 =>'Activas',
-    4 =>'Rezagadas'
+    0 => 'Canceladas',
+    1 => 'Pendientes',
+    2 => 'Finalizadas',
+    3 => 'Activas',
+    4 => 'Rezagadas'
 ];
 
 $clientes = ArrayHelper::map(Clientes::find()->orderBy('nombre_completo')->all(), 'id', 'nombre_completo');
@@ -31,16 +36,21 @@ $buscarAfiliado = UserAfiliados::find()->where(['user_id' => $id_usuario])->one(
 if (!empty($buscarAfiliado)) {
     $tipo_afiliado = $buscarAfiliado['tipo_afiliado'];
 } else {
-    $tipo_afiliado = 0;     
+    $tipo_afiliado = 0;
 }
 
 if ($tipo_afiliado == 0) {
     $medios = [
-        1 =>'Secretaria', 2 =>'Agencia', 3=>'Web', 4=>'Universidad', 5=>'Orgánico'
+        1 => 'Secretaria',
+        2 => 'Agencia',
+        3 => 'Web',
+        4 => 'App Movil',
+        5 => 'Orgánico'
     ];
 } else {
     $medios = [
-        4 =>'Universidad', 5=>'Orgánico'
+        4 => 'App Movil',
+        5 => 'Orgánico'
     ];
 }
 
@@ -74,16 +84,16 @@ if ($tipo_afiliado == 0) {
                     'allowClear' => true
                 ],
             ])->label(false); ?>
-        </div>        
+        </div>
         <div class="col-lg-3 col-md-3 col-xs-12">
             <label>Fecha de Entrada</label>
             <?= $form->field($model, 'fecha_entrada')->widget(DatePicker::classname(), [
                 'options' => ['autocomplete' => 'off'],
                 'language' => 'es',
                 'pluginOptions' => [
-                    'autoclose'=>true,
+                    'autoclose' => true,
                     'format' => 'yyyy-mm-dd',
-                    'todayHighlight' => true,                                       
+                    'todayHighlight' => true,
                 ]
             ])->label(false); ?>
         </div>
@@ -93,9 +103,9 @@ if ($tipo_afiliado == 0) {
                 'options' => ['autocomplete' => 'off'],
                 'language' => 'es',
                 'pluginOptions' => [
-                    'autoclose'=>true,
+                    'autoclose' => true,
                     'format' => 'yyyy-mm-dd',
-                    'todayHighlight' => true,                                       
+                    'todayHighlight' => true,
                 ]
             ])->label(false); ?>
         </div>
@@ -111,7 +121,7 @@ if ($tipo_afiliado == 0) {
                 'pluginOptions' => [
                     'allowClear' => true
                 ],
-            ])->label(false); ?>  
+            ])->label(false); ?>
         </div>
 
         <div class="col-lg-3 col-md-3 col-xs-12">
@@ -122,7 +132,7 @@ if ($tipo_afiliado == 0) {
                 'pluginOptions' => [
                     'allowClear' => true
                 ],
-            ])->label(false); ?>  
+            ])->label(false); ?>
         </div>
 
         <div class="col-lg-2 col-md-2 col-xs-12">
@@ -130,7 +140,7 @@ if ($tipo_afiliado == 0) {
             <?= $form->field($model, 'matricula')->label(false) ?>
         </div>
 
-        <div class="col-lg-1 col-md-1"></div>      
+        <div class="col-lg-1 col-md-1"></div>
 
         <div class="col-lg-2 col-md-2 col-xs-12">
             <label>Estado</label>
@@ -140,8 +150,8 @@ if ($tipo_afiliado == 0) {
                 'pluginOptions' => [
                     'allowClear' => true
                 ],
-            ])->label(false); ?>  
-        </div> 
+            ])->label(false); ?>
+        </div>
 
         <div class="col-lg-12"></div>
 
@@ -153,8 +163,8 @@ if ($tipo_afiliado == 0) {
                 'pluginOptions' => [
                     'allowClear' => true
                 ],
-            ])->label(false); ?>  
-        </div>     
+            ])->label(false); ?>
+        </div>
 
         <div class="col-lg-3 col-md-3 col-xs-12">
             <label>Agencia</label>
@@ -164,7 +174,7 @@ if ($tipo_afiliado == 0) {
                 'pluginOptions' => [
                     'allowClear' => true
                 ],
-            ])->label(false); ?>  
+            ])->label(false); ?>
         </div>
 
         <div class="col-lg-2 col-md-2 col-xs-12">
@@ -175,19 +185,21 @@ if ($tipo_afiliado == 0) {
                 'pluginOptions' => [
                     'allowClear' => true
                 ],
-            ])->label(false); ?>  
+            ])->label(false); ?>
         </div>
 
         <div align="right" class="col-lg-2 col-md-2 col-xs-12" style="margin-top: 15px">
-            <?= Html::a ('LIMPIAR', ['index'], ['class' => 'btn btn-warning']) ?>
+            <?= Html::a('LIMPIAR', ['index'], ['class' => 'btn btn-warning']) ?>
         </div>
 
         <div align="right" class="col-lg-2 col-md-2 col-xs-12" style="margin-top: 15px">
             <?= Html::submitButton('BUSCAR RESERVA', ['id' => 'buscar', 'class' => 'btn btn-success']) ?>
-        </div> 
+        </div>
 
-        <div class="col-lg-12 col-md-12 col-xs-12"><hr class="linea" style="margin-bottom: 40px"></div>       
-        
+        <div class="col-lg-12 col-md-12 col-xs-12">
+            <hr class="linea" style="margin-bottom: 40px">
+        </div>
+
         <?php ActiveForm::end(); ?>
     </div>
 

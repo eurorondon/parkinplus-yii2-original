@@ -22,12 +22,12 @@ if ($tipo_afiliado == 0) {
         1 => 'Secretaria',
         2 => 'Agencia',
         3 => 'Web',
-        4 => 'Universidad',
+        4 => 'App Movil',
         5 => 'Orgánico'
     ];
 } else {
     $medios = [
-        4 => 'Universidad',
+        4 => 'App Movil',
         5 => 'Orgánico'
     ];
 }
