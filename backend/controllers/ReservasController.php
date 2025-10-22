@@ -2085,16 +2085,29 @@ class ReservasController extends Controller
         ];
 
         if (Yii::$app->request->post()) {
-            $id_reserva = $_POST['id_reserva'];
-            $estatus = $_POST['estatus'];
+            $id_reserva = Yii::$app->request->post('id_reserva');
+            $estatus = Yii::$app->request->post('estatus');
+
+            if (empty($id_reserva)) {
+                Yii::$app->session->setFlash('error', 'Debe seleccionar una reserva válida.');
+                return $this->redirect(['reservas/index']);
+            }
 
             $reserva = Reservas::find()->where(['id' => $id_reserva])->one();
-            $reserva->estatus = $estatus;
-            $reserva->canceled_by = $estatus == 0 ? Yii::$app->user->id : 0;
 
-            $reserva->save();
+            if (!$reserva instanceof Reservas) {
+                $reserva = Reservas::find()->where(['nro_reserva' => $id_reserva])->one();
+            }
 
-            if ($reserva->save()) {
+            if (!$reserva instanceof Reservas) {
+                Yii::$app->session->setFlash('error', 'No fue posible localizar la reserva seleccionada.');
+                return $this->redirect(['reservas/index']);
+            }
+
+            $reserva->estatus = (int)$estatus;
+            $reserva->canceled_by = ((int)$estatus === 0) ? Yii::$app->user->id : 0;
+
+            if ($reserva->save(false)) {
                 Yii::$app->session->setFlash('success', 'El estado de la reserva ha sido modificado de manera exitosa.');
                 return $this->redirect(['reservas/index']);
             } else {
