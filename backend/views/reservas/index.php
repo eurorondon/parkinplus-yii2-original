@@ -536,8 +536,12 @@ $this->params['breadcrumbs'][] = 'Gestión de Reservas';
                           return Html::tag('span', '', ['style' => ['color' => '#398439'], 'class' => 'glyphicon glyphicon-globe']);
                         }
                         if ($model->medio_reserva === 4) {
-                          return Html::tag('span', '', ['style' => ['color' => '#286090'], 'class' => 'glyphicon glyphicon-education']);
+                          return Html::tag('span', '', [
+                            'style' => ['color' => '#286090'],
+                            'class' => 'glyphicon glyphicon-earphone',
+                          ]);
                         }
+
                         if ($model->medio_reserva === 5) {
                           return Html::tag('span', '', ['style' => ['color' => 'green'], 'class' => 'glyphicon glyphicon-link']);
                         }

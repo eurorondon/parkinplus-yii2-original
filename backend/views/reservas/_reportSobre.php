@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 
-$char_color =  empty($model->coche->matricula) ? '0' : strlen($model->coche->color);
+$char_color = empty($model->coche->matricula) ? '0' : strlen($model->coche->color);
 
 if ($char_color < 3) {
 	$color = 'N/D';
@@ -69,12 +69,16 @@ foreach ($servicios as $servicie) {
 	</div>
 <?php endif; ?>
 
-<div align="right" style="text-transform: uppercase; font-size: 12px">Importe : <b><?= Html::encode($model->monto_total) ?> €</b>
+<div align="right" style="text-transform: uppercase; font-size: 17px;">
+	<span style="font-weight: normal;">Importe :</span> <b><?= Html::encode($model->monto_total) ?> €</b>
 	<?php if ($model->cupon != NULL || $model->descuento == 'SI'): ?>
-		<br><span style="font-size:9px;">(Descuento Aplicado)</span>
+		<br><span style="font-size:9px; font-weight: normal;">(Descuento Aplicado)</span>
 	<?php endif; ?>
 </div>
-<div align="right" style="text-transform: uppercase; font-size: 12px">Teléfono : <b><?= Html::encode($model->cliente->movil) ?></b></div>
+
+<div align="right" style="text-transform: uppercase; font-size: 17px;">
+	<span style="font-weight: normal;">Telf:</span> <b><?= Html::encode($model->cliente->movil) ?></b>
+</div>
 
 <table style="margin-top: 30px; margin-left: -3px;">
 	<tr>
@@ -162,7 +166,7 @@ foreach ($servicios as $servicie) {
 		$srv = $servicios[$i]->servicios ?? null;
 		if (!$srv) continue;
 
-		$srvId     = isset($srv->id) ? (int)$srv->id : 0;
+		$srvId   = isset($srv->id) ? (int)$srv->id : 0;
 		$srvNombre = isset($srv->nombre_servicio) ? trim((string)$srv->nombre_servicio) : '';
 		$srvFijo   = isset($srv->fijo) ? (int)$srv->fijo : 0;
 

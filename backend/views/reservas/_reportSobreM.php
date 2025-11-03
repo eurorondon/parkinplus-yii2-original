@@ -73,12 +73,17 @@ for ($i = 0; $i < count($model); $i++) {
 		<b><?= date('H i', strtotime($model[$i]->created_at)) ?></b>
 	</div>
 
-	<div align="right" style="text-transform: uppercase; font-size: 12px">Importe : <b><?= $model[$i]->monto_total ?> €</b>
+	<!-- CORRECCIÓN DE NEGRILLA PARA 'IMPORTE :' -->
+	<div align="right" style="text-transform: uppercase; font-size: 12px">
+		<span style="font-weight: normal;">Importe :</span> <b><?= $model[$i]->monto_total ?> €</b>
 		<?php if ($model[$i]->cupon != NULL || $model[$i]->descuento == 'SI') { ?>
 			<br><span style="font-size:9px;">(Descuento Aplicado)</span>
 		<?php } ?>
 	</div>
-	<div align="right" style="text-transform: uppercase; font-size: 12px">Teléfono :
+
+	<!-- CORRECCIÓN DE NEGRILLA PARA 'Teléfono :' -->
+	<div align="right" style="text-transform: uppercase; font-size: 12px">
+		<span style="font-weight: normal;">Telf :</span>
 		<b><?= $model[$i]->cliente->movil ?></b>
 	</div>
 
@@ -113,7 +118,7 @@ for ($i = 0; $i < count($model); $i++) {
 			<td rowspan="2">
 				<span style="font-size: 22px; margin-left: 15px;">
 					<?php
-					if (empty($model[$i]->terminal_entrada)) {
+					if (empty($model[$i]->terminal_entrada) || $model[$i]->terminal_entrada == "AUN NO CONOZCO LA TERMINAL") {
 						echo "T&nbsp;&nbsp;";
 					} else {
 						$term = explode(" ", $model[$i]->terminal_entrada);
@@ -144,7 +149,7 @@ for ($i = 0; $i < count($model); $i++) {
 			<td rowspan="2" style="padding-right: 25px">
 				<span style="font-size: 22px; margin-left: 15px;">
 					<?php
-					if (empty($model[$i]->terminal_salida)) {
+					if (empty($model[$i]->terminal_salida) || $model[$i]->terminal_salida == "AUN NO CONOZCO LA TERMINAL") {
 						echo "T&nbsp;&nbsp;";
 					} else {
 						$term = explode(" ", $model[$i]->terminal_salida);
@@ -165,7 +170,7 @@ for ($i = 0; $i < count($model); $i++) {
 
 	<hr style="margin: 5px 0px">
 	<div style="margin-bottom: 10px"><b><?= Html::encode($planName[$i]) ?></b></div>
-	<?php if ($contS[$i] > 0) { ?>
+	<?php if (isset($contS[$i]) && $contS[$i] > 0) { ?>
 		<div style="margin-bottom: 10px"><b>INCLUYE:</b></div>
 
 		<?php
@@ -175,7 +180,7 @@ for ($i = 0; $i < count($model); $i++) {
 				continue;
 			}
 
-			$srvId     = isset($srv->id) ? (int)$srv->id : 0;
+			$srvId    = isset($srv->id) ? (int)$srv->id : 0;
 			$srvNombre = isset($srv->nombre_servicio) ? trim((string)$srv->nombre_servicio) : '';
 			$srvFijo   = isset($srv->fijo) ? (int)$srv->fijo : 0;
 
@@ -199,13 +204,14 @@ for ($i = 0; $i < count($model); $i++) {
 	<?php } ?>
 
 	<?php
-	if ($contS[$i] == 0) {
+	// He añadido isset() a $contS[$i] para evitar un posible error si esa variable no está definida
+	if (isset($contS[$i]) && $contS[$i] == 0) {
 		echo "<br><br><br><br><br><br><br><br><br><br>";
 	}
-	if ($contS[$i] == 1) {
+	if (isset($contS[$i]) && $contS[$i] == 1) {
 		echo "<br><br><br><br><br><br><br>";
 	}
-	if ($contS[$i] == 2) {
+	if (isset($contS[$i]) && $contS[$i] == 2) {
 		echo "<br><br><br><br><br>";
 	}
 	?>
