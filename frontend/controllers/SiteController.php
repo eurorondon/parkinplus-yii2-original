@@ -768,6 +768,11 @@ class SiteController extends Controller
         return $this->render('privacidad');
     }
 
+    public function actionPoliticaApp()
+    {
+        return $this->render('politica-app');
+    }
+
     public function actionCookies()
     {
         return $this->render('cookies');

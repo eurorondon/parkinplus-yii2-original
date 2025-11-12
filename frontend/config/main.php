@@ -66,8 +66,8 @@ return [
 
                 // ✅ mapea correctamente con "/"
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
-                '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
-                '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+                '<controller:\w+>/<action:[\w-]+>/<id:\d+>' => '<controller>/<action>',
+                '<controller:\w+>/<action:[\w-]+>' => '<controller>/<action>',
 
                 // 🔧 HOTFIX opcional para peticiones viejas/marcadores rotos
                 'siteindex' => 'site/index',
