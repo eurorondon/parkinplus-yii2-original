@@ -1,6 +1,6 @@
 <?php
 
-use yii\\helpers\\Html;
+use yii\helpers\Html;
 
 $this->title = 'ParkingPlus — Política de Privacidad';
 $this->params['breadcrumbs'][] = Html::encode($this->title);
@@ -37,7 +37,8 @@ $this->params['breadcrumbs'][] = Html::encode($this->title);
     <h2 style="font-size: 1.5rem; margin-top: 1.5em;">4. Conservación de los datos</h2>
     <p>Conservamos tus datos personales mientras tu cuenta esté activa o según lo requiera la legislación aplicable. Puedes
         solicitar la eliminación de tu cuenta y datos personales en cualquier momento enviando un correo a
-        <a href="mailto:contacto@parkingplus.es">contacto@parkingplus.es</a>.</p>
+        <a href="mailto:contacto@parkingplus.es">contacto@parkingplus.es</a>.
+    </p>
 
     <h2 style="font-size: 1.5rem; margin-top: 1.5em;">5. Seguridad</h2>
     <p>Aplicamos medidas técnicas y organizativas razonables para proteger tu información frente a pérdida, uso indebido o

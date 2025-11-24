@@ -20,13 +20,24 @@ AppAsset::register($this);
 <html lang="<?= Yii::$app->language ?>">
 
 <head>
-     <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-PZXT4NX');</script>
-<!-- End Google Tag Manager -->
+    <!-- Google Tag Manager -->
+    <script>
+        (function(w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-PZXT4NX');
+    </script>
+    <!-- End Google Tag Manager -->
 
 
     <!-- End Google Tag Manager -->
@@ -129,10 +140,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </head>
 
 <body>
-   <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PZXT4NX"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PZXT4NX"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
     <?php $this->beginBody() ?>
 
@@ -141,7 +152,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             <h1 class="logo me-auto">
                 <a href="" style=" position: absolute;padding-top: 2%;">
-                    <?= Html::img('@web/images/logoParking.png', ['style'=> 'height:60px; width: 160px']) ?>
+                    <?= Html::img('@web/images/logoParking.png', ['style' => 'height:60px; width: 160px']) ?>
                 </a>
             </h1>
             <!-- Uncomment below if you prefer to use an image logo -->
@@ -151,7 +162,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <ul>
                     <?php
                     if (Yii::$app->user->isGuest) {
-                        ?>
+                    ?>
                         <li><a class="nav-link scrollto active"
                                 href="<?php echo Url::base(true) ?>/site/index#skills">COMO FUNCIONA</a></li>
                         <li><a class="nav-link scrollto"
@@ -162,9 +173,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <li><a class="nav-link   scrollto"
                                 href="<?php echo Url::base(true) ?>/site/index#contact">CONTACTO</a></li>
                         <!-- li><?= Html::a('INICIAR SESIÓN', ['site/login'], ['class' => 'getstarted scrollto']); ?></li-->
-                        <?php
+                    <?php
                     } else {
-                        ?>
+                    ?>
                         <li><a class="nav-link scrollto active"
                                 href="<?php echo Url::base(true) ?>/site/index#skills">COMO FUNCIONA</a></li>
                         <li><a class="nav-link scrollto"
@@ -175,7 +186,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <li><a class="nav-link   scrollto"
                                 href="<?php echo Url::base(true) ?>/site/index#contact">CONTACTO</a></li>
                         <li><?= Html::a('CERRAR SESIÓN', ['site/logout'], ['class' => 'getstarted scrollto']); ?></li>
-                        <?php
+                    <?php
                     }
                     ?>
                 </ul>
@@ -268,7 +279,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="copyright">
                 Copyright &copy; <?= Html::encode(Yii::$app->name) ?> <?= date('Y') ?>. Todos los derechos reservados |
                 <?= Html::a('Política de Privacidad', ['/site/privacidad'], ['target' => '_blank', 'style' => 'color: white;']) ?>
-                | <?= Html::a('Política de Privacidad App', ['/site/politica-app'], ['target' => '_blank', 'style' => 'color: white;']) ?>
+                | <?= Html::a('Política de Privacidad App', ['/site/politica'], ['target' => '_blank', 'style' => 'color: white;']) ?>
                 | <?= Html::a('Política de Uso de
                 Cookies', ['/site/cookies'], ['target' => '_blank', 'style' => 'color: white;']) ?> |
                 <?= Html::a('Condiciones Generales de Contrato y Servicio', ['/site/condiciones'], ['target' => '_blank', 'style' => 'color: white;']) ?>
