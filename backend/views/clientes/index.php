@@ -29,26 +29,27 @@ $this->params['breadcrumbs'][] = 'Gestión de Clientes';
 ?>
 <div class="clientes-index">
   <div class="panel panel-default panel-index">
-    <div class="panel-heading caja-title">Gestión de Clientes</div>
+    <div class="panel-heading caja-title">Gesti&oacute;n de Clientes</div>
     <div class="panel-body gs1">
       <div class="row">
 
         <div align="center" class="col-lg-2 col-md-3 col-xs-12">
-          <?= Html::button('Agregar<br>Cliente', [
-            'value' => Yii::$app->urlManager->createUrl('/clientes/create'),
-            'class' => 'btn btn-full',
-            'id' => 'BtnModalId',
-            'data-toggle'=> 'modal',
-            'data-target'=> '#cliente',
+          <div>
+            <?= Html::button('Agregar<br>Cliente', [
+              'value' => Yii::$app->urlManager->createUrl('/clientes/create'),
+              'class' => 'btn btn-full',
+              'id' => 'BtnModalId',
+              'data-toggle'=> 'modal',
+              'data-target'=> '#cliente',
 
-          ]) ?>
+            ]) ?>
+          </div>
+          <div style="margin-top: 10px;">
+            <?= Html::a('Unificar<br>Clientes', ['merge'], ['class' => 'btn btn-warning btn-full']) ?>
+          </div>
         </div>
 
-        <div align="center" class="col-lg-2 col-md-3 col-xs-12" style="margin-top: 5px;">
-          <?= Html::a('Unificar<br>Clientes', ['merge'], ['class' => 'btn btn-warning btn-full']) ?>
-        </div>
-
-        <div class="col-lg-8 col-md-6 col-xs-12">
+        <div class="col-lg-10 col-md-9 col-xs-12">
           <div class="panel panel-default busqueda">
             <div class="panel-body body-busqueda">
               <div class="subtitulo-reserva">Buscar Cliente</div><br>
