@@ -5,11 +5,17 @@ namespace backend\controllers;
 use Yii;
 use common\models\Clientes;
 use common\models\ClientesSearch;
+use common\models\Coches;
+use common\models\Reservas;
+use frontend\models\UserCliente;
+use backend\models\ClienteMergeForm;
+use backend\models\ClienteMergePhoneForm;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\db\Query;
 use yii\helpers\Json;
+use yii\helpers\ArrayHelper;
 
 /**
  * ClientesController implements the CRUD actions for Clientes model.
@@ -49,6 +55,66 @@ class ClientesController extends Controller
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionMerge()
+    {
+        $model = new ClienteMergeForm();
+        $mergeByPhoneModel = new ClienteMergePhoneForm();
+        $clientes = Clientes::find()->orderBy(['nombre_completo' => SORT_ASC])->all();
+        $listaClientes = ArrayHelper::map($clientes, 'id', function ($cliente) {
+            $datos = [$cliente->nombre_completo];
+
+            if (!empty($cliente->correo)) {
+                $datos[] = $cliente->correo;
+            }
+
+            if (!empty($cliente->movil)) {
+                $datos[] = $cliente->movil;
+            }
+
+            return implode(' | ', $datos);
+        });
+
+        if ($mergeByPhoneModel->load(Yii::$app->request->post()) && $mergeByPhoneModel->validate()) {
+            $clientesDuplicados = Clientes::find()
+                ->where(['movil' => $mergeByPhoneModel->movil])
+                ->orderBy(['created_at' => SORT_DESC])
+                ->all();
+
+            if (count($clientesDuplicados) < 2) {
+                Yii::$app->session->setFlash('error', 'No se encontraron clientes duplicados con ese teléfono.');
+            } else {
+                $clientePrincipal = array_shift($clientesDuplicados);
+
+                $this->mergeClienteRecords($clientePrincipal, $clientesDuplicados);
+
+                Yii::$app->session->setFlash('success', 'Los clientes con el mismo teléfono fueron unificados correctamente.');
+
+                return $this->redirect(['index']);
+            }
+        }
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $clientePrincipal = Clientes::findOne($model->primary_id);
+            $clienteDuplicado = Clientes::findOne($model->duplicate_id);
+
+            if (is_null($clientePrincipal) || is_null($clienteDuplicado)) {
+                throw new NotFoundHttpException('El cliente seleccionado no existe.');
+            }
+
+            $this->mergeClienteRecords($clientePrincipal, [$clienteDuplicado]);
+
+            Yii::$app->session->setFlash('success', 'Los datos del cliente duplicado fueron unificados correctamente.');
+
+            return $this->redirect(['index']);
+        }
+
+        return $this->render('merge', [
+            'model' => $model,
+            'listaClientes' => $listaClientes,
+            'mergeByPhoneModel' => $mergeByPhoneModel,
         ]);
     }
 
@@ -155,5 +221,42 @@ class ClientesController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    /**
+     * @param Clientes   $clientePrincipal
+     * @param Clientes[] $clientesDuplicados
+     * @return void
+     * @throws \Throwable
+     */
+    protected function mergeClienteRecords(Clientes $clientePrincipal, array $clientesDuplicados): void
+    {
+        $transaction = Yii::$app->db->beginTransaction();
+
+        try {
+            foreach ($clientesDuplicados as $clienteDuplicado) {
+                Reservas::updateAll(['id_cliente' => $clientePrincipal->id], ['id_cliente' => $clienteDuplicado->id]);
+                Coches::updateAll(['id_cliente' => $clientePrincipal->id], ['id_cliente' => $clienteDuplicado->id]);
+                UserCliente::updateAll(['id_cliente' => $clientePrincipal->id], ['id_cliente' => $clienteDuplicado->id]);
+
+                foreach (['correo', 'tipo_documento', 'nro_documento', 'movil', 'nombre_completo'] as $atributo) {
+                    if (empty($clientePrincipal->$atributo) && !empty($clienteDuplicado->$atributo)) {
+                        $clientePrincipal->$atributo = $clienteDuplicado->$atributo;
+                    }
+                }
+
+                $clienteDuplicado->delete();
+            }
+
+            $clientePrincipal->updated_at = date('Y-m-d H:i:s');
+            $clientePrincipal->updated_by = Yii::$app->user->id;
+            $clientePrincipal->save(false);
+
+            $transaction->commit();
+        } catch (\Throwable $e) {
+            $transaction->rollBack();
+
+            throw $e;
+        }
     }
 }
