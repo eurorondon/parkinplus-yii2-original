@@ -125,13 +125,25 @@ $model->monto_total = number_format((float)$model->monto_total,2,'.','');
                 $total = 0;
                 foreach ($ser as $s) {
                 $datos = Servicios::find()->where(['id'=> $s->id_servicio])->one();
-                $total = $total + $s->precio_total; 
+
+                $nombreServicio = $datos->nombre_servicio ?? '';
+                $ptotal = $s->precio_total;
+
+                $esReservaCero = (
+                    strcasecmp(trim($nombreServicio), 'Plaza reservada') === 0
+                    || strcasecmp(trim($nombreServicio), 'Parking reservada') === 0
+                ) && ((float)$ptotal === 0.0);
+
+                if ($esReservaCero) {
+                    continue;
+                }
+
+                $total = $total + $ptotal;
 
                 $buscaiva = Configuracion::find()->where(['tipo_campo' => 1])->one();
                 $iva = $buscaiva->valor_numerico;
 
                 $punitario = $s->precio_unitario;
-                $ptotal = $s->precio_total;                
             ?>
 
             <div class="col-lg-7">
