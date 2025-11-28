@@ -132,14 +132,26 @@ $ayo = date("Y", $fechaCompleta);
 	<?php 
 	    $items = 0;
 	    foreach ($service as $s) {
-	    $datos = Servicios::find()->where(['id'=> $s->id_servicio])->one();
-	    $items = $items + 1; 
+            $datos = Servicios::find()->where(['id'=> $s->id_servicio])->one();
+
+            $nombreServicio = $datos->nombre_servicio ?? '';
+            $ptotal = $s->precio_total;
+
+            $esReservaCero = (
+                strcasecmp(trim($nombreServicio), 'Plaza reservada') === 0
+                || strcasecmp(trim($nombreServicio), 'Parking reservada') === 0
+            ) && ((float)$ptotal === 0.0);
+
+            if ($esReservaCero) {
+                continue;
+            }
+
+            $items = $items + 1;
 
         $buscaiva = Configuracion::find()->where(['tipo_campo' => 1])->one();
         $iva = $buscaiva->valor_numerico;
 
         $punitario = $s->precio_unitario;
-        $ptotal = $s->precio_total;
         //$montoiva = $datos_reserva->monto_factura - $montosiniva;	    
 	?>
 
