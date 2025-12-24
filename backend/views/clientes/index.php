@@ -23,8 +23,8 @@ echo "<div id='modalContent'></div>";
 Modal::end();
 
 
-$this->title = Yii::$app->name.' | Clientes';
-$this->params['breadcrumbs'][] = 'Gestión de Clientes';
+$this->title = Yii::$app->name . ' | Clientes';
+$this->params['breadcrumbs'][] = 'Gestion de Clientes';
 
 ?>
 <div class="clientes-index">
@@ -39,8 +39,8 @@ $this->params['breadcrumbs'][] = 'Gestión de Clientes';
               'value' => Yii::$app->urlManager->createUrl('/clientes/create'),
               'class' => 'btn btn-full',
               'id' => 'BtnModalId',
-              'data-toggle'=> 'modal',
-              'data-target'=> '#cliente',
+              'data-toggle' => 'modal',
+              'data-target' => '#cliente',
 
             ]) ?>
           </div>
@@ -54,7 +54,7 @@ $this->params['breadcrumbs'][] = 'Gestión de Clientes';
             <div class="panel-body body-busqueda">
               <div class="subtitulo-reserva">Buscar Cliente</div><br>
               <?php Pjax::begin(); ?>
-              <?php  echo $this->render('_search', ['model' => $searchModel]); ?>
+              <?php echo $this->render('_search', ['model' => $searchModel]); ?>
 
               <div class="subtitulo-reserva">Listado de Clientes</div><br><br>
 
@@ -62,8 +62,8 @@ $this->params['breadcrumbs'][] = 'Gestión de Clientes';
                 'dataProvider' => $dataProvider,
                 //'filterModel' => $searchModel,
                 'columns' => [
-                  [                      
-                    'header' => 'N°',
+                  [
+                    'header' => 'N&ordm;',
                     'class' => 'kartik\grid\SerialColumn'
                   ],
 
@@ -83,21 +83,21 @@ $this->params['breadcrumbs'][] = 'Gestión de Clientes';
                     'attribute' => 'movil',
                     'contentOptions' => ['style' => 'width:200px; white-space: normal; text-align:left'],
                     'headerOptions' => ['style' => 'text-align:center !important'],
-                  ],  
+                  ],
 
 
-                  [ 
-                    'class' => 'kartik\grid\ActionColumn', 
+                  [
+                    'class' => 'kartik\grid\ActionColumn',
                     'header' => '',
                     'headerOptions' => [
                       'class' => 'text-center'
-                    ], 
+                    ],
                     'contentOptions' => [
                       'class' => 'text-center icon_actions'
-                    ], 
-                    'template' => "{view} &nbsp; {update} &nbsp;{delete}", 
-                    'controller' => 'clientes', 
-                    'buttons' => [ 
+                    ],
+                    'template' => "{view} &nbsp; {update} &nbsp;{delete}",
+                    'controller' => 'clientes',
+                    'buttons' => [
                       'view' => function ($url, $model, $key) {
                         return Html::a('<span class="glyphicon glyphicon-search"></span>', '#', [
                           'class' => 'btn-view',
@@ -108,7 +108,7 @@ $this->params['breadcrumbs'][] = 'Gestión de Clientes';
                           'data-url' => Url::to(['view', 'id' => $model->id]),
                           'data-pjax' => '0',
                         ]);
-                      },                       
+                      },
                       'update' => function ($url, $model, $key) {
                         return Html::a('<span class="glyphicon glyphicon-edit"></span>', '#', [
                           'class' => 'btn-update',
@@ -119,23 +119,26 @@ $this->params['breadcrumbs'][] = 'Gestión de Clientes';
                           'data-url' => Url::to(['update', 'id' => $model->id]),
                           'data-pjax' => '0',
                         ]);
-                      }, 
-                      'delete' => function ($url, $model) { 
+                      },
+                      'delete' => function ($url, $model) {
                         return Html::a(
-                          '<span class="glyphicon glyphicon-trash"></span>', '#', 
-                          [ 
+                          '<span class="glyphicon glyphicon-trash"></span>',
+                          '#',
+                          [
                             'class' => 'btn-delete',
                             'title' => Yii::t('yii', 'Delete'),
-                            'aria-label' => Yii::t('yii', 'Delete'), 
+                            'aria-label' => Yii::t('yii', 'Delete'),
                             'onclick' => "yii.confirm('" . Yii::t(
-                              'app', '¿Estas seguro de eliminar este elemento?') . "',
+                              'app',
+                              '¿Estas seguro de eliminar este elemento?'
+                            ) . "',
                             function(){ $.ajax('$url', {type: 'POST'}).done(function(data) { $.pjax.reload('#items-in-event', {timeout : false}).done(function () { $.pjax.reload('#event-invoice-details', {timeout : false}).done(function () { $.pjax.reload('#main-alert-widget', {timeout : false}); }); }); }); }
                             );
                             return false;",
                           ]
-                        ); 
-                      }, 
-                    ] 
+                        );
+                      },
+                    ]
                   ]
                 ],
               ]); ?>
@@ -149,8 +152,8 @@ $this->params['breadcrumbs'][] = 'Gestión de Clientes';
   </div>
 </div>
 
-<?php 
-  $this->registerJs(" 
+<?php
+$this->registerJs(" 
     $('#BtnModalId').click(function(e){    
       e.preventDefault();
       $('#cliente').modal('show')

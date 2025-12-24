@@ -18,14 +18,13 @@ Modal::begin([
   'id' => 'coche',
   'size' => 'modal-md',
   'bodyOptions' => ['style' => 'top: 0px; padding:20px 15px'],
-
 ]);
 
 echo "<div id='modalContent'></div>";
 
 Modal::end();
 
-$this->title = Yii::$app->name.' | Vehículos';
+$this->title = Yii::$app->name . ' | Vehículos';
 $this->params['breadcrumbs'][] = 'Gestión de Vehículos';
 
 ?>
@@ -35,59 +34,60 @@ $this->params['breadcrumbs'][] = 'Gestión de Vehículos';
     <div class="panel-body gs1">
       <div class="row">
 
-        <div align="center" class="col-lg-1">          
-          <?= Html::button('Agregar<br>Vehículo', [                        
-            'value' => Yii::$app->urlManager->createUrl('/coches/create'),
-            'class' => 'btn btn-full',
-            'id' => 'BtnModalId',
-            'data-toggle'=> 'modal',
-            'data-target'=> '#coche',
+        <div align="center" class="col-lg-2 col-md-3 col-sm-4">
+          <div class="btn-group-vertical" style="width:100%">
+            <?= Html::button('Agregar<br>Vehículo', [
+              'value' => Yii::$app->urlManager->createUrl('/coches/create'),
+              'class' => 'btn btn-full',
+              'id' => 'BtnModalId',
+              'data-toggle' => 'modal',
+              'data-target' => '#coche',
+              'style' => 'margin-bottom:10px;',
+            ]) ?>
 
-          ]) ?> 
+            <?= Html::a('Unificar<br>Vehículos', ['merge'], [
+              'class' => 'btn btn-full',
+            ]) ?>
+          </div>
         </div>
 
-        <div class="col-lg-11 col-md-11 col-xs-12">
+        <div class="col-lg-10 col-md-9 col-sm-8 col-xs-12">
           <div class="panel panel-default busqueda">
             <div class="panel-body body-busqueda">
               <div class="subtitulo-reserva">Buscar Vehículo</div><br>
-              <?php Pjax::begin(); ?>
-              <?php  echo $this->render('_search', ['model' => $searchModel]); ?>
 
-              <div class="subtitulo-reserva">Listado de Vehículos</div><br><br>        
+              <?php Pjax::begin(['id' => 'pjax-coches']); ?>
+
+              <?php echo $this->render('_search', ['model' => $searchModel]); ?>
+
+              <div class="subtitulo-reserva">Listado de Vehículos</div><br>
 
               <?= GridView::widget([
                 'dataProvider' => $dataProvider,
-                //'filterModel' => $searchModel,
+                'hover' => true, // Mejora visual al pasar el mouse
                 'columns' => [
-                  [                      
+                  [
                     'header' => 'N°',
                     'class' => 'kartik\grid\SerialColumn'
                   ],
-
                   [
                     'attribute' => 'matricula',
                     'contentOptions' => ['style' => 'text-transform:uppercase; text-align:center'],
                     'headerOptions' => ['style' => 'text-align:center !important'],
-                  ],                                    
-
+                  ],
                   [
                     'attribute' => 'marca',
                     'contentOptions' => ['style' => 'text-transform:uppercase; text-align:left'],
                     'headerOptions' => ['style' => 'text-align:center !important'],
-                  ],                
-
-                  [ 
-                    'class' => 'kartik\grid\ActionColumn', 
+                  ],
+                  [
+                    'class' => 'kartik\grid\ActionColumn',
                     'header' => '',
-                    'headerOptions' => [
-                      'class' => 'text-center'
-                    ], 
-                    'contentOptions' => [
-                      'class' => 'text-center icon_actions'
-                    ], 
-                    'template' => "{view} &nbsp; {update} &nbsp;{delete}", 
-                    'controller' => 'coches', 
-                    'buttons' => [ 
+                    'headerOptions' => ['class' => 'text-center'],
+                    'contentOptions' => ['class' => 'text-center icon_actions'],
+                    'template' => "{view} &nbsp; {update} &nbsp;{delete}",
+                    'controller' => 'coches',
+                    'buttons' => [
                       'view' => function ($url, $model, $key) {
                         return Html::a('<span class="glyphicon glyphicon-search"></span>', '#', [
                           'class' => 'btn-view',
@@ -98,7 +98,7 @@ $this->params['breadcrumbs'][] = 'Gestión de Vehículos';
                           'data-url' => Url::to(['view', 'id' => $model->id]),
                           'data-pjax' => '0',
                         ]);
-                      },                       
+                      },
                       'update' => function ($url, $model, $key) {
                         return Html::a('<span class="glyphicon glyphicon-edit"></span>', '#', [
                           'class' => 'btn-update',
@@ -109,23 +109,23 @@ $this->params['breadcrumbs'][] = 'Gestión de Vehículos';
                           'data-url' => Url::to(['update', 'id' => $model->id]),
                           'data-pjax' => '0',
                         ]);
-                      }, 
-                      'delete' => function ($url, $model) { 
+                      },
+                      'delete' => function ($url, $model) {
                         return Html::a(
-                          '<span class="glyphicon glyphicon-trash"></span>', '#',
-                          [ 
+                          '<span class="glyphicon glyphicon-trash"></span>',
+                          '#',
+                          [
                             'class' => 'btn-delete',
                             'title' => Yii::t('yii', 'Delete'),
-                            'aria-label' => Yii::t('yii', 'Delete'), 
-                            'onclick' => "yii.confirm('" . Yii::t(
-                              'app', '¿Estas seguro de eliminar este elemento?') . "',
-                            function(){ $.ajax('$url', {type: 'POST'}).done(function(data) { $.pjax.reload('#items-in-event', {timeout : false}).done(function () { $.pjax.reload('#event-invoice-details', {timeout : false}).done(function () { $.pjax.reload('#main-alert-widget', {timeout : false}); }); }); }); }
-                            );
+                            'aria-label' => Yii::t('yii', 'Delete'),
+                            'onclick' => "if (confirm('" . Yii::t('app', '¿Estas seguro de eliminar este elemento?') . "')) {
+                                $.ajax('$url', {type: 'POST'}).done(function() { $.pjax.reload('#pjax-coches'); });
+                            }
                             return false;",
                           ]
-                        ); 
-                      }, 
-                    ] 
+                        );
+                      },
+                    ]
                   ]
                 ],
               ]); ?>
@@ -139,8 +139,8 @@ $this->params['breadcrumbs'][] = 'Gestión de Vehículos';
   </div>
 </div>
 
-<?php 
-  $this->registerJs(" 
+<?php
+$this->registerJs(" 
     $('#BtnModalId').click(function(e){    
       e.preventDefault();
       $('#coche').modal('show')
@@ -149,7 +149,7 @@ $this->params['breadcrumbs'][] = 'Gestión de Vehículos';
       return false;
     });
 
-    $(document).on('click', '#update', (function() {
+    $(document).on('click', '.btn-update', (function() {
       $.get(
         $(this).data('url'),
         function (data) {
@@ -159,7 +159,7 @@ $this->params['breadcrumbs'][] = 'Gestión de Vehículos';
       );
     }));
 
-    $(document).on('click', '#view', (function() {
+    $(document).on('click', '.btn-view', (function() {
       $.get(
         $(this).data('url'),
         function (data) {

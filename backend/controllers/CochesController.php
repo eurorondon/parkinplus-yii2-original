@@ -6,6 +6,8 @@ use Yii;
 use common\models\Coches;
 use common\models\Clientes;
 use common\models\CochesSearch;
+use common\models\Reservas;
+use backend\models\CocheMergeForm;
 use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -40,11 +42,41 @@ class CochesController extends Controller
         $searchModel = new CochesSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        $dataProvider->pagination->pageSize=15;
+        $dataProvider->pagination->pageSize = 15;
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionMerge()
+    {
+        $model = new CocheMergeForm();
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $matricula = strtoupper($model->matricula);
+
+            $coches = Coches::find()
+                ->where('LOWER(matricula) = :matricula', [':matricula' => strtolower($matricula)])
+                ->orderBy(['created_at' => SORT_DESC])
+                ->all();
+
+            if (empty($coches)) {
+                Yii::$app->session->setFlash('error', 'No se encontraron vehículos con esa matrícula.');
+            } else {
+                $cochePrincipal = array_shift($coches);
+
+                $this->mergeCoches($cochePrincipal, $coches, $model->marca, $matricula);
+
+                Yii::$app->session->setFlash('success', 'Los vehículos con la misma matrícula fueron unificados correctamente.');
+
+                return $this->redirect(['index']);
+            }
+        }
+
+        return $this->render('merge', [
+            'model' => $model,
         ]);
     }
 
@@ -137,5 +169,44 @@ class CochesController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    /**
+     * @param Coches   $cochePrincipal
+     * @param Coches[] $cochesDuplicados
+     * @param string   $marcaDefinitiva
+     * @param string   $matriculaNormalizada
+     * @return void
+     * @throws \Throwable
+     */
+    protected function mergeCoches(Coches $cochePrincipal, array $cochesDuplicados, string $marcaDefinitiva, string $matriculaNormalizada): void
+    {
+        $transaction = Yii::$app->db->beginTransaction();
+
+        try {
+            foreach ($cochesDuplicados as $cocheDuplicado) {
+                Reservas::updateAll(['id_coche' => $cochePrincipal->id], ['id_coche' => $cocheDuplicado->id]);
+
+                foreach (['modelo', 'color'] as $atributo) {
+                    if (empty($cochePrincipal->$atributo) && !empty($cocheDuplicado->$atributo)) {
+                        $cochePrincipal->$atributo = $cocheDuplicado->$atributo;
+                    }
+                }
+
+                $cocheDuplicado->delete();
+            }
+
+            $cochePrincipal->marca = $marcaDefinitiva;
+            $cochePrincipal->matricula = $matriculaNormalizada;
+            $cochePrincipal->updated_at = date('Y-m-d H:i:s');
+            $cochePrincipal->updated_by = Yii::$app->user->id;
+            $cochePrincipal->save(false);
+
+            $transaction->commit();
+        } catch (\Throwable $e) {
+            $transaction->rollBack();
+
+            throw $e;
+        }
     }
 }
