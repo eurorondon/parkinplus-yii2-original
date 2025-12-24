@@ -35,18 +35,25 @@ $this->params['breadcrumbs'][] = 'Gestión de Vehículos';
     <div class="panel-body gs1">
       <div class="row">
 
-        <div align="center" class="col-lg-1">          
-          <?= Html::button('Agregar<br>Vehículo', [                        
-            'value' => Yii::$app->urlManager->createUrl('/coches/create'),
-            'class' => 'btn btn-full',
-            'id' => 'BtnModalId',
-            'data-toggle'=> 'modal',
-            'data-target'=> '#coche',
+        <div align="center" class="col-lg-2 col-md-3 col-sm-4">
+          <div class="btn-group-vertical" style="width:100%">
+            <?= Html::button('Agregar<br>Vehículo', [
+              'value' => Yii::$app->urlManager->createUrl('/coches/create'),
+              'class' => 'btn btn-full',
+              'id' => 'BtnModalId',
+              'data-toggle'=> 'modal',
+              'data-target'=> '#coche',
+              'style' => 'margin-bottom:10px;',
 
-          ]) ?> 
+            ]) ?>
+
+            <?= Html::a('Unificar<br>Vehículos', ['merge'], [
+              'class' => 'btn btn-full',
+            ]) ?>
+          </div>
         </div>
 
-        <div class="col-lg-11 col-md-11 col-xs-12">
+        <div class="col-lg-8 col-md-6 col-xs-12">
           <div class="panel panel-default busqueda">
             <div class="panel-body body-busqueda">
               <div class="subtitulo-reserva">Buscar Vehículo</div><br>
