@@ -51,6 +51,9 @@ for ($i = 0; $i < $cant; $i++) { ?>
             <div class="col-lg-12">
               <div class="subtitulo-reserva" style="margin-bottom: 20px;">Información de Reserva</div>
             </div>
+            <div class="col-lg-12 text-danger" style="<?= $paradaActiva ? '' : 'display:none' ?>" id="alert_parada">
+              Para la fecha de entrada o salida no tenemos plazas disponibles. Por favor selecciona otras fechas.
+            </div>
             <div class="form-group">
               <div class="col-lg-4">
                 <? $recogida ='<span>Recogida &nbsp;</span><span class="tooltipcurved tooltipcurved-west">
@@ -479,7 +482,7 @@ for ($i = 0; $i < $cant; $i++) { ?>
 
             <div id="guardar" align="right" class="col-lg-2 col-xs-12" style="margin-top: 5px; margin-bottom: 25px">
               <div class="form-group">
-                <?= Html::submitButton('Finalizar Reserva', ['class' => 'btn btn-success btn-block', 'id' => 'finalizar']) ?>
+                <?= Html::submitButton('Finalizar Reserva', ['class' => 'btn btn-success btn-block', 'id' => 'finalizar', 'disabled' => $paradaActiva]) ?>
               </div>
             </div>
 
@@ -699,8 +702,15 @@ $this->registerJs("
 
 <script>
 
-    
-  
+  var paradaActiva = <?= $paradaActiva ? 'true' : 'false' ?>;
+
+  if (paradaActiva) {
+    $('#finalizar').prop('disabled', true);
+    $('#alert_parada').show();
+  }
+
+
+
   function muestra(id) {
     if (document.getElementById) {
       var contenido = document.getElementById(id);

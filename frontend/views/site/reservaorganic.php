@@ -482,12 +482,16 @@ endfor; ?>
 	<input type="hidden" id="plan" name="plan">
 	<input type="hidden" id="precio_dia" name="precio_dia" value="<?= $precio_dia ?>">
 
-	<div class="heading">
-		<h3>Información de Reserva</h3>
-		<p class="muted">Verifica tus fechas y elige tu plan</p>
-	</div>
+        <div class="heading">
+                <h3>Información de Reserva</h3>
+                <p class="muted">Verifica tus fechas y elige tu plan</p>
+        </div>
 
-	<!-- Resumen fechas -->
+        <div id="alert_parada" class="alert-inline" style="display: <?= $paradaActiva ? 'block' : 'none' ?>;">
+                Para la fecha de entrada o salida no tenemos plazas disponibles. Por favor selecciona otras fechas.
+        </div>
+
+        <!-- Resumen fechas -->
 	<div class="section" id="reserva_f" style="display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
 		<div><strong>Desde:</strong> <span id="fentrada"><?= $model->fecha_entrada ?></span> <span id="hentrada"><?= $model->hora_entrada ?></span></div>
 		<div><strong>Hasta:</strong> <span id="fsalida"><?= $model->fecha_salida ?></span> <span id="hsalida"><?= $model->hora_salida ?></span></div>
@@ -578,9 +582,9 @@ endfor; ?>
 		<div class="price-box">
 			<svg width="48" height="48" viewBox="0 0 45 45" xmlns="http://www.w3.org/2000/svg" stroke="#000" class="loading"></svg>
 			<div id="costo_e" class="price"></div>
-			<button type="submit" id="economic" class="btn-brand" aria-label="Reservar plan Economic">
-				Reservar Economic <span class="glyphicon glyphicon-send"></span>
-			</button>
+                        <button type="submit" id="economic" class="btn-brand" aria-label="Reservar plan Economic" <?= $paradaActiva ? 'disabled' : '' ?>>
+                                Reservar Economic <span class="glyphicon glyphicon-send"></span>
+                        </button>
 		</div>
 	</div>
 
@@ -614,9 +618,9 @@ endfor; ?>
 		<div class="price-box">
 			<svg width="48" height="48" viewBox="0 0 45 45" xmlns="http://www.w3.org/2000/svg" stroke="#000" class="loading"></svg>
 			<div id="costo" class="price"></div>
-			<button type="submit" id="bronce" class="btn-brand" aria-label="Reservar plan Standard">
-				Reservar Standard <span class="glyphicon glyphicon-send"></span>
-			</button>
+                        <button type="submit" id="bronce" class="btn-brand" aria-label="Reservar plan Standard" <?= $paradaActiva ? 'disabled' : '' ?>>
+                                Reservar Standard <span class="glyphicon glyphicon-send"></span>
+                        </button>
 		</div>
 	</div>
 
@@ -650,9 +654,9 @@ endfor; ?>
 		<div class="price-box">
 			<svg width="48" height="48" viewBox="0 0 45 45" xmlns="http://www.w3.org/2000/svg" stroke="#000" class="loading"></svg>
 			<div id="costo_t" class="price"></div>
-			<button type="submit" id="plata" class="btn-brand" aria-label="Reservar plan Premium">
-				Reservar Premium <span class="glyphicon glyphicon-send"></span>
-			</button>
+                        <button type="submit" id="plata" class="btn-brand" aria-label="Reservar plan Premium" <?= $paradaActiva ? 'disabled' : '' ?>>
+                                Reservar Premium <span class="glyphicon glyphicon-send"></span>
+                        </button>
 		</div>
 	</div>
 
@@ -688,9 +692,9 @@ endfor; ?>
 		<div class="price-box">
 			<svg width="48" height="48" viewBox="0 0 45 45" xmlns="http://www.w3.org/2000/svg" stroke="#000" class="loading"></svg>
 			<div id="costo_i" class="price"></div>
-			<button type="submit" id="oro" class="btn-brand" aria-label="Reservar plan Priority">
-				Reservar Priority <span class="glyphicon glyphicon-send"></span>
-			</button>
+                        <button type="submit" id="oro" class="btn-brand" aria-label="Reservar plan Priority" <?= $paradaActiva ? 'disabled' : '' ?>>
+                                Reservar Priority <span class="glyphicon glyphicon-send"></span>
+                        </button>
 		</div>
 	</div>
 
@@ -701,9 +705,34 @@ endfor; ?>
 
 <?php
 /* =================== JS =================== */
+$paradaFlag = $paradaActiva ? 'true' : 'false';
+$paradaUrl  = Yii::$app->getUrlManager()->createUrl('site/parada');
 $this->registerJs(
-	<<<'JS'
+        <<<JS
 (function(){
+  var paradaActiva = $paradaFlag;
+
+  function toggleParadaUI(){
+    var alertParada = document.getElementById('alert_parada');
+    ['economic','bronce','plata','oro'].forEach(function(id){
+      var btn = document.getElementById(id);
+      if (!btn) return;
+      if (paradaActiva){
+        btn.setAttribute('disabled','disabled');
+        btn.classList.add('disabled');
+      } else {
+        btn.removeAttribute('disabled');
+        btn.classList.remove('disabled');
+      }
+    });
+
+    if (alertParada){
+      alertParada.style.display = paradaActiva ? 'block' : 'none';
+    }
+  }
+
+  toggleParadaUI();
+
   function parseFloatSafe(v){ var n = parseFloat(v); return isNaN(n) ? 0 : n; }
 
   // Lee precios diarios en un array: index 1..30
@@ -824,6 +853,7 @@ $this->registerJs(
     var horaOut  = document.getElementById('reservas-hora_salida').value;
 
     var alertBox = document.getElementById('alert_fechas');
+    var alertParada = document.getElementById('alert_parada');
 
     if (!fechaIn || !fechaOut){
       alertBox.style.display = 'block';
@@ -836,29 +866,52 @@ $this->registerJs(
       return;
     }
 
-    // Guardar días
-    document.getElementById('cantdias').value = cant;
-
     // UI loading
     document.querySelectorAll('.loading').forEach(function(el){ el.style.display = 'block'; });
 
-    // Actualizar resumen visible
-    document.getElementById('fentrada').innerText = fechaIn;
-    document.getElementById('hentrada').innerText = horaIn;
-    document.getElementById('fsalida').innerText  = fechaOut;
-    document.getElementById('hsalida').innerText  = horaOut;
+    $.post('$paradaUrl', {
+      fecha_e: fechaIn,
+      hora_e: horaIn,
+      fecha_s: fechaOut,
+      hora_s: horaOut
+    }).done(function(data){
+      paradaActiva = String(data).trim() === '1';
+      toggleParadaUI();
 
-    // Pintar costos
-    setTimeout(function(){
-      recalcAndPaint(cant, horaIn, horaOut);
-      document.getElementById('fechas_r').classList.add('hidden');
-      document.getElementById('reserva_f').classList.remove('hidden');
+      if (paradaActiva){
+        if (alertParada){ alertParada.style.display = 'block'; }
+        document.querySelectorAll('.loading').forEach(function(el){ el.style.display = 'none'; });
+        return;
+      }
+
+      // Guardar días
+      document.getElementById('cantdias').value = cant;
+
+      // Actualizar resumen visible
+      document.getElementById('fentrada').innerText = fechaIn;
+      document.getElementById('hentrada').innerText = horaIn;
+      document.getElementById('fsalida').innerText  = fechaOut;
+      document.getElementById('hsalida').innerText  = horaOut;
+
+      // Pintar costos
+      setTimeout(function(){
+        recalcAndPaint(cant, horaIn, horaOut);
+        document.getElementById('fechas_r').classList.add('hidden');
+        document.getElementById('reserva_f').classList.remove('hidden');
+        document.querySelectorAll('.loading').forEach(function(el){ el.style.display = 'none'; });
+      }, 500);
+    }).fail(function(){
       document.querySelectorAll('.loading').forEach(function(el){ el.style.display = 'none'; });
-    }, 500);
+    });
   });
 
   // Handlers de envío (mantienen tu flujo actual)
   function lockAndSubmit(btnId, type, plan){
+    if (paradaActiva){
+      toggleParadaUI();
+      return;
+    }
+
     var btn = document.getElementById(btnId);
     btn.setAttribute('disabled','disabled');
     btn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Espere por favor...';

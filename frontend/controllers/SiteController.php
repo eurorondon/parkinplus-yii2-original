@@ -284,45 +284,46 @@ class SiteController extends Controller
             $fecha_salida = date('Y-m-d', strtotime($_POST['fecha_s']));
             $hora_salida = $_POST['hora_s'];
 
-            $in = date('Y-m-d', strtotime($_POST['fecha_e'])) . ' ' . $_POST['hora_e'];
-            $fecha_in = new DateTime($in);
-            $fecha_in = $fecha_in->format('Y-m-d H:i:s');
-
-            $fin = date('Y-m-d', strtotime($_POST['fecha_s'])) . ' ' . $_POST['hora_s'];
-            $fecha_finc = new DateTime($fin);
-            $fecha_finc = $fecha_finc->format('Y-m-d H:i:s');
-
-            $buscaParadas = Paradas::find()->where(['status' => 'activo'])->all();
-
-            //$cantParadas = count($buscaParadas);
-
-            $result = 0;
-
-            if (count($buscaParadas) > 0) {
-                foreach ($buscaParadas as $parada) {
-                    $fecha_inicio = $parada['fecha_inicio'];
-                    $hora_inicio = $parada['hora_inicio'];
-                    $fecha_fin = $parada['fecha_fin'];
-                    $hora_fin = $parada['hora_fin'];
-
-                    $date_ini = $fecha_inicio . ' ' . $hora_inicio;
-                    $fecha_i = new DateTime($date_ini);
-                    $fecha_i = $fecha_i->format('Y-m-d H:i:s');
-
-                    $date_fin = $fecha_fin . ' ' . $hora_fin;
-                    $fecha_f = new DateTime($date_fin);
-                    $fecha_f = $fecha_f->format('Y-m-d H:i:s');
-
-
-                    if (($fecha_in >= $fecha_i) and ($fecha_in <= $fecha_f)) {
-                        $result = 1;
-                    } else if (($fecha_finc >= $fecha_i) and ($fecha_finc <= $fecha_f)) {
-                        $result = 1;
-                    }
-                }
-            }
-            return $result;
+            return $this->tieneParadaActiva($fecha_entrada, $hora_entrada, $fecha_salida, $hora_salida) ? 1 : 0;
         }
+    }
+
+    private function tieneParadaActiva($fechaEntrada, $horaEntrada, $fechaSalida, $horaSalida)
+    {
+        $in = date('Y-m-d', strtotime($fechaEntrada)) . ' ' . $horaEntrada;
+        $fecha_in = new DateTime($in);
+        $fecha_in = $fecha_in->format('Y-m-d H:i:s');
+
+        $fin = date('Y-m-d', strtotime($fechaSalida)) . ' ' . $horaSalida;
+        $fecha_finc = new DateTime($fin);
+        $fecha_finc = $fecha_finc->format('Y-m-d H:i:s');
+
+        $buscaParadas = Paradas::find()->where(['status' => 'activo'])->all();
+
+        foreach ($buscaParadas as $parada) {
+            $fecha_inicio = $parada['fecha_inicio'];
+            $hora_inicio = $parada['hora_inicio'];
+            $fecha_fin = $parada['fecha_fin'];
+            $hora_fin = $parada['hora_fin'];
+
+            $date_ini = $fecha_inicio . ' ' . $hora_inicio;
+            $fecha_i = new DateTime($date_ini);
+            $fecha_i = $fecha_i->format('Y-m-d H:i:s');
+
+            $date_fin = $fecha_fin . ' ' . $hora_fin;
+            $fecha_f = new DateTime($date_fin);
+            $fecha_f = $fecha_f->format('Y-m-d H:i:s');
+
+            if (($fecha_in >= $fecha_i) && ($fecha_in <= $fecha_f)) {
+                return true;
+            }
+
+            if (($fecha_finc >= $fecha_i) && ($fecha_finc <= $fecha_f)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
 
@@ -1046,6 +1047,8 @@ class SiteController extends Controller
             }
         }
 
+        $paradaActiva = $this->tieneParadaActiva($entrada, $hora_e, $salida, $hora_s);
+
         $pagos = TipoPago::find()->where(['estatus' => '1'])->all();
         $tipos_pago = ArrayHelper::map($pagos, 'id', 'descripcion');
 
@@ -1061,6 +1064,12 @@ class SiteController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $modelC->load(Yii::$app->request->post()) && $modelV->load(Yii::$app->request->post())) {
             $model->plan = Yii::$app->request->post('Reservas')['plan'];
+
+            $paradaActiva = $this->tieneParadaActiva($model->fecha_entrada, $model->hora_entrada, $model->fecha_salida, $model->hora_salida);
+            if ($paradaActiva) {
+                Yii::$app->session->setFlash('error', 'Para la fecha de entrada o salida no tenemos plazas disponibles.');
+                return $this->redirect(['site/index']);
+            }
 
             // Eliminando Lavado cortesia si existe lavado completo (mantener lógica del main)
             $cantidad1 = Yii::$app->request->post('cantidad1', 0);
@@ -1398,7 +1407,8 @@ class SiteController extends Controller
             'nocturno'      => $extraNocturno,
             'type_reserva'  => $type_reserva,
             'precio_dia'    => $precio_dia_cfg->valor_numerico,
-            'plan'          => $plan
+            'plan'          => $plan,
+            'paradaActiva'  => $paradaActiva
         ]);
     }
 
@@ -1414,6 +1424,8 @@ class SiteController extends Controller
 
         $hora_e = $req->get('hora_e');
         $hora_s = $req->get('hora_s');
+
+        $paradaActiva = $this->tieneParadaActiva($entrada, $hora_e, $salida, $hora_s);
 
         $cant_dias    = $req->get('cdias');
         $type_reserva = $req->get('type');
@@ -1518,6 +1530,12 @@ class SiteController extends Controller
         // === POST: guardar ===
         if ($model->load($req->post()) && $modelC->load($req->post()) && $modelV->load($req->post())) {
             $model->plan = $req->post('Reservas')['plan'] ?? $plan;
+
+            $paradaActiva = $this->tieneParadaActiva($model->fecha_entrada, $model->hora_entrada, $model->fecha_salida, $model->hora_salida);
+            if ($paradaActiva) {
+                Yii::$app->session->setFlash('error', 'Para la fecha de entrada o salida no tenemos plazas disponibles.');
+                return $this->redirect(['site/organic']);
+            }
 
             // Eliminar lavado cortesía si existe lavado completo (con defaults seguros)
             $cantidad1 = (int)$req->post('cantidad1', 0);
@@ -3147,6 +3165,9 @@ class SiteController extends Controller
             $model->hora_salida = empty($_POST['Reservas']['horas']) ? date('H:i') : $_POST['Reservas']['horas'];
 
 
+            $paradaActiva = $this->tieneParadaActiva($model->fecha_entrada, $model->hora_entrada, $model->fecha_salida, $model->hora_salida);
+
+
             $fecha_entrada = strtotime($model->fecha_entrada . ' ' . $model->hora_entrada);
             $fecha_salida = strtotime($model->fecha_salida . ' ' . $model->hora_salida);
 
@@ -3213,9 +3234,12 @@ class SiteController extends Controller
                 'nocturno' => Servicios::find()->where(['nombre_servicio' => 'Costo Nocturnidad'])->one(),
                 'servicios' => $commandS->queryAll(),
                 'temporada' => $precioTemporada,
-                'precio_dia' => $precio_dia->valor_numerico
+                'precio_dia' => $precio_dia->valor_numerico,
+                'paradaActiva' => $paradaActiva
             ]);
         }
+
+        return $this->redirect(['site/organic']);
     }
 
     // end ER
