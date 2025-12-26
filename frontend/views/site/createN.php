@@ -177,6 +177,9 @@ Modal::end();
               style="border-bottom: 1px solid #e7eaed; display:<?= $model->factura == 1 ? 'none !important' : '' ?>">
               Información de la reserva
             </h3>
+            <div class="col-lg-12 text-danger" style="<?= $paradaActiva ? '' : 'display:none' ?>" id="alert_parada">
+              Para la fecha de entrada o salida no tenemos plazas disponibles. Por favor selecciona otras fechas.
+            </div>
             <div class="col-lg-12 text-danger" style="display:none" id="alert_fechas">
               Verifique las fechas y horas seleccionadas
             </div>
@@ -616,7 +619,7 @@ Modal::end();
               <?php if ($model->factura == 1) { ?>
                 <?= Html::button('Solicitar Factura', ['class' => 'btn text-white p-2', 'id' => 'solFactura', 'style' => 'background-color: #961007']) ?>
               <?php } else { ?>
-                <?= Html::submitButton(!$model->isNewRecord ? 'Actualizar Reserva' : 'Procesar Reserva', ['class' => 'btn text-white p-2', 'id' => 'finalizar', 'style' => 'background-color: #961007']) ?>
+                <?= Html::submitButton(!$model->isNewRecord ? 'Actualizar Reserva' : 'Procesar Reserva', ['class' => 'btn text-white p-2', 'id' => 'finalizar', 'style' => 'background-color: #961007', 'disabled' => $paradaActiva]) ?>
               <?php } ?>
             </div>
           </form>
@@ -1039,6 +1042,12 @@ $this->registerJs("
 ?>
 
 <script>
+  var paradaActiva = <?= $paradaActiva ? 'true' : 'false' ?>;
+
+  if (paradaActiva) {
+    $('#finalizar').prop('disabled', true);
+  }
+
   function muestra(id) {
     if (document.getElementById) {
       var contenido = document.getElementById(id);
@@ -1051,6 +1060,12 @@ $this->registerJs("
   }*/
 
   function recalcular() {
+    if (paradaActiva) {
+      $('#alert_parada').css('display', 'block');
+      $('#finalizar').prop('disabled', true);
+      return;
+    }
+
     fecha_entrada = $('#reservas-fecha_entrada').val();
     hora_entrada = $('#reservas-hora_entrada').val();
     fecha_salida = $('#reservas-fecha_salida').val();
@@ -1078,7 +1093,9 @@ $this->registerJs("
       $('#finalizar').prop('disabled', true);
     } else {
       $('#alert_fechas').css('display', 'none');
-      $('#finalizar').prop('disabled', false);
+      if (!paradaActiva) {
+        $('#finalizar').prop('disabled', false);
+      }
     }
 
     $.ajax({
