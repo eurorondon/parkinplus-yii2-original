@@ -1425,6 +1425,8 @@ class SiteController extends Controller
         $hora_e = $req->get('hora_e');
         $hora_s = $req->get('hora_s');
 
+        $paradaActiva = $this->tieneParadaActiva($entrada, $hora_e, $salida, $hora_s);
+
         $cant_dias    = $req->get('cdias');
         $type_reserva = $req->get('type');
         $plan         = $req->get('plan');
@@ -1528,6 +1530,12 @@ class SiteController extends Controller
         // === POST: guardar ===
         if ($model->load($req->post()) && $modelC->load($req->post()) && $modelV->load($req->post())) {
             $model->plan = $req->post('Reservas')['plan'] ?? $plan;
+
+            $paradaActiva = $this->tieneParadaActiva($model->fecha_entrada, $model->hora_entrada, $model->fecha_salida, $model->hora_salida);
+            if ($paradaActiva) {
+                Yii::$app->session->setFlash('error', 'Para la fecha de entrada o salida no tenemos plazas disponibles.');
+                return $this->redirect(['site/organic']);
+            }
 
             // Eliminar lavado cortesía si existe lavado completo (con defaults seguros)
             $cantidad1 = (int)$req->post('cantidad1', 0);
@@ -3157,6 +3165,9 @@ class SiteController extends Controller
             $model->hora_salida = empty($_POST['Reservas']['horas']) ? date('H:i') : $_POST['Reservas']['horas'];
 
 
+            $paradaActiva = $this->tieneParadaActiva($model->fecha_entrada, $model->hora_entrada, $model->fecha_salida, $model->hora_salida);
+
+
             $fecha_entrada = strtotime($model->fecha_entrada . ' ' . $model->hora_entrada);
             $fecha_salida = strtotime($model->fecha_salida . ' ' . $model->hora_salida);
 
@@ -3223,9 +3234,12 @@ class SiteController extends Controller
                 'nocturno' => Servicios::find()->where(['nombre_servicio' => 'Costo Nocturnidad'])->one(),
                 'servicios' => $commandS->queryAll(),
                 'temporada' => $precioTemporada,
-                'precio_dia' => $precio_dia->valor_numerico
+                'precio_dia' => $precio_dia->valor_numerico,
+                'paradaActiva' => $paradaActiva
             ]);
         }
+
+        return $this->redirect(['site/organic']);
     }
 
     // end ER
