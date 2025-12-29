@@ -120,6 +120,23 @@ $tipo_documento = [
 
 ?>
 
+<style>
+    .phone-lookup-group .phone-lookup-loading .glyphicon-spin {
+        -webkit-animation: icon-spin 1s infinite linear;
+        animation: icon-spin 1s infinite linear;
+    }
+
+    @-webkit-keyframes icon-spin {
+        from { -webkit-transform: rotate(0deg); }
+        to { -webkit-transform: rotate(359deg); }
+    }
+
+    @keyframes icon-spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(359deg); }
+    }
+</style>
+
 <div class="reservas-form">
     <div class="panel panel-default panel-index">
         <?php if ($model->isNewRecord) { ?>
@@ -273,7 +290,9 @@ $tipo_documento = [
                             <?php if ($model->isNewRecord) { ?>
 
                                 <div class="col-lg-6">
-                                    <?= $form->field($clientes, 'movil')->textInput() ?>
+                                    <?= $form->field($clientes, 'movil', [
+                                        'template' => "{label}\n<div class=\"input-group phone-lookup-group\">{input}<span class=\"input-group-btn\"><button id=\"buscar-cliente\" class=\"btn btn-default\" type=\"button\" title=\"Actualizar datos\"><span class=\"glyphicon glyphicon-refresh\"></span></button></span><span class=\"input-group-addon phone-lookup-loading\" style=\"display:none;\"><span class=\"glyphicon glyphicon-refresh glyphicon-spin\"></span></span></div>\n{hint}\n{error}",
+                                    ])->textInput() ?>
                                 </div>
 
                                 <div class="col-lg-6">
@@ -300,7 +319,9 @@ $tipo_documento = [
                                 </div>
 
                                 <div class="col-lg-6">
-                                    <?= $form->field($clientes, 'movil')->textInput(['value' => $clientes->movil]) ?>
+                                    <?= $form->field($clientes, 'movil', [
+                                        'template' => "{label}\n<div class=\"input-group phone-lookup-group\">{input}<span class=\"input-group-btn\"><button id=\"buscar-cliente\" class=\"btn btn-default\" type=\"button\" title=\"Actualizar datos\"><span class=\"glyphicon glyphicon-refresh\"></span></button></span><span class=\"input-group-addon phone-lookup-loading\" style=\"display:none;\"><span class=\"glyphicon glyphicon-refresh glyphicon-spin\"></span></span></div>\n{hint}\n{error}",
+                                    ])->textInput(['value' => $clientes->movil]) ?>
                                 </div>
 
                                 <div class="col-lg-6">
@@ -1077,60 +1098,76 @@ $this->registerJs("
         $('#reservas-monto_total').val(valor.toFixed(2));
     })
     
-      $('#clientes-movil').on('blur', function(e){
-    
-        var movil =  $('#clientes-movil').val();
+      function togglePhoneLookupLoading(isLoading) {
+          $('#buscar-cliente').prop('disabled', isLoading);
+          $('.phone-lookup-loading').toggle(isLoading);
+      }
 
-        if(movil !== ''){
-            $.get('/aparcamiento/backend/web/index.php?r=clientes%2Fcliente', { movil: movil} )
-                .done(function( data ) {
-                     var content = JSON.parse(data);
-                    if(content.success){
+      function limpiarDatosCliente() {
+          $('.clientes-coches').html('');
+          $('#clientes-nombre_completo').val('');
+          $('#clientes-correo').val('');
+          $('#coches-marca').val('');
+          $('#coches-matricula').val('');
+      }
 
-                        $('#clientes-nombre_completo').val(content.cliente.nombre_completo);
-                        $('#clientes-correo').val(content.cliente.correo);
+      function cargarDatosCliente(content) {
+          $('#clientes-nombre_completo').val(content.cliente.nombre_completo);
+          $('#clientes-correo').val(content.cliente.correo);
 
-                        let cochesData = content.coches || content.coche || [];
-                        if (!Array.isArray(cochesData)) {
-                            cochesData = [cochesData];
-                        }
+          let cochesData = content.coches || content.coche || [];
+          if (!Array.isArray(cochesData)) {
+              cochesData = [cochesData];
+          }
 
-                        const cochesList = cochesData.filter(Boolean);
+          const cochesList = cochesData.filter(Boolean);
 
-                        if(cochesList.length > 0){
-                            var coches = '<table style=\"width:100%;text-align: center\">';
-                            coches += '<tr><th>Marca</th> <th>Matricula</th><th>Seleccionar</th></tr>';
-                            cochesList.forEach((c) => {
-                                coches +='<input type=\"hidden\" value=\"'+c.marca+'\" id=\"marca'+c.id +'\" />';
-                                coches +='<input type=\"hidden\" value=\"'+c.matricula+'\" id=\"matricula'+c.id +'\" />';
-                                coches += '<tr><td>' +c.marca +'</td> <td>'+ c.matricula+ '</td><td><span class=\"cocheSelect glyphicon glyphicon-check\" style=\"color:#f0ad4e;cursor:pointer\"  id='+c.id+' onclick=\"selectCarro('+c.id+')\"></span></td></tr>';
-                            });
-                            coches += '</table>';
+          if (cochesList.length > 0) {
+              var coches = '<table style=\"width:100%;text-align: center\">';
+              coches += '<tr><th>Marca</th> <th>Matricula</th><th>Seleccionar</th></tr>';
+              cochesList.forEach((c) => {
+                  coches +='<input type=\"hidden\" value=\"'+c.marca+'\" id=\"marca'+c.id +'\" />';
+                  coches +='<input type=\"hidden\" value=\"'+c.matricula+'\" id=\"matricula'+c.id +'\" />';
+                  coches += '<tr><td>' +c.marca +'</td> <td>'+ c.matricula+ '</td><td><span class=\"cocheSelect glyphicon glyphicon-check\" style=\"color:#f0ad4e;cursor:pointer\"  id='+c.id+' onclick=\"selectCarro('+c.id+')\"></span></td></tr>';
+              });
+              coches += '</table>';
 
-                            $('.clientes-coches').html(coches);
-                        } else {
-                            $('.clientes-coches').html('');
-                            $('#coches-marca').val('');
-                            $('#coches-matricula').val('');
-                        }
+              $('.clientes-coches').html(coches);
+          } else {
+              $('.clientes-coches').html('');
+              $('#coches-marca').val('');
+              $('#coches-matricula').val('');
+          }
+      }
 
-                    } else {
-                        $('.clientes-coches').html('');
-                        $('#clientes-nombre_completo').val('');
-                        $('#clientes-correo').val('');
+      function buscarClienteTelefono() {
+          var movil =  $('#clientes-movil').val();
 
-                        $('#coches-marca').val('');
-                        $('#coches-matricula').val('');
-                    }
-                });
-        }else {
-            $('#clientes-nombre_completo').val('');
-            $('#clientes-correo').val('');
-            
-            $('#coches-marca').val('');
-            $('#coches-matricula').val('');
-        }
-        
+          if(movil !== ''){
+              togglePhoneLookupLoading(true);
+              $.get('/aparcamiento/backend/web/index.php?r=clientes%2Fcliente', { movil: movil} )
+                  .done(function( data ) {
+                       var content = JSON.parse(data);
+                      if(content.success){
+                          cargarDatosCliente(content);
+                      } else {
+                          limpiarDatosCliente();
+                      }
+                  })
+                  .fail(function() {
+                      limpiarDatosCliente();
+                  })
+                  .always(function() {
+                      togglePhoneLookupLoading(false);
+                  });
+          }else {
+              limpiarDatosCliente();
+          }
+      }
+
+      $('#clientes-movil').on('blur', buscarClienteTelefono);
+      $('#buscar-cliente').on('click', function(){
+          buscarClienteTelefono();
       });
 
       $('#checkAll').change(function() {
