@@ -57,7 +57,9 @@ class ClientesController extends Controller
         echo Json::encode([
             'success' => true,
             'cliente' => $cliente,
+            // "coches" is the preferred key; "coche" is kept for backwards compatibility with existing views.
             'coches' => $coches,
+            'coche' => $coches,
         ]);
     }
 

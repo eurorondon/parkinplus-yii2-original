@@ -1090,7 +1090,12 @@ $this->registerJs("
                         $('#clientes-nombre_completo').val(content.cliente.nombre_completo);
                         $('#clientes-correo').val(content.cliente.correo);
 
-                        const cochesList = content.coches || content.coche || [];
+                        let cochesData = content.coches || content.coche || [];
+                        if (!Array.isArray(cochesData)) {
+                            cochesData = [cochesData];
+                        }
+
+                        const cochesList = cochesData.filter(Boolean);
 
                         if(cochesList.length > 0){
                             var coches = '<table style=\"width:100%;text-align: center\">';
