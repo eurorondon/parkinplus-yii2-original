@@ -1086,31 +1086,34 @@ $this->registerJs("
                 .done(function( data ) {
                      var content = JSON.parse(data);
                     if(content.success){
-                        
+
                         $('#clientes-nombre_completo').val(content.cliente.nombre_completo);
                         $('#clientes-correo').val(content.cliente.correo);
-                        
-                        if(content.coche.length > 0){
+
+                        const cochesList = content.coches || content.coche || [];
+
+                        if(cochesList.length > 0){
                             var coches = '<table style=\"width:100%;text-align: center\">';
                             coches += '<tr><th>Marca</th> <th>Matricula</th><th>Seleccionar</th></tr>';
-                            content.coche.forEach((c) => {
+                            cochesList.forEach((c) => {
                                 coches +='<input type=\"hidden\" value=\"'+c.marca+'\" id=\"marca'+c.id +'\" />';
                                 coches +='<input type=\"hidden\" value=\"'+c.matricula+'\" id=\"matricula'+c.id +'\" />';
                                 coches += '<tr><td>' +c.marca +'</td> <td>'+ c.matricula+ '</td><td><span class=\"cocheSelect glyphicon glyphicon-check\" style=\"color:#f0ad4e;cursor:pointer\"  id='+c.id+' onclick=\"selectCarro('+c.id+')\"></span></td></tr>';
                             });
                             coches += '</table>';
-                            
+
                             $('.clientes-coches').html(coches);
-                        }else {
-                            $('#coches-marca').val(content.coche[0].marca);
-                            $('#coches-matricula').val(content.coche[0].matricula);
+                        } else {
+                            $('.clientes-coches').html('');
+                            $('#coches-marca').val('');
+                            $('#coches-matricula').val('');
                         }
-                        
+
                     } else {
                         $('.clientes-coches').html('');
                         $('#clientes-nombre_completo').val('');
                         $('#clientes-correo').val('');
-                        
+
                         $('#coches-marca').val('');
                         $('#coches-matricula').val('');
                     }
