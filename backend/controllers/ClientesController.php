@@ -39,8 +39,28 @@ class ClientesController extends Controller
 
     public function actionCliente($movil)
     {
-        $cliente = Clientes::find()->where(['movil' => $movil])->one();
-        echo $cliente ? Json::encode(['success' => true, 'cliente' => $cliente, 'coche' => $cliente->coches]) : Json::encode(['fail' => true, 'message' => 'No existe el email.']);
+        $cliente = Clientes::find()->where(['movil' => $movil])->with('coches')->one();
+
+        if (!$cliente) {
+            echo Json::encode(['success' => false, 'message' => 'No existe el cliente.']);
+            return;
+        }
+
+        $coches = array_map(static function ($coche) {
+            return [
+                'id' => $coche->id,
+                'marca' => $coche->marca,
+                'matricula' => $coche->matricula,
+            ];
+        }, $cliente->coches);
+
+        echo Json::encode([
+            'success' => true,
+            'cliente' => $cliente,
+            // "coches" is the preferred key; "coche" is kept for backwards compatibility with existing views.
+            'coches' => $coches,
+            'coche' => $coches,
+        ]);
     }
 
     /**
