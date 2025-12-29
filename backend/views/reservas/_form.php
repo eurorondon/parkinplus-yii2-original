@@ -301,7 +301,7 @@ $tipo_documento = [
 
                                 <div class="col-lg-6">
                                     <?= $form->field($clientes, 'movil', [
-                                        'template' => "{label}\n<div class=\"input-group phone-lookup-group\">{input}<span class=\"input-group-btn\"><button id=\"buscar-cliente\" class=\"btn btn-default\" type=\"button\" title=\"Actualizar datos\"><span class=\"glyphicon glyphicon-refresh\"></span></button></span><span class=\"input-group-addon phone-lookup-loading\" style=\"display:none;\"><span class=\"glyphicon glyphicon-refresh glyphicon-spin\"></span></span></div>\n{hint}\n{error}",
+                                        'template' => "{label}\n<div class=\"input-group phone-lookup-group\">{input}<span class=\"input-group-btn\"><button id=\"buscar-cliente\" class=\"btn btn-default\" type=\"button\" title=\"Actualizar datos\"><i class=\"fa fa-refresh\" aria-hidden=\"true\"></i></button></span><span class=\"input-group-addon phone-lookup-loading\" style=\"display:none;\"><i class=\"fa fa-refresh fa-spin\" aria-hidden=\"true\"></i></span></div>\n{hint}\n{error}",
                                     ])->textInput() ?>
                                 </div>
 
@@ -330,7 +330,7 @@ $tipo_documento = [
 
                                 <div class="col-lg-6">
                                     <?= $form->field($clientes, 'movil', [
-                                        'template' => "{label}\n<div class=\"input-group phone-lookup-group\">{input}<span class=\"input-group-btn\"><button id=\"buscar-cliente\" class=\"btn btn-default\" type=\"button\" title=\"Actualizar datos\"><span class=\"glyphicon glyphicon-refresh\"></span></button></span><span class=\"input-group-addon phone-lookup-loading\" style=\"display:none;\"><span class=\"glyphicon glyphicon-refresh glyphicon-spin\"></span></span></div>\n{hint}\n{error}",
+                                        'template' => "{label}\n<div class=\"input-group phone-lookup-group\">{input}<span class=\"input-group-btn\"><button id=\"buscar-cliente\" class=\"btn btn-default\" type=\"button\" title=\"Actualizar datos\"><i class=\"fa fa-refresh\" aria-hidden=\"true\"></i></button></span><span class=\"input-group-addon phone-lookup-loading\" style=\"display:none;\"><i class=\"fa fa-refresh fa-spin\" aria-hidden=\"true\"></i></span></div>\n{hint}\n{error}",
                                     ])->textInput(['value' => $clientes->movil]) ?>
                                 </div>
 
