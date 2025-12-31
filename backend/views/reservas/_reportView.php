@@ -57,7 +57,8 @@ if ($model->nro_vuelo_regreso == NULL) {
 ?>
 
 <?= Html::img('@web/images/logo_factura.png', ['class' => 'img-logo']); ?>
-<div class="direccion1">Parkingplus.es<br>Marichal 4 Parking S.L<br>C/ Miguel de Cervantes 10, CP 28860.</div>
+<div class="direccion1">Parkingplus.es<br>Marichal 4 Parking S.L<br>C/Calle playa de riazor 14. CP 28042.</div>
+<!-- <div class="direccion1">Parkingplus.es<br>Marichal 4 Parking S.L<br>C/ Miguel de Cervantes 10, CP 28860.</div> -->
 <div class="b">
 	<div class="direccion">
 		<div class="nreserva">N° de Reserva</div>
@@ -270,7 +271,7 @@ if ($model->nro_vuelo_regreso == NULL) {
 
 <div class="texto-inf1" style="text-align: justify; margin-top: 15px;">
 	<p align="center" style="margin-top: 0px; text-indent: 20px"><b>Reservas :</b> +34 603282660 - <b>Asistencia en Aeropuerto :</b> +34 603284800 - <b>Email :</b> contacto@parkingplus.es</p>
-	Sus datos personales serán usados para nuestra relación y poder prestarle nuestros servicios. Dichos datos son necesarios para poder relacionarnos con usted, lo que nos permite el uso de su información dentro de la legalidad. Asimismo, podrán tener conocimiento de su información aquellas entidades que necesiten tener acceso a la misma para que podamos prestarle nuestros servicios. Conservaremos sus datos durante nuestra relación y mientras nos obliguen las leyes aplicables. En cualquier momento puede dirigirse a nosotros para saber qué información tenemos sobre usted, rectificarla si fuese incorrecta y eliminarla una vez finalizada nuestra relación. También tiene derecho a solicitar el traspaso de su información a otra entidad (portabilidad). Para solicitar alguno de estos derechos, deberá realizar una solicitud escrita a nuestra dirección, junto con una fotocopia de su DNI: Marichal 4 Parking S.L. Con dirección en C/ Miguel de Cervantes 10, CP 28860. En caso de que entienda que sus derechos han sido desatendidos, puede formular una reclamación en la Agencia Española de Protección de Datos (www.agpd.es).
+	Sus datos personales serán usados para nuestra relación y poder prestarle nuestros servicios. Dichos datos son necesarios para poder relacionarnos con usted, lo que nos permite el uso de su información dentro de la legalidad. Asimismo, podrán tener conocimiento de su información aquellas entidades que necesiten tener acceso a la misma para que podamos prestarle nuestros servicios. Conservaremos sus datos durante nuestra relación y mientras nos obliguen las leyes aplicables. En cualquier momento puede dirigirse a nosotros para saber qué información tenemos sobre usted, rectificarla si fuese incorrecta y eliminarla una vez finalizada nuestra relación. También tiene derecho a solicitar el traspaso de su información a otra entidad (portabilidad). Para solicitar alguno de estos derechos, deberá realizar una solicitud escrita a nuestra dirección, junto con una fotocopia de su DNI: Marichal 4 Parking S.L. Con dirección en C/Calle playa de riazor 14. CP 28042. En caso de que entienda que sus derechos han sido desatendidos, puede formular una reclamación en la Agencia Española de Protección de Datos (www.agpd.es).
 </div>
 
 <?php if ($model->medio_reserva == 2) { ?>

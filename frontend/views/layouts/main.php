@@ -250,7 +250,8 @@ AppAsset::register($this);
 
                     <div class="col-lg-3 col-md-3 footer-links">
                         <h4><strong>Dirección:</strong></h4>
-                        <h5 class="h5">Calle Miguel de Cervantes 10. CP 28860 </h5>
+                        <h5 class="h5">Calle playa de riazor 14. CP 28042 </h5>
+                        <!-- <h5 class="h5">Calle Miguel de Cervantes 10. CP 28860 </h5> -->
                         <h4><strong>Contacto:</strong></h4> <br />
                         <h5 class="h5">+34 603 28 26 60 / +34 912 12 86 59</h5>
                         <h4><strong>Correo</strong></h4>

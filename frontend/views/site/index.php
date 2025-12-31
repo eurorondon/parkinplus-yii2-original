@@ -896,7 +896,7 @@ $this->title = Yii::$app->name . ' - Aparcamientos Larga Estancia en Barajas';
 
 						<div class="mapouter">
 							<div class="gmap_canvas"><iframe width="550" height="790" id="gmap_canvas"
-									src="https://maps.google.com/maps?q=Calle+Miguel+de+Cervantes+10.+CP+28860&t=&z=17&ie=UTF8&iwloc=&output=embed"
+									src="https://maps.google.com/maps?q=Calle+Playa+de+Riazor+14,+CP+28042&t=&z=17&ie=UTF8&iwloc=&output=embed"
 									frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
 								<style>
 									.mapouter {
