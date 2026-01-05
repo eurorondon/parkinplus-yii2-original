@@ -62,7 +62,9 @@ class EncuestasController extends Controller
 
         $query->limit($effectiveLimit);
 
-        $frontendBaseUrl = rtrim((string) (Yii::$app->params['frontendBaseUrl'] ?? ''), '/');
+        $frontendBaseUrl = $this->enforceHttpsBaseUrl(
+            rtrim((string) (Yii::$app->params['frontendBaseUrl'] ?? ''), '/')
+        );
         if ($frontendBaseUrl === '') {
             $this->logWarn("El parámetro 'frontendBaseUrl' no está configurado.");
             return ExitCode::UNSPECIFIED_ERROR;
@@ -198,6 +200,19 @@ class EncuestasController extends Controller
         }
 
         return $configured;
+    }
+
+    private function enforceHttpsBaseUrl(string $baseUrl): string
+    {
+        if ($baseUrl === '') {
+            return '';
+        }
+
+        if (preg_match('#^https?://#i', $baseUrl)) {
+            return preg_replace('#^https?://#i', 'https://', $baseUrl);
+        }
+
+        return 'https://' . ltrim($baseUrl, '/');
     }
 
     private function esErrorDeDestinatarioInvalido(\Throwable $exception): bool
