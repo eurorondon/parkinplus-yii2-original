@@ -8,6 +8,12 @@ return [
     'senderEmail' => 'noreply@parkingplus.es',
     'senderName' => 'Parking Plus',
     'frontendBaseUrl' => getenv('FRONTEND_BASE_URL') ?: 'https://parkingplus.es/aparcamiento',
+    'redsys' => [
+        'fuc' => '350165395',
+        'terminal' => '001',
+        'currency' => '978',
+        'url' => getenv('REDSYS_TPV_URL') ?: 'https://sis.redsys.es/sis/realizarPago',
+    ],
     'user.passwordResetTokenExpire' => 3600,
     'cronEmailLimitPerHour' => 100,
 ];

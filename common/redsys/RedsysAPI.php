@@ -52,9 +52,24 @@ class RedsysAPI{
 		$bytes = array(0,0,0,0,0,0,0,0); //byte [] IV = {0, 0, 0, 0, 0, 0, 0, 0}
 		$iv = implode(array_map("chr", $bytes)); //PHP 4 >= 4.0.2
 
-		// Se cifra
-		$ciphertext = mcrypt_encrypt(MCRYPT_3DES, $key, $message, MCRYPT_MODE_CBC, $iv); //PHP 4 >= 4.0.2
-		return $ciphertext;
+		if (function_exists('mcrypt_encrypt')) {
+			// Se cifra
+			$ciphertext = mcrypt_encrypt(MCRYPT_3DES, $key, $message, MCRYPT_MODE_CBC, $iv); //PHP 4 >= 4.0.2
+			return $ciphertext;
+		}
+
+		if (!function_exists('openssl_encrypt')) {
+			throw new \RuntimeException('No encryption extension available for Redsys 3DES.');
+		}
+
+		$blockSize = 8;
+		$len = strlen($message);
+		$pad = $blockSize - ($len % $blockSize);
+		if ($pad > 0 && $pad < $blockSize) {
+			$message .= str_repeat("\0", $pad);
+		}
+
+		return openssl_encrypt($message, 'des-ede3-cbc', $key, OPENSSL_RAW_DATA | OPENSSL_ZERO_PADDING, $iv);
 	}
 
 	/******  Base64 Functions  ******/

@@ -54,6 +54,16 @@ use yii\base\ErrorException;
  */
 class SiteController extends Controller
 {
+    private function isBizumPayment(Reservas $reserva): bool
+    {
+        $tipoPago = $reserva->tipoPago ?: TipoPago::findOne($reserva->id_tipo_pago);
+        if ($tipoPago === null) {
+            return false;
+        }
+
+        return stripos((string)$tipoPago->descripcion, 'bizum') !== false;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -1258,7 +1268,8 @@ class SiteController extends Controller
                         ->send();
                 }
 
-                if ($model->id_tipo_pago == 5) {
+                $isBizum = $this->isBizumPayment($model);
+                if ((int)$model->id_tipo_pago === 5 || $isBizum) {
                     $this->layout = 'secondary';
 
                     \Yii::$app->session->open();
@@ -1267,8 +1278,10 @@ class SiteController extends Controller
 
                     $miObj = new RedsysAPI();
 
+                    $redsysConfig = Yii::$app->params['redsys'] ?? [];
+
                     // URL REAL
-                    $url_tpv = 'https://sis.redsys.es/sis/realizarPago';
+                    $url_tpv = $redsysConfig['url'] ?? 'https://sis.redsys.es/sis/realizarPago';
 
                     $version = "HMAC_SHA256_V1";
 
@@ -1276,12 +1289,12 @@ class SiteController extends Controller
                     $clave = '5DaR9u4Tqw9gJpF36v44FZ+r+Q++qkl8';
 
                     $name = 'PARKING PLUS';
-                    $code = '350165395';
-                    $terminal = '1';
+                    $code = (string)($redsysConfig['fuc'] ?? '350165395');
+                    $terminal = (string)($redsysConfig['terminal'] ?? '001');
                     $order = $model->nro_reserva;
                     $amount = $model->monto_total * 100;
 
-                    $currency = '978';
+                    $currency = (string)($redsysConfig['currency'] ?? '978');
                     $consumerlng = '001';
                     $transactionType = '0';
                     $urlMerchant = 'https://www.parkingplus.es/';
@@ -1300,14 +1313,17 @@ class SiteController extends Controller
                     $miObj->setParameter("DS_MERCHANT_MERCHANTNAME", $name);
                     $miObj->setParameter("DS_MERCHANT_CONSUMERLANGUAGE", $consumerlng);
 
+                    if ($isBizum) {
+                        $miObj->setParameter("DS_MERCHANT_PAYMETHODS", "z");
+                    }
+
                     $params = $miObj->createMerchantParameters();
                     $signature = $miObj->createMerchantSignature($clave);
-
                     return $this->render('procesar-pago', [
                         'url_tpv'   => $url_tpv,
                         'version'   => $version,
                         'params'    => $params,
-                        'signature' => $signature
+                        'signature' => $signature,
                     ]);
                 } else {
                     $content = $this->renderPartial('_reportView', ['model' => $this->findModel($model->id)]);
@@ -1713,7 +1729,8 @@ class SiteController extends Controller
                 $model->save();
 
                 // === Pago TPV o PDF + Emails ===
-                if ((int)$model->id_tipo_pago === 5) {
+                $isBizum = $this->isBizumPayment($model);
+                if ((int)$model->id_tipo_pago === 5 || $isBizum) {
                     $this->layout = 'secondary';
 
                     \Yii::$app->session->open();
@@ -1722,17 +1739,19 @@ class SiteController extends Controller
 
                     $miObj = new RedsysAPI();
 
-                    $url_tpv = 'https://sis.redsys.es/sis/realizarPago';
+                    $redsysConfig = Yii::$app->params['redsys'] ?? [];
+
+                    $url_tpv = $redsysConfig['url'] ?? 'https://sis.redsys.es/sis/realizarPago';
                     $version = "HMAC_SHA256_V1";
                     $clave   = '5DaR9u4Tqw9gJpF36v44FZ+r+Q++qkl8';
 
                     $name     = 'PARKING PLUS';
-                    $code     = '350165395';
-                    $terminal = '1';
+                    $code     = (string)($redsysConfig['fuc'] ?? '350165395');
+                    $terminal = (string)($redsysConfig['terminal'] ?? '001');
                     $order    = $model->nro_reserva;
                     $amount   = $model->monto_total * 100;
 
-                    $currency      = '978';
+                    $currency      = (string)($redsysConfig['currency'] ?? '978');
                     $consumerlng   = '001';
                     $transactionType = '0';
                     $urlMerchant   = 'https://www.parkingplus.es/';
@@ -1751,14 +1770,17 @@ class SiteController extends Controller
                     $miObj->setParameter("DS_MERCHANT_MERCHANTNAME", $name);
                     $miObj->setParameter("DS_MERCHANT_CONSUMERLANGUAGE", $consumerlng);
 
+                    if ($isBizum) {
+                        $miObj->setParameter("DS_MERCHANT_PAYMETHODS", "z");
+                    }
+
                     $params    = $miObj->createMerchantParameters();
                     $signature = $miObj->createMerchantSignature($clave);
-
                     return $this->render('procesar-pago', [
                         'url_tpv'   => $url_tpv,
                         'version'   => $version,
                         'params'    => $params,
-                        'signature' => $signature
+                        'signature' => $signature,
                     ]);
                 } else {
                     $content = $this->renderPartial('_reportView', ['model' => $this->findModel($model->id)]);
@@ -2305,7 +2327,8 @@ class SiteController extends Controller
 
                 $model->save();
 
-                if ($model->id_tipo_pago == 5) {
+                $isBizum = $this->isBizumPayment($model);
+                if ((int)$model->id_tipo_pago === 5 || $isBizum) {
                     $this->layout = 'secondary';
 
                     /*
@@ -2327,8 +2350,10 @@ class SiteController extends Controller
                     // URL PARA PRUEBAS TPV
                     //$url_tpv = 'https://sis-t.redsys.es:25443/sis/realizarPago';
 
+                    $redsysConfig = Yii::$app->params['redsys'] ?? [];
+
                     // URL REAL
-                    $url_tpv = 'https://sis.redsys.es/sis/realizarPago';
+                    $url_tpv = $redsysConfig['url'] ?? 'https://sis.redsys.es/sis/realizarPago';
 
                     $version = "HMAC_SHA256_V1";
 
@@ -2338,12 +2363,12 @@ class SiteController extends Controller
                     //$clave = 'sq7HjrUOBfKmC576ILgskD5srU870gJ7';
 
                     $name = 'PARKING PLUS';
-                    $code = '350165395';
-                    $terminal = '1';
+                    $code = (string)($redsysConfig['fuc'] ?? '350165395');
+                    $terminal = (string)($redsysConfig['terminal'] ?? '001');
                     $order = $model->nro_reserva;
                     $amount = $model->monto_total * 100;
 
-                    $currency = '978';
+                    $currency = (string)($redsysConfig['currency'] ?? '978');
                     $consumerlng = '001';
                     $transactionType = '0';
                     $urlMerchant = 'https://www.parkingplus.es/';
@@ -2368,13 +2393,18 @@ class SiteController extends Controller
 
                     $miObj->setParameter("DS_MERCHANT_MERCHANTNAME", $name);
                     $miObj->setParameter("DS_MERCHANT_CONSUMERLANGUAGE", $consumerlng);
+
+                    if ($isBizum) {
+                        $miObj->setParameter("DS_MERCHANT_PAYMETHODS", "z");
+                    }
+
                     $params = $miObj->createMerchantParameters();
                     $signature = $miObj->createMerchantSignature($clave);
                     return $this->render('procesar-pago', [
                         'url_tpv' => $url_tpv,
                         'version' => $version,
                         'params' => $params,
-                        'signature' => $signature
+                        'signature' => $signature,
                     ]);
                 } else {
 
