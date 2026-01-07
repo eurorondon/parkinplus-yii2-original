@@ -1278,15 +1278,11 @@ class SiteController extends Controller
 
                     $miObj = new RedsysAPI();
 
-                    // URL REAL
-                    $url_tpv = 'https://sis.redsys.es/sis/realizarPago';
-
                     $version = "HMAC_SHA256_V1";
 
-                    // Clave Real
-                    $clave = '5DaR9u4Tqw9gJpF36v44FZ+r+Q++qkl8';
-
                     $redsysConfig = Yii::$app->params['redsys'] ?? [];
+                    $url_tpv = (string)($redsysConfig['paymentUrl'] ?? 'https://sis-t.redsys.es:25443/sis/realizarPago');
+                    $merchantKey = (string)($redsysConfig['merchantKey'] ?? 'sq7HjrUOBfKmC576ILgskD5srU870gJ7');
 
                     $name = 'PARKING PLUS';
                     $code = (string)($redsysConfig['fuc'] ?? '350165395');
@@ -1318,7 +1314,7 @@ class SiteController extends Controller
                     }
 
                     $params = $miObj->createMerchantParameters();
-                    $signature = $miObj->createMerchantSignature($clave);
+                    $signature = $miObj->createMerchantSignature($merchantKey);
                     return $this->render('procesar-pago', [
                         'url_tpv'   => $url_tpv,
                         'version'   => $version,
@@ -1739,11 +1735,11 @@ class SiteController extends Controller
 
                     $miObj = new RedsysAPI();
 
-                    $url_tpv = 'https://sis.redsys.es/sis/realizarPago';
                     $version = "HMAC_SHA256_V1";
-                    $clave   = '5DaR9u4Tqw9gJpF36v44FZ+r+Q++qkl8';
 
                     $redsysConfig = Yii::$app->params['redsys'] ?? [];
+                    $url_tpv = (string)($redsysConfig['paymentUrl'] ?? 'https://sis-t.redsys.es:25443/sis/realizarPago');
+                    $merchantKey = (string)($redsysConfig['merchantKey'] ?? 'sq7HjrUOBfKmC576ILgskD5srU870gJ7');
 
                     $name     = 'PARKING PLUS';
                     $code     = (string)($redsysConfig['fuc'] ?? '350165395');
@@ -1775,7 +1771,7 @@ class SiteController extends Controller
                     }
 
                     $params    = $miObj->createMerchantParameters();
-                    $signature = $miObj->createMerchantSignature($clave);
+                    $signature = $miObj->createMerchantSignature($merchantKey);
                     return $this->render('procesar-pago', [
                         'url_tpv'   => $url_tpv,
                         'version'   => $version,
@@ -2347,20 +2343,11 @@ class SiteController extends Controller
 
                     $miObj = new RedsysAPI();
 
-                    // URL PARA PRUEBAS TPV
-                    //$url_tpv = 'https://sis-t.redsys.es:25443/sis/realizarPago';
-
-                    // URL REAL
-                    $url_tpv = 'https://sis.redsys.es/sis/realizarPago';
-
                     $version = "HMAC_SHA256_V1";
 
-                    // Clave Real
-                    $clave = '5DaR9u4Tqw9gJpF36v44FZ+r+Q++qkl8';
-                    // Clave Pruebas
-                    //$clave = 'sq7HjrUOBfKmC576ILgskD5srU870gJ7';
-
                     $redsysConfig = Yii::$app->params['redsys'] ?? [];
+                    $url_tpv = (string)($redsysConfig['paymentUrl'] ?? 'https://sis-t.redsys.es:25443/sis/realizarPago');
+                    $merchantKey = (string)($redsysConfig['merchantKey'] ?? 'sq7HjrUOBfKmC576ILgskD5srU870gJ7');
 
                     $name = 'PARKING PLUS';
                     $code = (string)($redsysConfig['fuc'] ?? '350165395');
@@ -2399,7 +2386,7 @@ class SiteController extends Controller
                     }
 
                     $params = $miObj->createMerchantParameters();
-                    $signature = $miObj->createMerchantSignature($clave);
+                    $signature = $miObj->createMerchantSignature($merchantKey);
                     return $this->render('procesar-pago', [
                         'url_tpv' => $url_tpv,
                         'version' => $version,
