@@ -64,6 +64,28 @@ class SiteController extends Controller
         return stripos((string)$tipoPago->descripcion, 'bizum') !== false;
     }
 
+    private function buildEmv3dsPayload(?Clientes $cliente): array
+    {
+        if ($cliente === null) {
+            return [];
+        }
+
+        $phone = preg_replace('/\D+/', '', (string)$cliente->movil);
+
+        $payload = [
+            'cardholderName' => $cliente->nombre_completo ?: null,
+            'email' => $cliente->correo ?: null,
+        ];
+
+        if ($phone !== '') {
+            $payload['mobilePhone'] = [
+                'subscriber' => $phone,
+            ];
+        }
+
+        return array_filter($payload, static fn($value) => $value !== null && $value !== '');
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -1311,6 +1333,11 @@ class SiteController extends Controller
                     $miObj->setParameter("DS_MERCHANT_MERCHANTNAME", $name);
                     $miObj->setParameter("DS_MERCHANT_CONSUMERLANGUAGE", $consumerlng);
 
+                    $emv3dsPayload = $this->buildEmv3dsPayload($modelC);
+                    if (!empty($emv3dsPayload)) {
+                        $miObj->setParameter("DS_MERCHANT_EMV3DS", $emv3dsPayload);
+                    }
+
                     if ($isBizum) {
                         $miObj->setParameter("DS_MERCHANT_PAYMETHODS", "z");
                     }
@@ -1767,6 +1794,11 @@ class SiteController extends Controller
                     $miObj->setParameter("DS_MERCHANT_URLOK", $urlweb_ok);
                     $miObj->setParameter("DS_MERCHANT_MERCHANTNAME", $name);
                     $miObj->setParameter("DS_MERCHANT_CONSUMERLANGUAGE", $consumerlng);
+
+                    $emv3dsPayload = $this->buildEmv3dsPayload($modelC);
+                    if (!empty($emv3dsPayload)) {
+                        $miObj->setParameter("DS_MERCHANT_EMV3DS", $emv3dsPayload);
+                    }
 
                     if ($isBizum) {
                         $miObj->setParameter("DS_MERCHANT_PAYMETHODS", "z");
@@ -2386,6 +2418,11 @@ class SiteController extends Controller
 
                     $miObj->setParameter("DS_MERCHANT_MERCHANTNAME", $name);
                     $miObj->setParameter("DS_MERCHANT_CONSUMERLANGUAGE", $consumerlng);
+
+                    $emv3dsPayload = $this->buildEmv3dsPayload($modelC);
+                    if (!empty($emv3dsPayload)) {
+                        $miObj->setParameter("DS_MERCHANT_EMV3DS", $emv3dsPayload);
+                    }
 
                     if ($isBizum) {
                         $miObj->setParameter("DS_MERCHANT_PAYMETHODS", "z");
