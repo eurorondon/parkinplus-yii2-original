@@ -64,6 +64,28 @@ class SiteController extends Controller
         return stripos((string)$tipoPago->descripcion, 'bizum') !== false;
     }
 
+    private function buildEmv3dsPayload(?Clientes $cliente): array
+    {
+        if ($cliente === null) {
+            return [];
+        }
+
+        $phone = preg_replace('/\D+/', '', (string)$cliente->movil);
+
+        $payload = [
+            'cardholderName' => $cliente->nombre_completo ?: null,
+            'email' => $cliente->correo ?: null,
+        ];
+
+        if ($phone !== '') {
+            $payload['mobilePhone'] = [
+                'subscriber' => $phone,
+            ];
+        }
+
+        return array_filter($payload, static fn($value) => $value !== null && $value !== '');
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -1223,7 +1245,14 @@ class SiteController extends Controller
             $model->save();
 
             if ($model->save()) {
-                if (($u == null) && ($busca_user == null)) {
+                $usuarioId = null;
+                if ($busca_user !== null) {
+                    $usuarioId = $busca_user->id;
+                } elseif ($u !== null && $u->id_usuario) {
+                    $usuarioId = $u->id_usuario;
+                }
+
+                if ($usuarioId === null) {
                     $modelU = new User();
                     $user_name = $modelC->correo;
                     $modelU->username = $user_name;
@@ -1233,20 +1262,15 @@ class SiteController extends Controller
                     $modelU->generateEmailVerificationToken();
                     $modelU->status = 10;
                     $modelU->save();
-
-                    $modelUC = new UserCliente();
-                    $modelUC->id_usuario = $modelU->id;
-                    $modelUC->id_cliente = $modelV->id_cliente;
-                    $modelUC->save();
-
-                    $model->created_by = $modelU->id;
-                } else {
-                    $modelUC = new UserCliente();
-                    $modelUC->id_usuario = $busca_user->id;
-                    $modelUC->id_cliente = $modelV->id_cliente;
-                    $modelUC->save();
-                    $model->created_by = $modelC->id;
+                    $usuarioId = $modelU->id;
                 }
+
+                $modelUC = new UserCliente();
+                $modelUC->id_usuario = $usuarioId;
+                $modelUC->id_cliente = $modelV->id_cliente;
+                $modelUC->save();
+
+                $model->created_by = $usuarioId;
 
                 $fecha_creacion = date('Y-m-d H:i:s');
                 $model->created_at = $fecha_creacion;
@@ -1310,6 +1334,11 @@ class SiteController extends Controller
                     $miObj->setParameter("DS_MERCHANT_URLOK", $urlweb_ok);
                     $miObj->setParameter("DS_MERCHANT_MERCHANTNAME", $name);
                     $miObj->setParameter("DS_MERCHANT_CONSUMERLANGUAGE", $consumerlng);
+
+                    $emv3dsPayload = $this->buildEmv3dsPayload($modelC);
+                    if (!empty($emv3dsPayload)) {
+                        $miObj->setParameter("DS_MERCHANT_EMV3DS", $emv3dsPayload);
+                    }
 
                     if ($isBizum) {
                         $miObj->setParameter("DS_MERCHANT_PAYMETHODS", "z");
@@ -1695,7 +1724,14 @@ class SiteController extends Controller
 
             if ($model->save()) {
                 // Usuario/cliente
-                if ($u === null && $busca_user === null) {
+                $usuarioId = null;
+                if ($busca_user !== null) {
+                    $usuarioId = $busca_user->id;
+                } elseif ($u !== null && $u->id_usuario) {
+                    $usuarioId = $u->id_usuario;
+                }
+
+                if ($usuarioId === null) {
                     $modelU = new User();
                     $user_name       = $modelC->correo;
                     $modelU->username = $user_name;
@@ -1705,20 +1741,15 @@ class SiteController extends Controller
                     $modelU->generateEmailVerificationToken();
                     $modelU->status = 10;
                     $modelU->save();
-
-                    $modelUC = new UserCliente();
-                    $modelUC->id_usuario = $modelU->id;
-                    $modelUC->id_cliente = $modelV->id_cliente;
-                    $modelUC->save();
-
-                    $model->created_by = $modelU->id;
-                } else {
-                    $modelUC = new UserCliente();
-                    $modelUC->id_usuario = $busca_user->id;
-                    $modelUC->id_cliente = $modelV->id_cliente;
-                    $modelUC->save();
-                    $model->created_by = $modelC->id;
+                    $usuarioId = $modelU->id;
                 }
+
+                $modelUC = new UserCliente();
+                $modelUC->id_usuario = $usuarioId;
+                $modelUC->id_cliente = $modelV->id_cliente;
+                $modelUC->save();
+
+                $model->created_by = $usuarioId;
 
                 $model->created_at    = $ahora;
                 $model->updated_at    = $ahora;
@@ -1767,6 +1798,11 @@ class SiteController extends Controller
                     $miObj->setParameter("DS_MERCHANT_URLOK", $urlweb_ok);
                     $miObj->setParameter("DS_MERCHANT_MERCHANTNAME", $name);
                     $miObj->setParameter("DS_MERCHANT_CONSUMERLANGUAGE", $consumerlng);
+
+                    $emv3dsPayload = $this->buildEmv3dsPayload($modelC);
+                    if (!empty($emv3dsPayload)) {
+                        $miObj->setParameter("DS_MERCHANT_EMV3DS", $emv3dsPayload);
+                    }
 
                     if ($isBizum) {
                         $miObj->setParameter("DS_MERCHANT_PAYMETHODS", "z");
@@ -2297,7 +2333,14 @@ class SiteController extends Controller
                         $log->save(false);
                     }
                 }
-                if (($u == null) && ($busca_user == null)) {
+                $usuarioId = null;
+                if ($busca_user !== null) {
+                    $usuarioId = $busca_user->id;
+                } elseif ($u !== null && $u->id_usuario) {
+                    $usuarioId = $u->id_usuario;
+                }
+
+                if ($usuarioId === null) {
                     $modelU = new User();
                     $user_name = $modelC->correo;
                     $modelU->username = $user_name;
@@ -2307,21 +2350,14 @@ class SiteController extends Controller
                     $modelU->generateEmailVerificationToken();
                     $modelU->status = 10;
                     $modelU->save();
-
-                    $modelUC = new UserCliente();
-                    $modelUC->id_usuario = $modelU->id;
-                    $modelUC->id_cliente = $modelV->id_cliente;
-                    $modelUC->save();
-
-                    $model->created_by = $modelU->id;
-                } else {
-
-                    $modelUC = new UserCliente();
-                    $modelUC->id_usuario = $busca_user->id;
-                    $modelUC->id_cliente = $modelV->id_cliente;
-                    $modelUC->save();
-                    $model->created_by = $modelC->id;
+                    $usuarioId = $modelU->id;
                 }
+
+                $modelUC = new UserCliente();
+                $modelUC->id_usuario = $usuarioId;
+                $modelUC->id_cliente = $modelV->id_cliente;
+                $modelUC->save();
+                $model->created_by = $usuarioId;
 
                 $model->save();
 
@@ -2386,6 +2422,11 @@ class SiteController extends Controller
 
                     $miObj->setParameter("DS_MERCHANT_MERCHANTNAME", $name);
                     $miObj->setParameter("DS_MERCHANT_CONSUMERLANGUAGE", $consumerlng);
+
+                    $emv3dsPayload = $this->buildEmv3dsPayload($modelC);
+                    if (!empty($emv3dsPayload)) {
+                        $miObj->setParameter("DS_MERCHANT_EMV3DS", $emv3dsPayload);
+                    }
 
                     if ($isBizum) {
                         $miObj->setParameter("DS_MERCHANT_PAYMETHODS", "z");
