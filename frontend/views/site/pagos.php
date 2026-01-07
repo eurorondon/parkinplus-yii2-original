@@ -12,6 +12,8 @@ use common\models\Reservas;
 $this->title = Yii::$app->name.' | Mis Pagos';
 
 $modelR = Reservas:: find()->where(['nro_reserva' => $reserva])->one();
+$redsysConfig = Yii::$app->params['redsys'] ?? [];
+$paymentUrl = (string)($redsysConfig['paymentUrl'] ?? 'https://sis-t.redsys.es:25443/sis/realizarPago');
 
 $fechai = date('d-m-Y', strtotime($modelR->fecha_entrada));
 $fechaf = date('d-m-Y', strtotime($modelR->fecha_salida));
@@ -57,7 +59,7 @@ $fechaf = date('d-m-Y', strtotime($modelR->fecha_salida));
 											'autocomplete' => 'off',
 											'method' => 'post'
 										],
-										'action' => 'https://sis.redsys.es/sis/realizarPago'
+										'action' => $paymentUrl
 									]); 
 									?>											
 									<input type="hidden" class="form-control" name="Ds_SignatureVersion" value="HMAC_SHA256_V1"/><br>
