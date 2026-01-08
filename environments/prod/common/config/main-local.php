@@ -13,4 +13,7 @@ return [
             'viewPath' => '@common/mail',
         ],
     ],
+    'params' => [
+        'frontendBaseUrl' => getenv('FRONTEND_BASE_URL') ?: 'https://parkingplus.es/aparcamiento',
+    ],
 ];

@@ -17,4 +17,7 @@ return [
             'useFileTransport' => true,
         ],
     ],
+    'params' => [
+        'frontendBaseUrl' => getenv('FRONTEND_BASE_URL') ?: 'http://localhost:20080/aparcamiento',
+    ],
 ];

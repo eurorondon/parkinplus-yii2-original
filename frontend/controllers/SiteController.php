@@ -64,6 +64,17 @@ class SiteController extends Controller
         return stripos((string)$tipoPago->descripcion, 'bizum') !== false;
     }
 
+    private function getRedsysReturnUrls(): array
+    {
+        $frontendBaseUrl = (string)(Yii::$app->params['frontendBaseUrl'] ?? 'https://parkingplus.es/aparcamiento');
+        $frontendBaseUrl = rtrim($frontendBaseUrl, '/');
+
+        return [
+            'ok' => $frontendBaseUrl . '/site/tpvok',
+            'ko' => $frontendBaseUrl . '/site/tpvko',
+        ];
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -1294,8 +1305,9 @@ class SiteController extends Controller
                     $consumerlng = '001';
                     $transactionType = '0';
                     $urlMerchant = 'https://www.parkingplus.es/';
-                    $urlweb_ok = 'https://parkingplus.es/aparcamiento/site/tpvok';
-                    $urlweb_ko = 'https://parkingplus.es/aparcamiento/site/tpvko';
+                    $redsysReturnUrls = $this->getRedsysReturnUrls();
+                    $urlweb_ok = $redsysReturnUrls['ok'];
+                    $urlweb_ko = $redsysReturnUrls['ko'];
 
                     $miObj->setParameter("DS_MERCHANT_AMOUNT", (string)$amount);
                     $miObj->setParameter("DS_MERCHANT_CURRENCY", $currency);
@@ -1751,8 +1763,9 @@ class SiteController extends Controller
                     $consumerlng   = '001';
                     $transactionType = '0';
                     $urlMerchant   = 'https://www.parkingplus.es/';
-                    $urlweb_ok     = 'https://parkingplus.es/aparcamiento/site/tpvok';
-                    $urlweb_ko     = 'https://parkingplus.es/aparcamiento/site/tpvko';
+                    $redsysReturnUrls = $this->getRedsysReturnUrls();
+                    $urlweb_ok = $redsysReturnUrls['ok'];
+                    $urlweb_ko = $redsysReturnUrls['ko'];
 
                     $miObj->setParameter("DS_MERCHANT_AMOUNT", (string)$amount);
                     $miObj->setParameter("DS_MERCHANT_CURRENCY", $currency);
@@ -2359,8 +2372,9 @@ class SiteController extends Controller
                     $consumerlng = '001';
                     $transactionType = '0';
                     $urlMerchant = 'https://www.parkingplus.es/';
-                    $urlweb_ok = 'https://parkingplus.es/aparcamiento/site/tpvok';
-                    $urlweb_ko = 'https://parkingplus.es/aparcamiento/site/tpvko';
+                    $redsysReturnUrls = $this->getRedsysReturnUrls();
+                    $urlweb_ok = $redsysReturnUrls['ok'];
+                    $urlweb_ko = $redsysReturnUrls['ko'];
 
                     // URLS PARA PRUEBAS EN LOCALHOST
 
