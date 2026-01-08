@@ -63,6 +63,9 @@ return [
             'rules' => [
                 // ✅ regla para la home (necesaria con strictParsing)
                 '' => 'site/index',
+                'aparcamiento' => 'site/index',
+                'aparcamiento/<controller:\\w+>/<action:[\\w-]+>' => '<controller>/<action>',
+                'aparcamiento/<controller:\\w+>/<action:[\\w-]+>/<id:\\d+>' => '<controller>/<action>',
 
                 // ✅ mapea correctamente con "/"
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
