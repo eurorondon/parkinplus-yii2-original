@@ -2673,9 +2673,13 @@ class SiteController extends Controller
 
         //var_dump($signatureRecibida.' -- '.$signatureCalculada.' -- '.$codigoRespuesta); die();
 
-        if ($signatureCalculada === $signatureRecibida) {
+        $model = Yii::$app->session['reserva'];
+        if ($model === null) {
+            Yii::$app->session->setFlash('error', 'No se encontró la reserva en la sesión para completar el pago.');
+            return $this->redirect(['site/index']);
+        }
 
-            $model = Yii::$app->session['reserva'];
+        if ($signatureCalculada === $signatureRecibida) {
 
             $fecha1 = $model->fecha_entrada;
             $model->fecha_entrada = date("Y-m-d", strtotime($fecha1));
