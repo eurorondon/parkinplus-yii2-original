@@ -13,6 +13,7 @@ return [
         'terminal' => '001',
         'currency' => '978',
         'paymentUrl' => 'https://sis-t.redsys.es:25443/sis/realizarPago',
+        'testMaxAmount' => 5.00,
     ],
     'user.passwordResetTokenExpire' => 3600,
     'cronEmailLimitPerHour' => 100,

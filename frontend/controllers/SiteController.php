@@ -54,6 +54,24 @@ use yii\base\ErrorException;
  */
 class SiteController extends Controller
 {
+    private function isRedsysTestEnvironment(array $redsysConfig): bool
+    {
+        $paymentUrl = (string)($redsysConfig['paymentUrl'] ?? '');
+        return YII_ENV_TEST || stripos($paymentUrl, 'sis-t.redsys.es') !== false;
+    }
+
+    private function resolveRedsysAmount(Reservas $reserva, array $redsysConfig): int
+    {
+        $amount = (int)round($reserva->monto_total * 100);
+        $testMaxAmount = (float)($redsysConfig['testMaxAmount'] ?? 0);
+        if ($testMaxAmount > 0 && $this->isRedsysTestEnvironment($redsysConfig)) {
+            $maxAmount = (int)round($testMaxAmount * 100);
+            return min($amount, $maxAmount);
+        }
+
+        return $amount;
+    }
+
     private function isBizumPayment(Reservas $reserva): bool
     {
         $tipoPago = $reserva->tipoPago ?: TipoPago::findOne($reserva->id_tipo_pago);
@@ -1290,7 +1308,7 @@ class SiteController extends Controller
                     $code = (string)($redsysConfig['fuc'] ?? '350165395');
                     $terminal = (string)($redsysConfig['terminal'] ?? '001');
                     $order = $model->nro_reserva;
-                    $amount = $model->monto_total * 100;
+                    $amount = $this->resolveRedsysAmount($model, $redsysConfig);
 
                     $currency = (string)($redsysConfig['currency'] ?? '978');
                     $consumerlng = '001';
@@ -1747,7 +1765,7 @@ class SiteController extends Controller
                     $code     = (string)($redsysConfig['fuc'] ?? '350165395');
                     $terminal = (string)($redsysConfig['terminal'] ?? '001');
                     $order    = $model->nro_reserva;
-                    $amount   = $model->monto_total * 100;
+                    $amount   = $this->resolveRedsysAmount($model, $redsysConfig);
 
                     $currency      = (string)($redsysConfig['currency'] ?? '978');
                     $consumerlng   = '001';
@@ -2359,7 +2377,7 @@ class SiteController extends Controller
                     $code = (string)($redsysConfig['fuc'] ?? '350165395');
                     $terminal = (string)($redsysConfig['terminal'] ?? '001');
                     $order = $model->nro_reserva;
-                    $amount = $model->monto_total * 100;
+                    $amount = $this->resolveRedsysAmount($model, $redsysConfig);
 
                     $currency = (string)($redsysConfig['currency'] ?? '978');
                     $consumerlng = '001';
