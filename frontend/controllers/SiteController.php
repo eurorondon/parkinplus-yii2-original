@@ -1294,8 +1294,9 @@ class SiteController extends Controller
                     $consumerlng = '001';
                     $transactionType = '0';
                     $urlMerchant = 'https://www.parkingplus.es/';
-                    $urlweb_ok = 'https://parkingplus.es/aparcamiento/site/tpvok';
-                    $urlweb_ko = 'https://parkingplus.es/aparcamiento/site/tpvko';
+                    $frontendBaseUrl = rtrim((string)($redsysConfig['frontendBaseUrl'] ?? Yii::$app->params['frontendBaseUrl'] ?? (Yii::$app->request->hostInfo . Yii::$app->request->baseUrl)), '/');
+                    $urlweb_ok = $frontendBaseUrl . '/site/tpvok';
+                    $urlweb_ko = $frontendBaseUrl . '/site/tpvko';
 
                     $miObj->setParameter("DS_MERCHANT_AMOUNT", (string)$amount);
                     $miObj->setParameter("DS_MERCHANT_CURRENCY", $currency);
@@ -1751,8 +1752,9 @@ class SiteController extends Controller
                     $consumerlng   = '001';
                     $transactionType = '0';
                     $urlMerchant   = 'https://www.parkingplus.es/';
-                    $urlweb_ok     = 'https://parkingplus.es/aparcamiento/site/tpvok';
-                    $urlweb_ko     = 'https://parkingplus.es/aparcamiento/site/tpvko';
+                    $frontendBaseUrl = rtrim((string)($redsysConfig['frontendBaseUrl'] ?? Yii::$app->params['frontendBaseUrl'] ?? (Yii::$app->request->hostInfo . Yii::$app->request->baseUrl)), '/');
+                    $urlweb_ok     = $frontendBaseUrl . '/site/tpvok';
+                    $urlweb_ko     = $frontendBaseUrl . '/site/tpvko';
 
                     $miObj->setParameter("DS_MERCHANT_AMOUNT", (string)$amount);
                     $miObj->setParameter("DS_MERCHANT_CURRENCY", $currency);
@@ -2359,14 +2361,9 @@ class SiteController extends Controller
                     $consumerlng = '001';
                     $transactionType = '0';
                     $urlMerchant = 'https://www.parkingplus.es/';
-                    $urlweb_ok = 'https://parkingplus.es/aparcamiento/site/tpvok';
-                    $urlweb_ko = 'https://parkingplus.es/aparcamiento/site/tpvko';
-
-                    // URLS PARA PRUEBAS EN LOCALHOST
-
-                    //$urlweb_ok = 'https://localhost/aparcamiento/site/tpvok';
-                    //$urlweb_ko = 'https://localhost/aparcamiento/site/tpvko';
-
+                    $frontendBaseUrl = rtrim((string)($redsysConfig['frontendBaseUrl'] ?? Yii::$app->params['frontendBaseUrl'] ?? (Yii::$app->request->hostInfo . Yii::$app->request->baseUrl)), '/');
+                    $urlweb_ok = $frontendBaseUrl . '/site/tpvok';
+                    $urlweb_ko = $frontendBaseUrl . '/site/tpvko';
 
                     $miObj->setParameter("DS_MERCHANT_AMOUNT", (string) $amount);
                     $miObj->setParameter("DS_MERCHANT_CURRENCY", $currency);
