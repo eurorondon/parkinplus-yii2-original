@@ -2693,7 +2693,7 @@ class SiteController extends Controller
             $model->fecha_salida = date("Y-m-d", strtotime($fecha2));
 
 
-            $content = $this->renderPartial('_reportView', ['model' => $this->findModel($model->id)]);
+            $content = $this->renderPartial('_reportView', ['model' => $model]);
 
             $pdf = new Pdf([
                 'mode' => Pdf::MODE_UTF8,
