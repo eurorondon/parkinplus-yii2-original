@@ -2673,9 +2673,15 @@ class SiteController extends Controller
 
         //var_dump($signatureRecibida.' -- '.$signatureCalculada.' -- '.$codigoRespuesta); die();
 
-        $model = Yii::$app->session['reserva'];
+        $model = Yii::$app->session['reserva'] ?? null;
         if ($model === null) {
-            Yii::$app->session->setFlash('error', 'No se encontró la reserva en la sesión para completar el pago.');
+            $order = $miObj->getOrderNotif();
+            if (!empty($order)) {
+                $model = Reservas::find()->where(['nro_reserva' => $order])->one();
+            }
+        }
+        if ($model === null) {
+            Yii::$app->session->setFlash('error', 'No se encontró la reserva para completar el pago.');
             return $this->redirect(['site/index']);
         }
 
@@ -2821,7 +2827,17 @@ class SiteController extends Controller
 
         if ($signatureCalculada === $signatureRecibida) {
 
-            $model = Yii::$app->session['reserva'];
+            $model = Yii::$app->session['reserva'] ?? null;
+            if ($model === null) {
+                $order = $miObj->getOrderNotif();
+                if (!empty($order)) {
+                    $model = Reservas::find()->where(['nro_reserva' => $order])->one();
+                }
+            }
+            if ($model === null) {
+                Yii::$app->session->setFlash('error', 'No se encontró la reserva para completar el pago.');
+                return $this->redirect(['site/index']);
+            }
 
             $reserva = $model->nro_reserva;
             $idC = $model->id_cliente;
