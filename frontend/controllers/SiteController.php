@@ -2675,6 +2675,12 @@ class SiteController extends Controller
 
         $model = Yii::$app->session->get('reserva');
         if ($model === null) {
+            $order = $miObj->getParameter("Ds_Order");
+            if (!empty($order)) {
+                $model = Reservas::find()->where(['nro_reserva' => $order])->one();
+            }
+        }
+        if ($model === null) {
             Yii::$app->session->setFlash('error', 'No se encontró la reserva asociada al pago.');
             return $this->redirect(['site/index']);
         }
@@ -2760,7 +2766,7 @@ class SiteController extends Controller
             $PayerID = 'NULL';
 
             return $this->render('reserva-procesada', [
-                'reserva' => $this->findModel($model->id),
+                'reserva' => $model,
             ]);
         } else {
 
@@ -2803,9 +2809,9 @@ class SiteController extends Controller
     {
         $miObj = new RedsysAPI();
 
-        $version = $_GET["Ds_SignatureVersion"];
-        $params = $_GET["Ds_MerchantParameters"];
-        $signatureRecibida = $_GET["Ds_Signature"];
+        $version = Yii::$app->request->get("Ds_SignatureVersion");
+        $params = Yii::$app->request->get("Ds_MerchantParameters");
+        $signatureRecibida = Yii::$app->request->get("Ds_Signature");
 
         $decodec = $miObj->decodeMerchantParameters($params);
 
@@ -2823,7 +2829,17 @@ class SiteController extends Controller
 
         if ($signatureCalculada === $signatureRecibida) {
 
-            $model = Yii::$app->session['reserva'];
+            $model = Yii::$app->session->get('reserva');
+            if ($model === null) {
+                $order = $miObj->getParameter("Ds_Order");
+                if (!empty($order)) {
+                    $model = Reservas::find()->where(['nro_reserva' => $order])->one();
+                }
+            }
+            if ($model === null) {
+                Yii::$app->session->setFlash('error', 'No se encontró la reserva asociada al pago.');
+                return $this->redirect(['site/index']);
+            }
 
             $reserva = $model->nro_reserva;
             $idC = $model->id_cliente;
