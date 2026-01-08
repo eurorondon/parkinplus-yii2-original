@@ -2660,11 +2660,8 @@ class SiteController extends Controller
 
         $codigoRespuesta = $miObj->getParameter("Ds_Response");
 
-        // PRUEBAS
-        //$claveModuloAdmin = 'sq7HjrUOBfKmC576ILgskD5srU870gJ7';
-
-        // REAL
-        $claveModuloAdmin = '5DaR9u4Tqw9gJpF36v44FZ+r+Q++qkl8';
+        $redsysConfig = Yii::$app->params['redsys'] ?? [];
+        $claveModuloAdmin = (string)($redsysConfig['merchantKey'] ?? 'sq7HjrUOBfKmC576ILgskD5srU870gJ7');
 
         $signatureCalculada = $miObj->createMerchantSignatureNotif($claveModuloAdmin, $params);
 
@@ -2810,11 +2807,8 @@ class SiteController extends Controller
 
         $codigoRespuesta = $miObj->getParameter("Ds_Response");
 
-        // PRUEBAS
-        //$claveModuloAdmin = 'sq7HjrUOBfKmC576ILgskD5srU870gJ7';
-
-        // REAL
-        $claveModuloAdmin = '5DaR9u4Tqw9gJpF36v44FZ+r+Q++qkl8';
+        $redsysConfig = Yii::$app->params['redsys'] ?? [];
+        $claveModuloAdmin = (string)($redsysConfig['merchantKey'] ?? 'sq7HjrUOBfKmC576ILgskD5srU870gJ7');
 
         $signatureCalculada = $miObj->createMerchantSignatureNotif($claveModuloAdmin, $params);
 
