@@ -2708,6 +2708,7 @@ class SiteController extends Controller
 
             //$mensaje = '';
 
+            $matricula = $model->coche ? $model->coche->matricula : null;
             if ($model->cliente->correo != null) {
                 $correo = Yii::$app->mailer->compose(
                     [
@@ -2715,11 +2716,13 @@ class SiteController extends Controller
                         'text' => 'emailReserva-text'
                     ],
                     [
-                        'nro_reserva' => $reserva,
-                        'fecha_entrada' => $fecha1,
-                        'hora_entrada' => $model->hora_entrada,
-                        'fecha_salida' => $fecha2,
-                        'hora_salida' => $model->hora_salida,
+                        'nro_reserva'     => $reserva,
+                        'coche_matricula' => $matricula,
+                        'fecha_entrada'   => $fecha1,
+                        'hora_entrada'    => $model->hora_entrada,
+                        'fecha_salida'    => $fecha2,
+                        'hora_salida'     => $model->hora_salida,
+                        'token'           => $model->cod_valid,
                     ]
                 );
 
@@ -2735,11 +2738,11 @@ class SiteController extends Controller
                         'text' => 'emailReserva-text'
                     ],
                     [
-                        'nro_reserva' => $reserva,
+                        'nro_reserva'   => $reserva,
                         'fecha_entrada' => $fecha1,
-                        'hora_entrada' => $model->hora_entrada,
-                        'fecha_salida' => $fecha2,
-                        'hora_salida' => $model->hora_salida,
+                        'hora_entrada'  => $model->hora_entrada,
+                        'fecha_salida'  => $fecha2,
+                        'hora_salida'   => $model->hora_salida,
                     ]
                 );
                 $correo2->setTo('asistenciaplus00@gmail.com')
@@ -2754,11 +2757,7 @@ class SiteController extends Controller
             \Yii::$app->session->destroy();
 
 
-            $paymentId = 'NULL';
-            $token = 'NULL';
-            $PayerID = 'NULL';
-
-            return $this->redirect(['procesada', 'id' => $model->id, 'paymentId' => $paymentId, 'token' => $token, 'PayerID' => $PayerID, 'signatureCalculada' => $signatureCalculada, 'signatureRecibida' => $signatureRecibida]);
+            return $this->redirect(['finalizada', 'reserva' => $model->nro_reserva]);
         } elseif ($signatureCalculada === $signatureRecibida) {
 
             $reserva = $model->nro_reserva;
