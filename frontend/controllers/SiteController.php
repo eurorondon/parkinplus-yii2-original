@@ -1294,7 +1294,7 @@ class SiteController extends Controller
                     $consumerlng = '001';
                     $transactionType = '0';
                     $urlMerchant = 'https://www.parkingplus.es/';
-                    $frontendBaseUrl = rtrim((string)($redsysConfig['frontendBaseUrl'] ?? Yii::$app->params['frontendBaseUrl'] ?? (Yii::$app->request->hostInfo . Yii::$app->request->baseUrl)), '/');
+                    $frontendBaseUrl = 'http://localhost:20080/aparcamiento';
                     $urlweb_ok = $frontendBaseUrl . '/site/tpvok';
                     $urlweb_ko = $frontendBaseUrl . '/site/tpvko';
 
@@ -1752,7 +1752,7 @@ class SiteController extends Controller
                     $consumerlng   = '001';
                     $transactionType = '0';
                     $urlMerchant   = 'https://www.parkingplus.es/';
-                    $frontendBaseUrl = rtrim((string)($redsysConfig['frontendBaseUrl'] ?? Yii::$app->params['frontendBaseUrl'] ?? (Yii::$app->request->hostInfo . Yii::$app->request->baseUrl)), '/');
+                    $frontendBaseUrl = 'http://localhost:20080/aparcamiento';
                     $urlweb_ok     = $frontendBaseUrl . '/site/tpvok';
                     $urlweb_ko     = $frontendBaseUrl . '/site/tpvko';
 
@@ -2361,7 +2361,7 @@ class SiteController extends Controller
                     $consumerlng = '001';
                     $transactionType = '0';
                     $urlMerchant = 'https://www.parkingplus.es/';
-                    $frontendBaseUrl = rtrim((string)($redsysConfig['frontendBaseUrl'] ?? Yii::$app->params['frontendBaseUrl'] ?? (Yii::$app->request->hostInfo . Yii::$app->request->baseUrl)), '/');
+                    $frontendBaseUrl = 'http://localhost:20080/aparcamiento';
                     $urlweb_ok = $frontendBaseUrl . '/site/tpvok';
                     $urlweb_ko = $frontendBaseUrl . '/site/tpvko';
 
