@@ -2676,7 +2676,9 @@ class SiteController extends Controller
             return $this->redirect(['site/index']);
         }
 
-        if ($signatureCalculada === $signatureRecibida) {
+        $isApproved = is_numeric($codigoRespuesta) && (int)$codigoRespuesta < 100;
+
+        if ($signatureCalculada === $signatureRecibida && $isApproved) {
 
             $fecha1 = $model->fecha_entrada;
             $model->fecha_entrada = date("Y-m-d", strtotime($fecha1));
@@ -2757,7 +2759,7 @@ class SiteController extends Controller
             $PayerID = 'NULL';
 
             return $this->redirect(['procesada', 'id' => $model->id, 'paymentId' => $paymentId, 'token' => $token, 'PayerID' => $PayerID, 'signatureCalculada' => $signatureCalculada, 'signatureRecibida' => $signatureRecibida]);
-        } else {
+        } elseif ($signatureCalculada === $signatureRecibida) {
 
             $reserva = $model->nro_reserva;
             $idC = $model->id_cliente;
@@ -2790,6 +2792,9 @@ class SiteController extends Controller
 
             $msje = 'SU PAGO NO PUDO SER PROCESADO - <b>TRANSACCIÓN DENEGADA : ' . $codigoRespuesta . '</b>';
             Yii::$app->session->setFlash('error', $msje);
+            return $this->redirect(['site/index']);
+        } else {
+            Yii::$app->session->setFlash('error', 'Firma inválida en la respuesta del TPV.');
             return $this->redirect(['site/index']);
         }
     }
