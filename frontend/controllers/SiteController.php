@@ -2655,9 +2655,9 @@ class SiteController extends Controller
 
         $miObj = new RedsysAPI();
 
-        $version = $_GET["Ds_SignatureVersion"];
-        $params = $_GET["Ds_MerchantParameters"];
-        $signatureRecibida = $_GET["Ds_Signature"];
+        $version = Yii::$app->request->get("Ds_SignatureVersion");
+        $params = Yii::$app->request->get("Ds_MerchantParameters");
+        $signatureRecibida = Yii::$app->request->get("Ds_Signature");
 
         $decodec = $miObj->decodeMerchantParameters($params);
 
@@ -2673,9 +2673,13 @@ class SiteController extends Controller
 
         //var_dump($signatureRecibida.' -- '.$signatureCalculada.' -- '.$codigoRespuesta); die();
 
-        if ($signatureCalculada === $signatureRecibida) {
+        $model = Yii::$app->session->get('reserva');
+        if ($model === null) {
+            Yii::$app->session->setFlash('error', 'No se encontró la reserva asociada al pago.');
+            return $this->redirect(['site/index']);
+        }
 
-            $model = Yii::$app->session['reserva'];
+        if ($signatureCalculada === $signatureRecibida) {
 
             $fecha1 = $model->fecha_entrada;
             $model->fecha_entrada = date("Y-m-d", strtotime($fecha1));
@@ -2755,7 +2759,9 @@ class SiteController extends Controller
             $token = 'NULL';
             $PayerID = 'NULL';
 
-            return $this->redirect(['procesada', 'id' => $model->id, 'paymentId' => $paymentId, 'token' => $token, 'PayerID' => $PayerID, 'signatureCalculada' => $signatureCalculada, 'signatureRecibida' => $signatureRecibida]);
+            return $this->render('reserva-procesada', [
+                'reserva' => $this->findModel($model->id),
+            ]);
         } else {
 
             $reserva = $model->nro_reserva;
