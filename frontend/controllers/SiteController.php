@@ -54,6 +54,16 @@ use yii\base\ErrorException;
  */
 class SiteController extends Controller
 {
+    private function isBizumPayment(Reservas $reserva): bool
+    {
+        $tipoPago = $reserva->tipoPago ?: TipoPago::findOne($reserva->id_tipo_pago);
+        if ($tipoPago === null) {
+            return false;
+        }
+
+        return stripos((string)$tipoPago->descripcion, 'bizum') !== false;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -1258,7 +1268,8 @@ class SiteController extends Controller
                         ->send();
                 }
 
-                if ($model->id_tipo_pago == 5) {
+                $isBizum = $this->isBizumPayment($model);
+                if ((int)$model->id_tipo_pago === 5 || $isBizum) {
                     $this->layout = 'secondary';
 
                     \Yii::$app->session->open();
@@ -1267,26 +1278,25 @@ class SiteController extends Controller
 
                     $miObj = new RedsysAPI();
 
-                    // URL REAL
-                    $url_tpv = 'https://sis.redsys.es/sis/realizarPago';
-
                     $version = "HMAC_SHA256_V1";
 
-                    // Clave Real
-                    $clave = '5DaR9u4Tqw9gJpF36v44FZ+r+Q++qkl8';
+                    $redsysConfig = Yii::$app->params['redsys'] ?? [];
+                    $url_tpv = (string)($redsysConfig['paymentUrl'] ?? 'https://sis-t.redsys.es:25443/sis/realizarPago');
+                    $merchantKey = (string)($redsysConfig['merchantKey'] ?? 'sq7HjrUOBfKmC576ILgskD5srU870gJ7');
 
                     $name = 'PARKING PLUS';
-                    $code = '350165395';
-                    $terminal = '1';
+                    $code = (string)($redsysConfig['fuc'] ?? '350165395');
+                    $terminal = (string)($redsysConfig['terminal'] ?? '001');
                     $order = $model->nro_reserva;
                     $amount = $model->monto_total * 100;
 
-                    $currency = '978';
+                    $currency = (string)($redsysConfig['currency'] ?? '978');
                     $consumerlng = '001';
                     $transactionType = '0';
                     $urlMerchant = 'https://www.parkingplus.es/';
-                    $urlweb_ok = 'https://parkingplus.es/aparcamiento/site/tpvok';
-                    $urlweb_ko = 'https://parkingplus.es/aparcamiento/site/tpvko';
+                    $frontendBaseUrl = 'http://localhost:20080/aparcamiento';
+                    $urlweb_ok = $frontendBaseUrl . '/site/tpvok';
+                    $urlweb_ko = $frontendBaseUrl . '/site/tpvko';
 
                     $miObj->setParameter("DS_MERCHANT_AMOUNT", (string)$amount);
                     $miObj->setParameter("DS_MERCHANT_CURRENCY", $currency);
@@ -1300,14 +1310,17 @@ class SiteController extends Controller
                     $miObj->setParameter("DS_MERCHANT_MERCHANTNAME", $name);
                     $miObj->setParameter("DS_MERCHANT_CONSUMERLANGUAGE", $consumerlng);
 
-                    $params = $miObj->createMerchantParameters();
-                    $signature = $miObj->createMerchantSignature($clave);
+                    if ($isBizum) {
+                        $miObj->setParameter("DS_MERCHANT_PAYMETHODS", "z");
+                    }
 
+                    $params = $miObj->createMerchantParameters();
+                    $signature = $miObj->createMerchantSignature($merchantKey);
                     return $this->render('procesar-pago', [
                         'url_tpv'   => $url_tpv,
                         'version'   => $version,
                         'params'    => $params,
-                        'signature' => $signature
+                        'signature' => $signature,
                     ]);
                 } else {
                     $content = $this->renderPartial('_reportView', ['model' => $this->findModel($model->id)]);
@@ -1713,7 +1726,8 @@ class SiteController extends Controller
                 $model->save();
 
                 // === Pago TPV o PDF + Emails ===
-                if ((int)$model->id_tipo_pago === 5) {
+                $isBizum = $this->isBizumPayment($model);
+                if ((int)$model->id_tipo_pago === 5 || $isBizum) {
                     $this->layout = 'secondary';
 
                     \Yii::$app->session->open();
@@ -1722,22 +1736,25 @@ class SiteController extends Controller
 
                     $miObj = new RedsysAPI();
 
-                    $url_tpv = 'https://sis.redsys.es/sis/realizarPago';
                     $version = "HMAC_SHA256_V1";
-                    $clave   = '5DaR9u4Tqw9gJpF36v44FZ+r+Q++qkl8';
+
+                    $redsysConfig = Yii::$app->params['redsys'] ?? [];
+                    $url_tpv = (string)($redsysConfig['paymentUrl'] ?? 'https://sis-t.redsys.es:25443/sis/realizarPago');
+                    $merchantKey = (string)($redsysConfig['merchantKey'] ?? 'sq7HjrUOBfKmC576ILgskD5srU870gJ7');
 
                     $name     = 'PARKING PLUS';
-                    $code     = '350165395';
-                    $terminal = '1';
+                    $code     = (string)($redsysConfig['fuc'] ?? '350165395');
+                    $terminal = (string)($redsysConfig['terminal'] ?? '001');
                     $order    = $model->nro_reserva;
                     $amount   = $model->monto_total * 100;
 
-                    $currency      = '978';
+                    $currency      = (string)($redsysConfig['currency'] ?? '978');
                     $consumerlng   = '001';
                     $transactionType = '0';
                     $urlMerchant   = 'https://www.parkingplus.es/';
-                    $urlweb_ok     = 'https://parkingplus.es/aparcamiento/site/tpvok';
-                    $urlweb_ko     = 'https://parkingplus.es/aparcamiento/site/tpvko';
+                    $frontendBaseUrl = 'http://localhost:20080/aparcamiento';
+                    $urlweb_ok     = $frontendBaseUrl . '/site/tpvok';
+                    $urlweb_ko     = $frontendBaseUrl . '/site/tpvko';
 
                     $miObj->setParameter("DS_MERCHANT_AMOUNT", (string)$amount);
                     $miObj->setParameter("DS_MERCHANT_CURRENCY", $currency);
@@ -1751,14 +1768,17 @@ class SiteController extends Controller
                     $miObj->setParameter("DS_MERCHANT_MERCHANTNAME", $name);
                     $miObj->setParameter("DS_MERCHANT_CONSUMERLANGUAGE", $consumerlng);
 
-                    $params    = $miObj->createMerchantParameters();
-                    $signature = $miObj->createMerchantSignature($clave);
+                    if ($isBizum) {
+                        $miObj->setParameter("DS_MERCHANT_PAYMETHODS", "z");
+                    }
 
+                    $params    = $miObj->createMerchantParameters();
+                    $signature = $miObj->createMerchantSignature($merchantKey);
                     return $this->render('procesar-pago', [
                         'url_tpv'   => $url_tpv,
                         'version'   => $version,
                         'params'    => $params,
-                        'signature' => $signature
+                        'signature' => $signature,
                     ]);
                 } else {
                     $content = $this->renderPartial('_reportView', ['model' => $this->findModel($model->id)]);
@@ -2305,7 +2325,8 @@ class SiteController extends Controller
 
                 $model->save();
 
-                if ($model->id_tipo_pago == 5) {
+                $isBizum = $this->isBizumPayment($model);
+                if ((int)$model->id_tipo_pago === 5 || $isBizum) {
                     $this->layout = 'secondary';
 
                     /*
@@ -2324,37 +2345,25 @@ class SiteController extends Controller
 
                     $miObj = new RedsysAPI();
 
-                    // URL PARA PRUEBAS TPV
-                    //$url_tpv = 'https://sis-t.redsys.es:25443/sis/realizarPago';
-
-                    // URL REAL
-                    $url_tpv = 'https://sis.redsys.es/sis/realizarPago';
-
                     $version = "HMAC_SHA256_V1";
 
-                    // Clave Real
-                    $clave = '5DaR9u4Tqw9gJpF36v44FZ+r+Q++qkl8';
-                    // Clave Pruebas
-                    //$clave = 'sq7HjrUOBfKmC576ILgskD5srU870gJ7';
+                    $redsysConfig = Yii::$app->params['redsys'] ?? [];
+                    $url_tpv = (string)($redsysConfig['paymentUrl'] ?? 'https://sis-t.redsys.es:25443/sis/realizarPago');
+                    $merchantKey = (string)($redsysConfig['merchantKey'] ?? 'sq7HjrUOBfKmC576ILgskD5srU870gJ7');
 
                     $name = 'PARKING PLUS';
-                    $code = '350165395';
-                    $terminal = '1';
+                    $code = (string)($redsysConfig['fuc'] ?? '350165395');
+                    $terminal = (string)($redsysConfig['terminal'] ?? '001');
                     $order = $model->nro_reserva;
                     $amount = $model->monto_total * 100;
 
-                    $currency = '978';
+                    $currency = (string)($redsysConfig['currency'] ?? '978');
                     $consumerlng = '001';
                     $transactionType = '0';
                     $urlMerchant = 'https://www.parkingplus.es/';
-                    $urlweb_ok = 'https://parkingplus.es/aparcamiento/site/tpvok';
-                    $urlweb_ko = 'https://parkingplus.es/aparcamiento/site/tpvko';
-
-                    // URLS PARA PRUEBAS EN LOCALHOST
-
-                    //$urlweb_ok = 'https://localhost/aparcamiento/site/tpvok';
-                    //$urlweb_ko = 'https://localhost/aparcamiento/site/tpvko';
-
+                    $frontendBaseUrl = 'http://localhost:20080/aparcamiento';
+                    $urlweb_ok = $frontendBaseUrl . '/site/tpvok';
+                    $urlweb_ko = $frontendBaseUrl . '/site/tpvko';
 
                     $miObj->setParameter("DS_MERCHANT_AMOUNT", (string) $amount);
                     $miObj->setParameter("DS_MERCHANT_CURRENCY", $currency);
@@ -2368,13 +2377,18 @@ class SiteController extends Controller
 
                     $miObj->setParameter("DS_MERCHANT_MERCHANTNAME", $name);
                     $miObj->setParameter("DS_MERCHANT_CONSUMERLANGUAGE", $consumerlng);
+
+                    if ($isBizum) {
+                        $miObj->setParameter("DS_MERCHANT_PAYMETHODS", "z");
+                    }
+
                     $params = $miObj->createMerchantParameters();
-                    $signature = $miObj->createMerchantSignature($clave);
+                    $signature = $miObj->createMerchantSignature($merchantKey);
                     return $this->render('procesar-pago', [
                         'url_tpv' => $url_tpv,
                         'version' => $version,
                         'params' => $params,
-                        'signature' => $signature
+                        'signature' => $signature,
                     ]);
                 } else {
 
@@ -2646,19 +2660,22 @@ class SiteController extends Controller
 
         $codigoRespuesta = $miObj->getParameter("Ds_Response");
 
-        // PRUEBAS
-        //$claveModuloAdmin = 'sq7HjrUOBfKmC576ILgskD5srU870gJ7';
-
-        // REAL
-        $claveModuloAdmin = '5DaR9u4Tqw9gJpF36v44FZ+r+Q++qkl8';
+        $redsysConfig = Yii::$app->params['redsys'] ?? [];
+        $claveModuloAdmin = (string)($redsysConfig['merchantKey'] ?? 'sq7HjrUOBfKmC576ILgskD5srU870gJ7');
 
         $signatureCalculada = $miObj->createMerchantSignatureNotif($claveModuloAdmin, $params);
 
         //var_dump($signatureRecibida.' -- '.$signatureCalculada.' -- '.$codigoRespuesta); die();
 
-        if ($signatureCalculada === $signatureRecibida) {
+        $model = Yii::$app->session->get('reserva');
+        if ($model === null) {
+            Yii::$app->session->setFlash('error', 'No se encontró la reserva de la sesión.');
+            return $this->redirect(['site/index']);
+        }
 
-            $model = Yii::$app->session['reserva'];
+        $isApproved = is_numeric($codigoRespuesta) && (int)$codigoRespuesta < 100;
+
+        if ($signatureCalculada === $signatureRecibida && $isApproved) {
 
             $fecha1 = $model->fecha_entrada;
             $model->fecha_entrada = date("Y-m-d", strtotime($fecha1));
@@ -2688,45 +2705,52 @@ class SiteController extends Controller
 
             //$mensaje = '';
 
+            $matricula = $model->coche ? $model->coche->matricula : null;
             if ($model->cliente->correo != null) {
-                $correo = Yii::$app->mailer->compose(
-                    [
-                        'html' => 'emailReserva2-html',
-                        'text' => 'emailReserva-text'
-                    ],
-                    [
-                        'nro_reserva' => $reserva,
-                        'fecha_entrada' => $fecha1,
-                        'hora_entrada' => $model->hora_entrada,
-                        'fecha_salida' => $fecha2,
-                        'hora_salida' => $model->hora_salida,
-                    ]
-                );
+                try {
+                    $correo = Yii::$app->mailer->compose(
+                        [
+                            'html' => 'emailReserva2-html',
+                            'text' => 'emailReserva-text'
+                        ],
+                        [
+                            'nro_reserva'     => $reserva,
+                            'coche_matricula' => $matricula,
+                            'fecha_entrada'   => $fecha1,
+                            'hora_entrada'    => $model->hora_entrada,
+                            'fecha_salida'    => $fecha2,
+                            'hora_salida'     => $model->hora_salida,
+                            'token'           => $model->cod_valid,
+                        ]
+                    );
 
-                $correo->setTo($model->cliente->correo)
-                    ->setFrom([Yii::$app->params['reservasEmail'] => 'Reservas - ' . Yii::$app->name])
-                    ->setSubject('Reservación Parking Plus')
-                    ->attach('../web/pdf/comprobante_' . $reserva . '.pdf')
-                    ->send();
+                    $correo->setTo($model->cliente->correo)
+                        ->setFrom([Yii::$app->params['reservasEmail'] => 'Reservas - ' . Yii::$app->name])
+                        ->setSubject('Reservación Parking Plus')
+                        ->attach('../web/pdf/comprobante_' . $reserva . '.pdf')
+                        ->send();
 
-                $correo2 = Yii::$app->mailer->compose(
-                    [
-                        'html' => 'emailReserva2-html',
-                        'text' => 'emailReserva-text'
-                    ],
-                    [
-                        'nro_reserva' => $reserva,
-                        'fecha_entrada' => $fecha1,
-                        'hora_entrada' => $model->hora_entrada,
-                        'fecha_salida' => $fecha2,
-                        'hora_salida' => $model->hora_salida,
-                    ]
-                );
-                $correo2->setTo('asistenciaplus00@gmail.com')
-                    ->setFrom([Yii::$app->params['reservasEmail'] => 'Reservas - ' . Yii::$app->name])
-                    ->setSubject('Reservación Parking Plus')
-                    ->attach('../web/pdf/comprobante_' . $reserva . '.pdf')
-                    ->send();
+                    $correo2 = Yii::$app->mailer->compose(
+                        [
+                            'html' => 'emailReserva2-html',
+                            'text' => 'emailReserva-text'
+                        ],
+                        [
+                            'nro_reserva'   => $reserva,
+                            'fecha_entrada' => $fecha1,
+                            'hora_entrada'  => $model->hora_entrada,
+                            'fecha_salida'  => $fecha2,
+                            'hora_salida'   => $model->hora_salida,
+                        ]
+                    );
+                    $correo2->setTo('asistenciaplus00@gmail.com')
+                        ->setFrom([Yii::$app->params['reservasEmail'] => 'Reservas - ' . Yii::$app->name])
+                        ->setSubject('Reservación Parking Plus')
+                        ->attach('../web/pdf/comprobante_' . $reserva . '.pdf')
+                        ->send();
+                } catch (\Exception $e) {
+                    Yii::error('Error enviando correo TPV: ' . $e->getMessage(), __METHOD__);
+                }
             }
 
             //unlink('../web/pdf/comprobante_'.$reserva.'.pdf');
@@ -2734,12 +2758,8 @@ class SiteController extends Controller
             \Yii::$app->session->destroy();
 
 
-            $paymentId = 'NULL';
-            $token = 'NULL';
-            $PayerID = 'NULL';
-
-            return $this->redirect(['procesada', 'id' => $model->id, 'paymentId' => $paymentId, 'token' => $token, 'PayerID' => $PayerID, 'signatureCalculada' => $signatureCalculada, 'signatureRecibida' => $signatureRecibida]);
-        } else {
+            return $this->redirect(['finalizada', 'reserva' => $model->nro_reserva]);
+        } elseif ($signatureCalculada === $signatureRecibida) {
 
             $reserva = $model->nro_reserva;
             $idC = $model->id_cliente;
@@ -2773,6 +2793,9 @@ class SiteController extends Controller
             $msje = 'SU PAGO NO PUDO SER PROCESADO - <b>TRANSACCIÓN DENEGADA : ' . $codigoRespuesta . '</b>';
             Yii::$app->session->setFlash('error', $msje);
             return $this->redirect(['site/index']);
+        } else {
+            Yii::$app->session->setFlash('error', 'Firma inválida en la respuesta del TPV.');
+            return $this->redirect(['site/index']);
         }
     }
 
@@ -2788,11 +2811,8 @@ class SiteController extends Controller
 
         $codigoRespuesta = $miObj->getParameter("Ds_Response");
 
-        // PRUEBAS
-        //$claveModuloAdmin = 'sq7HjrUOBfKmC576ILgskD5srU870gJ7';
-
-        // REAL
-        $claveModuloAdmin = '5DaR9u4Tqw9gJpF36v44FZ+r+Q++qkl8';
+        $redsysConfig = Yii::$app->params['redsys'] ?? [];
+        $claveModuloAdmin = (string)($redsysConfig['merchantKey'] ?? 'sq7HjrUOBfKmC576ILgskD5srU870gJ7');
 
         $signatureCalculada = $miObj->createMerchantSignatureNotif($claveModuloAdmin, $params);
 

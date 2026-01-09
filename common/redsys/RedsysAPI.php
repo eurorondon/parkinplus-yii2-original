@@ -1,40 +1,44 @@
 <?php
 
 namespace common\redsys;
-/**
-* NOTA SOBRE LA LICENCIA DE USO DEL SOFTWARE
-* 
-* El uso de este software está sujeto a las Condiciones de uso de software que
-* se incluyen en el paquete en el documento "Aviso Legal.pdf". También puede
-* obtener una copia en la siguiente url:
-* http://www.redsys.es/wps/portal/redsys/publica/areadeserviciosweb/descargaDeDocumentacionYEjecutables
-* 
-* Redsys es titular de todos los derechos de propiedad intelectual e industrial
-* del software.
-* 
-* Quedan expresamente prohibidas la reproducción, la distribución y la
-* comunicación pública, incluida su modalidad de puesta a disposición con fines
-* distintos a los descritos en las Condiciones de uso.
-* 
-* Redsys se reserva la posibilidad de ejercer las acciones legales que le
-* correspondan para hacer valer sus derechos frente a cualquier infracción de
-* los derechos de propiedad intelectual y/o industrial.
-* 
-* Redsys Servicios de Procesamiento, S.L., CIF B85955367
-*/
 
-class RedsysAPI{
+/**
+ * NOTA SOBRE LA LICENCIA DE USO DEL SOFTWARE
+ * 
+ * El uso de este software está sujeto a las Condiciones de uso de software que
+ * se incluyen en el paquete en el documento "Aviso Legal.pdf". También puede
+ * obtener una copia en la siguiente url:
+ * http://www.redsys.es/wps/portal/redsys/publica/areadeserviciosweb/descargaDeDocumentacionYEjecutables
+ * 
+ * Redsys es titular de todos los derechos de propiedad intelectual e industrial
+ * del software.
+ * 
+ * Quedan expresamente prohibidas la reproducción, la distribución y la
+ * comunicación pública, incluida su modalidad de puesta a disposición con fines
+ * distintos a los descritos en las Condiciones de uso.
+ * 
+ * Redsys se reserva la posibilidad de ejercer las acciones legales que le
+ * correspondan para hacer valer sus derechos frente a cualquier infracción de
+ * los derechos de propiedad intelectual y/o industrial.
+ * 
+ * Redsys Servicios de Procesamiento, S.L., CIF B85955367
+ */
+
+class RedsysAPI
+{
 
 	/******  Array de DatosEntrada ******/
-    var $vars_pay = array();
-	
+	var $vars_pay = array();
+
 	/******  Set parameter ******/
-	function setParameter($key,$value){
-		$this->vars_pay[$key]=$value;
+	function setParameter($key, $value)
+	{
+		$this->vars_pay[$key] = $value;
 	}
 
 	/******  Get parameter ******/
-	function getParameter($key){
+	function getParameter($key)
+	{
 		return $this->vars_pay[$key];
 	}
 	
@@ -44,38 +48,59 @@ class RedsysAPI{
 	////////////					FUNCIONES AUXILIARES:							  ////////////
 	//////////////////////////////////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////////////////////////
-	
+
 
 	/******  3DES Function  ******/
-	function encrypt_3DES($message, $key){
+	function encrypt_3DES($message, $key)
+	{
 		// Se establece un IV por defecto
-		$bytes = array(0,0,0,0,0,0,0,0); //byte [] IV = {0, 0, 0, 0, 0, 0, 0, 0}
+		$bytes = array(0, 0, 0, 0, 0, 0, 0, 0); //byte [] IV = {0, 0, 0, 0, 0, 0, 0, 0}
 		$iv = implode(array_map("chr", $bytes)); //PHP 4 >= 4.0.2
 
-		// Se cifra
-		$ciphertext = mcrypt_encrypt(MCRYPT_3DES, $key, $message, MCRYPT_MODE_CBC, $iv); //PHP 4 >= 4.0.2
-		return $ciphertext;
+		if (function_exists('mcrypt_encrypt')) {
+			// Se cifra
+			$ciphertext = mcrypt_encrypt(MCRYPT_3DES, $key, $message, MCRYPT_MODE_CBC, $iv); //PHP 4 >= 4.0.2
+			return $ciphertext;
+		}
+
+		if (!function_exists('openssl_encrypt')) {
+			throw new \RuntimeException('No encryption extension available for Redsys 3DES.');
+		}
+
+		$blockSize = 8;
+		$len = strlen($message);
+		$pad = $blockSize - ($len % $blockSize);
+		if ($pad > 0 && $pad < $blockSize) {
+			$message .= str_repeat("\0", $pad);
+		}
+
+		return openssl_encrypt($message, 'des-ede3-cbc', $key, OPENSSL_RAW_DATA | OPENSSL_ZERO_PADDING, $iv);
 	}
 
 	/******  Base64 Functions  ******/
-	function base64_url_encode($input){
+	function base64_url_encode($input)
+	{
 		return strtr(base64_encode($input), '+/', '-_');
 	}
-	function encodeBase64($data){
+	function encodeBase64($data)
+	{
 		$data = base64_encode($data);
 		return $data;
 	}
-	function base64_url_decode($input){
+	function base64_url_decode($input)
+	{
 		return base64_decode(strtr($input, '-_', '+/'));
 	}
-	function decodeBase64($data){
+	function decodeBase64($data)
+	{
 		$data = base64_decode($data);
 		return $data;
 	}
 
 	/******  MAC Function ******/
-	function mac256($ent,$key){
-		$res = hash_hmac('sha256', $ent, $key, true);//(PHP 5 >= 5.1.2)
+	function mac256($ent, $key)
+	{
+		$res = hash_hmac('sha256', $ent, $key, true); //(PHP 5 >= 5.1.2)
 		return $res;
 	}
 
@@ -85,11 +110,12 @@ class RedsysAPI{
 	////////////	   FUNCIONES PARA LA GENERACIÓN DEL FORMULARIO DE PAGO:			  ////////////
 	//////////////////////////////////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////////////////////////
-	
+
 	/******  Obtener Número de pedido ******/
-	function getOrder(){
+	function getOrder()
+	{
 		$numPedido = "";
-		if(empty($this->vars_pay['DS_MERCHANT_ORDER'])){
+		if (empty($this->vars_pay['DS_MERCHANT_ORDER'])) {
 			$numPedido = $this->vars_pay['Ds_Merchant_Order'];
 		} else {
 			$numPedido = $this->vars_pay['DS_MERCHANT_ORDER'];
@@ -97,17 +123,20 @@ class RedsysAPI{
 		return $numPedido;
 	}
 	/******  Convertir Array en Objeto JSON ******/
-	function arrayToJson(){
+	function arrayToJson()
+	{
 		$json = json_encode($this->vars_pay); //(PHP 5 >= 5.2.0)
 		return $json;
 	}
-	function createMerchantParameters(){
+	function createMerchantParameters()
+	{
 		// Se transforma el array de datos en un objeto Json
 		$json = $this->arrayToJson();
 		// Se codifican los datos Base64
 		return $this->encodeBase64($json);
 	}
-	function createMerchantSignature($key){
+	function createMerchantSignature($key)
+	{
 		// Se decodifica la clave Base64
 		$key = $this->decodeBase64($key);
 		// Se genera el parámetro Ds_MerchantParameters
@@ -129,45 +158,52 @@ class RedsysAPI{
 	//////////////////////////////////////////////////////////////////////////////////////////////
 
 	/******  Obtener Número de pedido ******/
-	function getOrderNotif(){
+	function getOrderNotif()
+	{
 		$numPedido = "";
-		if(empty($this->vars_pay['Ds_Order'])){
+		if (empty($this->vars_pay['Ds_Order'])) {
 			$numPedido = $this->vars_pay['DS_ORDER'];
 		} else {
 			$numPedido = $this->vars_pay['Ds_Order'];
 		}
 		return $numPedido;
 	}
-	function getOrderNotifSOAP($datos){
+	function getOrderNotifSOAP($datos)
+	{
 		$posPedidoIni = strrpos($datos, "<Ds_Order>");
 		$tamPedidoIni = strlen("<Ds_Order>");
 		$posPedidoFin = strrpos($datos, "</Ds_Order>");
-		return substr($datos,$posPedidoIni + $tamPedidoIni,$posPedidoFin - ($posPedidoIni + $tamPedidoIni));
+		return substr($datos, $posPedidoIni + $tamPedidoIni, $posPedidoFin - ($posPedidoIni + $tamPedidoIni));
 	}
-	function getRequestNotifSOAP($datos){
+	function getRequestNotifSOAP($datos)
+	{
 		$posReqIni = strrpos($datos, "<Request");
 		$posReqFin = strrpos($datos, "</Request>");
 		$tamReqFin = strlen("</Request>");
-		return substr($datos,$posReqIni,($posReqFin + $tamReqFin) - $posReqIni);
+		return substr($datos, $posReqIni, ($posReqFin + $tamReqFin) - $posReqIni);
 	}
-	function getResponseNotifSOAP($datos){
+	function getResponseNotifSOAP($datos)
+	{
 		$posReqIni = strrpos($datos, "<Response");
 		$posReqFin = strrpos($datos, "</Response>");
 		$tamReqFin = strlen("</Response>");
-		return substr($datos,$posReqIni,($posReqFin + $tamReqFin) - $posReqIni);
+		return substr($datos, $posReqIni, ($posReqFin + $tamReqFin) - $posReqIni);
 	}
 	/******  Convertir String en Array ******/
-	function stringToArray($datosDecod){
+	function stringToArray($datosDecod)
+	{
 		$this->vars_pay = json_decode($datosDecod, true); //(PHP 5 >= 5.2.0)
 	}
-	function decodeMerchantParameters($datos){
+	function decodeMerchantParameters($datos)
+	{
 		// Se decodifican los datos Base64
 		$decodec = $this->base64_url_decode($datos);
 		// Los datos decodificados se pasan al array de datos
 		$this->stringToArray($decodec);
-		return $decodec;	
+		return $decodec;
 	}
-	function createMerchantSignatureNotif($key, $datos){
+	function createMerchantSignatureNotif($key, $datos)
+	{
 		// Se decodifica la clave Base64
 		$key = $this->decodeBase64($key);
 		// Se decodifican los datos Base64
@@ -179,10 +215,11 @@ class RedsysAPI{
 		// MAC256 del parámetro Ds_Parameters que envía Redsys
 		$res = $this->mac256($datos, $key);
 		// Se codifican los datos Base64
-		return $this->base64_url_encode($res);	
+		return $this->base64_url_encode($res);
 	}
 	/******  Notificaciones SOAP ENTRADA ******/
-	function createMerchantSignatureNotifSOAPRequest($key, $datos){
+	function createMerchantSignatureNotifSOAPRequest($key, $datos)
+	{
 		// Se decodifica la clave Base64
 		$key = $this->decodeBase64($key);
 		// Se obtienen los datos del Request
@@ -192,10 +229,11 @@ class RedsysAPI{
 		// MAC256 del parámetro Ds_Parameters que envía Redsys
 		$res = $this->mac256($datos, $key);
 		// Se codifican los datos Base64
-		return $this->encodeBase64($res);	
+		return $this->encodeBase64($res);
 	}
 	/******  Notificaciones SOAP SALIDA ******/
-	function createMerchantSignatureNotifSOAPResponse($key, $datos, $numPedido){
+	function createMerchantSignatureNotifSOAPResponse($key, $datos, $numPedido)
+	{
 		// Se decodifica la clave Base64
 		$key = $this->decodeBase64($key);
 		// Se obtienen los datos del Request
@@ -205,8 +243,6 @@ class RedsysAPI{
 		// MAC256 del parámetro Ds_Parameters que envía Redsys
 		$res = $this->mac256($datos, $key);
 		// Se codifican los datos Base64
-		return $this->encodeBase64($res);	
+		return $this->encodeBase64($res);
 	}
 }
-
-?>
