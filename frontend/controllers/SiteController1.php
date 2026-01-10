@@ -350,10 +350,11 @@ class SiteController extends Controller
             $MONTO = $_POST['monto'];
             $AMOUNT = str_replace('.', '', $MONTO);
             $ORDER  = $_POST['pedido'];
-            $MERCHANTCODE = '350165395';
-            $CURRENCY = '978';
+            $redsysConfig = Yii::$app->params['redsys'] ?? [];
+            $MERCHANTCODE = (string)($redsysConfig['fuc'] ?? '');
+            $CURRENCY = (string)($redsysConfig['currency'] ?? '');
             $TRANSACTIONTYPE = '0';
-            $TERMINAL = '1';
+            $TERMINAL = (string)($redsysConfig['terminal'] ?? '');
             $URL = 'http://parkingplus.es/aparcamiento/site/notificacion';
             //$PAN = $_POST['nro_tarjeta'];
             //$PAN = str_replace('-', '', $PAN);
@@ -362,7 +363,7 @@ class SiteController extends Controller
             //CLAVE DEL COMERCIO TEST
             //$COMERCIO = 'sq7HjrUOBfKmC576ILgskD5srU870gJ7';
             //CLAVE DEL COMERCIO PRODUCCION
-            $COMERCIO = 'X/5rYzzA5kZeS2RQge9+yxdgpL/5r+nO';
+            $COMERCIO = (string)($redsysConfig['merchantKey'] ?? '');
             //$AUTORIZACION = '123456';
 
             $cadena = array(
