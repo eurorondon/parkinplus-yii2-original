@@ -9,11 +9,14 @@ return [
     'senderName' => 'Parking Plus',
     'frontendBaseUrl' => getenv('FRONTEND_BASE_URL') ?: 'https://parkingplus.es/aparcamiento',
     'redsys' => [
-        'fuc' => '350165395',
-        'terminal' => '001',
-        'currency' => '978',
-        'paymentUrl' => 'https://sis-t.redsys.es:25443/sis/realizarPago',
-        'testMaxAmount' => 5.00,
+        'fuc' => getenv('REDSYS_FUC') ?: '',
+        'terminal' => getenv('REDSYS_TERMINAL') ?: '',
+        'currency' => getenv('REDSYS_CURRENCY') ?: '',
+        'merchantKey' => getenv('REDSYS_MERCHANT_KEY') ?: '',
+        'paymentUrl' => getenv('REDSYS_PAYMENT_URL') ?: 'https://sis-t.redsys.es:25443/sis/realizarPago',
+        'testMaxAmount' => getenv('REDSYS_TEST_MAX_AMOUNT') !== false
+            ? (float) getenv('REDSYS_TEST_MAX_AMOUNT')
+            : 5.00,
     ],
     'user.passwordResetTokenExpire' => 3600,
     'cronEmailLimitPerHour' => 100,
