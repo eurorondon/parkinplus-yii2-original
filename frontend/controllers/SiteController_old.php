@@ -125,12 +125,13 @@ class SiteController extends Controller
         $model = new Reservas();
 
         $query = new Query();
-        $query  ->select(
+        $query->select(
             [
-            'registro_precios.id_lista',
-            'registro_precios.cantidad',
-            'registro_precios.costo AS precio',
-            'servicios.*']
+                'registro_precios.id_lista',
+                'registro_precios.cantidad',
+                'registro_precios.costo AS precio',
+                'servicios.*'
+            ]
         )
             ->from('registro_precios')
             ->join(
@@ -148,7 +149,7 @@ class SiteController extends Controller
 
         $precioTemporada = PrecioTemporada::find()->where(['status' => 'activo'])->all();
 
-        if(count($precioTemporada) > 0) {
+        if (count($precioTemporada) > 0) {
             foreach ($precio_diario as $key => $data) {
                 $precio_diario[$key]['precio'] = $precio_diario[$key]['costo'] + ($precio_diario[$key]['cantidad'] * $precioTemporada[0]['precio']);
             }
@@ -173,7 +174,7 @@ class SiteController extends Controller
             $hora_e = $model->hora_entrada;
             $hora_s = $model->hora_salida;
 
-            return Yii::$app->response->redirect(['site/create', 'cdias' => $cdias,'entrada' => $entrada, 'salida' => $salida, 'hora_e' => $hora_e, 'hora_s' => $hora_s])->send();
+            return Yii::$app->response->redirect(['site/create', 'cdias' => $cdias, 'entrada' => $entrada, 'salida' => $salida, 'hora_e' => $hora_e, 'hora_s' => $hora_s])->send();
         }
         return $this->renderAjax('fechas', [
             'model' => $model,
@@ -183,18 +184,18 @@ class SiteController extends Controller
     public function actionParada()
     {
 
-        if(Yii::$app->request->post()) {
+        if (Yii::$app->request->post()) {
 
             $fecha_entrada = date('Y-m-d', strtotime($_POST['fecha_e']));
             $hora_entrada = $_POST['hora_e'];
             $fecha_salida = date('Y-m-d', strtotime($_POST['fecha_s']));
             $hora_salida = $_POST['hora_s'];
 
-            $in = $fecha_entrada.' '.$hora_entrada;
+            $in = $fecha_entrada . ' ' . $hora_entrada;
             $fecha_in = new DateTime($in);
             $fecha_in = $fecha_in->format('Y-m-d H:i:s');
 
-            $fin = $fecha_salida.' '.$hora_salida;
+            $fin = $fecha_salida . ' ' . $hora_salida;
             $fecha_finc = new DateTime($fin);
             $fecha_finc = $fecha_finc->format('Y-m-d H:i:s');
 
@@ -209,18 +210,18 @@ class SiteController extends Controller
                     $fecha_fin = $parada['fecha_fin'];
                     $hora_fin = $parada['hora_fin'];
 
-                    $date_ini = $fecha_inicio.' '.$hora_inicio;
+                    $date_ini = $fecha_inicio . ' ' . $hora_inicio;
                     $fecha_i = new DateTime($date_ini);
                     $fecha_i = $fecha_i->format('Y-m-d H:i:s');
 
-                    $date_fin = $fecha_fin.' '.$hora_fin;
+                    $date_fin = $fecha_fin . ' ' . $hora_fin;
                     $fecha_f = new DateTime($date_fin);
                     $fecha_f = $fecha_f->format('Y-m-d H:i:s');
 
                     if (($fecha_in >= $fecha_i) and ($fecha_in <= $fecha_f)) {
                         $result = $parada['descripcion'];
                         break;
-                    } elseif(($fecha_finc >= $fecha_i) and ($fecha_finc <= $fecha_f)) {
+                    } elseif (($fecha_finc >= $fecha_i) and ($fecha_finc <= $fecha_f)) {
                         $result = $parada['descripcion'];
                         break;
                     } else {
@@ -262,16 +263,14 @@ class SiteController extends Controller
 
         $facturas = null;
 
-        for ($i = 0; $i < $cantR ; $i++) {
+        for ($i = 0; $i < $cantR; $i++) {
             $buscaFactura[$i] = FacturasReserva::find()->where(['id_reserva' => $reservas[$i]->id])->one();
 
             if ($buscaFactura[$i] === null) {
                 $facturas = null;
             } else {
                 $facturas[$i] = Facturas::find()->where(['id' => $buscaFactura[$i]->id_factura])->one();
-
             }
-
         }
 
         $coches = Coches::find()->where(['id_cliente' => $datos->id])->limit(5)->all();
@@ -312,7 +311,6 @@ class SiteController extends Controller
 
         if (!Yii::$app->user->isGuest) {
             return $this->redirect(['index']);
-
         }
 
         $model = new LoginForm();
@@ -362,14 +360,13 @@ class SiteController extends Controller
                 'model' => $model,
             ]);
         }
-
     }
 
     /**
-    * Displays Notification Pay page.
-    *
-    * @return mixed
-    */
+     * Displays Notification Pay page.
+     *
+     * @return mixed
+     */
 
     public function actionNotificacion()
     {
@@ -379,7 +376,7 @@ class SiteController extends Controller
 
     public function actionDatos()
     {
-        if(Yii::$app->request->post()) {
+        if (Yii::$app->request->post()) {
             $id = $_POST['id'];
             $reserva = Reservas::find()->where(['id' => $id])->one();
             $id_cliente = $reserva->id_cliente;
@@ -393,8 +390,7 @@ class SiteController extends Controller
             $fecha_s = date('d-m-Y', strtotime($fecha_s));
             $monto = $reserva->monto_total;
             $numero_reserva = $reserva->nro_reserva;
-            $datos = $numero_reserva.'/'.$fecha_e.'/'.$fecha_s.'/'.$monto.'/'.$nombre;
-
+            $datos = $numero_reserva . '/' . $fecha_e . '/' . $fecha_s . '/' . $monto . '/' . $nombre;
         } else {
             $datos = "Error en Carga de Datos";
         }
@@ -404,7 +400,7 @@ class SiteController extends Controller
 
     public function encrypt_3DES($message, $key)
     {
-        $bytes = array(0,0,0,0,0,0,0,0);
+        $bytes = array(0, 0, 0, 0, 0, 0, 0, 0);
         $iv = implode(array_map("chr", $bytes));
         $ciphertext = mcrypt_encrypt(MCRYPT_3DES, $key, $message, MCRYPT_MODE_CBC, $iv);
         return $ciphertext;
@@ -420,7 +416,7 @@ class SiteController extends Controller
     public function actionCadena()
     {
 
-        if(Yii::$app->request->post()) {
+        if (Yii::$app->request->post()) {
 
             $MONTO = $_POST['monto'];
             $AMOUNT = str_replace('.', '', $MONTO);
@@ -435,7 +431,7 @@ class SiteController extends Controller
             //$EXPIRYDATE = $_POST['fecha_expira'];
             //$CVV2 = $_POST['cvv'];
             //CLAVE DEL COMERCIO TEST
-            //$COMERCIO = 'sq7HjrUOBfKmC576ILgskD5srU870gJ7';
+            //$COMERCIO = '';
             //CLAVE DEL COMERCIO PRODUCCION
             $COMERCIO = 'X/5rYzzA5kZeS2RQge9+yxdgpL/5r+nO';
             //$AUTORIZACION = '123456';
@@ -466,12 +462,10 @@ class SiteController extends Controller
             $crea_signature = $this->mac256($datos, $key);
 
             $signature = base64_encode($crea_signature);
-
         } else {
             $datos = "Error en Carga de Datos";
-
         }
-        return ($datos.'/'.$signature);
+        return ($datos . '/' . $signature);
     }
 
     /**
@@ -585,7 +579,9 @@ class SiteController extends Controller
         $datos_user = User::find()->where(['id' => $id])->one();
 
         $tipo_documento = [
-            'NIF' => 'NIF', 'NIE' => 'NIE','Pasaporte' => 'Pasaporte'
+            'NIF' => 'NIF',
+            'NIE' => 'NIE',
+            'Pasaporte' => 'Pasaporte'
         ];
 
         if ($model->load(Yii::$app->request->post())) {
@@ -749,8 +745,8 @@ class SiteController extends Controller
     public function actionView($id)
     {
         return $this->render('view', [
-          'model' => $this->findModel($id),
-          'id' => $id,
+            'model' => $this->findModel($id),
+            'id' => $id,
         ]);
     }
 
@@ -843,12 +839,12 @@ class SiteController extends Controller
     }
 
     /**
-    * Finds the Reservas model based on its primary key value.
-    * If the model is not found, a 404 HTTP exception will be thrown.
-    * @param integer $id
-    * @return Reservas the loaded model
-    * @throws NotFoundHttpException if the model cannot be found
-    */
+     * Finds the Reservas model based on its primary key value.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     * @param integer $id
+     * @return Reservas the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
+     */
 
     protected function findModel($id)
     {
@@ -888,7 +884,7 @@ class SiteController extends Controller
 
         $extraNocturno = null;
 
-        if(($fecha_entrada >= $fhne && $fecha_entrada <= $fhnes) || ($fecha_salida >= $fhns && $fecha_salida <= $fhnss)) {
+        if (($fecha_entrada >= $fhne && $fecha_entrada <= $fhnes) || ($fecha_salida >= $fhns && $fecha_salida <= $fhnss)) {
             $extraNocturno = Servicios::find()->where(['nombre_servicio' => 'Costo Nocturnidad'])->all();
         }
 
@@ -897,12 +893,17 @@ class SiteController extends Controller
         $modelV = new Coches();
 
         $tipo_documento = [
-            'NIF' => 'NIF', 'NIE' => 'NIE','Pasaporte' => 'Pasaporte'
+            'NIF' => 'NIF',
+            'NIE' => 'NIE',
+            'Pasaporte' => 'Pasaporte'
         ];
 
         $terminales = [
-            'TERMINAL 1' => 'TERMINAL 1', 'TERMINAL 2' => 'TERMINAL 2',
-            'TERMINAL 3' => 'TERMINAL 3','TERMINAL 4' => 'TERMINAL 4','AUN NO CONOZCO LA TERMINAL' => 'AUN NO CONOZCO LA TERMINAL'
+            'TERMINAL 1' => 'TERMINAL 1',
+            'TERMINAL 2' => 'TERMINAL 2',
+            'TERMINAL 3' => 'TERMINAL 3',
+            'TERMINAL 4' => 'TERMINAL 4',
+            'AUN NO CONOZCO LA TERMINAL' => 'AUN NO CONOZCO LA TERMINAL'
         ];
 
         $servicios = Servicios::find()->where(['estatus' => '1'])->andWhere(['fijo' => '2'])->all();
@@ -910,19 +911,20 @@ class SiteController extends Controller
         $seguro = Servicios::find()->where(['estatus' => '1'])->andWhere(['fijo' => '1'])->all();
 
         $query = new Query();
-        $query  ->select(
+        $query->select(
             [
-            'registro_precios.id_lista',
-            'registro_precios.cantidad',
-            'registro_precios.costo AS precio',
-            'servicios.*']
+                'registro_precios.id_lista',
+                'registro_precios.cantidad',
+                'registro_precios.costo AS precio',
+                'servicios.*'
+            ]
         )
-        ->from('registro_precios')
-        ->join(
-            'LEFT JOIN',
-            'servicios',
-            'registro_precios.id_lista = servicios.id_listas_precios'
-        );
+            ->from('registro_precios')
+            ->join(
+                'LEFT JOIN',
+                'servicios',
+                'registro_precios.id_lista = servicios.id_listas_precios'
+            );
 
         $command = $query->createCommand();
         $precio_diario = $command->queryAll();
@@ -941,12 +943,12 @@ class SiteController extends Controller
         $partes = explode('.', $dias);*/
 
 
-        $horaInicio = new DateTime($entrada.' '.$hora_e);
-        $horaTermino = new DateTime($salida.' '.$hora_s);
+        $horaInicio = new DateTime($entrada . ' ' . $hora_e);
+        $horaTermino = new DateTime($salida . ' ' . $hora_s);
 
         $interval = $horaInicio->diff($horaTermino);
 
-        if($interval->d > 0 && ($interval->h > 0 || $interval->i > 0)) {
+        if ($interval->d > 0 && ($interval->h > 0 || $interval->i > 0)) {
             $cant_dias = $interval->d + 1;
         } else {
             $cant_dias = $interval->d == 0 ? 1 : $interval->d;
@@ -961,13 +963,13 @@ class SiteController extends Controller
 
         $position = null;
         foreach ($precio_diario as $key => $data) {
-            if($data['cantidad'] == $cant_dias) {
+            if ($data['cantidad'] == $cant_dias) {
                 $position = $key;
             }
         }
 
         foreach ($precioTemporada as $temporada) {
-            if(strtotime($entrada . ' ' . $hora_e) >= strtotime($temporada->fecha_inicio . ' ' . $temporada->hora_inicio) && strtotime($entrada . ' ' . $hora_e) <= strtotime($temporada->fecha_fin . ' ' . $temporada->hora_fin)) {
+            if (strtotime($entrada . ' ' . $hora_e) >= strtotime($temporada->fecha_inicio . ' ' . $temporada->hora_inicio) && strtotime($entrada . ' ' . $hora_e) <= strtotime($temporada->fecha_fin . ' ' . $temporada->hora_fin)) {
                 $precio_diario[$position]['precio'] = $precio_diario[$position]['costo'] + ($cant_dias * $temporada->precio);
             }
         }
@@ -1044,7 +1046,7 @@ class SiteController extends Controller
             $client = Clientes::find()->where(['movil' => $modelC->movil])->one();
 
 
-            if($client == null) {
+            if ($client == null) {
                 $modelC->estatus = 1;
                 $modelC->created_at = $fecha_creacion;
                 $modelC->updated_at = $fecha_creacion;
@@ -1098,10 +1100,10 @@ class SiteController extends Controller
             foreach ($servicios as $ser) {
 
                 $modelR = new ReservasServicios();
-                $precio_unitario = $_POST['precio_unitario'.$ser->id];
-                $cantidad = $_POST['cantidad'.$ser->id];
-                $precio_total = $_POST['precio_total'.$ser->id];
-                $tipo_servicio = $_POST['tipo_servicio'.$ser->id];
+                $precio_unitario = $_POST['precio_unitario' . $ser->id];
+                $cantidad = $_POST['cantidad' . $ser->id];
+                $precio_total = $_POST['precio_total' . $ser->id];
+                $tipo_servicio = $_POST['tipo_servicio' . $ser->id];
 
                 if ($cantidad != 0) {
                     $modelR->id_reserva = $model->nro_reserva;
@@ -1137,7 +1139,7 @@ class SiteController extends Controller
             }
 
 
-            if($_POST['servicio_noc_id'] != 0) {
+            if ($_POST['servicio_noc_id'] != 0) {
                 $modelR = new ReservasServicios();
                 $modelR->id_reserva = $model->nro_reserva;
                 $modelR->id_servicio = $_POST['servicio_noc_id'];
@@ -1221,7 +1223,7 @@ class SiteController extends Controller
                     // Clave Real
                     $clave = '5DaR9u4Tqw9gJpF36v44FZ+r+Q++qkl8';
                     // Clave Pruebas
-                    //$clave = 'sq7HjrUOBfKmC576ILgskD5srU870gJ7';
+                    //$clave = '';
 
                     $name = 'PARKING PLUS';
                     $code = '350165395';
@@ -1271,7 +1273,7 @@ class SiteController extends Controller
                         'format' => Pdf::FORMAT_A4,
                         'orientation' => Pdf::ORIENT_PORTRAIT,
                         'destination' => Pdf::DEST_FILE,
-                        'filename' => '../web/pdf/comprobante_'.$model->nro_reserva.'.pdf',
+                        'filename' => '../web/pdf/comprobante_' . $model->nro_reserva . '.pdf',
                         'content' => $content,
                         'cssFile' => '../web/css/reportes.css',
                         'options' => ['title' => 'Comprobante de Reserva'],
@@ -1303,10 +1305,10 @@ class SiteController extends Controller
                             );
 
                             $correo->setTo($modelC->correo)
-                            ->setFrom([Yii::$app->params['reservasEmail'] => 'Reservas - '.Yii::$app->name])
-                            ->setSubject('Reservación Parking Plus')
-                            ->attach('../web/pdf/comprobante_'.$model->nro_reserva.'.pdf')
-                            ->send();
+                                ->setFrom([Yii::$app->params['reservasEmail'] => 'Reservas - ' . Yii::$app->name])
+                                ->setSubject('Reservación Parking Plus')
+                                ->attach('../web/pdf/comprobante_' . $model->nro_reserva . '.pdf')
+                                ->send();
 
 
                             $correo2 = Yii::$app->mailer->compose(
@@ -1323,20 +1325,19 @@ class SiteController extends Controller
                                 ]
                             );
                             $correo2->setTo('asistenciaplus00@gmail.com')
-                            ->setFrom([Yii::$app->params['reservasEmail'] => 'Reservas - '.Yii::$app->name])
-                            ->setSubject('Reservación Parking Plus')
-                            ->attach('../web/pdf/comprobante_'.$model->nro_reserva.'.pdf')
-                            ->send();
-
+                                ->setFrom([Yii::$app->params['reservasEmail'] => 'Reservas - ' . Yii::$app->name])
+                                ->setSubject('Reservación Parking Plus')
+                                ->attach('../web/pdf/comprobante_' . $model->nro_reserva . '.pdf')
+                                ->send();
                         } catch (\Exception $e) {
                             return $this->redirect(['finalizada', 'reserva' => $model->nro_reserva]);
                         }
                     }
 
-                    return $this->redirect(['finalizada',
+                    return $this->redirect([
+                        'finalizada',
                         'reserva' => $model->nro_reserva,
                     ]);
-
                 }
             } else {
                 Yii::$app->session->setFlash('error', 'Su reserva no pudo ser procesada. Disculpe las molestias ocasionadas.');
@@ -1380,7 +1381,7 @@ class SiteController extends Controller
         $codigoRespuesta = $miObj->getParameter("Ds_Response");
 
         // PRUEBAS
-        //$claveModuloAdmin = 'sq7HjrUOBfKmC576ILgskD5srU870gJ7';
+        //$claveModuloAdmin = '';
 
         // REAL
         $claveModuloAdmin = '5DaR9u4Tqw9gJpF36v44FZ+r+Q++qkl8';
@@ -1406,7 +1407,7 @@ class SiteController extends Controller
                 'format' => Pdf::FORMAT_A4,
                 'orientation' => Pdf::ORIENT_PORTRAIT,
                 'destination' => Pdf::DEST_FILE,
-                'filename' => '../web/pdf/comprobante_'.$model->nro_reserva.'.pdf',
+                'filename' => '../web/pdf/comprobante_' . $model->nro_reserva . '.pdf',
                 'content' => $content,
                 'cssFile' => '../web/css/reportes.css',
                 'options' => ['title' => 'Comprobante de Reserva'],
@@ -1437,10 +1438,10 @@ class SiteController extends Controller
                 );
 
                 $correo->setTo($model->cliente->correo)
-                ->setFrom([Yii::$app->params['reservasEmail'] => 'Reservas - '.Yii::$app->name])
-                ->setSubject('Reservación Parking Plus')
-                ->attach('../web/pdf/comprobante_'.$reserva.'.pdf')
-                ->send();
+                    ->setFrom([Yii::$app->params['reservasEmail'] => 'Reservas - ' . Yii::$app->name])
+                    ->setSubject('Reservación Parking Plus')
+                    ->attach('../web/pdf/comprobante_' . $reserva . '.pdf')
+                    ->send();
 
                 $correo2 = Yii::$app->mailer->compose(
                     [
@@ -1456,10 +1457,10 @@ class SiteController extends Controller
                     ]
                 );
                 $correo2->setTo('asistenciaplus01@gmail.com')
-                ->setFrom([Yii::$app->params['reservasEmail'] => 'Reservas - '.Yii::$app->name])
-                ->setSubject('Reservación Parking Plus')
-                ->attach('../web/pdf/comprobante_'.$reserva.'.pdf')
-                ->send();
+                    ->setFrom([Yii::$app->params['reservasEmail'] => 'Reservas - ' . Yii::$app->name])
+                    ->setSubject('Reservación Parking Plus')
+                    ->attach('../web/pdf/comprobante_' . $reserva . '.pdf')
+                    ->send();
             }
 
             //unlink('../web/pdf/comprobante_'.$reserva.'.pdf');
@@ -1503,7 +1504,7 @@ class SiteController extends Controller
                 $cliente->delete();
             }
 
-            $msje = 'SU PAGO NO PUDO SER PROCESADO - <b>TRANSACCIÓN DENEGADA : '.$codigoRespuesta.'</b>';
+            $msje = 'SU PAGO NO PUDO SER PROCESADO - <b>TRANSACCIÓN DENEGADA : ' . $codigoRespuesta . '</b>';
             Yii::$app->session->setFlash('error', $msje);
             return $this->redirect(['site/index']);
         }
@@ -1522,7 +1523,7 @@ class SiteController extends Controller
         $codigoRespuesta = $miObj->getParameter("Ds_Response");
 
         // PRUEBAS
-        //$claveModuloAdmin = 'sq7HjrUOBfKmC576ILgskD5srU870gJ7';
+        //$claveModuloAdmin = '';
 
         // REAL
         $claveModuloAdmin = '5DaR9u4Tqw9gJpF36v44FZ+r+Q++qkl8';
@@ -1564,7 +1565,7 @@ class SiteController extends Controller
                 $cliente->delete();
             }
 
-            $msje = 'SU PAGO NO PUDO SER PROCESADO - <b>CÓDIGO DE ERROR : '.$codigoRespuesta.'</b>';
+            $msje = 'SU PAGO NO PUDO SER PROCESADO - <b>CÓDIGO DE ERROR : ' . $codigoRespuesta . '</b>';
 
             Yii::$app->session->setFlash('error', $msje);
             return $this->redirect(['site/index']);
@@ -1653,15 +1654,12 @@ class SiteController extends Controller
                     );
 
                     $confirmacion_correo->setTo('facturas@parkingplus.es')
-                    ->setFrom([Yii::$app->params['reservasEmail'] => 'Facturación - '.Yii::$app->name])
-                    ->setSubject('Solicitud de Factura - Parking Plus')
-                    ->send();
+                        ->setFrom([Yii::$app->params['reservasEmail'] => 'Facturación - ' . Yii::$app->name])
+                        ->setSubject('Solicitud de Factura - Parking Plus')
+                        ->send();
 
                     Yii::$app->session->setFlash('success', 'Su Solicitud de Factura fué realizada de manera exitosa. Nos pondremos en contacto con usted a la brevedad posible.');
                     return $this->redirect(['site/index']);
-
-
-
                 } else {
                     Yii::$app->session->setFlash('error', 'Le Informamos que al momento de reservar usted realizó la solicitud de factura, de igual forma nos pondremos en contacto con usted para cualquier duda con respecto a su factura.');
                     return $this->redirect(['site/index']);
@@ -1683,9 +1681,9 @@ class SiteController extends Controller
                     );
 
                     $confirmacion_correo->setTo('facturas@parkingplus.es')
-                    ->setFrom([Yii::$app->params['reservasEmail'] => 'Facturación - '.Yii::$app->name])
-                    ->setSubject('Solicitud de Factura - Parking Plus')
-                    ->send();
+                        ->setFrom([Yii::$app->params['reservasEmail'] => 'Facturación - ' . Yii::$app->name])
+                        ->setSubject('Solicitud de Factura - Parking Plus')
+                        ->send();
                 }
             }
         }
@@ -1705,10 +1703,9 @@ class SiteController extends Controller
                 ['html' => 'emailVerificacion-html', 'text' => 'emailVerificacion-text'],
                 ['user' => $user]
             )
-            ->setFrom([Yii::$app->params['reservasEmail'] => 'Reservas - '.Yii::$app->name])
+            ->setFrom([Yii::$app->params['reservasEmail'] => 'Reservas - ' . Yii::$app->name])
             ->setTo($user->email)
             ->setSubject('Registro de Cuenta')
             ->send();
     }
-
 }

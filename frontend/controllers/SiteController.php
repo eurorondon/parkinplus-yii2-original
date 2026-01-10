@@ -532,7 +532,7 @@ class SiteController extends Controller
             //$EXPIRYDATE = $_POST['fecha_expira'];
             //$CVV2 = $_POST['cvv'];
             //CLAVE DEL COMERCIO TEST
-            //$COMERCIO = 'sq7HjrUOBfKmC576ILgskD5srU870gJ7';
+            //$COMERCIO = '';
             //CLAVE DEL COMERCIO PRODUCCION
             $COMERCIO = 'X/5rYzzA5kZeS2RQge9+yxdgpL/5r+nO';
             //$AUTORIZACION = '123456';
@@ -1285,12 +1285,12 @@ class SiteController extends Controller
                     $merchantKey = (string)($redsysConfig['merchantKey']);
 
                     $name = 'PARKING PLUS';
-                    $code = (string)($redsysConfig['fuc'] ?? '350165395');
-                    $terminal = (string)($redsysConfig['terminal'] ?? '001');
+                    $code = (string)($redsysConfig['fuc']);
+                    $terminal = (string)($redsysConfig['terminal']);
                     $order = $model->nro_reserva;
                     $amount = $model->monto_total * 100;
 
-                    $currency = (string)($redsysConfig['currency'] ?? '978');
+                    $currency = (string)($redsysConfig['currency']);
                     $consumerlng = '001';
                     $transactionType = '0';
                     $urlMerchant = 'https://www.parkingplus.es/';
@@ -1740,7 +1740,7 @@ class SiteController extends Controller
 
                     $redsysConfig = Yii::$app->params['redsys'] ?? [];
                     $url_tpv = (string)($redsysConfig['paymentUrl'] ?? 'https://sis-t.redsys.es:25443/sis/realizarPago');
-                    $merchantKey = (string)($redsysConfig['merchantKey'] ?? 'sq7HjrUOBfKmC576ILgskD5srU870gJ7');
+                    $merchantKey = (string)($redsysConfig['merchantKey']);
 
                     $name     = 'PARKING PLUS';
                     $code     = (string)($redsysConfig['fuc'] ?? '350165395');
@@ -2349,7 +2349,7 @@ class SiteController extends Controller
 
                     $redsysConfig = Yii::$app->params['redsys'] ?? [];
                     $url_tpv = (string)($redsysConfig['paymentUrl'] ?? 'https://sis-t.redsys.es:25443/sis/realizarPago');
-                    $merchantKey = (string)($redsysConfig['merchantKey'] ?? 'sq7HjrUOBfKmC576ILgskD5srU870gJ7');
+                    $merchantKey = (string)($redsysConfig['merchantKey']);
 
                     $name = 'PARKING PLUS';
                     $code = (string)($redsysConfig['fuc'] ?? '350165395');
@@ -2661,7 +2661,7 @@ class SiteController extends Controller
         $codigoRespuesta = $miObj->getParameter("Ds_Response");
 
         $redsysConfig = Yii::$app->params['redsys'] ?? [];
-        $claveModuloAdmin = (string)($redsysConfig['merchantKey'] ?? 'sq7HjrUOBfKmC576ILgskD5srU870gJ7');
+        $claveModuloAdmin = (string)($redsysConfig['merchantKey']);
 
         $signatureCalculada = $miObj->createMerchantSignatureNotif($claveModuloAdmin, $params);
 
@@ -2812,7 +2812,7 @@ class SiteController extends Controller
         $codigoRespuesta = $miObj->getParameter("Ds_Response");
 
         $redsysConfig = Yii::$app->params['redsys'] ?? [];
-        $claveModuloAdmin = (string)($redsysConfig['merchantKey'] ?? 'sq7HjrUOBfKmC576ILgskD5srU870gJ7');
+        $claveModuloAdmin = (string)($redsysConfig['merchantKey']);
 
         $signatureCalculada = $miObj->createMerchantSignatureNotif($claveModuloAdmin, $params);
 
