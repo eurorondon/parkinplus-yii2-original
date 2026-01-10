@@ -1282,7 +1282,7 @@ class SiteController extends Controller
 
                     $redsysConfig = Yii::$app->params['redsys'] ?? [];
                     $url_tpv = (string)($redsysConfig['paymentUrl'] ?? 'https://sis-t.redsys.es:25443/sis/realizarPago');
-                    $merchantKey = (string)($redsysConfig['merchantKey'] ?? 'sq7HjrUOBfKmC576ILgskD5srU870gJ7');
+                    $merchantKey = (string)($redsysConfig['merchantKey']);
 
                     $name = 'PARKING PLUS';
                     $code = (string)($redsysConfig['fuc'] ?? '350165395');
