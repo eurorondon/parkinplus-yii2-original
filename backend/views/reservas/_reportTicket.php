@@ -56,7 +56,7 @@ $PLAZA_RES_ID = 12;  // "Plaza reservada"
 	CIF. B88537345
 </div>
 <div align="center">
-	<?= Html::img('@web/images/logo_ticket.jfif', ['style' => ['width' => '5cm']]); ?>
+	<?= Html::img('@web/images/logo_ticket.jfif', ['style' => ['width' => '4cm']]); ?>
 </div>
 
 <hr style="margin: -15px 0px 0px 0px">
@@ -157,6 +157,9 @@ $PLAZA_RES_ID = 12;  // "Plaza reservada"
 	</div>
 	<div style="margin-top: 5px; text-transform: uppercase; text-align: justify; font-size: 8px">
 		<b>El parking no se hace responsable de la rotura de cristales. Daños mecanicos y objetos no declarados.</b>
+	</div>
+	<div style="margin-top: 5px; text-transform: uppercase; text-align: justify; font-size: 8px">
+		<b>El cliente debe tomar fotos/videos de su vehículo en la entrega del mismo en la terminal del aeropuerto para poder reclamar cualquier desperfecto en la recogida a su regreso.</b>
 	</div>
 	<div style="margin-top: 15px; text-align: center; font-size: 12px"><b>Gracias por Preferirnos</b></div>
 </div>
