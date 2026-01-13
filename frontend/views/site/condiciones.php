@@ -31,6 +31,8 @@ $this->params['breadcrumbs'][] = 'Condiciones Generales de Contrato y Servicio';
 
 				<p align="justify">Si el cliente no espera en la recepción del vehículo por PARKING PLUS a la realización del parte de daños, dará por conforme el servicio realizado por nuestro personal. El parte de daños y el CFEV (Certificado Fotográfico del Estado del Vehículo) se realizarán en las instalaciones de PARKING PLUS si las condiciones de luminosidad, climatológicas, de tráfico u otros condicionantes así lo requieren.</p>
 
+				<p align="justify">Parking Plus informa a sus clientes que deben tomar fotos/videos de sus vehículos en la entrega del mismo en la terminal del aeropuerto para poder reclamar cualquier desperfecto en la recogida a su regreso.</p>
+
 				<p align="justify">PARKING PLUS no se hace responsable de los accesorios fijos y/o extraíbles así como los objetos que se encuentran en el interior del vehículo, si su existencia no ha sido comunicada a nuestro personal en el momento de la recepción del vehículo, verificado la existencia y el funcionamiento por nuestro personal y anotada en el contrato antes de la firma del mismo por parte del CLIENTE. Considerando expresamente que no se ha dejado en el vehículo accesorio u objeto algún en caso de no declararse.</p>
 
 				<p align="justify">PARKING PLUS no se hace responsable de ningún daño no susceptible de un siniestro por accidente. PARKING PLUS tampoco se hace responsable de todo lo que no le cubra su seguro.</p>
