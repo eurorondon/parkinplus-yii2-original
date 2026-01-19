@@ -189,8 +189,18 @@ foreach ($servicios as $servicie) {
 <?php endif; ?>
 
 <div style="position: absolute; bottom: 0.5cm; font-size:10px; margin-right: 20px;">
-	<?php if ($model['id_tipo_pago'] == 5): ?>
-		NOTA: LA RESERVA FUÉ PAGADA ONLINE
+	<?php
+	$tipoPagoDescripcion = '';
+	if (isset($model->tipoPago) && isset($model->tipoPago->descripcion)) {
+		$tipoPagoDescripcion = strtolower((string)$model->tipoPago->descripcion);
+	}
+	$pagoConfirmado = isset($model->pago_confirmado) && (int)$model->pago_confirmado === 1;
+	$isOnline = ((int)$model['id_tipo_pago'] === 5) || (strpos($tipoPagoDescripcion, 'online') !== false);
+	$isBizum = (strpos($tipoPagoDescripcion, 'bizum') !== false);
+	$paymentLabel = $isOnline && $isBizum ? 'ONLINE/BIZUM' : ($isBizum ? 'BIZUM' : 'ONLINE');
+	?>
+	<?php if ($pagoConfirmado && ($isOnline || $isBizum)): ?>
+		NOTA: LA RESERVA FUÉ PAGADA <?= $paymentLabel ?>
 	<?php endif; ?>
 	<hr style="margin: 10px 0px">
 	Cliente: <?= Html::encode($model->cliente->nombre_completo) ?>

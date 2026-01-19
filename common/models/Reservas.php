@@ -43,6 +43,7 @@ use yii\db\ActiveRecord;
  * @property int $medio_reserva
  * @property string|null $agencia 
  * @property int $estatus 
+ * @property int $pago_confirmado
  * @property string $created_at
  * @property int $created_by
  * @property string $updated_at
@@ -122,6 +123,7 @@ class Reservas extends \yii\db\ActiveRecord
             [['fecha_salida'], 'validateFechaSalida'],
             [['cortesia', 'techado', 'fecha_entrada', 'hora_entrada', 'fecha_salida', 'hora_salida', 'created_at', 'updated_at'], 'safe'],
             [['id_cliente',  'factura_equipaje', 'factura', 'id_tipo_pago', 'condiciones', 'medio_reserva', 'estatus', 'created_by', 'updated_by', 'canceled_by', 'actualizada', 'evaluacion_enviada', 'plan'], 'integer'],
+            [['pago_confirmado'], 'integer'],
             [['nro_reserva', 'costo_servicios', 'costo_servicios_extra', 'monto_factura', 'monto_impuestos', 'monto_total', 'porcentaje_cupo', 'monto_des'], 'number'],
             [['plan'], 'in', 'range' => [1, 2, 3, 4]],
             [['terminal_entrada', 'terminal_salida', 'nro_vuelo_regreso', 'ciudad_procedencia', 'observaciones', 'razon_social', 'direccion', 'ciudad', 'provincia', 'pais', 'cupon', 'agencia', 'cod_valid'], 'string', 'max' => 255],
@@ -174,6 +176,7 @@ class Reservas extends \yii\db\ActiveRecord
             'medio_reserva' => 'Medio',
             'agencia' => 'Nombre de la Agencia',
             'estatus' => 'Estado',
+            'pago_confirmado' => 'Pago confirmado',
             'created_at' => 'Fecha de Reserva',
             'created_by' => 'Created By',
             'updated_at' => 'Updated At',
