@@ -2710,11 +2710,12 @@ class SiteController extends Controller
             return $this->redirect(['finalizada', 'reserva' => $model->nro_reserva]);
         } elseif ($signatureCalculada === $signatureRecibida) {
             $paymentNotice = '¡Reserva confirmada! <strong>NO hemos podido procesar el pago online</strong>, pero no te preocupes: tu plaza está garantizada. Podrás realizar el pago en efectivo o con tarjeta al momento de entregar tu vehículo.';
+            $paymentNoticePdf = 'No hemos podido procesar el pago online, Podrás realizar el pago en efectivo o con tarjeta al momento de entregar tu vehículo.';
             $fecha1 = $model->fecha_entrada;
             $model->fecha_entrada = date("Y-m-d", strtotime($fecha1));
             $fecha2 = $model->fecha_salida;
             $model->fecha_salida = date("Y-m-d", strtotime($fecha2));
-            $this->sendReservaEmail($model, $fecha1, $fecha2);
+            $this->sendReservaEmail($model, $fecha1, $fecha2, $paymentNoticePdf);
             Yii::$app->session->setFlash('payment_notice', $paymentNotice);
             Yii::$app->session->remove('reserva');
             return $this->redirect(['finalizada', 'reserva' => $model->nro_reserva]);
@@ -2751,20 +2752,29 @@ class SiteController extends Controller
             }
 
             $paymentNotice = '¡Reserva confirmada! <strong>NO hemos podido procesar el pago online</strong>, pero no te preocupes: tu plaza está garantizada. Podrás realizar el pago en efectivo o con tarjeta al momento de entregar tu vehículo.';
+            $paymentNoticePdf = 'No hemos podido procesar el pago online, Podrás realizar el pago en efectivo o con tarjeta al momento de entregar tu vehículo.';
             $fecha1 = $model->fecha_entrada;
             $model->fecha_entrada = date("Y-m-d", strtotime($fecha1));
             $fecha2 = $model->fecha_salida;
             $model->fecha_salida = date("Y-m-d", strtotime($fecha2));
-            $this->sendReservaEmail($model, $fecha1, $fecha2);
+            $this->sendReservaEmail($model, $fecha1, $fecha2, $paymentNoticePdf);
             Yii::$app->session->setFlash('payment_notice', $paymentNotice);
             Yii::$app->session->remove('reserva');
             return $this->redirect(['finalizada', 'reserva' => $model->nro_reserva]);
         }
     }
 
-    private function sendReservaEmail(Reservas $model, string $fechaEntrada, string $fechaSalida): void
+    private function sendReservaEmail(
+        Reservas $model,
+        string $fechaEntrada,
+        string $fechaSalida,
+        ?string $paymentNotice = null
+    ): void
     {
-        $content = $this->renderPartial('_reportView', ['model' => $this->findModel($model->id)]);
+        $content = $this->renderPartial('_reportView', [
+            'model' => $this->findModel($model->id),
+            'paymentNotice' => $paymentNotice,
+        ]);
 
         $pdf = new Pdf([
             'mode' => Pdf::MODE_UTF8,

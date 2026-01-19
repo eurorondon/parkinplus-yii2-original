@@ -5,6 +5,8 @@ use common\models\Servicios;
 use common\models\Clientes;
 use common\models\ReservasServicios;
 
+$paymentNotice = $paymentNotice ?? null;
+
 $service = ReservasServicios::find()->where(['id_reserva' => $model->nro_reserva])
 	->orderBy(['tipo_servicio' => SORT_ASC])
 	->all();
@@ -235,6 +237,12 @@ if ($model->nro_vuelo_regreso == NULL) {
 		</td>
 	</tr>
 </table>
+
+<?php if (!empty($paymentNotice)) { ?>
+	<div style="margin: 10px 0; padding: 8px 10px; border: 1px solid #961007;">
+		<p style="margin: 0; font-size: 12px; color: #961007;"><b><?= Html::encode($paymentNotice) ?></b></p>
+	</div>
+<?php } ?>
 
 
 <div class="borde1">
