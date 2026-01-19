@@ -2778,7 +2778,7 @@ class SiteController extends Controller
 
             return $this->redirect(['finalizada', 'reserva' => $model->nro_reserva]);
         } elseif ($signatureCalculada === $signatureRecibida) {
-            $paymentNotice = '¡Reserva confirmada! No hemos podido procesar el pago online, pero no te preocupes: tu plaza está garantizada. Podrás realizar el pago en efectivo o con tarjeta al momento de entregar tu vehículo.';
+            $paymentNotice = '¡Reserva confirmada! <strong>NO hemos podido procesar el pago online</strong>, pero no te preocupes: tu plaza está garantizada. Podrás realizar el pago en efectivo o con tarjeta al momento de entregar tu vehículo.';
             Yii::$app->session->setFlash('payment_notice', $paymentNotice);
             Yii::$app->session->remove('reserva');
             return $this->redirect(['finalizada', 'reserva' => $model->nro_reserva]);
@@ -2814,7 +2814,7 @@ class SiteController extends Controller
                 return $this->redirect(['site/index']);
             }
 
-            $paymentNotice = '¡Reserva confirmada! No hemos podido procesar el pago online, pero no te preocupes: tu plaza está garantizada. Podrás realizar el pago en efectivo o con tarjeta al momento de entregar tu vehículo.';
+            $paymentNotice = '¡Reserva confirmada! <strong>NO hemos podido procesar el pago online</strong>, pero no te preocupes: tu plaza está garantizada. Podrás realizar el pago en efectivo o con tarjeta al momento de entregar tu vehículo.';
             Yii::$app->session->setFlash('payment_notice', $paymentNotice);
             Yii::$app->session->remove('reserva');
             return $this->redirect(['finalizada', 'reserva' => $model->nro_reserva]);
