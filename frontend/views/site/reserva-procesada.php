@@ -69,7 +69,7 @@ $this->title = Yii::$app->name . ' | Reserva Procesada';
                     <div class="col-lg-10 col-md-10 col-xs-12">
                         <?php if ($paymentNotice): ?>
                             <div class="alert alert-warning" style="margin-bottom: 10px;">
-                                <?= Html::encode($paymentNotice) ?>
+                                <?= Html::decode($paymentNotice) ?>
                             </div>
                         <?php else: ?>
                             Su reserva ha sido procesada de manera exitosa. Revise su correo electrónico para mayor información
