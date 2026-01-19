@@ -1312,7 +1312,7 @@ class SiteController extends Controller
                     $consumerlng = '001';
                     $transactionType = '0';
                     $urlMerchant = 'https://www.parkingplus.es/';
-                    $frontendBaseUrl = 'http://localhost:20080/aparcamiento';
+                    $frontendBaseUrl = $this->normalizeFrontendBaseUrl(Yii::$app->params['frontendBaseUrl']);
                     $urlweb_ok = $frontendBaseUrl . '/site/tpvok';
                     $urlweb_ko = $frontendBaseUrl . '/site/tpvko';
 
@@ -1770,7 +1770,7 @@ class SiteController extends Controller
                     $consumerlng   = '001';
                     $transactionType = '0';
                     $urlMerchant   = 'https://www.parkingplus.es/';
-                    $frontendBaseUrl = 'http://localhost:20080/aparcamiento';
+                    $frontendBaseUrl = $this->normalizeFrontendBaseUrl(Yii::$app->params['frontendBaseUrl']);
                     $urlweb_ok     = $frontendBaseUrl . '/site/tpvok';
                     $urlweb_ko     = $frontendBaseUrl . '/site/tpvko';
 
@@ -2379,7 +2379,7 @@ class SiteController extends Controller
                     $consumerlng = '001';
                     $transactionType = '0';
                     $urlMerchant = 'https://www.parkingplus.es/';
-                    $frontendBaseUrl = 'http://localhost:20080/aparcamiento';
+                    $frontendBaseUrl = $this->normalizeFrontendBaseUrl(Yii::$app->params['frontendBaseUrl']);
                     $urlweb_ok = $frontendBaseUrl . '/site/tpvok';
                     $urlweb_ko = $frontendBaseUrl . '/site/tpvko';
 
@@ -2778,39 +2778,10 @@ class SiteController extends Controller
 
             return $this->redirect(['finalizada', 'reserva' => $model->nro_reserva]);
         } elseif ($signatureCalculada === $signatureRecibida) {
-
-            $reserva = $model->nro_reserva;
-            $idC = $model->id_cliente;
-            $idV = $model->id_coche;
-
-            $model->delete();
-
-            $buscaServicios = ReservasServicios::find()->where(['id_reserva' => $reserva])->all();
-
-            if (count($buscaServicios) > 0) {
-                foreach ($buscaServicios as $servicio) {
-                    $servicio->delete();
-                }
-            }
-
-            $userC = UserCliente::find()->where(['id_cliente' => $idC])->one();
-            if (!is_null($userC)) {
-                $userC->delete();
-            }
-
-            $coche = Coches::find()->where(['id' => $idV])->one();
-            if (!is_null($coche) > 0) {
-                $coche->delete();
-            }
-
-            $cliente = Clientes::find()->where(['id' => $idC])->one();
-            if (!is_null($cliente)) {
-                $cliente->delete();
-            }
-
-            $msje = 'SU PAGO NO PUDO SER PROCESADO - <b>TRANSACCIÓN DENEGADA : ' . $codigoRespuesta . '</b>';
-            Yii::$app->session->setFlash('error', $msje);
-            return $this->redirect(['site/index']);
+            $paymentNotice = '¡Reserva confirmada! No hemos podido procesar el pago online, pero no te preocupes: tu plaza está garantizada. Podrás realizar el pago en efectivo o con tarjeta al momento de entregar tu vehículo.';
+            Yii::$app->session->setFlash('payment_notice', $paymentNotice);
+            Yii::$app->session->remove('reserva');
+            return $this->redirect(['finalizada', 'reserva' => $model->nro_reserva]);
         } else {
             Yii::$app->session->setFlash('error', 'Firma inválida en la respuesta del TPV.');
             return $this->redirect(['site/index']);
@@ -2837,42 +2808,16 @@ class SiteController extends Controller
         //var_dump($signatureRecibida.' -- '.$signatureCalculada.' -- '.$codigoRespuesta); die();
 
         if ($signatureCalculada === $signatureRecibida) {
-
-            $model = Yii::$app->session['reserva'];
-
-            $reserva = $model->nro_reserva;
-            $idC = $model->id_cliente;
-            $idV = $model->id_coche;
-
-            $model->delete();
-
-            $buscaServicios = ReservasServicios::find()->where(['id_reserva' => $reserva])->all();
-
-            if (count($buscaServicios) > 0) {
-                foreach ($buscaServicios as $servicio) {
-                    $servicio->delete();
-                }
+            $model = Yii::$app->session->get('reserva');
+            if ($model === null) {
+                Yii::$app->session->setFlash('error', 'No se encontró la reserva de la sesión.');
+                return $this->redirect(['site/index']);
             }
 
-            $userC = UserCliente::find()->where(['id_cliente' => $idC])->one();
-            if (!is_null($userC)) {
-                $userC->delete();
-            }
-
-            $coche = Coches::find()->where(['id' => $idV])->one();
-            if (!is_null($coche) > 0) {
-                $coche->delete();
-            }
-
-            $cliente = Clientes::find()->where(['id' => $idC])->one();
-            if (!is_null($cliente)) {
-                $cliente->delete();
-            }
-
-            $msje = 'SU PAGO NO PUDO SER PROCESADO - <b>CÓDIGO DE ERROR : ' . $codigoRespuesta . '</b>';
-
-            Yii::$app->session->setFlash('error', $msje);
-            return $this->redirect(['site/index']);
+            $paymentNotice = '¡Reserva confirmada! No hemos podido procesar el pago online, pero no te preocupes: tu plaza está garantizada. Podrás realizar el pago en efectivo o con tarjeta al momento de entregar tu vehículo.';
+            Yii::$app->session->setFlash('payment_notice', $paymentNotice);
+            Yii::$app->session->remove('reserva');
+            return $this->redirect(['finalizada', 'reserva' => $model->nro_reserva]);
         }
     }
 
@@ -2916,6 +2861,21 @@ class SiteController extends Controller
         return $this->render('reserva-procesada', [
             'reserva' => $res,
         ]);
+    }
+
+    private function normalizeFrontendBaseUrl($frontendBaseUrl)
+    {
+        $frontendBaseUrl = trim((string)$frontendBaseUrl);
+        if ($frontendBaseUrl === '') {
+            return 'https://parkingplus.es/aparcamiento';
+        }
+
+        $frontendBaseUrl = rtrim($frontendBaseUrl, '/');
+        if (parse_url($frontendBaseUrl, PHP_URL_SCHEME) === null) {
+            $frontendBaseUrl = 'https://' . ltrim($frontendBaseUrl, '/');
+        }
+
+        return $frontendBaseUrl;
     }
 
     public function actionSolicitarf()
