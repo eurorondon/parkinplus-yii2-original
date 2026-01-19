@@ -2808,7 +2808,7 @@ class SiteController extends Controller
                 $cliente->delete();
             }
 
-            $msje = 'SU PAGO NO PUDO SER PROCESADO - <b>TRANSACCIÓN DENEGADA : ' . $codigoRespuesta . '</b>';
+            $msje = '¡Reserva confirmada! No hemos podido procesar el pago online, pero no te preocupes: tu plaza está garantizada. Podrás realizar el pago en efectivo o con tarjeta al momento de entregar tu vehículo.';
             Yii::$app->session->setFlash('error', $msje);
             return $this->redirect(['site/index']);
         } else {
@@ -2869,7 +2869,7 @@ class SiteController extends Controller
                 $cliente->delete();
             }
 
-            $msje = 'SU PAGO NO PUDO SER PROCESADO - <b>CÓDIGO DE ERROR : ' . $codigoRespuesta . '</b>';
+            $msje = '¡Reserva confirmada! No hemos podido procesar el pago online, pero no te preocupes: tu plaza está garantizada. Podrás realizar el pago en efectivo o con tarjeta al momento de entregar tu vehículo.';
 
             Yii::$app->session->setFlash('error', $msje);
             return $this->redirect(['site/index']);
