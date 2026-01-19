@@ -2692,6 +2692,12 @@ class SiteController extends Controller
         }
 
         $isApproved = is_numeric($codigoRespuesta) && (int)$codigoRespuesta < 100;
+        $reservaPersistida = Reservas::findOne($model->id);
+        if ($reservaPersistida !== null) {
+            $reservaPersistida->pago_confirmado = $isApproved ? 1 : 0;
+            $reservaPersistida->save(false);
+            $model = $reservaPersistida;
+        }
 
         if ($signatureCalculada === $signatureRecibida && $isApproved) {
 
@@ -2749,6 +2755,12 @@ class SiteController extends Controller
             if ($model === null) {
                 Yii::$app->session->setFlash('error', 'No se encontró la reserva de la sesión.');
                 return $this->redirect(['site/index']);
+            }
+            $reservaPersistida = Reservas::findOne($model->id);
+            if ($reservaPersistida !== null) {
+                $reservaPersistida->pago_confirmado = 0;
+                $reservaPersistida->save(false);
+                $model = $reservaPersistida;
             }
 
             $paymentNotice = '¡Reserva confirmada! <strong>NO hemos podido procesar el pago online</strong>, pero no te preocupes: tu plaza está garantizada. Podrás realizar el pago en efectivo o con tarjeta al momento de entregar tu vehículo.';

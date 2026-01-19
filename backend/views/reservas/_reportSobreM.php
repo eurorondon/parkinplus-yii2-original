@@ -216,8 +216,18 @@ for ($i = 0; $i < count($model); $i++) {
 	}
 	?>
 	<div style="position: absolute; bottom: 0.5cm; font-size:10px; margin-right:20px">
-		<?php if ($model[$i]['id_tipo_pago'] == 5) { ?>
-			NOTA: LA RESERVA FUÉ PAGADA ONLINE
+		<?php
+		$tipoPagoDescripcion = '';
+		if (isset($model[$i]->tipoPago) && isset($model[$i]->tipoPago->descripcion)) {
+			$tipoPagoDescripcion = strtolower((string)$model[$i]->tipoPago->descripcion);
+		}
+		$pagoConfirmado = isset($model[$i]->pago_confirmado) && (int)$model[$i]->pago_confirmado === 1;
+		$isOnline = ((int)$model[$i]['id_tipo_pago'] === 5) || (strpos($tipoPagoDescripcion, 'online') !== false);
+		$isBizum = (strpos($tipoPagoDescripcion, 'bizum') !== false);
+		$paymentLabel = $isOnline && $isBizum ? 'ONLINE/BIZUM' : ($isBizum ? 'BIZUM' : 'ONLINE');
+		?>
+		<?php if ($pagoConfirmado && ($isOnline || $isBizum)) { ?>
+			NOTA: LA RESERVA FUÉ PAGADA <?= $paymentLabel ?>
 		<?php } ?>
 		<hr style="margin: 2% 0%">
 		Cliente: <?= $model[$i]->cliente->nombre_completo ?>
