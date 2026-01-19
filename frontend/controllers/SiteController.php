@@ -2700,76 +2700,7 @@ class SiteController extends Controller
             $fecha2 = $model->fecha_salida;
             $model->fecha_salida = date("Y-m-d", strtotime($fecha2));
 
-
-            $content = $this->renderPartial('_reportView', ['model' => $this->findModel($model->id)]);
-
-            $pdf = new Pdf([
-                'mode' => Pdf::MODE_UTF8,
-                'format' => Pdf::FORMAT_A4,
-                'orientation' => Pdf::ORIENT_PORTRAIT,
-                'destination' => Pdf::DEST_FILE,
-                'filename' => '../web/pdf/comprobante_' . $model->nro_reserva . '.pdf',
-                'content' => $content,
-                'cssFile' => '../web/css/reportes.css',
-                'options' => ['title' => 'Comprobante de Reserva'],
-                'methods' => [
-                    'SetFooter' => ['{PAGENO}'],
-                ]
-            ]);
-
-            $pdf->render();
-
-            $reserva = $model->nro_reserva;
-
-            //$mensaje = '';
-
-            $matricula = $model->coche ? $model->coche->matricula : null;
-            if ($model->cliente->correo != null) {
-                try {
-                    $correo = Yii::$app->mailer->compose(
-                        [
-                            'html' => 'emailReserva2-html',
-                            'text' => 'emailReserva-text'
-                        ],
-                        [
-                            'nro_reserva'     => $reserva,
-                            'coche_matricula' => $matricula,
-                            'fecha_entrada'   => $fecha1,
-                            'hora_entrada'    => $model->hora_entrada,
-                            'fecha_salida'    => $fecha2,
-                            'hora_salida'     => $model->hora_salida,
-                            'token'           => $model->cod_valid,
-                        ]
-                    );
-
-                    $correo->setTo($model->cliente->correo)
-                        ->setFrom([Yii::$app->params['reservasEmail'] => 'Reservas - ' . Yii::$app->name])
-                        ->setSubject('Reservación Parking Plus')
-                        ->attach('../web/pdf/comprobante_' . $reserva . '.pdf')
-                        ->send();
-
-                    $correo2 = Yii::$app->mailer->compose(
-                        [
-                            'html' => 'emailReserva2-html',
-                            'text' => 'emailReserva-text'
-                        ],
-                        [
-                            'nro_reserva'   => $reserva,
-                            'fecha_entrada' => $fecha1,
-                            'hora_entrada'  => $model->hora_entrada,
-                            'fecha_salida'  => $fecha2,
-                            'hora_salida'   => $model->hora_salida,
-                        ]
-                    );
-                    $correo2->setTo('asistenciaplus00@gmail.com')
-                        ->setFrom([Yii::$app->params['reservasEmail'] => 'Reservas - ' . Yii::$app->name])
-                        ->setSubject('Reservación Parking Plus')
-                        ->attach('../web/pdf/comprobante_' . $reserva . '.pdf')
-                        ->send();
-                } catch (\Exception $e) {
-                    Yii::error('Error enviando correo TPV: ' . $e->getMessage(), __METHOD__);
-                }
-            }
+            $this->sendReservaEmail($model, $fecha1, $fecha2);
 
             //unlink('../web/pdf/comprobante_'.$reserva.'.pdf');
 
@@ -2779,6 +2710,11 @@ class SiteController extends Controller
             return $this->redirect(['finalizada', 'reserva' => $model->nro_reserva]);
         } elseif ($signatureCalculada === $signatureRecibida) {
             $paymentNotice = '¡Reserva confirmada! <strong>NO hemos podido procesar el pago online</strong>, pero no te preocupes: tu plaza está garantizada. Podrás realizar el pago en efectivo o con tarjeta al momento de entregar tu vehículo.';
+            $fecha1 = $model->fecha_entrada;
+            $model->fecha_entrada = date("Y-m-d", strtotime($fecha1));
+            $fecha2 = $model->fecha_salida;
+            $model->fecha_salida = date("Y-m-d", strtotime($fecha2));
+            $this->sendReservaEmail($model, $fecha1, $fecha2);
             Yii::$app->session->setFlash('payment_notice', $paymentNotice);
             Yii::$app->session->remove('reserva');
             return $this->redirect(['finalizada', 'reserva' => $model->nro_reserva]);
@@ -2815,9 +2751,85 @@ class SiteController extends Controller
             }
 
             $paymentNotice = '¡Reserva confirmada! <strong>NO hemos podido procesar el pago online</strong>, pero no te preocupes: tu plaza está garantizada. Podrás realizar el pago en efectivo o con tarjeta al momento de entregar tu vehículo.';
+            $fecha1 = $model->fecha_entrada;
+            $model->fecha_entrada = date("Y-m-d", strtotime($fecha1));
+            $fecha2 = $model->fecha_salida;
+            $model->fecha_salida = date("Y-m-d", strtotime($fecha2));
+            $this->sendReservaEmail($model, $fecha1, $fecha2);
             Yii::$app->session->setFlash('payment_notice', $paymentNotice);
             Yii::$app->session->remove('reserva');
             return $this->redirect(['finalizada', 'reserva' => $model->nro_reserva]);
+        }
+    }
+
+    private function sendReservaEmail(Reservas $model, string $fechaEntrada, string $fechaSalida): void
+    {
+        $content = $this->renderPartial('_reportView', ['model' => $this->findModel($model->id)]);
+
+        $pdf = new Pdf([
+            'mode' => Pdf::MODE_UTF8,
+            'format' => Pdf::FORMAT_A4,
+            'orientation' => Pdf::ORIENT_PORTRAIT,
+            'destination' => Pdf::DEST_FILE,
+            'filename' => '../web/pdf/comprobante_' . $model->nro_reserva . '.pdf',
+            'content' => $content,
+            'cssFile' => '../web/css/reportes.css',
+            'options' => ['title' => 'Comprobante de Reserva'],
+            'methods' => [
+                'SetFooter' => ['{PAGENO}'],
+            ]
+        ]);
+
+        $pdf->render();
+
+        $reserva = $model->nro_reserva;
+        $matricula = $model->coche ? $model->coche->matricula : null;
+
+        if ($model->cliente->correo != null) {
+            try {
+                $correo = Yii::$app->mailer->compose(
+                    [
+                        'html' => 'emailReserva2-html',
+                        'text' => 'emailReserva-text'
+                    ],
+                    [
+                        'nro_reserva'     => $reserva,
+                        'coche_matricula' => $matricula,
+                        'fecha_entrada'   => $fechaEntrada,
+                        'hora_entrada'    => $model->hora_entrada,
+                        'fecha_salida'    => $fechaSalida,
+                        'hora_salida'     => $model->hora_salida,
+                        'token'           => $model->cod_valid,
+                    ]
+                );
+
+                $correo->setTo($model->cliente->correo)
+                    ->setFrom([Yii::$app->params['reservasEmail'] => 'Reservas - ' . Yii::$app->name])
+                    ->setSubject('Reservación Parking Plus')
+                    ->attach('../web/pdf/comprobante_' . $reserva . '.pdf')
+                    ->send();
+
+                $correo2 = Yii::$app->mailer->compose(
+                    [
+                        'html' => 'emailReserva2-html',
+                        'text' => 'emailReserva-text'
+                    ],
+                    [
+                        'nro_reserva'   => $reserva,
+                        'fecha_entrada' => $fechaEntrada,
+                        'hora_entrada'  => $model->hora_entrada,
+                        'fecha_salida'  => $fechaSalida,
+                        'hora_salida'   => $model->hora_salida,
+                    ]
+                );
+                $correo2->setTo('asistenciaplus00@gmail.com')
+                    ->setFrom([Yii::$app->params['reservasEmail'] => 'Reservas - ' . Yii::$app->name])
+                    ->setSubject('Reservación Parking Plus')
+                    ->attach('../web/pdf/comprobante_' . $reserva . '.pdf')
+                    ->send();
+            } catch (\Exception $e) {
+                Yii::error('Error enviando correo TPV: ' . $e->getMessage(), __METHOD__);
+            }
         }
     }
 
