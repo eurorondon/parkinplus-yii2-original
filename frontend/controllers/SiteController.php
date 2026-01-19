@@ -1312,7 +1312,7 @@ class SiteController extends Controller
                     $consumerlng = '001';
                     $transactionType = '0';
                     $urlMerchant = 'https://www.parkingplus.es/';
-                    $frontendBaseUrl = rtrim(Yii::$app->params['frontendBaseUrl'], '/');
+                    $frontendBaseUrl = $this->normalizeFrontendBaseUrl(Yii::$app->params['frontendBaseUrl']);
                     $urlweb_ok = $frontendBaseUrl . '/site/tpvok';
                     $urlweb_ko = $frontendBaseUrl . '/site/tpvko';
 
@@ -1770,7 +1770,7 @@ class SiteController extends Controller
                     $consumerlng   = '001';
                     $transactionType = '0';
                     $urlMerchant   = 'https://www.parkingplus.es/';
-                    $frontendBaseUrl = rtrim(Yii::$app->params['frontendBaseUrl'], '/');
+                    $frontendBaseUrl = $this->normalizeFrontendBaseUrl(Yii::$app->params['frontendBaseUrl']);
                     $urlweb_ok     = $frontendBaseUrl . '/site/tpvok';
                     $urlweb_ko     = $frontendBaseUrl . '/site/tpvko';
 
@@ -2379,7 +2379,7 @@ class SiteController extends Controller
                     $consumerlng = '001';
                     $transactionType = '0';
                     $urlMerchant = 'https://www.parkingplus.es/';
-                    $frontendBaseUrl = rtrim(Yii::$app->params['frontendBaseUrl'], '/');
+                    $frontendBaseUrl = $this->normalizeFrontendBaseUrl(Yii::$app->params['frontendBaseUrl']);
                     $urlweb_ok = $frontendBaseUrl . '/site/tpvok';
                     $urlweb_ko = $frontendBaseUrl . '/site/tpvko';
 
@@ -2861,6 +2861,21 @@ class SiteController extends Controller
         return $this->render('reserva-procesada', [
             'reserva' => $res,
         ]);
+    }
+
+    private function normalizeFrontendBaseUrl($frontendBaseUrl)
+    {
+        $frontendBaseUrl = trim((string)$frontendBaseUrl);
+        if ($frontendBaseUrl === '') {
+            return 'https://parkingplus.es/aparcamiento';
+        }
+
+        $frontendBaseUrl = rtrim($frontendBaseUrl, '/');
+        if (parse_url($frontendBaseUrl, PHP_URL_SCHEME) === null) {
+            $frontendBaseUrl = 'https://' . ltrim($frontendBaseUrl, '/');
+        }
+
+        return $frontendBaseUrl;
     }
 
     public function actionSolicitarf()
