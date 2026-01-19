@@ -29,6 +29,8 @@ $fecha_s = date("d-m-Y", strtotime($fecha_s));
 $hora_e = $reserva->hora_entrada;
 $hora_s = $reserva->hora_salida;
 
+$paymentNotice = Yii::$app->session->getFlash('payment_notice');
+
 foreach ($service as $s) {
     $datos = Servicios::find()->where(['id' => $s->id_servicio])->one();
     if ($s->id_servicio == 12 && (int)$s->precio_total === 0) {
@@ -65,9 +67,15 @@ $this->title = Yii::$app->name . ' | Reserva Procesada';
                         <?= Html::img('@web/images/succes.gif', ['class' => 'img img-responsive img-informa']); ?>
                     </div>
                     <div class="col-lg-10 col-md-10 col-xs-12">
-                        Su reserva ha sido procesada de manera exitosa. Revise su correo electrónico para mayor información
-                        <p class="parrafo-m" style="margin-top: 5px">Si no recibe nuestro correo revise su carpeta de <b>SPAM</b> o comuniquesé con nosotros:</p>
-                        <p align="right" style="margin-top: -35px; margin-right: 120px;"><a class="reborde phone-min" style="font-size: 0.9em;" href="tel:+34912147984"> +34 603 28 48 00</a></p>
+                        <?php if ($paymentNotice): ?>
+                            <div class="alert alert-warning" style="margin-bottom: 10px;">
+                                <?= Html::encode($paymentNotice) ?>
+                            </div>
+                        <?php else: ?>
+                            Su reserva ha sido procesada de manera exitosa. Revise su correo electrónico para mayor información
+                            <p class="parrafo-m" style="margin-top: 5px">Si no recibe nuestro correo revise su carpeta de <b>SPAM</b> o comuniquesé con nosotros:</p>
+                            <p align="right" style="margin-top: -35px; margin-right: 120px;"><a class="reborde phone-min" style="font-size: 0.9em;" href="tel:+34912147984"> +34 603 28 48 00</a></p>
+                        <?php endif; ?>
                     </div>
                 </div>
 
