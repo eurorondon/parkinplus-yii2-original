@@ -47,6 +47,7 @@ for ($i = 0; $i < count($model); $i++) {
 	}
 
 	$planName[$i] = $planes[(int)$model[$i]->plan] ?? '';
+	$importeLabel[$i] = !empty($model[$i]->pago_confirmado) ? 'PAGADO' : 'Importe';
 }
 
 ?>
@@ -69,7 +70,7 @@ for ($i = 0; $i < count($model); $i++) {
 		<div style="margin-top: -1.6cm; font-size: 17px; font-weight: bolder; font-family: sans-serif;">
 		</div>
 
-		<div align="right" style="text-transform: uppercase; font-size: 12px">Importe : <b><?= $model[$i]->monto_total ?> €</b></div>
+		<div align="right" style="text-transform: uppercase; font-size: 12px"><?= Html::encode($importeLabel[$i]) ?> : <b><?= $model[$i]->monto_total ?> €</b></div>
 		<div align="right" style="text-transform: uppercase; font-size: 12px">Teléfono : <b><?= $model[$i]->cliente->movil ?></b></div>
 
 		<div align="center">
