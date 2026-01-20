@@ -47,6 +47,10 @@ for ($i = 0; $i < count($model); $i++) {
 	}
 
 	$planName[$i] = $planes[(int)$model[$i]->plan] ?? '';
+	$marcaModelo[$i] = trim($model[$i]->coche->marca . ' ' . $model[$i]->coche->modelo);
+	if ($marcaModelo[$i] === '') {
+		$marcaModelo[$i] = 'N/D';
+	}
 }
 
 ?>
@@ -91,7 +95,9 @@ for ($i = 0; $i < count($model); $i++) {
 		<tr>
 			<td colspan="2" align="center" style="width: 3.5cm; text-transform: uppercase; padding-top: 10px">
 				Marca - Modelo
-				<div align="center" style="width: 3.5cm; font-size: 20px"><?= $model[$i]->coche->marca . ' ' . $model[$i]->coche->modelo ?></div>
+				<div align="center" style="width: 3.5cm; font-size: 20px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+					<?= Html::encode($marcaModelo[$i]) ?>
+				</div>
 			</td>
 		</tr>
 

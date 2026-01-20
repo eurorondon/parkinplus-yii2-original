@@ -34,6 +34,9 @@ if ($model->medio_reserva === 5) {
 
 $planes = [1 => 'Plan Estandar', 2 => 'Plan Premiun', 3 => 'Plan Priority', 4 => 'Plan Economic'];
 $planName = $planes[(int)$model->plan] ?? '';
+$marcaModelo = empty($model->coche->matricula)
+	? 'N/D'
+	: trim($model->coche->marca . ' ' . $model->coche->modelo);
 
 // Flags/constantes para filtrado de servicios
 $IS_PREMIUM   = ((int)$model->plan === 2);
@@ -71,8 +74,8 @@ $PLAZA_RES_ID = 12;  // "Plaza reservada"
 	<tr>
 		<td colspan="2" align="center" style="width: 3.5cm; text-transform: uppercase; padding-top: 10px">
 			Marca - Modelo
-			<div align="center" style="width: 3.5cm; font-size: 20px">
-				<?= empty($model->coche->matricula) ? 'N/D' : Html::encode($model->coche->marca . " " . $model->coche->modelo) ?>
+			<div align="center" style="width: 3.5cm; font-size: 20px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+				<?= Html::encode($marcaModelo) ?>
 			</div>
 		</td>
 	</tr>
