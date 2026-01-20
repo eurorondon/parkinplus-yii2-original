@@ -74,7 +74,7 @@ for ($i = 0; $i < count($model); $i++) {
 	</div>
 
 	<!-- CORRECCIÓN DE NEGRILLA PARA 'IMPORTE :' -->
-	<div align="right" style="text-transform: uppercase; font-size: 12px">
+	<div align="right" style="text-transform: uppercase; font-size: 17px">
 		<span style="font-weight: normal;">Importe :</span> <b><?= $model[$i]->monto_total ?> €</b>
 		<?php if ($model[$i]->cupon != NULL || $model[$i]->descuento == 'SI') { ?>
 			<br><span style="font-size:9px;">(Descuento Aplicado)</span>
@@ -82,7 +82,7 @@ for ($i = 0; $i < count($model); $i++) {
 	</div>
 
 	<!-- CORRECCIÓN DE NEGRILLA PARA 'Teléfono :' -->
-	<div align="right" style="text-transform: uppercase; font-size: 12px">
+	<div align="right" style="text-transform: uppercase; font-size: 17px">
 		<span style="font-weight: normal;">Telf :</span>
 		<b><?= $model[$i]->cliente->movil ?></b>
 	</div>
