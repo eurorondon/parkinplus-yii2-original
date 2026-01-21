@@ -73,9 +73,19 @@ for ($i = 0; $i < count($model); $i++) {
 		<b><?= date('H i', strtotime($model[$i]->created_at)) ?></b>
 	</div>
 
+	<?php
+	$pagoConfirmado = isset($model[$i]->pago_confirmado) && (int)$model[$i]->pago_confirmado === 1;
+	$isPagoOnlineConfirmado = $pagoConfirmado && (int)$model[$i]->id_tipo_pago === 5;
+	?>
+
 	<!-- CORRECCIÓN DE NEGRILLA PARA 'IMPORTE :' -->
 	<div align="right" style="text-transform: uppercase; font-size: 17px">
-		<span style="font-weight: normal;">Importe :</span> <b><?= $model[$i]->monto_total ?> €</b>
+		<?php if ($isPagoOnlineConfirmado) { ?>
+			<span style="font-weight: bold;">PAGADO :</span>
+		<?php } else { ?>
+			<span style="font-weight: normal;">Importe :</span>
+		<?php } ?>
+		<b><?= $model[$i]->monto_total ?> €</b>
 		<?php if ($model[$i]->cupon != NULL || $model[$i]->descuento == 'SI') { ?>
 			<br><span style="font-size:9px;">(Descuento Aplicado)</span>
 		<?php } ?>
@@ -221,7 +231,6 @@ for ($i = 0; $i < count($model); $i++) {
 		if (isset($model[$i]->tipoPago) && isset($model[$i]->tipoPago->descripcion)) {
 			$tipoPagoDescripcion = strtolower((string)$model[$i]->tipoPago->descripcion);
 		}
-		$pagoConfirmado = isset($model[$i]->pago_confirmado) && (int)$model[$i]->pago_confirmado === 1;
 		$isOnline = ((int)$model[$i]['id_tipo_pago'] === 5) || (strpos($tipoPagoDescripcion, 'online') !== false);
 		$isBizum = (strpos($tipoPagoDescripcion, 'bizum') !== false);
 		$paymentLabel = $isOnline && $isBizum ? 'ONLINE/BIZUM' : ($isBizum ? 'BIZUM' : 'ONLINE');

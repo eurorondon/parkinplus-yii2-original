@@ -69,8 +69,18 @@ foreach ($servicios as $servicie) {
 	</div>
 <?php endif; ?>
 
+<?php
+$pagoConfirmado = isset($model->pago_confirmado) && (int)$model->pago_confirmado === 1;
+$isPagoOnlineConfirmado = $pagoConfirmado && (int)$model->id_tipo_pago === 5;
+?>
+
 <div align="right" style="text-transform: uppercase; font-size: 17px;">
-	<span style="font-weight: normal;">Importe :</span> <b><?= Html::encode($model->monto_total) ?> €</b>
+	<?php if ($isPagoOnlineConfirmado): ?>
+		<span style="font-weight: bold;">PAGADO :</span>
+	<?php else: ?>
+		<span style="font-weight: normal;">Importe :</span>
+	<?php endif; ?>
+	<b><?= Html::encode($model->monto_total) ?> €</b>
 	<?php if ($model->cupon != NULL || $model->descuento == 'SI'): ?>
 		<br><span style="font-size:9px; font-weight: normal;">(Descuento Aplicado)</span>
 	<?php endif; ?>
@@ -194,7 +204,6 @@ foreach ($servicios as $servicie) {
 	if (isset($model->tipoPago) && isset($model->tipoPago->descripcion)) {
 		$tipoPagoDescripcion = strtolower((string)$model->tipoPago->descripcion);
 	}
-	$pagoConfirmado = isset($model->pago_confirmado) && (int)$model->pago_confirmado === 1;
 	$isOnline = ((int)$model['id_tipo_pago'] === 5) || (strpos($tipoPagoDescripcion, 'online') !== false);
 	$isBizum = (strpos($tipoPagoDescripcion, 'bizum') !== false);
 	$paymentLabel = $isOnline && $isBizum ? 'ONLINE/BIZUM' : ($isBizum ? 'BIZUM' : 'ONLINE');
