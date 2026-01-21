@@ -151,8 +151,18 @@ $PLAZA_RES_ID = 12;  // "Plaza reservada"
 <?php endif; ?>
 
 <div style="position: absolute; bottom: 0.5cm; left: 0.5cm; right: 0.5cm">
-	<?php if ($model['id_tipo_pago'] == 5): ?>
-		NOTA: LA RESERVA FUÉ PAGADA ONLINE
+	<?php
+	$tipoPagoDescripcion = '';
+	if (isset($model->tipoPago) && isset($model->tipoPago->descripcion)) {
+		$tipoPagoDescripcion = strtolower((string)$model->tipoPago->descripcion);
+	}
+	$pagoConfirmado = isset($model->pago_confirmado) && (int)$model->pago_confirmado === 1;
+	$isOnline = ((int)$model['id_tipo_pago'] === 5) || (strpos($tipoPagoDescripcion, 'online') !== false);
+	$isBizum = (strpos($tipoPagoDescripcion, 'bizum') !== false);
+	$paymentLabel = $isOnline && $isBizum ? 'ONLINE/BIZUM' : ($isBizum ? 'BIZUM' : 'ONLINE');
+	?>
+	<?php if ($pagoConfirmado && ($isOnline || $isBizum)): ?>
+		NOTA: LA RESERVA FUÉ PAGADA <?= $paymentLabel ?>
 	<?php endif; ?>
 	<hr style="margin: 0px 0px 10px 0px">
 	<div style="font-size: 10px; text-transform: uppercase;">
