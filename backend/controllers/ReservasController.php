@@ -1006,6 +1006,14 @@ class ReservasController extends Controller
                 $model->plan = 4;
             }
 
+            if ((int) $model->plan === 4) {
+                $cantBase = (int) ($_POST['cant_basico'] ?? 0);
+                if ($cantBase > 0) {
+                    $descuentoEconomico = min($cantBase, 18);
+                    $model->costo_servicios = max(0, (float) $model->costo_servicios - $descuentoEconomico);
+                }
+            }
+
             $id_usuario = Yii::$app->user->id;
             $fecha_creacion = date('Y-m-d H:i:s');
 
@@ -1068,6 +1076,7 @@ class ReservasController extends Controller
             $model->monto_factura = round($monto_factura, 2);
             //$model->costo_servicios_extra = 0;
             $model->monto_impuestos = round(($model->costo_servicios - $monto_factura), 2);
+            $model->monto_total = round((float) $model->costo_servicios + (float) ($model->costo_servicios_extra ?? 0), 2);
             $model->condiciones = 1;
             $model->medio_reserva = $medio;
             $model->agencia = $agencia;
