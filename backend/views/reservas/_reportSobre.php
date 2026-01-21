@@ -76,7 +76,7 @@ $isPagoOnlineConfirmado = $pagoConfirmado && (int)$model->id_tipo_pago === 5;
 
 <div align="right" style="text-transform: uppercase; font-size: 17px;">
 	<?php if ($isPagoOnlineConfirmado): ?>
-		<span style="font-weight: bold;">PAGADO :</span>
+		<span style="font-weight: bold;">*PAGADO*:</span>
 	<?php else: ?>
 		<span style="font-weight: normal;">Importe :</span>
 	<?php endif; ?>
