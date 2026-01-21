@@ -123,40 +123,75 @@ Modal::end();
 $ajaxUrl = Url::to(['reservas/total']);
 
 if ($tipo_afiliado == 0) {
+  $dateRange = ['between', 'created_at', date("Y-m-d", strtotime(date('Y-m-d') . "- 15 days")), date('Y-m-d')];
 
-  $totales = count(Reservas::find()->where(['!=', 'estatus', '10'])->andWhere(['between', 'created_at', date("Y-m-d", strtotime(date('Y-m-d') . "- 15 days")), date('Y-m-d')])->all());
+  $totales = (int) Reservas::find()
+    ->where(['!=', 'estatus', '10'])
+    ->andWhere($dateRange)
+    ->count();
 
-  $canceladas = Reservas::find()->where(['estatus' => '0'])->andWhere(['between', 'created_at', date("Y-m-d", strtotime(date('Y-m-d') . "- 15 days")), date('Y-m-d')])->all();
-  $nro_can = count($canceladas);
+  $nro_can = (int) Reservas::find()
+    ->where(['estatus' => '0'])
+    ->andWhere($dateRange)
+    ->count();
 
-  $pendientes = Reservas::find()->where(['estatus' => '1'])->andWhere(['between', 'created_at', date("Y-m-d", strtotime(date('Y-m-d') . "- 15 days")), date('Y-m-d')])->all();
-  $nro_pen = count($pendientes);
+  $nro_pen = (int) Reservas::find()
+    ->where(['estatus' => '1'])
+    ->andWhere($dateRange)
+    ->count();
 
-  $finalizadas = Reservas::find()->where(['estatus' => '2'])->andWhere(['between', 'created_at', date("Y-m-d", strtotime(date('Y-m-d') . "- 15 days")), date('Y-m-d')])->all();
-  $nro_fin = count($finalizadas);
+  $nro_fin = (int) Reservas::find()
+    ->where(['estatus' => '2'])
+    ->andWhere($dateRange)
+    ->count();
 
-  $activas = Reservas::find()->where(['estatus' => '3'])->andWhere(['between', 'created_at', date("Y-m-d", strtotime(date('Y-m-d') . "- 15 days")), date('Y-m-d')])->all();
-  $nro_act = count($activas);
+  $nro_act = (int) Reservas::find()
+    ->where(['estatus' => '3'])
+    ->andWhere($dateRange)
+    ->count();
 
-  $rezagadas = Reservas::find()->where(['estatus' => '4'])->andWhere(['between', 'created_at', date("Y-m-d", strtotime(date('Y-m-d') . "- 15 days")), date('Y-m-d')])->all();
-  $nro_res = count($rezagadas);
+  $nro_res = (int) Reservas::find()
+    ->where(['estatus' => '4'])
+    ->andWhere($dateRange)
+    ->count();
 } else {
-  $totales = count(Reservas::find()->where(['!=', 'estatus', '10'])->andWhere(['medio_reserva' => 4])->where(['between', 'created_at', date("Y-m-d", strtotime(date('Y-m-d') . "- 15 days")), date('Y-m-d')])->all());
+  $dateRange = ['between', 'created_at', date("Y-m-d", strtotime(date('Y-m-d') . "- 15 days")), date('Y-m-d')];
 
-  $canceladas = Reservas::find()->where(['estatus' => '0'])->andWhere(['medio_reserva' => 4])->andWhere(['between', 'created_at', date("Y-m-d", strtotime(date('Y-m-d') . "- 15 days")), date('Y-m-d')])->all();
-  $nro_can = count($canceladas);
+  $totales = (int) Reservas::find()
+    ->where(['!=', 'estatus', '10'])
+    ->andWhere(['medio_reserva' => 4])
+    ->andWhere($dateRange)
+    ->count();
 
-  $pendientes = Reservas::find()->where(['estatus' => '1'])->andWhere(['medio_reserva' => 4])->andWhere(['between', 'created_at', date("Y-m-d", strtotime(date('Y-m-d') . "- 15 days")), date('Y-m-d')])->all();
-  $nro_pen = count($pendientes);
+  $nro_can = (int) Reservas::find()
+    ->where(['estatus' => '0'])
+    ->andWhere(['medio_reserva' => 4])
+    ->andWhere($dateRange)
+    ->count();
 
-  $finalizadas = Reservas::find()->where(['estatus' => '2'])->andWhere(['medio_reserva' => 4])->andWhere(['between', 'created_at', date("Y-m-d", strtotime(date('Y-m-d') . "- 15 days")), date('Y-m-d')])->all();
-  $nro_fin = count($finalizadas);
+  $nro_pen = (int) Reservas::find()
+    ->where(['estatus' => '1'])
+    ->andWhere(['medio_reserva' => 4])
+    ->andWhere($dateRange)
+    ->count();
 
-  $activas = Reservas::find()->where(['estatus' => '3'])->andWhere(['medio_reserva' => 4])->andWhere(['between', 'created_at', date("Y-m-d", strtotime(date('Y-m-d') . "- 15 days")), date('Y-m-d')])->all();
-  $nro_act = count($activas);
+  $nro_fin = (int) Reservas::find()
+    ->where(['estatus' => '2'])
+    ->andWhere(['medio_reserva' => 4])
+    ->andWhere($dateRange)
+    ->count();
 
-  $rezagadas = Reservas::find()->where(['estatus' => '4'])->andWhere(['medio_reserva' => 4])->andWhere(['between', 'created_at', date("Y-m-d", strtotime(date('Y-m-d') . "- 15 days")), date('Y-m-d')])->all();
-  $nro_res = count($rezagadas);
+  $nro_act = (int) Reservas::find()
+    ->where(['estatus' => '3'])
+    ->andWhere(['medio_reserva' => 4])
+    ->andWhere($dateRange)
+    ->count();
+
+  $nro_res = (int) Reservas::find()
+    ->where(['estatus' => '4'])
+    ->andWhere(['medio_reserva' => 4])
+    ->andWhere($dateRange)
+    ->count();
 }
 
 $meses = ['01' => "ENERO", '02' => "FEBRERO", '03' => "MARZO", '04' => "ABRIL", '05' => "MAYO", '06' => "JUNIO", '07' => "JULIO", '08' => "AGOSTO", '09' => "SEPTIEMBRE", '10' => "OCTUBRE", '11' => "NOVIEMBRE", '12' => "DICIEMBRE"];
