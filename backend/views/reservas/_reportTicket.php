@@ -39,7 +39,7 @@ $marcaModelo = empty($model->coche->matricula)
 	: trim($model->coche->marca . ' ' . $model->coche->modelo);
 $pagoConfirmado = isset($model->pago_confirmado) && (int)$model->pago_confirmado === 1;
 $isOnlineConfirmado = ((int)$model['id_tipo_pago'] === 5) && $pagoConfirmado;
-$importeLabel = $isOnlineConfirmado ? 'PAGADO' : 'Importe';
+$importeLabel = $isOnlineConfirmado ? '**PAGADO**' : 'Importe';
 
 // Flags/constantes para filtrado de servicios
 $IS_PREMIUM   = ((int)$model->plan === 2);

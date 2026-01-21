@@ -49,7 +49,7 @@ for ($i = 0; $i < count($model); $i++) {
 	$planName[$i] = $planes[(int)$model[$i]->plan] ?? '';
 	$pagoConfirmado[$i] = isset($model[$i]->pago_confirmado) && (int)$model[$i]->pago_confirmado === 1;
 	$isOnlineConfirmado[$i] = ((int)$model[$i]['id_tipo_pago'] === 5) && $pagoConfirmado[$i];
-	$importeLabel[$i] = $isOnlineConfirmado[$i] ? 'PAGADO' : 'Importe';
+	$importeLabel[$i] = $isOnlineConfirmado[$i] ? '**PAGADO**' : 'Importe';
 }
 
 ?>
