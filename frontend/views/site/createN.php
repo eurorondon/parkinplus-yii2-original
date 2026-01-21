@@ -1074,17 +1074,17 @@ $this->registerJs("
     anio_in = String(fecha_entrada).substring(6, 10);
     dia_in = String(fecha_entrada).substring(0, 2);
     mes_in = String(fecha_entrada).substring(3, 5);
-    f1 = new Date(anio_in, mes_in, dia_in);
+    f1 = new Date(anio_in, parseInt(mes_in, 10) - 1, dia_in);
 
     anio_out = String(fecha_salida).substring(6, 10);
     dia_out = String(fecha_salida).substring(0, 2);
     mes_out = String(fecha_salida).substring(3, 5);
-    f2 = new Date(anio_out, mes_out, dia_out);
+    f2 = new Date(anio_out, parseInt(mes_out, 10) - 1, dia_out);
 
     var invalid = false;
     if (f1 > f2) {
       invalid = true;
-    } else if (f1 == f2 && hora_entrada > hora_salida) {
+    } else if (f1.getTime() === f2.getTime() && hora_entrada > hora_salida) {
       invalid = true;
     }
 
