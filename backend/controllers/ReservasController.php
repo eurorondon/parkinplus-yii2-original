@@ -937,6 +937,9 @@ class ReservasController extends Controller
         $agencia = $_GET['agencia'];
 
         $model = new Reservas();
+        if ((int) $medio === 2) {
+            $model->plan = 4;
+        }
 
         // $length = 8;
         // $characters = '0123456789';
@@ -998,6 +1001,10 @@ class ReservasController extends Controller
 
             $medio = $_POST['medio_reserva'];
             $agencia = $_POST['agencia'];
+
+            if ((int) $medio === 2) {
+                $model->plan = 4;
+            }
 
             $id_usuario = Yii::$app->user->id;
             $fecha_creacion = date('Y-m-d H:i:s');
