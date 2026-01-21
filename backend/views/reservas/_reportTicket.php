@@ -37,6 +37,9 @@ $planName = $planes[(int)$model->plan] ?? '';
 $marcaModelo = empty($model->coche->matricula)
 	? 'N/D'
 	: trim($model->coche->marca . ' ' . $model->coche->modelo);
+$pagoConfirmado = isset($model->pago_confirmado) && (int)$model->pago_confirmado === 1;
+$isOnlineConfirmado = ((int)$model['id_tipo_pago'] === 5) && $pagoConfirmado;
+$importeLabel = $isOnlineConfirmado ? 'PAGADO' : 'Importe';
 
 // Flags/constantes para filtrado de servicios
 $IS_PREMIUM   = ((int)$model->plan === 2);
@@ -52,7 +55,7 @@ $PLAZA_RES_ID = 12;  // "Plaza reservada"
 	<?= Html::img('@web/images/' . $medio, ['style' => ['width' => '20px']]); ?>
 </div>
 
-<div align="right" style="text-transform: uppercase; font-size: 12px">Importe : <b><?= Html::encode($model->monto_total) ?> €</b></div>
+<div align="right" style="text-transform: uppercase; font-size: 12px"><?= Html::encode($importeLabel) ?> : <b><?= Html::encode($model->monto_total) ?> €</b></div>
 <div align="right" style="text-transform: uppercase; font-size: 12px">Teléfono : <b><?= Html::encode($model->cliente->movil) ?></b></div>
 
 <div style="position: absolute; font-size: 8px; top: 5.5cm; right: 1.2cm;">
@@ -156,7 +159,6 @@ $PLAZA_RES_ID = 12;  // "Plaza reservada"
 	if (isset($model->tipoPago) && isset($model->tipoPago->descripcion)) {
 		$tipoPagoDescripcion = strtolower((string)$model->tipoPago->descripcion);
 	}
-	$pagoConfirmado = isset($model->pago_confirmado) && (int)$model->pago_confirmado === 1;
 	$isOnline = ((int)$model['id_tipo_pago'] === 5) || (strpos($tipoPagoDescripcion, 'online') !== false);
 	$isBizum = (strpos($tipoPagoDescripcion, 'bizum') !== false);
 	$paymentLabel = $isOnline && $isBizum ? 'ONLINE/BIZUM' : ($isBizum ? 'BIZUM' : 'ONLINE');

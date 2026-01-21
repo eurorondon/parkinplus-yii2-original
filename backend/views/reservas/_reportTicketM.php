@@ -47,6 +47,9 @@ for ($i = 0; $i < count($model); $i++) {
 	}
 
 	$planName[$i] = $planes[(int)$model[$i]->plan] ?? '';
+	$pagoConfirmado[$i] = isset($model[$i]->pago_confirmado) && (int)$model[$i]->pago_confirmado === 1;
+	$isOnlineConfirmado[$i] = ((int)$model[$i]['id_tipo_pago'] === 5) && $pagoConfirmado[$i];
+	$importeLabel[$i] = $isOnlineConfirmado[$i] ? 'PAGADO' : 'Importe';
 }
 
 ?>
@@ -69,7 +72,7 @@ for ($i = 0; $i < count($model); $i++) {
 		<div style="margin-top: -1.6cm; font-size: 17px; font-weight: bolder; font-family: sans-serif;">
 		</div>
 
-		<div align="right" style="text-transform: uppercase; font-size: 12px">Importe : <b><?= $model[$i]->monto_total ?> €</b></div>
+		<div align="right" style="text-transform: uppercase; font-size: 12px"><?= Html::encode($importeLabel[$i]) ?> : <b><?= $model[$i]->monto_total ?> €</b></div>
 		<div align="right" style="text-transform: uppercase; font-size: 12px">Teléfono : <b><?= $model[$i]->cliente->movil ?></b></div>
 
 		<div align="center">
@@ -179,7 +182,7 @@ for ($i = 0; $i < count($model); $i++) {
 			if (isset($model[$i]->tipoPago) && isset($model[$i]->tipoPago->descripcion)) {
 				$tipoPagoDescripcion = strtolower((string)$model[$i]->tipoPago->descripcion);
 			}
-			$pagoConfirmado = isset($model[$i]->pago_confirmado) && (int)$model[$i]->pago_confirmado === 1;
+			$pagoConfirmado = $pagoConfirmado[$i];
 			$isOnline = ((int)$model[$i]['id_tipo_pago'] === 5) || (strpos($tipoPagoDescripcion, 'online') !== false);
 			$isBizum = (strpos($tipoPagoDescripcion, 'bizum') !== false);
 			$paymentLabel = $isOnline && $isBizum ? 'ONLINE/BIZUM' : ($isBizum ? 'BIZUM' : 'ONLINE');
