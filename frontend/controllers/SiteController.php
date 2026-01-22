@@ -2359,6 +2359,32 @@ class SiteController extends Controller
                 $montoDiferencia = (float)$model->monto_total - $montoTotalAnterior;
                 $requiresAdjustmentPayment = (int)$model->pago_confirmado === 1 && $montoDiferencia > 0.01;
                 if ($requiresAdjustmentPayment) {
+                    $adjustmentItems = [];
+                    $oldStart = strtotime($modelOld->fecha_entrada . ' ' . $modelOld->hora_entrada);
+                    $oldEnd = strtotime($modelOld->fecha_salida . ' ' . $modelOld->hora_salida);
+                    $newStart = strtotime($model->fecha_entrada . ' ' . $model->hora_entrada);
+                    $newEnd = strtotime($model->fecha_salida . ' ' . $model->hora_salida);
+                    if ($oldStart !== false && $oldEnd !== false && $newStart !== false && $newEnd !== false) {
+                        $oldDays = (int)ceil((($oldEnd - $oldStart) / 3600) / 24);
+                        $newDays = (int)ceil((($newEnd - $newStart) / 3600) / 24);
+                        $oldDays = max(1, $oldDays);
+                        $newDays = max(1, $newDays);
+                        if ($newDays > $oldDays) {
+                            $adjustmentItems[] = 'Días adicionales de parking: +' . ($newDays - $oldDays);
+                        }
+                    }
+
+                    foreach ($extraChanges as $change) {
+                        $delta = (int)$change['new'] - (int)$change['old'];
+                        if ($delta > 0) {
+                            $label = $change['campo'];
+                            $label = preg_replace('/^servicio_/', '', $label);
+                            $label = str_replace('_', ' ', $label);
+                            $adjustmentItems[] = 'Servicio ' . $label . ': +' . $delta;
+                        }
+                    }
+
+                    $adjustmentAmountLabel = number_format($montoDiferencia, 2, ',', '.');
                     $this->layout = 'secondary';
 
                     \Yii::$app->session->open();
@@ -2413,6 +2439,8 @@ class SiteController extends Controller
                         'version' => $version,
                         'params' => $params,
                         'signature' => $signature,
+                        'adjustmentAmountLabel' => $adjustmentAmountLabel,
+                        'adjustmentItems' => $adjustmentItems,
                     ]);
                 }
                 $requiresPayment = (int)$model->pago_confirmado !== 1;
