@@ -1703,6 +1703,7 @@ class ReservasController extends Controller
     {
 
         $model = $this->findModel($id);
+        $montoTotalAnterior = $model->monto_total;
         $medio = $model->medio_reserva;
         $agencia = $model->agencia;
         $proxima_reserva = $model->nro_reserva;
@@ -1886,6 +1887,19 @@ class ReservasController extends Controller
                 Yii::error($model->errors, __METHOD__);
                 Yii::$app->session->setFlash('error', implode(', ', $model->getFirstErrors()));
                 throw new \yii\web\ServerErrorHttpException('No se pudo guardar la reserva.');
+            }
+
+            $montoTotalNuevo = $model->monto_total;
+            if (round((float) $montoTotalAnterior, 2) !== round((float) $montoTotalNuevo, 2)) {
+                $logCambio = new ReservasLogCambios();
+                $logCambio->reserva_id = $model->id;
+                $logCambio->campo = 'monto_total';
+                $logCambio->valor_anterior = (string) $montoTotalAnterior;
+                $logCambio->valor_nuevo = (string) $montoTotalNuevo;
+                $logCambio->fecha = date('Y-m-d H:i:s');
+                if (!$logCambio->save()) {
+                    Yii::warning($logCambio->errors, __METHOD__);
+                }
             }
 
 
