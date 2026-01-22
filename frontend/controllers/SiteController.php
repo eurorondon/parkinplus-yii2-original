@@ -2115,6 +2115,11 @@ class SiteController extends Controller
             $model->monto_factura = round($montonoiva, 2);
             $model->monto_impuestos = round($montoimp, 2);
 
+            if ((int)$modelOld->pago_confirmado === 1) {
+                $model->id_tipo_pago = $modelOld->id_tipo_pago;
+                $model->condiciones = $modelOld->condiciones;
+            }
+
             $idmax = UserCliente::find()->max('id');
             $iduc = $idmax + 1;
             $fecha_creacion = date('Y-m-d H:i:s');
@@ -2351,7 +2356,8 @@ class SiteController extends Controller
                 $model->save();
 
                 $isBizum = $this->isBizumPayment($model);
-                if ((int)$model->id_tipo_pago === 5 || $isBizum) {
+                $requiresPayment = (int)$model->pago_confirmado !== 1;
+                if ($requiresPayment && ((int)$model->id_tipo_pago === 5 || $isBizum)) {
                     $this->layout = 'secondary';
 
                     /*

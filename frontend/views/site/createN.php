@@ -53,6 +53,7 @@ echo "<div id='modalContent'></div>";
 
 Modal::end();
 
+$pagoRequerido = $model->factura != 1 && (int)$model->pago_confirmado !== 1;
 
 ?>
 
@@ -86,6 +87,7 @@ Modal::end();
       <input type="hidden" id="reserva" value="<?= $model->nro_reserva ?>">
       <input type="hidden" name="solicitud_factura" value="<?= $solicitud_factura ?? '' ?>">
       <input type="hidden" id="precio_dia" name="precio_dia" value="<?= $precio_dia ?>">
+      <input type="hidden" id="requiere_pago" value="<?= $pagoRequerido ? '1' : '0' ?>">
 
 
       <div class="reserva__ini col-sm-12 col-md-8 col-lg-8">
@@ -564,12 +566,12 @@ Modal::end();
 
 
             <h3 class="pb-3"
-              style="border-bottom: 1px solid #e7eaed; margin: 32px 0;display:<?= $model->factura == 1 ? 'none !important' : '' ?>">
+              style="border-bottom: 1px solid #e7eaed; margin: 32px 0;display:<?= $pagoRequerido ? '' : 'none !important' ?>">
               Forma de pago
             </h3>
 
             <div class="form-group mt-2 col-12 d-flex flex-column"
-              style="display:<?= $model->factura == 1 ? 'none !important' : '' ?>">
+              style="display:<?= $pagoRequerido ? '' : 'none !important' ?>">
               <div class="col-lg-6 col-xs-12">
                 <?= $form->field($model, 'id_tipo_pago')->widget(Select2::classname(), [
                   'data' => $tipos_pago,
@@ -586,7 +588,7 @@ Modal::end();
             </div>
 
             <div class="col-12 mt-4 d-flex justify-content-sm-end reserva__total__pagar"
-              style="display:<?= $model->factura == 1 ? 'none !important' : '' ?>">
+              style="display:<?= $pagoRequerido ? '' : 'none !important' ?>">
               <div
                 class="col-md-7 col-lg-9 fs-4 text-end mx-2 d-flex justify-content-end align-items-center totales-facturas"
                 id="subtotal-factura">
@@ -901,7 +903,15 @@ $this->registerJs("
 			if($('#reservas-factura').is(':checked') && $('#reservas-nif').val() === '' || $('#reservas-razon_social').val() === '' || $('#reservas-direccion').val() === '' || $('#reservas-ciudad').val() === '' || $('#reservas-provincias').val() === '' || $('#reservas-pais').val() === ''){
 				$('#factura_cliente').text('').append('<div class=\"subtitulo-reserva\" style=\"text-decoration: none;padding: 12px 0;\">* Debe llenar los campos de facturación</div>')
 				$('html, body').animate({ scrollTop: $('#facturacion').offset().top }, 1000);
-			}else if($('#reservas-id_tipo_pago').val() !== '' && $('#reservas-condiciones').is(':checked') && $('#reservas-id_tipo_pago').val() !== '' && $('#clientes-correo').val() !== '' && $('#clientes-movil').val() !== ''){
+      }else if($('#requiere_pago').val() === '1' && $('#reservas-id_tipo_pago').val() !== '' && $('#reservas-condiciones').is(':checked') && $('#reservas-id_tipo_pago').val() !== '' && $('#clientes-correo').val() !== '' && $('#clientes-movil').val() !== ''){
+			  $(this)
+				.text('')
+				.removeClass('btn-success')
+				.addClass('btn-primary')
+				.html('<span class=\"spinner-border spinner-border-sm\" role=\"status\" aria-hidden=\"true\"></span> Espere...')
+				.attr('disabled', 'disabled')
+				.trigger('submit');
+			}else if($('#requiere_pago').val() === '0' && $('#clientes-correo').val() !== '' && $('#clientes-movil').val() !== ''){
 			  $(this)
 				.text('')
 				.removeClass('btn-success')
