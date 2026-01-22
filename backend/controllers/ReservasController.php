@@ -18,6 +18,7 @@ use common\models\Agencias;
 use common\models\Configuracion;
 use common\models\ReservasServicios;
 use common\models\ReservasSearch;
+use common\models\ReservasLogCambios;
 use common\models\UserAfiliados;
 use common\models\PrecioTemporada;
 use common\models\EncuestaInicialSearch;
@@ -253,6 +254,24 @@ class ReservasController extends Controller
             ->limit(20)
             ->all();
 
+        $ajustesPago = [];
+        if (!empty($reservasConAjustePago)) {
+            $idsReservasConAjuste = ArrayHelper::getColumn($reservasConAjustePago, 'id');
+            $cambiosMontoTotal = ReservasLogCambios::find()
+                ->where(['reserva_id' => $idsReservasConAjuste, 'campo' => 'monto_total'])
+                ->orderBy(['fecha' => SORT_DESC, 'id' => SORT_DESC])
+                ->all();
+
+            foreach ($cambiosMontoTotal as $cambioMonto) {
+                if (!isset($ajustesPago[$cambioMonto->reserva_id])) {
+                    $ajustesPago[$cambioMonto->reserva_id] = [
+                        'anterior' => $cambioMonto->valor_anterior,
+                        'nuevo' => $cambioMonto->valor_nuevo,
+                    ];
+                }
+            }
+        }
+
         // 6. CONSULTA DE RESERVAS QUE NO SE ACTUALIZARON (por si alguna falló)
         $pendientesSinActualizar = Reservas::find()
             ->select(['id', 'nro_reserva', 'fecha_salida', 'estatus'])
@@ -276,6 +295,7 @@ class ReservasController extends Controller
             'anios' => $anos,
             'reservasConErrores' => $reservasConErrores,
             'reservasConAjustePago' => $reservasConAjustePago,
+            'ajustesPago' => $ajustesPago,
             'noActualizadas' => $noActualizadas,
             'fechaActual' => $fechaActual->format('Y-m-d H:i:s'),
             'pendientesSinActualizar' => $pendientesSinActualizar,
