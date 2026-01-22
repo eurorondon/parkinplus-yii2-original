@@ -186,19 +186,50 @@ $this->params['breadcrumbs'][] = 'Gestión de Reservas';
                 <th>Correo</th>
                 <th>Fecha Entrada</th>
                 <th>Fecha Salida</th>
-                <th>Total</th>
+                <th>Monto anterior</th>
+                <th>Monto nuevo</th>
+                <th>Diferencia</th>
                 <th>Actualizada</th>
               </tr>
             </thead>
             <tbody>
               <?php foreach ($reservasConAjustePago as $reserva): ?>
+                <?php
+                $ajustePago = $ajustesPago[$reserva->id] ?? null;
+                $montoAnterior = $ajustePago['anterior'] ?? null;
+                $montoNuevo = $ajustePago['nuevo'] ?? $reserva->monto_total;
+                $diferencia = null;
+                if (is_numeric($montoAnterior) && is_numeric($montoNuevo)) {
+                  $diferencia = (float) $montoNuevo - (float) $montoAnterior;
+                }
+                ?>
                 <tr>
                   <td><?= $reserva->nro_reserva ?></td>
                   <td><?= $reserva->cliente ? $reserva->cliente->nombre_completo : 'N/D' ?></td>
                   <td><?= $reserva->cliente ? $reserva->cliente->correo : 'N/D' ?></td>
                   <td><?= Yii::$app->formatter->asDate($reserva->fecha_entrada, 'php:d-m-Y') ?></td>
                   <td><?= Yii::$app->formatter->asDate($reserva->fecha_salida, 'php:d-m-Y') ?></td>
-                  <td><?= Yii::$app->formatter->asCurrency($reserva->monto_total, 'EUR') ?></td>
+                  <td>
+                    <?= is_numeric($montoAnterior) ? Yii::$app->formatter->asCurrency($montoAnterior, 'EUR') : 'N/D' ?>
+                  </td>
+                  <td>
+                    <?= is_numeric($montoNuevo) ? Yii::$app->formatter->asCurrency($montoNuevo, 'EUR') : 'N/D' ?>
+                  </td>
+                  <td>
+                    <?php if ($diferencia === null): ?>
+                      N/D
+                    <?php elseif ($diferencia > 0): ?>
+                      <span class="text-danger">
+                        <?= Yii::$app->formatter->asCurrency($diferencia, 'EUR') ?> (Cobrar)
+                      </span>
+                    <?php elseif ($diferencia < 0): ?>
+                      <span class="text-success">
+                        <?= Yii::$app->formatter->asCurrency(abs($diferencia), 'EUR') ?> (Devolver)
+                      </span>
+                    <?php else: ?>
+                      <?= Yii::$app->formatter->asCurrency(0, 'EUR') ?> (Sin diferencia)
+                    <?php endif; ?>
+                  </td>
                   <td><?= Yii::$app->formatter->asDatetime($reserva->updated_at, 'php:d-m-Y H:i') ?></td>
                 </tr>
               <?php endforeach; ?>
