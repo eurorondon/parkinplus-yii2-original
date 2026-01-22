@@ -2459,6 +2459,7 @@ class SiteController extends Controller
                                     'hora_entrada' => $model->hora_entrada,
                                     'fecha_salida' => $fecha2,
                                     'hora_salida' => $model->hora_salida,
+                                    'token' => $model->cod_valid,
                                 ]
                             );
 
@@ -2480,6 +2481,7 @@ class SiteController extends Controller
                                     'hora_entrada' => $model->hora_entrada,
                                     'fecha_salida' => $fecha2,
                                     'hora_salida' => $model->hora_salida,
+                                    'token' => $model->cod_valid,
                                 ]
                             );
                             $correo2->setTo('asistenciaplus00@gmail.com')
