@@ -2260,6 +2260,7 @@ class SiteController extends Controller
             $model->hora_salida = date('H:i', strtotime($model->hora_salida));
 
             $changes = $extraChanges;
+            $montoTotalCambio = false;
 
             $reservaAttrs = [
                 'fecha_entrada',
@@ -2285,6 +2286,9 @@ class SiteController extends Controller
             foreach ($reservaAttrs as $attr) {
                 if ($modelOld->$attr != $model->$attr) {
                     $changes[] = ['campo' => $attr, 'old' => $modelOld->$attr, 'new' => $model->$attr];
+                    if ($attr === 'monto_total') {
+                        $montoTotalCambio = true;
+                    }
                 }
             }
 
@@ -2308,7 +2312,7 @@ class SiteController extends Controller
 
             if ($model->save()) {
                 $this->notifyPaidReservationAdjustment($model, $montoTotalAnterior);
-                if ($model->estatus == 3) {
+                if ($model->estatus == 3 || ((int)$model->pago_confirmado === 1 && $montoTotalCambio)) {
                     foreach ($changes as $change) {
                         $log = new ReservasLogCambios();
                         $log->reserva_id = $model->id;
