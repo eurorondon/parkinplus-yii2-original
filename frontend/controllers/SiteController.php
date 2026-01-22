@@ -2356,6 +2356,65 @@ class SiteController extends Controller
                 $model->save();
 
                 $isBizum = $this->isBizumPayment($model);
+                $montoDiferencia = (float)$model->monto_total - $montoTotalAnterior;
+                $requiresAdjustmentPayment = (int)$model->pago_confirmado === 1 && $montoDiferencia > 0.01;
+                if ($requiresAdjustmentPayment) {
+                    $this->layout = 'secondary';
+
+                    \Yii::$app->session->open();
+                    \Yii::$app->session['reserva'] = $model;
+                    \Yii::$app->session['pago_ajuste'] = true;
+                    \Yii::$app->session['ajuste_monto'] = $montoDiferencia;
+                    \Yii::$app->session->close();
+
+                    $miObj = new RedsysAPI();
+
+                    $version = "HMAC_SHA256_V1";
+
+                    $redsysConfig = $this->getRedsysConfig();
+                    $url_tpv = (string)$redsysConfig['paymentUrl'];
+                    $merchantKey = (string)$redsysConfig['merchantKey'];
+
+                    $name = 'PARKING PLUS';
+                    $code = (string)$redsysConfig['fuc'];
+                    $terminal = (string)$redsysConfig['terminal'];
+                    $order = $model->nro_reserva . 'r1';
+                    $amount = $montoDiferencia * 100;
+
+                    $currency = (string)$redsysConfig['currency'];
+                    $consumerlng = '001';
+                    $transactionType = '0';
+                    $urlMerchant = 'https://www.parkingplus.es/';
+                    $frontendBaseUrl = $this->normalizeFrontendBaseUrl(Yii::$app->params['frontendBaseUrl']);
+                    $urlweb_ok = $frontendBaseUrl . '/site/tpvok';
+                    $urlweb_ko = $frontendBaseUrl . '/site/tpvko';
+
+                    $miObj->setParameter("DS_MERCHANT_AMOUNT", (string)$amount);
+                    $miObj->setParameter("DS_MERCHANT_CURRENCY", $currency);
+                    $miObj->setParameter("DS_MERCHANT_MERCHANTCODE", $code);
+                    $miObj->setParameter("DS_MERCHANT_MERCHANTURL", $urlMerchant);
+                    $miObj->setParameter("DS_MERCHANT_ORDER", $order);
+                    $miObj->setParameter("DS_MERCHANT_TERMINAL", $terminal);
+                    $miObj->setParameter("DS_MERCHANT_TRANSACTIONTYPE", $transactionType);
+                    $miObj->setParameter("DS_MERCHANT_URLKO", $urlweb_ko);
+                    $miObj->setParameter("DS_MERCHANT_URLOK", $urlweb_ok);
+
+                    $miObj->setParameter("DS_MERCHANT_MERCHANTNAME", $name);
+                    $miObj->setParameter("DS_MERCHANT_CONSUMERLANGUAGE", $consumerlng);
+
+                    if ($isBizum) {
+                        $miObj->setParameter("DS_MERCHANT_PAYMETHODS", "z");
+                    }
+
+                    $params = $miObj->createMerchantParameters();
+                    $signature = $miObj->createMerchantSignature($merchantKey);
+                    return $this->render('procesar-pago', [
+                        'url_tpv' => $url_tpv,
+                        'version' => $version,
+                        'params' => $params,
+                        'signature' => $signature,
+                    ]);
+                }
                 $requiresPayment = (int)$model->pago_confirmado !== 1;
                 if ($requiresPayment && ((int)$model->id_tipo_pago === 5 || $isBizum)) {
                     $this->layout = 'secondary';
@@ -2706,10 +2765,17 @@ class SiteController extends Controller
             return $this->redirect(['site/index']);
         }
 
+        $isAdjustmentPayment = (bool)Yii::$app->session->get('pago_ajuste', false);
         $isApproved = is_numeric($codigoRespuesta) && (int)$codigoRespuesta < 100;
         $reservaPersistida = Reservas::findOne($model->id);
         if ($reservaPersistida !== null) {
-            $reservaPersistida->pago_confirmado = $isApproved ? 1 : 0;
+            if ($isAdjustmentPayment) {
+                if ($isApproved) {
+                    $reservaPersistida->ajuste_pago_pendiente = 0;
+                }
+            } else {
+                $reservaPersistida->pago_confirmado = $isApproved ? 1 : 0;
+            }
             $reservaPersistida->save(false);
             $model = $reservaPersistida;
         }
@@ -2721,7 +2787,9 @@ class SiteController extends Controller
             $fecha2 = $model->fecha_salida;
             $model->fecha_salida = date("Y-m-d", strtotime($fecha2));
 
-            $this->sendReservaEmail($model, $fecha1, $fecha2);
+            if (!$isAdjustmentPayment) {
+                $this->sendReservaEmail($model, $fecha1, $fecha2);
+            }
 
             //unlink('../web/pdf/comprobante_'.$reserva.'.pdf');
 
@@ -2730,6 +2798,11 @@ class SiteController extends Controller
 
             return $this->redirect(['finalizada', 'reserva' => $model->nro_reserva]);
         } elseif ($signatureCalculada === $signatureRecibida) {
+            if ($isAdjustmentPayment) {
+                Yii::$app->session->setFlash('error', 'No se pudo procesar el pago del ajuste. Inténtelo nuevamente.');
+                Yii::$app->session->remove('pago_ajuste');
+                return $this->redirect(['finalizada', 'reserva' => $model->nro_reserva]);
+            }
             $paymentNotice = '¡Reserva confirmada! <strong>NO hemos podido procesar el pago online</strong>, pero no te preocupes: tu plaza está garantizada. Podrás realizar el pago en efectivo o con tarjeta al momento de entregar tu vehículo.';
             $paymentNoticePdf = 'No hemos podido procesar el pago online, Podrás realizar el pago en efectivo o con tarjeta al momento de entregar tu vehículo.';
             $fecha1 = $model->fecha_entrada;
@@ -2771,11 +2844,22 @@ class SiteController extends Controller
                 Yii::$app->session->setFlash('error', 'No se encontró la reserva de la sesión.');
                 return $this->redirect(['site/index']);
             }
+            $isAdjustmentPayment = (bool)Yii::$app->session->get('pago_ajuste', false);
             $reservaPersistida = Reservas::findOne($model->id);
             if ($reservaPersistida !== null) {
-                $reservaPersistida->pago_confirmado = 0;
+                if ($isAdjustmentPayment) {
+                    $reservaPersistida->ajuste_pago_pendiente = 1;
+                } else {
+                    $reservaPersistida->pago_confirmado = 0;
+                }
                 $reservaPersistida->save(false);
                 $model = $reservaPersistida;
+            }
+
+            if ($isAdjustmentPayment) {
+                Yii::$app->session->setFlash('error', 'No se pudo procesar el pago del ajuste. Inténtelo nuevamente.');
+                Yii::$app->session->remove('pago_ajuste');
+                return $this->redirect(['finalizada', 'reserva' => $model->nro_reserva]);
             }
 
             $paymentNotice = '¡Reserva confirmada! <strong>NO hemos podido procesar el pago online</strong>, pero no te preocupes: tu plaza está garantizada. Podrás realizar el pago en efectivo o con tarjeta al momento de entregar tu vehículo.';
