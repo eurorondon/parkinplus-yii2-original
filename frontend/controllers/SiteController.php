@@ -2266,6 +2266,7 @@ class SiteController extends Controller
                 'fecha_salida',
                 'hora_entrada',
                 'hora_salida',
+                'monto_total',
                 'terminal_entrada',
                 'terminal_salida',
                 'nro_vuelo_regreso',
