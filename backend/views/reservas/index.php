@@ -169,6 +169,45 @@ $this->params['breadcrumbs'][] = 'Gestión de Reservas';
   <div class="panel panel-default panel-index">
     <div class="panel-heading caja-title">Gestión de Reservas</div>
     <!--MODIF-->
+    <?php if (!empty($reservasConAjustePago)): ?>
+      <button class="btn btn-danger" type="button" data-toggle="collapse" data-target="#ajustesPago" aria-expanded="false" aria-controls="ajustesPago">
+        ⚠️ Mostrar ajustes en reservas pagadas (<?= count($reservasConAjustePago) ?>)
+      </button>
+
+      <div class="collapse panel-body gs1 pad-mob" id="ajustesPago">
+        <div class="card card-body">
+          <h4>⚠️ Reservas pagadas con ajuste pendiente</h4>
+          <p>Estas reservas ya tenían el pago confirmado y fueron modificadas. Revisar si aplica cobrar o devolver la diferencia.</p>
+          <table class="table table-bordered table-striped table-sm">
+            <thead>
+              <tr>
+                <th>Nro Reserva</th>
+                <th>Cliente</th>
+                <th>Correo</th>
+                <th>Fecha Entrada</th>
+                <th>Fecha Salida</th>
+                <th>Total</th>
+                <th>Actualizada</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php foreach ($reservasConAjustePago as $reserva): ?>
+                <tr>
+                  <td><?= $reserva->nro_reserva ?></td>
+                  <td><?= $reserva->cliente ? $reserva->cliente->nombre_completo : 'N/D' ?></td>
+                  <td><?= $reserva->cliente ? $reserva->cliente->correo : 'N/D' ?></td>
+                  <td><?= Yii::$app->formatter->asDate($reserva->fecha_entrada, 'php:d-m-Y') ?></td>
+                  <td><?= Yii::$app->formatter->asDate($reserva->fecha_salida, 'php:d-m-Y') ?></td>
+                  <td><?= Yii::$app->formatter->asCurrency($reserva->monto_total, 'EUR') ?></td>
+                  <td><?= Yii::$app->formatter->asDatetime($reserva->updated_at, 'php:d-m-Y H:i') ?></td>
+                </tr>
+              <?php endforeach; ?>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    <?php endif; ?>
+
     <?php if (!empty($reservasConErrores)): ?>
       <button class="btn btn-warning  " type="button" data-toggle="collapse" data-target="#erroresReservas" aria-expanded="false" aria-controls="erroresReservas">
         ⚠️ Mostrar reservas con posibles errores
