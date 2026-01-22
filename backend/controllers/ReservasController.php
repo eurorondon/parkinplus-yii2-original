@@ -246,7 +246,14 @@ class ReservasController extends Controller
     ";
         $reservasConErrores = $connection->createCommand($sqlErrores)->queryAll();
 
-        // 5. CONSULTA DE RESERVAS QUE NO SE ACTUALIZARON (por si alguna falló)
+        // 5. ALERTA DE AJUSTES EN RESERVAS PAGADAS
+        $reservasConAjustePago = Reservas::find()
+            ->where(['ajuste_pago_pendiente' => 1])
+            ->orderBy(['updated_at' => SORT_DESC])
+            ->limit(20)
+            ->all();
+
+        // 6. CONSULTA DE RESERVAS QUE NO SE ACTUALIZARON (por si alguna falló)
         $pendientesSinActualizar = Reservas::find()
             ->select(['id', 'nro_reserva', 'fecha_salida', 'estatus'])
             ->where(['<', 'fecha_salida', date('Y-m-d')])
@@ -255,19 +262,20 @@ class ReservasController extends Controller
             ->asArray()
             ->all();
 
-        // 6. LOG DE DEPURACIÓN
+        // 7. LOG DE DEPURACIÓN
         Yii::info("Actualización automática ejecutada. Fecha: " . $fechaActual->format('Y-m-d H:i:s'));
         if (!empty($noActualizadas)) {
             Yii::warning(count($noActualizadas) . " reservas no se actualizaron correctamente.");
         }
 
-        // 7. RENDER DE LA VISTA
+        // 8. RENDER DE LA VISTA
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'tipo_afiliado' => $tipo_afiliado,
             'anios' => $anos,
             'reservasConErrores' => $reservasConErrores,
+            'reservasConAjustePago' => $reservasConAjustePago,
             'noActualizadas' => $noActualizadas,
             'fechaActual' => $fechaActual->format('Y-m-d H:i:s'),
             'pendientesSinActualizar' => $pendientesSinActualizar,

@@ -2303,8 +2303,10 @@ class SiteController extends Controller
             }
 
             $model->actualizada = 1;
+            $montoTotalAnterior = (float)$modelOld->monto_total;
 
             if ($model->save()) {
+                $this->notifyPaidReservationAdjustment($model, $montoTotalAnterior);
                 if ($model->estatus == 3) {
                     foreach ($changes as $change) {
                         $log = new ReservasLogCambios();
@@ -2852,6 +2854,25 @@ class SiteController extends Controller
             } catch (\Exception $e) {
                 Yii::error('Error enviando correo TPV: ' . $e->getMessage(), __METHOD__);
             }
+        }
+    }
+
+    private function notifyPaidReservationAdjustment(Reservas $model, float $montoAnterior): void
+    {
+        if ((int)$model->pago_confirmado !== 1) {
+            return;
+        }
+
+        $montoActual = (float)$model->monto_total;
+        $diferencia = $montoActual - $montoAnterior;
+
+        if (abs($diferencia) < 0.01) {
+            return;
+        }
+
+        if ((int)$model->ajuste_pago_pendiente !== 1) {
+            $model->ajuste_pago_pendiente = 1;
+            $model->save(false);
         }
     }
 
