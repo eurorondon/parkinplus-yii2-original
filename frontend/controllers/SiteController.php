@@ -1170,8 +1170,13 @@ class SiteController extends Controller
 
             $model->id_coche = $this->resolveCarId($modelV);
 
+            $isPriorityPlan = ((int)$model->plan === 3);
+
             // === Bucle de servicios (igual que main, pero sin "Undefined index") ===
             foreach ($servicios as $ser) {
+                if ($isPriorityPlan && (int)$ser->id === 12) {
+                    continue;
+                }
                 $modelR = new ReservasServicios();
 
                 // Leer con defaults para evitar Undefined index
@@ -1634,8 +1639,13 @@ class SiteController extends Controller
             // Vincular coche
             $model->id_coche = $this->resolveCarId($modelV);
 
+            $isPriorityPlan = ((int)$model->plan === 3);
+
             // === Bucle de servicios (con defaults seguros) ===
             foreach ($servicios as $ser) {
+                if ($isPriorityPlan && (int)$ser->id === 12) {
+                    continue;
+                }
                 $precio_unitario = (float)$req->post('precio_unitario' . $ser->id, 0);
                 $cantidad        = (int)$req->post('cantidad' . $ser->id, 0);
                 $precio_total    = (float)$req->post('precio_total' . $ser->id, 0);
