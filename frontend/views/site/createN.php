@@ -494,7 +494,18 @@ $pagoRequerido = $model->factura != 1 && (int)$model->pago_confirmado !== 1;
                   style="<?= in_array($s->id, [9, 12]) ? 'display:none' : '' ?>">
                   <?= $form->field($model, 'tipo_servicio')->hiddenInput(['id' => 'tipo_servicio' . $s->id, 'value' => $s->fijo, 'name' => 'tipo_servicio' . $s->id])->label(false) ?>
 
-                  <?= $form->field($model, 'cantidad')->hiddenInput(['id' => 'cantidad' . $s->id, 'value' => 0, 'min' => 1, 'name' => 'cantidad' . $s->id])->label(false) ?>
+                  <?php
+                  $existingQty = 0;
+                  if (!$model->isNewRecord) {
+                    $existingQty = ($oldExtras ?? [])[$s->id] ?? 0;
+                  }
+                  ?>
+                  <?= $form->field($model, 'cantidad')->hiddenInput([
+                    'id' => 'cantidad' . $s->id,
+                    'value' => $existingQty,
+                    'min' => 1,
+                    'name' => 'cantidad' . $s->id
+                  ])->label(false) ?>
 
                   <div class="col-12 d-flex ser__extra_item">
 

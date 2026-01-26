@@ -2536,6 +2536,7 @@ class SiteController extends Controller
             'nocturno' => $extraNocturno,
             'type_reserva' => $type_reserva,
             'seleccionados' => $seleccionados,
+            'oldExtras' => $oldExtras,
             'token' => $_GET['token'],
             'solicitud_factura' => isset($_GET["invoice"]) && !empty($_GET["invoice"]) ? true : false
         ]);
