@@ -2195,6 +2195,9 @@ class SiteController extends Controller
                 $oldQty = $oldExtras[$sid] ?? 0;
                 $newQty = $newExtras[$sid] ?? 0;
                 if ($oldQty != $newQty) {
+                    if ((int)$sid === 11 && (int)$oldQty === 1 && (int)$newQty === 0) {
+                        continue;
+                    }
                     $campo = 'servicio_' . ($serviceNames[$sid] ?? $sid);
                     $extraChanges[] = ['campo' => $campo, 'old' => $oldQty, 'new' => $newQty];
                 }
