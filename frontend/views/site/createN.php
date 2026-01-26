@@ -470,19 +470,11 @@ $pagoRequerido = $model->factura != 1 && (int)$model->pago_confirmado !== 1;
               $oldExtras = $oldExtras ?? [];
               $limpiezaIds = $limpiezaIds ?? [1, 2, 3, 7, 8];
               $bloquearLimpieza = $bloquearLimpieza ?? false;
-              if ($bloquearLimpieza): ?>
-                <div class="col-12">
-                  <div class="alert alert-info mb-3" style="margin-top: 6px;">
-                    Tu reserva ya incluye un servicio de limpieza extra. Este servicio no puede modificarse desde esta
-                    pantalla.
-                  </div>
-                </div>
-              <?php endif; ?>
-              <?php
+
               foreach ($servicios as $s) {
                 if (in_array($s->id, [7])) {
                   $oldQty = $oldExtras[$s->id] ?? 0;
-                  ?>
+              ?>
                   <?= $form->field($model, 'tipo_servicio')->hiddenInput([
                     'id' => 'tipo_servicio' . $s->id,
                     'value' => $s->fijo,
@@ -501,7 +493,7 @@ $pagoRequerido = $model->factura != 1 && (int)$model->pago_confirmado !== 1;
                     'class' => 'form-control cantidad',
                     'name' => 'precio_unitario' . $s->id
                   ])->label(false) ?>
-                  <?php
+                <?php
                   continue; // omitir “Limpieza de cortesía”, “Plaza reservada” y “Techado”
                 }
                 $service = array($s->id => $s->nombre_servicio);
@@ -524,7 +516,7 @@ $pagoRequerido = $model->factura != 1 && (int)$model->pago_confirmado !== 1;
                     }
                   }
                 }
-              ?>
+                ?>
 
 
 
