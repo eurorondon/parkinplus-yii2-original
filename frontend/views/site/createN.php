@@ -468,6 +468,17 @@ $pagoRequerido = $model->factura != 1 && (int)$model->pago_confirmado !== 1;
             <div style="display:<?= $model->factura == 1 ? 'none !important' : '' ?>">
               <?php
               $oldExtras = $oldExtras ?? [];
+              $limpiezaIds = $limpiezaIds ?? [1, 2, 3, 7, 8];
+              $bloquearLimpieza = $bloquearLimpieza ?? false;
+              if ($bloquearLimpieza): ?>
+                <div class="col-12">
+                  <div class="alert alert-info mb-3" style="margin-top: 6px;">
+                    Tu reserva ya incluye un servicio de limpieza extra. Este servicio no puede modificarse desde esta
+                    pantalla.
+                  </div>
+                </div>
+              <?php endif; ?>
+              <?php
               foreach ($servicios as $s) {
                 if (in_array($s->id, [7])) {
                   $oldQty = $oldExtras[$s->id] ?? 0;
@@ -496,6 +507,7 @@ $pagoRequerido = $model->factura != 1 && (int)$model->pago_confirmado !== 1;
                 $service = array($s->id => $s->nombre_servicio);
                 $checked = "";
                 $oldQty = $oldExtras[$s->id] ?? 0;
+                $lockLimpieza = $bloquearLimpieza && in_array((int)$s->id, $limpiezaIds, true);
 
                 if (!$model->isNewRecord) {
                   if ($seleccionados != null) {
@@ -532,6 +544,7 @@ $pagoRequerido = $model->factura != 1 && (int)$model->pago_confirmado !== 1;
                             'checked' => $checked,
                             'class' => 'servicios form-check-input servi' . $s->id,
                             'precio' => $s->costo,
+                            'disabled' => $lockLimpieza,
                             'labelOptions' => ['class' => 'services']
                           ]
                         ])->label(false); ?>
@@ -544,6 +557,7 @@ $pagoRequerido = $model->factura != 1 && (int)$model->pago_confirmado !== 1;
                           'itemOptions' => [
                             'class' => 'servicios form-check-input servi' . $s->id,
                             'precio' => $s->costo,
+                            'disabled' => $lockLimpieza,
                             'labelOptions' => ['class' => 'services']
                           ]
                         ])->label(false); ?>
