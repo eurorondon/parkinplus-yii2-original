@@ -2023,6 +2023,15 @@ class SiteController extends Controller
 
         $seguro = Servicios::find()->where(['estatus' => '1'])->andWhere(['fijo' => '1'])->all();
 
+        $limpiezaIds = [1, 2, 3, 7, 8];
+        $bloquearLimpieza = false;
+        foreach ($oldExtras as $serviceId => $cantidad) {
+            if (in_array((int)$serviceId, $limpiezaIds, true) && (int)$cantidad > 0) {
+                $bloquearLimpieza = true;
+                break;
+            }
+        }
+
         $query = new Query();
         $query->select(
             [
@@ -2195,6 +2204,14 @@ class SiteController extends Controller
                         $newQty = $oldQty;
                     }
                     $newExtras[$ser->id] = $newQty;
+                }
+            }
+
+            if ($bloquearLimpieza) {
+                foreach ($limpiezaIds as $serviceId) {
+                    if (array_key_exists($serviceId, $newExtras) || array_key_exists($serviceId, $oldExtras)) {
+                        $newExtras[$serviceId] = $oldExtras[$serviceId] ?? 0;
+                    }
                 }
             }
 
@@ -2549,6 +2566,8 @@ class SiteController extends Controller
             'nocturno' => $extraNocturno,
             'type_reserva' => $type_reserva,
             'seleccionados' => $seleccionados,
+            'limpiezaIds' => $limpiezaIds,
+            'bloquearLimpieza' => $bloquearLimpieza,
             'token' => $_GET['token'],
             'solicitud_factura' => isset($_GET["invoice"]) && !empty($_GET["invoice"]) ? true : false
         ]);
