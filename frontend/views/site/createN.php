@@ -467,18 +467,44 @@ $pagoRequerido = $model->factura != 1 && (int)$model->pago_confirmado !== 1;
 
             <div style="display:<?= $model->factura == 1 ? 'none !important' : '' ?>">
               <?php
+              $oldExtras = $oldExtras ?? [];
               foreach ($servicios as $s) {
                 if (in_array($s->id, [7])) {
+                  $oldQty = $oldExtras[$s->id] ?? 0;
+                  ?>
+                  <?= $form->field($model, 'tipo_servicio')->hiddenInput([
+                    'id' => 'tipo_servicio' . $s->id,
+                    'value' => $s->fijo,
+                    'name' => 'tipo_servicio' . $s->id
+                  ])->label(false) ?>
+                  <?= $form->field($model, 'cantidad')->hiddenInput([
+                    'id' => 'cantidad' . $s->id,
+                    'value' => $oldQty,
+                    'min' => 1,
+                    'name' => 'cantidad' . $s->id
+                  ])->label(false) ?>
+                  <?= $form->field($model, 'precio_unitario')->hiddenInput([
+                    'id' => 'precio_unitario' . $s->id,
+                    'readonly' => true,
+                    'value' => $s->costo,
+                    'class' => 'form-control cantidad',
+                    'name' => 'precio_unitario' . $s->id
+                  ])->label(false) ?>
+                  <?php
                   continue; // omitir “Limpieza de cortesía”, “Plaza reservada” y “Techado”
                 }
                 $service = array($s->id => $s->nombre_servicio);
                 $checked = "";
+                $oldQty = $oldExtras[$s->id] ?? 0;
 
                 if (!$model->isNewRecord) {
                   if ($seleccionados != null) {
                     foreach ($seleccionados as $selec) {
                       if ($selec == $s->id) {
                         $checked = 'true';
+                        if ($oldQty === 0) {
+                          $oldQty = 1;
+                        }
                         break;
                       } else {
                         $checked = '';
@@ -494,7 +520,7 @@ $pagoRequerido = $model->factura != 1 && (int)$model->pago_confirmado !== 1;
                   style="<?= in_array($s->id, [9, 12]) ? 'display:none' : '' ?>">
                   <?= $form->field($model, 'tipo_servicio')->hiddenInput(['id' => 'tipo_servicio' . $s->id, 'value' => $s->fijo, 'name' => 'tipo_servicio' . $s->id])->label(false) ?>
 
-                  <?= $form->field($model, 'cantidad')->hiddenInput(['id' => 'cantidad' . $s->id, 'value' => 0, 'min' => 1, 'name' => 'cantidad' . $s->id])->label(false) ?>
+                  <?= $form->field($model, 'cantidad')->hiddenInput(['id' => 'cantidad' . $s->id, 'value' => $oldQty, 'min' => 1, 'name' => 'cantidad' . $s->id])->label(false) ?>
 
                   <div class="col-12 d-flex ser__extra_item">
 

@@ -2182,10 +2182,19 @@ class SiteController extends Controller
 
             $model->id_coche = $this->resolveCarId($modelV);
 
+            $selectedExtras = $_POST['Reservas']['servicios'] ?? [];
             $newExtras = [];
             foreach ($servicios as $ser) {
                 if ($ser->fijo == 2) {
-                    $newExtras[$ser->id] = (int)$_POST['cantidad' . $ser->id];
+                    $postKey = 'cantidad' . $ser->id;
+                    $newQty = isset($_POST[$postKey]) ? (int)$_POST[$postKey] : 0;
+                    $oldQty = $oldExtras[$ser->id] ?? 0;
+                    $isSelected = in_array((string)$ser->id, $selectedExtras, true)
+                        || in_array((int)$ser->id, $selectedExtras, true);
+                    if ($newQty === 0 && $oldQty > 0 && ($isSelected || (int)$ser->id === 7)) {
+                        $newQty = $oldQty;
+                    }
+                    $newExtras[$ser->id] = $newQty;
                 }
             }
 
@@ -2213,7 +2222,7 @@ class SiteController extends Controller
 
                 $modelR = new ReservasServicios();
                 $precio_unitario = $_POST['precio_unitario' . $ser->id];
-                $cantidad = $_POST['cantidad' . $ser->id];
+                $cantidad = $newExtras[$ser->id] ?? (int)$_POST['cantidad' . $ser->id];
                 $precio_total = $_POST['precio_unitario' . $ser->id];
                 $tipo_servicio = $_POST['tipo_servicio' . $ser->id];
 
@@ -2527,6 +2536,7 @@ class SiteController extends Controller
             'tipo_documento' => $tipo_documento,
             'terminales' => $terminales,
             'servicios' => $servicios,
+            'oldExtras' => $oldExtras,
             'seguro' => $seguro,
             'precio_diario' => $precio_diario,
             'tipos_pago' => $tipos_pago,
