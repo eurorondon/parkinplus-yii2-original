@@ -471,9 +471,11 @@ $pagoRequerido = $model->factura != 1 && (int)$model->pago_confirmado !== 1;
               $limpiezaIds = $limpiezaIds ?? [1, 2, 3, 7, 8];
               $bloquearLimpieza = $bloquearLimpieza ?? false;
               if ($bloquearLimpieza): ?>
-                <div class="alert alert-info">
-                  Tu reserva ya incluye un servicio de limpieza extra. Este servicio no puede modificarse desde esta
-                  pantalla.
+                <div class="col-12">
+                  <div class="alert alert-info mb-3" style="margin-top: 6px;">
+                    Tu reserva ya incluye un servicio de limpieza extra. Este servicio no puede modificarse desde esta
+                    pantalla.
+                  </div>
                 </div>
               <?php endif; ?>
               <?php
