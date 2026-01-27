@@ -1311,6 +1311,16 @@ class SiteController extends Controller
                     $code = (string)$redsysConfig['fuc'];
                     $terminal = (string)$redsysConfig['terminal'];
                     $order = $model->nro_reserva;
+                    if ($requiresAdjustmentPayment) {
+                        $base = substr((string)$model->nro_reserva, 0, 8);
+                        $timestampSuffix = substr(date('mdHis'), -3);
+                        $order = $base . 'A' . $timestampSuffix;
+                    }
+                    if ($requiresAdjustmentPayment) {
+                        $base = substr((string)$model->nro_reserva, 0, 8);
+                        $timestampSuffix = substr(date('mdHis'), -3);
+                        $order = $base . 'A' . $timestampSuffix;
+                    }
                     $amount = $model->monto_total * 100;
 
                     $currency = (string)$redsysConfig['currency'];
@@ -2394,8 +2404,13 @@ class SiteController extends Controller
 
                 $model->save();
 
+                $montoDiferencia = (float)$model->monto_total - $montoTotalAnterior;
+                $pagoOnlineOriginal = (int)$modelOld->pago_confirmado === 1
+                    && ((int)$modelOld->id_tipo_pago === 5 || $this->isBizumPayment($modelOld));
+                $requiresAdjustmentPayment = $pagoOnlineOriginal && $montoDiferencia > 0.01;
+
                 $isBizum = $this->isBizumPayment($model);
-                $requiresPayment = (int)$model->pago_confirmado !== 1;
+                $requiresPayment = (int)$model->pago_confirmado !== 1 || $requiresAdjustmentPayment;
                 if ($requiresPayment && ((int)$model->id_tipo_pago === 5 || $isBizum)) {
                     $this->layout = 'secondary';
 
@@ -2425,7 +2440,13 @@ class SiteController extends Controller
                     $code = (string)$redsysConfig['fuc'];
                     $terminal = (string)$redsysConfig['terminal'];
                     $order = $model->nro_reserva;
-                    $amount = $model->monto_total * 100;
+                    if ($requiresAdjustmentPayment) {
+                        $base = substr((string)$model->nro_reserva, 0, 8);
+                        $timestampSuffix = substr(date('mdHis'), -3);
+                        $order = $base . 'A' . $timestampSuffix;
+                    }
+                    $amountToCharge = $requiresAdjustmentPayment ? $montoDiferencia : (float)$model->monto_total;
+                    $amount = $amountToCharge * 100;
 
                     $currency = (string)$redsysConfig['currency'];
                     $consumerlng = '001';
@@ -2752,6 +2773,9 @@ class SiteController extends Controller
         $reservaPersistida = Reservas::findOne($model->id);
         if ($reservaPersistida !== null) {
             $reservaPersistida->pago_confirmado = $isApproved ? 1 : 0;
+            if ($isApproved) {
+                $reservaPersistida->ajuste_pago_pendiente = 0;
+            }
             $reservaPersistida->save(false);
             $model = $reservaPersistida;
         }
@@ -2772,8 +2796,7 @@ class SiteController extends Controller
 
             return $this->redirect(['finalizada', 'reserva' => $model->nro_reserva]);
         } elseif ($signatureCalculada === $signatureRecibida) {
-            $paymentNotice = '¡Reserva confirmada! <strong>NO hemos podido procesar el pago online</strong>, pero no te preocupes: tu plaza está garantizada. Podrás realizar el pago en efectivo o con tarjeta al momento de entregar tu vehículo.';
-            $paymentNoticePdf = 'No hemos podido procesar el pago online, Podrás realizar el pago en efectivo o con tarjeta al momento de entregar tu vehículo.';
+            [$paymentNotice, $paymentNoticePdf] = $this->buildPendingPaymentNotice($model);
             $fecha1 = $model->fecha_entrada;
             $model->fecha_entrada = date("Y-m-d", strtotime($fecha1));
             $fecha2 = $model->fecha_salida;
@@ -2820,8 +2843,7 @@ class SiteController extends Controller
                 $model = $reservaPersistida;
             }
 
-            $paymentNotice = '¡Reserva confirmada! <strong>NO hemos podido procesar el pago online</strong>, pero no te preocupes: tu plaza está garantizada. Podrás realizar el pago en efectivo o con tarjeta al momento de entregar tu vehículo.';
-            $paymentNoticePdf = 'No hemos podido procesar el pago online, Podrás realizar el pago en efectivo o con tarjeta al momento de entregar tu vehículo.';
+            [$paymentNotice, $paymentNoticePdf] = $this->buildPendingPaymentNotice($model);
             $fecha1 = $model->fecha_entrada;
             $model->fecha_entrada = date("Y-m-d", strtotime($fecha1));
             $fecha2 = $model->fecha_salida;
@@ -2929,6 +2951,43 @@ class SiteController extends Controller
             $model->ajuste_pago_pendiente = 1;
             $model->save(false);
         }
+    }
+
+    private function getPendingPaymentAmount(Reservas $reserva): ?float
+    {
+        if ((int)$reserva->ajuste_pago_pendiente !== 1) {
+            return null;
+        }
+
+        $ultimoCambio = ReservasLogCambios::find()
+            ->where(['reserva_id' => $reserva->id, 'campo' => 'monto_total'])
+            ->orderBy(['fecha' => SORT_DESC, 'id' => SORT_DESC])
+            ->one();
+
+        if ($ultimoCambio === null) {
+            return null;
+        }
+
+        $anterior = (float)$ultimoCambio->valor_anterior;
+        $nuevo = (float)$ultimoCambio->valor_nuevo;
+        $diferencia = $nuevo - $anterior;
+
+        return $diferencia > 0 ? $diferencia : null;
+    }
+
+    private function buildPendingPaymentNotice(Reservas $reserva): array
+    {
+        $paymentNotice = '¡Reserva confirmada! <strong>NO hemos podido procesar el pago online</strong>, pero no te preocupes: tu plaza está garantizada. Podrás realizar el pago en efectivo o con tarjeta al momento de entregar tu vehículo.';
+        $paymentNoticePdf = 'No hemos podido procesar el pago online, Podrás realizar el pago en efectivo o con tarjeta al momento de entregar tu vehículo.';
+
+        $pendiente = $this->getPendingPaymentAmount($reserva);
+        if ($pendiente !== null) {
+            $formatted = number_format($pendiente, 2, ',', '.');
+            $paymentNotice .= ' <strong>Importe pendiente:</strong> ' . $formatted . ' €.';
+            $paymentNoticePdf .= ' Importe pendiente: ' . $formatted . ' €.';
+        }
+
+        return [$paymentNotice, $paymentNoticePdf];
     }
 
     public function actionProcesada($id, $paymentId, $token, $PayerID, $signatureRecibida, $signatureCalculada)
