@@ -2394,8 +2394,13 @@ class SiteController extends Controller
 
                 $model->save();
 
+                $montoDiferencia = (float)$model->monto_total - $montoTotalAnterior;
+                $pagoOnlineOriginal = (int)$modelOld->pago_confirmado === 1
+                    && ((int)$modelOld->id_tipo_pago === 5 || $this->isBizumPayment($modelOld));
+                $requiresAdjustmentPayment = $pagoOnlineOriginal && $montoDiferencia > 0.01;
+
                 $isBizum = $this->isBizumPayment($model);
-                $requiresPayment = (int)$model->pago_confirmado !== 1;
+                $requiresPayment = (int)$model->pago_confirmado !== 1 || $requiresAdjustmentPayment;
                 if ($requiresPayment && ((int)$model->id_tipo_pago === 5 || $isBizum)) {
                     $this->layout = 'secondary';
 
@@ -2425,7 +2430,8 @@ class SiteController extends Controller
                     $code = (string)$redsysConfig['fuc'];
                     $terminal = (string)$redsysConfig['terminal'];
                     $order = $model->nro_reserva;
-                    $amount = $model->monto_total * 100;
+                    $amountToCharge = $requiresAdjustmentPayment ? $montoDiferencia : (float)$model->monto_total;
+                    $amount = $amountToCharge * 100;
 
                     $currency = (string)$redsysConfig['currency'];
                     $consumerlng = '001';
@@ -2752,6 +2758,9 @@ class SiteController extends Controller
         $reservaPersistida = Reservas::findOne($model->id);
         if ($reservaPersistida !== null) {
             $reservaPersistida->pago_confirmado = $isApproved ? 1 : 0;
+            if ($isApproved) {
+                $reservaPersistida->ajuste_pago_pendiente = 0;
+            }
             $reservaPersistida->save(false);
             $model = $reservaPersistida;
         }
