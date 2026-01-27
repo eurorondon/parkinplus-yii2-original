@@ -1312,10 +1312,14 @@ class SiteController extends Controller
                     $terminal = (string)$redsysConfig['terminal'];
                     $order = $model->nro_reserva;
                     if ($requiresAdjustmentPayment) {
-                        $order .= '-' . date('mdHis');
+                        $base = substr((string)$model->nro_reserva, 0, 7);
+                        $timestampSuffix = substr(date('mdHis'), -4);
+                        $order = $base . 'A' . $timestampSuffix;
                     }
                     if ($requiresAdjustmentPayment) {
-                        $order .= '-' . date('mdHis');
+                        $base = substr((string)$model->nro_reserva, 0, 7);
+                        $timestampSuffix = substr(date('mdHis'), -4);
+                        $order = $base . 'A' . $timestampSuffix;
                     }
                     $amount = $model->monto_total * 100;
 
@@ -2437,7 +2441,9 @@ class SiteController extends Controller
                     $terminal = (string)$redsysConfig['terminal'];
                     $order = $model->nro_reserva;
                     if ($requiresAdjustmentPayment) {
-                        $order .= '-' . date('mdHis');
+                        $base = substr((string)$model->nro_reserva, 0, 7);
+                        $timestampSuffix = substr(date('mdHis'), -4);
+                        $order = $base . 'A' . $timestampSuffix;
                     }
                     $amountToCharge = $requiresAdjustmentPayment ? $montoDiferencia : (float)$model->monto_total;
                     $amount = $amountToCharge * 100;
