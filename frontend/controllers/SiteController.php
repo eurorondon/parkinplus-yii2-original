@@ -1311,6 +1311,12 @@ class SiteController extends Controller
                     $code = (string)$redsysConfig['fuc'];
                     $terminal = (string)$redsysConfig['terminal'];
                     $order = $model->nro_reserva;
+                    if ($requiresAdjustmentPayment) {
+                        $order .= '-' . date('mdHis');
+                    }
+                    if ($requiresAdjustmentPayment) {
+                        $order .= '-' . date('mdHis');
+                    }
                     $amount = $model->monto_total * 100;
 
                     $currency = (string)$redsysConfig['currency'];
@@ -2430,6 +2436,9 @@ class SiteController extends Controller
                     $code = (string)$redsysConfig['fuc'];
                     $terminal = (string)$redsysConfig['terminal'];
                     $order = $model->nro_reserva;
+                    if ($requiresAdjustmentPayment) {
+                        $order .= '-' . date('mdHis');
+                    }
                     $amountToCharge = $requiresAdjustmentPayment ? $montoDiferencia : (float)$model->monto_total;
                     $amount = $amountToCharge * 100;
 
