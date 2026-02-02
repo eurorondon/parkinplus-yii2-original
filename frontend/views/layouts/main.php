@@ -281,6 +281,7 @@ AppAsset::register($this);
                 Copyright &copy; <?= Html::encode(Yii::$app->name) ?> <?= date('Y') ?>. Todos los derechos reservados |
                 <?= Html::a('Política de Privacidad', ['/site/privacidad'], ['target' => '_blank', 'style' => 'color: white;']) ?>
                 | <?= Html::a('Política de Privacidad App', ['/site/politica'], ['target' => '_blank', 'style' => 'color: white;']) ?>
+                | <?= Html::a('Eliminación de cuenta', ['/site/eliminacion-cuenta'], ['target' => '_blank', 'style' => 'color: white;']) ?>
                 | <?= Html::a('Política de Uso de
                 Cookies', ['/site/cookies'], ['target' => '_blank', 'style' => 'color: white;']) ?> |
                 <?= Html::a('Condiciones Generales de Contrato y Servicio', ['/site/condiciones'], ['target' => '_blank', 'style' => 'color: white;']) ?>

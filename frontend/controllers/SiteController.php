@@ -802,6 +802,11 @@ class SiteController extends Controller
         return $this->render('politica');
     }
 
+    public function actionEliminacionCuenta()
+    {
+        return $this->render('eliminacion-cuenta');
+    }
+
     public function actionCookies()
     {
         return $this->render('cookies');
