@@ -55,6 +55,14 @@ use yii\base\ErrorException;
  */
 class SiteController extends Controller
 {
+    public function beforeAction($action)
+    {
+        if ($action->id === 'notificacion') {
+            $this->enableCsrfValidation = false;
+        }
+
+        return parent::beforeAction($action);
+    }
     private function getRedsysConfig(): array
     {
         $redsysConfig = Yii::$app->params['redsys'] ?? [];
@@ -489,7 +497,57 @@ class SiteController extends Controller
 
     public function actionNotificacion()
     {
-        return $this->render('notificacion');
+        $miObj = new RedsysAPI();
+
+        $params = Yii::$app->request->post("Ds_MerchantParameters", Yii::$app->request->get("Ds_MerchantParameters"));
+        $signatureRecibida = Yii::$app->request->post("Ds_Signature", Yii::$app->request->get("Ds_Signature"));
+
+        Yii::$app->response->format = \yii\web\Response::FORMAT_RAW;
+
+        if ($params === null || $signatureRecibida === null) {
+            return 'NO_DATA';
+        }
+
+        $merchantParams = $miObj->decodeMerchantParameters($params);
+        $codigoRespuesta = $miObj->getParameter("Ds_Response");
+        $dsOrder = $miObj->getParameter("Ds_Order");
+
+        $redsysConfig = $this->getRedsysConfig();
+        $claveModuloAdmin = (string)$redsysConfig['merchantKey'];
+        $signatureCalculada = $miObj->createMerchantSignatureNotif($claveModuloAdmin, $params);
+
+        $isApproved = is_numeric($codigoRespuesta) && (int)$codigoRespuesta < 100;
+        $firmaValida = $signatureCalculada === $signatureRecibida;
+
+        $reserva = $this->findReservaByOrder($dsOrder);
+        if ($reserva !== null) {
+            $logEntry = [
+                'evento' => 'notificacion',
+                'ds_response' => $codigoRespuesta,
+                'ds_order' => $dsOrder,
+                'firma_valida' => $firmaValida,
+                'aprobado' => $isApproved,
+                'params' => $merchantParams,
+                'fecha' => date('c'),
+            ];
+            $reserva->pago_confirmado_firma_valida = $firmaValida ? 1 : 0;
+            $reserva->pago_confirmado_actualizado = date('Y-m-d H:i:s');
+            $reserva->pago_confirmado_log = $this->appendPagoConfirmadoLog(
+                $reserva->pago_confirmado_log,
+                $logEntry
+            );
+            if ($firmaValida) {
+                $reserva->pago_confirmado = $isApproved ? 1 : 0;
+                if ($isApproved) {
+                    $reserva->ajuste_pago_pendiente = 0;
+                }
+            }
+            $reserva->save(false);
+        } else {
+            Yii::warning('No se encontró reserva para Ds_Order en notificación TPV: ' . (string)$dsOrder, __METHOD__);
+        }
+
+        return 'OK';
     }
 
 
@@ -1326,8 +1384,8 @@ class SiteController extends Controller
                     $currency = (string)$redsysConfig['currency'];
                     $consumerlng = '001';
                     $transactionType = '0';
-                    $urlMerchant = 'https://www.parkingplus.es/';
                     $frontendBaseUrl = $this->normalizeFrontendBaseUrl(Yii::$app->params['frontendBaseUrl']);
+                    $urlMerchant = $frontendBaseUrl . '/site/notificacion';
                     $urlweb_ok = $frontendBaseUrl . '/site/tpvok';
                     $urlweb_ko = $frontendBaseUrl . '/site/tpvko';
 
@@ -1789,8 +1847,8 @@ class SiteController extends Controller
                     $currency      = (string)$redsysConfig['currency'];
                     $consumerlng   = '001';
                     $transactionType = '0';
-                    $urlMerchant   = 'https://www.parkingplus.es/';
                     $frontendBaseUrl = $this->normalizeFrontendBaseUrl(Yii::$app->params['frontendBaseUrl']);
+                    $urlMerchant = $frontendBaseUrl . '/site/notificacion';
                     $urlweb_ok     = $frontendBaseUrl . '/site/tpvok';
                     $urlweb_ko     = $frontendBaseUrl . '/site/tpvko';
 
@@ -2451,8 +2509,8 @@ class SiteController extends Controller
                     $currency = (string)$redsysConfig['currency'];
                     $consumerlng = '001';
                     $transactionType = '0';
-                    $urlMerchant = 'https://www.parkingplus.es/';
                     $frontendBaseUrl = $this->normalizeFrontendBaseUrl(Yii::$app->params['frontendBaseUrl']);
+                    $urlMerchant = $frontendBaseUrl . '/site/notificacion';
                     $urlweb_ok = $frontendBaseUrl . '/site/tpvok';
                     $urlweb_ko = $frontendBaseUrl . '/site/tpvko';
 
@@ -2752,9 +2810,10 @@ class SiteController extends Controller
         $params = $_GET["Ds_MerchantParameters"];
         $signatureRecibida = $_GET["Ds_Signature"];
 
-        $decodec = $miObj->decodeMerchantParameters($params);
+        $merchantParams = $miObj->decodeMerchantParameters($params);
 
         $codigoRespuesta = $miObj->getParameter("Ds_Response");
+        $dsOrder = $miObj->getParameter("Ds_Order");
 
         $redsysConfig = $this->getRedsysConfig();
         $claveModuloAdmin = (string)$redsysConfig['merchantKey'];
@@ -2772,7 +2831,22 @@ class SiteController extends Controller
         $isApproved = is_numeric($codigoRespuesta) && (int)$codigoRespuesta < 100;
         $reservaPersistida = Reservas::findOne($model->id);
         if ($reservaPersistida !== null) {
+            $logEntry = [
+                'evento' => 'tpvok',
+                'ds_response' => $codigoRespuesta,
+                'ds_order' => $dsOrder,
+                'firma_valida' => $signatureCalculada === $signatureRecibida,
+                'aprobado' => $isApproved,
+                'params' => $merchantParams,
+                'fecha' => date('c'),
+            ];
             $reservaPersistida->pago_confirmado = $isApproved ? 1 : 0;
+            $reservaPersistida->pago_confirmado_firma_valida = $signatureCalculada === $signatureRecibida ? 1 : 0;
+            $reservaPersistida->pago_confirmado_actualizado = date('Y-m-d H:i:s');
+            $reservaPersistida->pago_confirmado_log = $this->appendPagoConfirmadoLog(
+                $reservaPersistida->pago_confirmado_log,
+                $logEntry
+            );
             if ($isApproved) {
                 $reservaPersistida->ajuste_pago_pendiente = 0;
             }
@@ -2819,9 +2893,10 @@ class SiteController extends Controller
         $params = $_GET["Ds_MerchantParameters"];
         $signatureRecibida = $_GET["Ds_Signature"];
 
-        $decodec = $miObj->decodeMerchantParameters($params);
+        $merchantParams = $miObj->decodeMerchantParameters($params);
 
         $codigoRespuesta = $miObj->getParameter("Ds_Response");
+        $dsOrder = $miObj->getParameter("Ds_Order");
 
         $redsysConfig = $this->getRedsysConfig();
         $claveModuloAdmin = (string)$redsysConfig['merchantKey'];
@@ -2838,7 +2913,22 @@ class SiteController extends Controller
             }
             $reservaPersistida = Reservas::findOne($model->id);
             if ($reservaPersistida !== null) {
+                $logEntry = [
+                    'evento' => 'tpvko',
+                    'ds_response' => $codigoRespuesta,
+                    'ds_order' => $dsOrder,
+                    'firma_valida' => $signatureCalculada === $signatureRecibida,
+                    'aprobado' => false,
+                    'params' => $merchantParams,
+                    'fecha' => date('c'),
+                ];
                 $reservaPersistida->pago_confirmado = 0;
+                $reservaPersistida->pago_confirmado_firma_valida = $signatureCalculada === $signatureRecibida ? 1 : 0;
+                $reservaPersistida->pago_confirmado_actualizado = date('Y-m-d H:i:s');
+                $reservaPersistida->pago_confirmado_log = $this->appendPagoConfirmadoLog(
+                    $reservaPersistida->pago_confirmado_log,
+                    $logEntry
+                );
                 $reservaPersistida->save(false);
                 $model = $reservaPersistida;
             }
@@ -2951,6 +3041,39 @@ class SiteController extends Controller
             $model->ajuste_pago_pendiente = 1;
             $model->save(false);
         }
+    }
+
+    private function appendPagoConfirmadoLog(?string $currentLog, array $entry): string
+    {
+        $payload = json_encode($entry, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        if ($payload === false) {
+            $payload = '{"error":"no se pudo serializar el log de pago"}';
+        }
+
+        if ($currentLog === null || $currentLog === '') {
+            return $payload;
+        }
+
+        return $currentLog . PHP_EOL . $payload;
+    }
+
+    private function findReservaByOrder(?string $order): ?Reservas
+    {
+        if ($order === null || $order === '') {
+            return null;
+        }
+
+        $normalizedOrder = trim((string)$order);
+        $reserva = Reservas::find()->where(['nro_reserva' => $normalizedOrder])->one();
+        if ($reserva !== null) {
+            return $reserva;
+        }
+
+        if (preg_match('/^([0-9]{1,8})A/i', $normalizedOrder, $matches)) {
+            return Reservas::find()->where(['nro_reserva' => $matches[1]])->one();
+        }
+
+        return null;
     }
 
     private function getPendingPaymentAmount(Reservas $reserva): ?float
