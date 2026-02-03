@@ -542,6 +542,23 @@ class SiteController extends Controller
                     $reserva->ajuste_pago_pendiente = 0;
                 }
             }
+
+            if (
+                $firmaValida
+                && $isApproved
+                && (int)$reserva->pago_confirmado_correo_enviado !== 1
+                && $reserva->cliente !== null
+                && $reserva->cliente->correo !== null
+            ) {
+                $fecha1 = $reserva->fecha_entrada;
+                $fecha2 = $reserva->fecha_salida;
+                $reserva->fecha_entrada = date("Y-m-d", strtotime($fecha1));
+                $reserva->fecha_salida = date("Y-m-d", strtotime($fecha2));
+                $this->sendReservaEmail($reserva, $fecha1, $fecha2);
+                $reserva->pago_confirmado_correo_enviado = 1;
+                $reserva->pago_confirmado_correo_enviado_at = date('Y-m-d H:i:s');
+            }
+
             $reserva->save(false);
         } else {
             Yii::warning('No se encontró reserva para Ds_Order en notificación TPV: ' . (string)$dsOrder, __METHOD__);

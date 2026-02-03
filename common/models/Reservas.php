@@ -47,6 +47,8 @@ use yii\db\ActiveRecord;
  * @property string|null $pago_confirmado_log
  * @property int $pago_confirmado_firma_valida
  * @property string|null $pago_confirmado_actualizado
+ * @property int $pago_confirmado_correo_enviado
+ * @property string|null $pago_confirmado_correo_enviado_at
  * @property int $ajuste_pago_pendiente
  * @property string $created_at
  * @property int $created_by
@@ -127,9 +129,9 @@ class Reservas extends \yii\db\ActiveRecord
             [['fecha_salida'], 'validateFechaSalida'],
             [['cortesia', 'techado', 'fecha_entrada', 'hora_entrada', 'fecha_salida', 'hora_salida', 'created_at', 'updated_at'], 'safe'],
             [['id_cliente',  'factura_equipaje', 'factura', 'id_tipo_pago', 'condiciones', 'medio_reserva', 'estatus', 'created_by', 'updated_by', 'canceled_by', 'actualizada', 'evaluacion_enviada', 'plan'], 'integer'],
-            [['pago_confirmado', 'ajuste_pago_pendiente', 'pago_confirmado_firma_valida'], 'integer'],
+            [['pago_confirmado', 'ajuste_pago_pendiente', 'pago_confirmado_firma_valida', 'pago_confirmado_correo_enviado'], 'integer'],
             [['pago_confirmado_log'], 'string'],
-            [['pago_confirmado_actualizado'], 'safe'],
+            [['pago_confirmado_actualizado', 'pago_confirmado_correo_enviado_at'], 'safe'],
             [['nro_reserva', 'costo_servicios', 'costo_servicios_extra', 'monto_factura', 'monto_impuestos', 'monto_total', 'porcentaje_cupo', 'monto_des'], 'number'],
             [['plan'], 'in', 'range' => [1, 2, 3, 4]],
             [['terminal_entrada', 'terminal_salida', 'nro_vuelo_regreso', 'ciudad_procedencia', 'observaciones', 'razon_social', 'direccion', 'ciudad', 'provincia', 'pais', 'cupon', 'agencia', 'cod_valid'], 'string', 'max' => 255],
@@ -186,6 +188,8 @@ class Reservas extends \yii\db\ActiveRecord
             'pago_confirmado_log' => 'Pago confirmado log',
             'pago_confirmado_firma_valida' => 'Pago confirmado firma válida',
             'pago_confirmado_actualizado' => 'Pago confirmado actualizado',
+            'pago_confirmado_correo_enviado' => 'Pago confirmado correo enviado',
+            'pago_confirmado_correo_enviado_at' => 'Pago confirmado correo enviado fecha',
             'ajuste_pago_pendiente' => 'Ajuste de pago pendiente',
             'created_at' => 'Fecha de Reserva',
             'created_by' => 'Created By',
