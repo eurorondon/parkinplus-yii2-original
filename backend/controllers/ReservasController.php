@@ -2625,6 +2625,31 @@ class ReservasController extends Controller
         }
     }
 
+    public function actionClientesList($q = null, $id = null)
+    {
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+        if ($id !== null) {
+            $cliente = Clientes::find()->select(['id', 'nombre_completo'])->where(['id' => $id])->one();
+            if ($cliente) {
+                return ['results' => [['id' => $cliente->id, 'text' => $cliente->nombre_completo]]];
+            }
+            return ['results' => []];
+        }
+
+        $query = Clientes::find()->select(['id', 'nombre_completo'])->orderBy(['nombre_completo' => SORT_ASC]);
+        if (!empty($q)) {
+            $query->andWhere(['like', 'nombre_completo', $q]);
+        }
+
+        $clientes = $query->limit(20)->asArray()->all();
+        $results = array_map(static function ($cliente) {
+            return ['id' => $cliente['id'], 'text' => $cliente['nombre_completo']];
+        }, $clientes);
+
+        return ['results' => $results];
+    }
+
     public function actionVehiculos()
     {
         if (Yii::$app->request->isAjax) {
