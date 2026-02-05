@@ -29,12 +29,7 @@ AppAsset::register($this);
 <?php $this->beginBody() ?>
 <div class="wrap-login">
     <div class="nav navbar-inverse fixed-top barra">
-        <a href=<?= Url::toRoute('site/index'); ?>>
-            <?= Html::img('@web/images/txtparking.png', ['class'=>'img img-responsive parking-login']);?>
-            <span class="text-lema-login">Aparcamiento en Madrid</span>
-            <?= Html::img('@web/images/logo_login.png', ['class'=>'img img-responsive logo-login']);?>
-            <?= Html::img('@web/images/txtplus.png', ['class'=>'img img-responsive plus-login']);?>
-        </a>
+        <a href=<?= Url::toRoute('site/index'); ?>></a>
     </div>
 
     <div class="container">
