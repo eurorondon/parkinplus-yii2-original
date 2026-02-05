@@ -5,6 +5,8 @@ use yii\widgets\ActiveForm;
 use common\models\Clientes;
 use common\models\Agencias;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Url;
+use yii\web\JsExpression;
 use kartik\select2\Select2;
 use kartik\date\DatePicker;
 use common\models\UserAfiliados;
@@ -26,7 +28,13 @@ $estados = [
     4 => 'Rezagadas'
 ];
 
-$clientes = ArrayHelper::map(Clientes::find()->orderBy('nombre_completo')->all(), 'id', 'nombre_completo');
+$clientes = [];
+if (!empty($model->id_cliente)) {
+    $cliente = Clientes::find()->select(['id', 'nombre_completo'])->where(['id' => $model->id_cliente])->one();
+    if ($cliente) {
+        $clientes = [$cliente->id => $cliente->nombre_completo];
+    }
+}
 
 $agencias = ArrayHelper::map(Agencias::find()->orderBy('nombre')->all(), 'nombre', 'nombre');
 
@@ -81,7 +89,16 @@ if ($tipo_afiliado == 0) {
                 'data' => $clientes,
                 'options' => ['placeholder' => 'Selecccione un Cliente o Propietario'],
                 'pluginOptions' => [
-                    'allowClear' => true
+                    'allowClear' => true,
+                    'minimumInputLength' => 2,
+                    'ajax' => [
+                        'url' => Url::to(['reservas/clientes-list']),
+                        'dataType' => 'json',
+                        'delay' => 250,
+                        'data' => new JsExpression('function(params) { return { q: params.term }; }'),
+                    ],
+                    'templateResult' => new JsExpression('function(cliente) { return cliente.text; }'),
+                    'templateSelection' => new JsExpression('function(cliente) { return cliente.text; }'),
                 ],
             ])->label(false); ?>
         </div>

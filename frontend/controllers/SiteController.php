@@ -55,6 +55,14 @@ use yii\base\ErrorException;
  */
 class SiteController extends Controller
 {
+    public function beforeAction($action)
+    {
+        if ($action->id === 'notificacion') {
+            $this->enableCsrfValidation = false;
+        }
+
+        return parent::beforeAction($action);
+    }
     private function getRedsysConfig(): array
     {
         $redsysConfig = Yii::$app->params['redsys'] ?? [];
@@ -489,7 +497,74 @@ class SiteController extends Controller
 
     public function actionNotificacion()
     {
-        return $this->render('notificacion');
+        $miObj = new RedsysAPI();
+
+        $params = Yii::$app->request->post("Ds_MerchantParameters", Yii::$app->request->get("Ds_MerchantParameters"));
+        $signatureRecibida = Yii::$app->request->post("Ds_Signature", Yii::$app->request->get("Ds_Signature"));
+
+        Yii::$app->response->format = \yii\web\Response::FORMAT_RAW;
+
+        if ($params === null || $signatureRecibida === null) {
+            return 'NO_DATA';
+        }
+
+        $merchantParams = $miObj->decodeMerchantParameters($params);
+        $codigoRespuesta = $miObj->getParameter("Ds_Response");
+        $dsOrder = $miObj->getParameter("Ds_Order");
+
+        $redsysConfig = $this->getRedsysConfig();
+        $claveModuloAdmin = (string)$redsysConfig['merchantKey'];
+        $signatureCalculada = $miObj->createMerchantSignatureNotif($claveModuloAdmin, $params);
+
+        $isApproved = is_numeric($codigoRespuesta) && (int)$codigoRespuesta < 100;
+        $firmaValida = $signatureCalculada === $signatureRecibida;
+
+        $reserva = $this->findReservaByOrder($dsOrder);
+        if ($reserva !== null) {
+            $logEntry = [
+                'evento' => 'notificacion',
+                'ds_response' => $codigoRespuesta,
+                'ds_order' => $dsOrder,
+                'firma_valida' => $firmaValida,
+                'aprobado' => $isApproved,
+                'params' => $merchantParams,
+                'fecha' => date('c'),
+            ];
+            $reserva->pago_confirmado_firma_valida = $firmaValida ? 1 : 0;
+            $reserva->pago_confirmado_actualizado = date('Y-m-d H:i:s');
+            $reserva->pago_confirmado_log = $this->appendPagoConfirmadoLog(
+                $reserva->pago_confirmado_log,
+                $logEntry
+            );
+            if ($firmaValida) {
+                $reserva->pago_confirmado = $isApproved ? 1 : 0;
+                if ($isApproved) {
+                    $reserva->ajuste_pago_pendiente = 0;
+                }
+            }
+
+            if (
+                $firmaValida
+                && $isApproved
+                && (int)$reserva->pago_confirmado_correo_enviado !== 1
+                && $reserva->cliente !== null
+                && $reserva->cliente->correo !== null
+            ) {
+                $fecha1 = $reserva->fecha_entrada;
+                $fecha2 = $reserva->fecha_salida;
+                $reserva->fecha_entrada = date("Y-m-d", strtotime($fecha1));
+                $reserva->fecha_salida = date("Y-m-d", strtotime($fecha2));
+                $this->sendReservaEmail($reserva, $fecha1, $fecha2);
+                $reserva->pago_confirmado_correo_enviado = 1;
+                $reserva->pago_confirmado_correo_enviado_at = date('Y-m-d H:i:s');
+            }
+
+            $reserva->save(false);
+        } else {
+            Yii::warning('No se encontró reserva para Ds_Order en notificación TPV: ' . (string)$dsOrder, __METHOD__);
+        }
+
+        return 'OK';
     }
 
 
@@ -1311,13 +1386,23 @@ class SiteController extends Controller
                     $code = (string)$redsysConfig['fuc'];
                     $terminal = (string)$redsysConfig['terminal'];
                     $order = $model->nro_reserva;
+                    if ($requiresAdjustmentPayment) {
+                        $base = substr((string)$model->nro_reserva, 0, 8);
+                        $timestampSuffix = substr(date('mdHis'), -3);
+                        $order = $base . 'A' . $timestampSuffix;
+                    }
+                    if ($requiresAdjustmentPayment) {
+                        $base = substr((string)$model->nro_reserva, 0, 8);
+                        $timestampSuffix = substr(date('mdHis'), -3);
+                        $order = $base . 'A' . $timestampSuffix;
+                    }
                     $amount = $model->monto_total * 100;
 
                     $currency = (string)$redsysConfig['currency'];
                     $consumerlng = '001';
                     $transactionType = '0';
-                    $urlMerchant = 'https://www.parkingplus.es/';
                     $frontendBaseUrl = $this->normalizeFrontendBaseUrl(Yii::$app->params['frontendBaseUrl']);
+                    $urlMerchant = $frontendBaseUrl . '/site/notificacion';
                     $urlweb_ok = $frontendBaseUrl . '/site/tpvok';
                     $urlweb_ko = $frontendBaseUrl . '/site/tpvko';
 
@@ -1779,8 +1864,8 @@ class SiteController extends Controller
                     $currency      = (string)$redsysConfig['currency'];
                     $consumerlng   = '001';
                     $transactionType = '0';
-                    $urlMerchant   = 'https://www.parkingplus.es/';
                     $frontendBaseUrl = $this->normalizeFrontendBaseUrl(Yii::$app->params['frontendBaseUrl']);
+                    $urlMerchant = $frontendBaseUrl . '/site/notificacion';
                     $urlweb_ok     = $frontendBaseUrl . '/site/tpvok';
                     $urlweb_ko     = $frontendBaseUrl . '/site/tpvko';
 
@@ -2394,8 +2479,13 @@ class SiteController extends Controller
 
                 $model->save();
 
+                $montoDiferencia = (float)$model->monto_total - $montoTotalAnterior;
+                $pagoOnlineOriginal = (int)$modelOld->pago_confirmado === 1
+                    && ((int)$modelOld->id_tipo_pago === 5 || $this->isBizumPayment($modelOld));
+                $requiresAdjustmentPayment = $pagoOnlineOriginal && $montoDiferencia > 0.01;
+
                 $isBizum = $this->isBizumPayment($model);
-                $requiresPayment = (int)$model->pago_confirmado !== 1;
+                $requiresPayment = (int)$model->pago_confirmado !== 1 || $requiresAdjustmentPayment;
                 if ($requiresPayment && ((int)$model->id_tipo_pago === 5 || $isBizum)) {
                     $this->layout = 'secondary';
 
@@ -2425,13 +2515,19 @@ class SiteController extends Controller
                     $code = (string)$redsysConfig['fuc'];
                     $terminal = (string)$redsysConfig['terminal'];
                     $order = $model->nro_reserva;
-                    $amount = $model->monto_total * 100;
+                    if ($requiresAdjustmentPayment) {
+                        $base = substr((string)$model->nro_reserva, 0, 8);
+                        $timestampSuffix = substr(date('mdHis'), -3);
+                        $order = $base . 'A' . $timestampSuffix;
+                    }
+                    $amountToCharge = $requiresAdjustmentPayment ? $montoDiferencia : (float)$model->monto_total;
+                    $amount = $amountToCharge * 100;
 
                     $currency = (string)$redsysConfig['currency'];
                     $consumerlng = '001';
                     $transactionType = '0';
-                    $urlMerchant = 'https://www.parkingplus.es/';
                     $frontendBaseUrl = $this->normalizeFrontendBaseUrl(Yii::$app->params['frontendBaseUrl']);
+                    $urlMerchant = $frontendBaseUrl . '/site/notificacion';
                     $urlweb_ok = $frontendBaseUrl . '/site/tpvok';
                     $urlweb_ko = $frontendBaseUrl . '/site/tpvko';
 
@@ -2731,9 +2827,10 @@ class SiteController extends Controller
         $params = $_GET["Ds_MerchantParameters"];
         $signatureRecibida = $_GET["Ds_Signature"];
 
-        $decodec = $miObj->decodeMerchantParameters($params);
+        $merchantParams = $miObj->decodeMerchantParameters($params);
 
         $codigoRespuesta = $miObj->getParameter("Ds_Response");
+        $dsOrder = $miObj->getParameter("Ds_Order");
 
         $redsysConfig = $this->getRedsysConfig();
         $claveModuloAdmin = (string)$redsysConfig['merchantKey'];
@@ -2751,7 +2848,25 @@ class SiteController extends Controller
         $isApproved = is_numeric($codigoRespuesta) && (int)$codigoRespuesta < 100;
         $reservaPersistida = Reservas::findOne($model->id);
         if ($reservaPersistida !== null) {
+            $logEntry = [
+                'evento' => 'tpvok',
+                'ds_response' => $codigoRespuesta,
+                'ds_order' => $dsOrder,
+                'firma_valida' => $signatureCalculada === $signatureRecibida,
+                'aprobado' => $isApproved,
+                'params' => $merchantParams,
+                'fecha' => date('c'),
+            ];
             $reservaPersistida->pago_confirmado = $isApproved ? 1 : 0;
+            $reservaPersistida->pago_confirmado_firma_valida = $signatureCalculada === $signatureRecibida ? 1 : 0;
+            $reservaPersistida->pago_confirmado_actualizado = date('Y-m-d H:i:s');
+            $reservaPersistida->pago_confirmado_log = $this->appendPagoConfirmadoLog(
+                $reservaPersistida->pago_confirmado_log,
+                $logEntry
+            );
+            if ($isApproved) {
+                $reservaPersistida->ajuste_pago_pendiente = 0;
+            }
             $reservaPersistida->save(false);
             $model = $reservaPersistida;
         }
@@ -2772,8 +2887,7 @@ class SiteController extends Controller
 
             return $this->redirect(['finalizada', 'reserva' => $model->nro_reserva]);
         } elseif ($signatureCalculada === $signatureRecibida) {
-            $paymentNotice = '¡Reserva confirmada! <strong>NO hemos podido procesar el pago online</strong>, pero no te preocupes: tu plaza está garantizada. Podrás realizar el pago en efectivo o con tarjeta al momento de entregar tu vehículo.';
-            $paymentNoticePdf = 'No hemos podido procesar el pago online, Podrás realizar el pago en efectivo o con tarjeta al momento de entregar tu vehículo.';
+            [$paymentNotice, $paymentNoticePdf] = $this->buildPendingPaymentNotice($model);
             $fecha1 = $model->fecha_entrada;
             $model->fecha_entrada = date("Y-m-d", strtotime($fecha1));
             $fecha2 = $model->fecha_salida;
@@ -2796,9 +2910,10 @@ class SiteController extends Controller
         $params = $_GET["Ds_MerchantParameters"];
         $signatureRecibida = $_GET["Ds_Signature"];
 
-        $decodec = $miObj->decodeMerchantParameters($params);
+        $merchantParams = $miObj->decodeMerchantParameters($params);
 
         $codigoRespuesta = $miObj->getParameter("Ds_Response");
+        $dsOrder = $miObj->getParameter("Ds_Order");
 
         $redsysConfig = $this->getRedsysConfig();
         $claveModuloAdmin = (string)$redsysConfig['merchantKey'];
@@ -2815,13 +2930,27 @@ class SiteController extends Controller
             }
             $reservaPersistida = Reservas::findOne($model->id);
             if ($reservaPersistida !== null) {
+                $logEntry = [
+                    'evento' => 'tpvko',
+                    'ds_response' => $codigoRespuesta,
+                    'ds_order' => $dsOrder,
+                    'firma_valida' => $signatureCalculada === $signatureRecibida,
+                    'aprobado' => false,
+                    'params' => $merchantParams,
+                    'fecha' => date('c'),
+                ];
                 $reservaPersistida->pago_confirmado = 0;
+                $reservaPersistida->pago_confirmado_firma_valida = $signatureCalculada === $signatureRecibida ? 1 : 0;
+                $reservaPersistida->pago_confirmado_actualizado = date('Y-m-d H:i:s');
+                $reservaPersistida->pago_confirmado_log = $this->appendPagoConfirmadoLog(
+                    $reservaPersistida->pago_confirmado_log,
+                    $logEntry
+                );
                 $reservaPersistida->save(false);
                 $model = $reservaPersistida;
             }
 
-            $paymentNotice = '¡Reserva confirmada! <strong>NO hemos podido procesar el pago online</strong>, pero no te preocupes: tu plaza está garantizada. Podrás realizar el pago en efectivo o con tarjeta al momento de entregar tu vehículo.';
-            $paymentNoticePdf = 'No hemos podido procesar el pago online, Podrás realizar el pago en efectivo o con tarjeta al momento de entregar tu vehículo.';
+            [$paymentNotice, $paymentNoticePdf] = $this->buildPendingPaymentNotice($model);
             $fecha1 = $model->fecha_entrada;
             $model->fecha_entrada = date("Y-m-d", strtotime($fecha1));
             $fecha2 = $model->fecha_salida;
@@ -2929,6 +3058,76 @@ class SiteController extends Controller
             $model->ajuste_pago_pendiente = 1;
             $model->save(false);
         }
+    }
+
+    private function appendPagoConfirmadoLog(?string $currentLog, array $entry): string
+    {
+        $payload = json_encode($entry, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        if ($payload === false) {
+            $payload = '{"error":"no se pudo serializar el log de pago"}';
+        }
+
+        if ($currentLog === null || $currentLog === '') {
+            return $payload;
+        }
+
+        return $currentLog . PHP_EOL . $payload;
+    }
+
+    private function findReservaByOrder(?string $order): ?Reservas
+    {
+        if ($order === null || $order === '') {
+            return null;
+        }
+
+        $normalizedOrder = trim((string)$order);
+        $reserva = Reservas::find()->where(['nro_reserva' => $normalizedOrder])->one();
+        if ($reserva !== null) {
+            return $reserva;
+        }
+
+        if (preg_match('/^([0-9]{1,8})A/i', $normalizedOrder, $matches)) {
+            return Reservas::find()->where(['nro_reserva' => $matches[1]])->one();
+        }
+
+        return null;
+    }
+
+    private function getPendingPaymentAmount(Reservas $reserva): ?float
+    {
+        if ((int)$reserva->ajuste_pago_pendiente !== 1) {
+            return null;
+        }
+
+        $ultimoCambio = ReservasLogCambios::find()
+            ->where(['reserva_id' => $reserva->id, 'campo' => 'monto_total'])
+            ->orderBy(['fecha' => SORT_DESC, 'id' => SORT_DESC])
+            ->one();
+
+        if ($ultimoCambio === null) {
+            return null;
+        }
+
+        $anterior = (float)$ultimoCambio->valor_anterior;
+        $nuevo = (float)$ultimoCambio->valor_nuevo;
+        $diferencia = $nuevo - $anterior;
+
+        return $diferencia > 0 ? $diferencia : null;
+    }
+
+    private function buildPendingPaymentNotice(Reservas $reserva): array
+    {
+        $paymentNotice = '¡Reserva confirmada! <strong>NO hemos podido procesar el pago online</strong>, pero no te preocupes: tu plaza está garantizada. Podrás realizar el pago en efectivo o con tarjeta al momento de entregar tu vehículo.';
+        $paymentNoticePdf = 'No hemos podido procesar el pago online, Podrás realizar el pago en efectivo o con tarjeta al momento de entregar tu vehículo.';
+
+        $pendiente = $this->getPendingPaymentAmount($reserva);
+        if ($pendiente !== null) {
+            $formatted = number_format($pendiente, 2, ',', '.');
+            $paymentNotice .= ' <strong>Importe pendiente:</strong> ' . $formatted . ' €.';
+            $paymentNoticePdf .= ' Importe pendiente: ' . $formatted . ' €.';
+        }
+
+        return [$paymentNotice, $paymentNoticePdf];
     }
 
     public function actionProcesada($id, $paymentId, $token, $PayerID, $signatureRecibida, $signatureCalculada)
