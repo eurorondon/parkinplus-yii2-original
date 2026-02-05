@@ -81,6 +81,22 @@ AppAsset::register($this);
             width: 100%;
         }
 
+        .site-login .row {
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        .site-login .col-lg-4 {
+            float: none;
+            width: 100%;
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .site-login .col-lg-offset-4 {
+            margin-left: 0;
+        }
+
         /* Forzamos a que el contenedor de Yii y el input ocupen todo el ancho */
         .form-group,
         .field-loginform-username,
