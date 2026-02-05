@@ -54,16 +54,18 @@ AppAsset::register($this);
             justify-content: center;
             gap: 15px;
             margin-bottom: 30px;
+            white-space: nowrap;
+            /* Asegura una sola línea */
         }
 
         .brand-icon {
-            height: 60px;
+            height: 80px;
             width: auto;
         }
 
         .brand-name {
             text-align: left;
-            font-size: 1.6rem;
+            font-size: 2.5rem;
             font-weight: 800;
             color: #1a1a1a;
             line-height: 1.1;
@@ -79,6 +81,22 @@ AppAsset::register($this);
         /* --- CORRECCIÓN DE LOS INPUTS --- */
         .login-content {
             width: 100%;
+        }
+
+        .site-login .row {
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        .site-login .col-lg-4 {
+            float: none;
+            width: 100%;
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .site-login .col-lg-offset-4 {
+            margin-left: 0;
         }
 
         /* Forzamos a que el contenedor de Yii y el input ocupen todo el ancho */
@@ -159,7 +177,7 @@ AppAsset::register($this);
             <header class="login-header">
                 <div class="brand-container">
                     <?= Html::img('@web/images/logo_login.png', ['class' => 'brand-icon']); ?>
-                    <h1 class="brand-name">PARKING<br><span>PLUS</span></h1>
+                    <h1 class="brand-name">PARKING <span>PLUS</span></h1>
                 </div>
                 <p style="color: #9ca3af; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; margin-top: -20px; margin-bottom: 30px;">Gestión de Aparcamiento</p>
             </header>
