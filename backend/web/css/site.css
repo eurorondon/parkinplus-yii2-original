@@ -294,6 +294,27 @@ a.desc:after {
         width: 100%;
         padding: 10px 15px;
     }
+
+    .reservas-index .grid-view table {
+        table-layout: auto;
+    }
+
+    .reservas-index .grid-view th,
+    .reservas-index .grid-view td {
+        white-space: normal;
+        width: auto !important;
+        min-width: 0 !important;
+    }
+
+    .reservas-index .table > thead > tr > th,
+    .reservas-index .table > tbody > tr > th,
+    .reservas-index .table > tfoot > tr > th,
+    .reservas-index .table > thead > tr > td,
+    .reservas-index .table > tbody > tr > td,
+    .reservas-index .table > tfoot > tr > td {
+        padding: 6px 4px;
+        font-size: 0.85em;
+    }
 }
 
 .nav > li > form > button.logout:focus,
