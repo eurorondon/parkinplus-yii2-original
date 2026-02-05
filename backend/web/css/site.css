@@ -1454,71 +1454,74 @@ input[type="radio"], input[type="checkbox"] {
 /* CSS PARA LAYOUT DEL LOGIN PAGE */
 
 .barra {
-    min-height: 115px;
-    border-bottom: 4px solid #961007;
+    min-height: 70px;
+    border-bottom: 3px solid #961007;
 }
 
 .wrap-login {
     min-height: 100%;
     height: auto;
-    padding: 0 0 60px;
+    padding: 0 0 40px;
+    background-color: #f7f7f7;
 }
 
 .wrap-login > .container {
-    margin-top: 105px;
+    margin-top: 70px;
     border: 0px solid #333;
     padding-left: 0px;
     padding-right: 0px;
 }
 
 .logo-login {
-    padding: 10px;
-    width: 7.2%;
+    padding: 8px;
+    width: 5.5%;
     margin-left: auto;
     margin-right: auto;   
 }
 
 .parking-login {
-    font-size: 3.2em;
+    font-size: 2.4em;
     position: absolute;
-    top: 28px;
-    left: 500px; 
+    top: 16px;
+    left: 420px; 
     color: #fff;  
-    width: 11%;
+    width: 9%;
 }
 
 .text-lema-login {
-    font-size: 1.2em;
+    font-size: 1em;
     position: absolute;
-    top: 75px;
-    left: 775px;
+    top: 48px;
+    left: 640px;
     color: #fff;
 }
 
 .plus-login {
     position: absolute;
-    top: 28px;
-    left: 775px;
+    top: 16px;
+    left: 640px;
     color: #fff;
-    width: 6.5%;
+    width: 5%;
 }
 
 .login-content { 
-    padding: 0 30px 30px 30px;
-    border: 5px solid #fff;
-    color: #FFF;
+    padding: 10px 30px 30px 30px;
+    border: 0;
+    color: #333;
     border-radius: 12px;
-    background: rgba(169,3,41,1);
-    background: -moz-linear-gradient(left, rgba(169,3,41,1) 0%, rgba(143,2,34,1) 64%, rgba(109,0,25,1) 100%);
-    background: -webkit-gradient(left top, right top, color-stop(0%, rgba(169,3,41,1)), color-stop(64%, rgba(143,2,34,1)), color-stop(100%, rgba(109,0,25,1)));
-    background: -webkit-linear-gradient(left, rgba(169,3,41,1) 0%, rgba(143,2,34,1) 64%, rgba(109,0,25,1) 100%);
-    background: -o-linear-gradient(left, rgba(169,3,41,1) 0%, rgba(143,2,34,1) 64%, rgba(109,0,25,1) 100%);
-    background: -ms-linear-gradient(left, rgba(169,3,41,1) 0%, rgba(143,2,34,1) 64%, rgba(109,0,25,1) 100%);
-    background: linear-gradient(to right, rgba(169,3,41,1) 0%, rgba(143,2,34,1) 64%, rgba(109,0,25,1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a90329', endColorstr='#6d0019', GradientType=1 );    
-    -webkit-box-shadow: -14px -8px 103px -10px rgba(255,255,255,1);
-    -moz-box-shadow: -14px -8px 103px -10px rgba(255,255,255,1);
-    box-shadow: -14px -8px 103px -10px rgba(255,255,255,1);
+    background: #fff;
+    -webkit-box-shadow: 0 20px 60px rgba(0,0,0,.12);
+    -moz-box-shadow: 0 20px 60px rgba(0,0,0,.12);
+    box-shadow: 0 20px 60px rgba(0,0,0,.12);
+}
+
+.login-content h2 {
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+.login-content hr {
+    border-top: 1px solid #e5e5e5;
 }
 
 .text-info-al {
