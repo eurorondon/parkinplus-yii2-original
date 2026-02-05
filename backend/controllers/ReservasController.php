@@ -31,6 +31,7 @@ use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\ServerErrorHttpException;
+use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use kartik\mpdf\Pdf;
 use yii\db\Query;
@@ -77,6 +78,15 @@ class ReservasController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -2623,6 +2633,31 @@ class ReservasController extends Controller
 
             return ['datos' => $datos];
         }
+    }
+
+    public function actionClientesList($q = null, $id = null)
+    {
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+        if ($id !== null) {
+            $cliente = Clientes::find()->select(['id', 'nombre_completo'])->where(['id' => $id])->one();
+            if ($cliente) {
+                return ['results' => [['id' => $cliente->id, 'text' => $cliente->nombre_completo]]];
+            }
+            return ['results' => []];
+        }
+
+        $query = Clientes::find()->select(['id', 'nombre_completo'])->orderBy(['nombre_completo' => SORT_ASC]);
+        if (!empty($q)) {
+            $query->andWhere(['like', 'nombre_completo', $q]);
+        }
+
+        $clientes = $query->limit(20)->asArray()->all();
+        $results = array_map(static function ($cliente) {
+            return ['id' => $cliente['id'], 'text' => $cliente['nombre_completo']];
+        }, $clientes);
+
+        return ['results' => $results];
     }
 
     public function actionVehiculos()
