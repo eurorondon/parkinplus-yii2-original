@@ -21,13 +21,12 @@ AppAsset::register($this);
     <?php $this->head() ?>
 
     <style>
-        /* Estilos globales */
         body,
         html {
             height: 100%;
             margin: 0;
-            background-color: #f0f2f5;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f4f7f9;
+            font-family: 'Segoe UI', Roboto, sans-serif;
         }
 
         .login-page-wrapper {
@@ -35,21 +34,18 @@ AppAsset::register($this);
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            padding: 15px;
+            padding: 20px;
         }
 
         .login-card {
             background: #ffffff;
             width: 100%;
-            max-width: 420px;
-            padding: 2.5rem;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .login-header {
+            max-width: 450px;
+            /* Ancho ideal de la tarjeta */
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
             text-align: center;
-            margin-bottom: 2rem;
         }
 
         .brand-container {
@@ -57,79 +53,99 @@ AppAsset::register($this);
             align-items: center;
             justify-content: center;
             gap: 15px;
-            margin-bottom: 10px;
+            margin-bottom: 30px;
         }
 
         .brand-icon {
-            height: 64px;
+            height: 60px;
             width: auto;
         }
 
         .brand-name {
-            font-size: 1.8rem;
+            text-align: left;
+            font-size: 1.6rem;
             font-weight: 800;
             color: #1a1a1a;
-            line-height: 1;
+            line-height: 1.1;
             margin: 0;
             text-transform: uppercase;
-            text-align: left;
         }
 
-        /* Cambio de color a Rojo para PLUS */
         .brand-name span {
-            color: #e74c3c;
+            color: #b72025;
+            /* El rojo de tu logo */
         }
 
-        .brand-tagline {
-            font-size: 0.8rem;
-            color: #6c757d;
-            letter-spacing: 1.5px;
-            margin: 0;
-            text-transform: uppercase;
+        /* --- CORRECCIÓN DE LOS INPUTS --- */
+        .login-content {
+            width: 100%;
         }
 
-        /* Estilización de Formulario Yii2 */
-        .form-group {
-            margin-bottom: 1.2rem;
+        /* Forzamos a que el contenedor de Yii y el input ocupen todo el ancho */
+        .form-group,
+        .field-loginform-username,
+        .field-loginform-password {
+            width: 100% !important;
+            margin-bottom: 20px !important;
+            text-align: left;
+            /* Etiquetas a la izquierda */
         }
 
         .form-control {
-            height: 48px !important;
+            width: 100% !important;
+            /* Esto soluciona lo angosto */
+            display: block;
+            height: 50px !important;
             border-radius: 8px !important;
-            border: 1px solid #ced4da !important;
+            border: 1px solid #d1d5db !important;
             padding: 10px 15px !important;
+            font-size: 1rem !important;
+            box-sizing: border-box;
+            /* Asegura que el padding no rompa el ancho */
         }
 
-        /* Borde de foco también en rojo suave */
         .form-control:focus {
-            border-color: #e74c3c !important;
-            box-shadow: 0 0 0 0.2rem rgba(231, 76, 60, 0.1) !important;
+            border-color: #b72025 !important;
+            box-shadow: 0 0 0 3px rgba(183, 32, 37, 0.1) !important;
+            outline: none;
         }
 
-        /* Botón principal en ROJO para hacer match */
-        .btn-primary {
-            width: 100%;
-            height: 48px;
-            border-radius: 8px !important;
-            font-weight: 600 !important;
-            background-color: #e74c3c !important;
+        .control-label {
+            font-size: 12px !important;
+            font-weight: 700 !important;
+            text-transform: uppercase;
+            color: #4b5563;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        /* --- BOTÓN ROJO PROFESIONAL --- */
+        .btn-primary,
+        button[type="submit"] {
+            width: 100% !important;
+            height: 50px;
+            background-color: #b72025 !important;
+            /* Rojo corporativo */
             border: none !important;
-            margin-top: 10px;
+            border-radius: 8px !important;
+            color: white !important;
+            font-weight: 700 !important;
             text-transform: uppercase;
             letter-spacing: 1px;
-            color: #fff !important;
+            cursor: pointer;
             transition: background 0.3s ease;
+            margin-top: 10px;
         }
 
         .btn-primary:hover {
-            background-color: #c0392b !important;
-            box-shadow: 0 4px 12px rgba(231, 76, 60, 0.2);
+            background-color: #931a1e !important;
         }
 
+        /* Estilo para las alertas de error de Yii2 */
         .help-block-error {
-            color: #e74c3c;
-            font-size: 0.85rem;
-            margin-top: 5px;
+            font-size: 13px;
+            color: #dc2626;
+            margin-top: 4px;
         }
     </style>
 </head>
@@ -142,10 +158,10 @@ AppAsset::register($this);
 
             <header class="login-header">
                 <div class="brand-container">
-                    <?= Html::img('@web/images/logo_login.png', ['class' => 'brand-icon', 'alt' => 'Logo']); ?>
+                    <?= Html::img('@web/images/logo_login.png', ['class' => 'brand-icon']); ?>
                     <h1 class="brand-name">PARKING<br><span>PLUS</span></h1>
                 </div>
-                <p class="brand-tagline">Gestión de Aparcamiento</p>
+                <p style="color: #9ca3af; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; margin-top: -20px; margin-bottom: 30px;">Gestión de Aparcamiento</p>
             </header>
 
             <section class="login-content">
@@ -153,8 +169,8 @@ AppAsset::register($this);
                 <?= $content ?>
             </section>
 
-            <footer style="margin-top: 2.5rem; text-align: center; font-size: 0.7rem; color: #adb5bd; letter-spacing: 1px;">
-                &copy; <?= date('Y') ?> MADRID PARKING SYSTEM
+            <footer style="margin-top: 30px; font-size: 10px; color: #9ca3af; text-transform: uppercase;">
+                &copy; <?= date('Y') ?> Madrid Parking System
             </footer>
 
         </div>
