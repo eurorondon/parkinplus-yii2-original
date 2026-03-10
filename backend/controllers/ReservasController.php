@@ -196,8 +196,8 @@ class ReservasController extends Controller
             ->joinWith('cambios')
             ->where(['r.actualizada' => 1, 'r.estatus' => 3])
             ->andWhere(new Expression('reservas_log_cambios.fecha > r.fecha_entrada'))
-            ->distinct()
-            ->orderBy(['reservas_log_cambios.fecha' => SORT_DESC])
+            ->groupBy(['r.id'])
+            ->orderBy(['r.updated_at' => SORT_DESC])
             ->all();
 
         // 1. ACTUALIZACIÓN DE ESTATUS AUTOMÁTICA

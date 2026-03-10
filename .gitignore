@@ -44,3 +44,6 @@ phpunit.phar
 
 #ignore pdf
 *.pdf
+
+# ignore sql dumps
+*.sql
