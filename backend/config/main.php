@@ -17,7 +17,7 @@ $params = array_merge(
 
 return [
     'id' => 'app-backend',
-    'language' => 'es/ES',
+    'language' => 'es-ES',
     'name' => 'Parking Plus',    
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
