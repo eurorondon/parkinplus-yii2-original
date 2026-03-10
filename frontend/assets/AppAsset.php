@@ -28,7 +28,6 @@ class AppAsset extends AssetBundle
         'js/jquery.mask.js',
         'js/main.js',
         'js/app_parking.js',
-		'js/counter.js',
         'vendor/glightbox/js/glightbox.min.js'
     ];
     public $depends = [
