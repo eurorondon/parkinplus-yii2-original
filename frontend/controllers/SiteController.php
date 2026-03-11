@@ -2180,9 +2180,10 @@ class SiteController extends Controller
         if ($model->load(Yii::$app->request->post()) && $modelC->load(Yii::$app->request->post()) && $modelV->load(Yii::$app->request->post())) {
 
             if ($_POST['solicitud_factura']) {
-                // BUGFIX: guardar los datos de factura en la reserva ANTES de llamar
-                // a actionGenerarf, ya que éste lee directamente de la BD y los campos
-                // NIF, razón social, etc. aún no habían sido persistidos.
+                // Guardar los datos de factura en la reserva (factura=1 + NIF, razón social, etc.)
+                // NO se genera automáticamente el registro en facturas: el administrador
+                // debe presionar "Generar Factura" desde el backend para que aparezca
+                // en el listado de facturas.
                 $reservaFactura = Reservas::findOne($model->id);
                 if ($reservaFactura !== null) {
                     $reservaFactura->factura      = 1;
@@ -2195,8 +2196,6 @@ class SiteController extends Controller
                     $reservaFactura->pais         = $model->pais;
                     $reservaFactura->save(false);
                 }
-
-                $this->actionGenerarf($model->id);
 
                 $correo = Yii::$app->mailer->compose(
                     [
