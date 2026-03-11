@@ -2824,13 +2824,10 @@ class ReservasController extends Controller
 
                 $modelFactura->save();
 
-                $facturas = Facturas::find()->max('id');
-                if ($facturas == 0) {
-                    $facturas = Factureros::find()->where(['estatus' => '1'])->one();
-                    $idfactura = 1;
-                } else {
-                    $idfactura = $facturas;
-                }
+                // BUGFIX: usar $modelFactura->id directamente en lugar de re-consultar
+                // max('id'), que podría devolver el ID de otra factura diferente.
+                $idfactura = $modelFactura->id;
+
                 $model->id_factura = $idfactura;
                 $model->save();
 

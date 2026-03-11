@@ -2740,13 +2740,10 @@ class SiteController extends Controller
 
             $modelFactura->save();
 
-            $facturas = Facturas::find()->max('id');
-            if ($facturas == 0) {
-                $facturas = Factureros::find()->where(['estatus' => '1'])->one();
-                $idfactura = 1;
-            } else {
-                $idfactura = $facturas;
-            }
+            // BUGFIX: usar $modelFactura->id directamente en lugar de re-consultar
+            // max('id'), ya que esa consulta podría devolver el ID de otra factura
+            // con un ID superior, enlazando la reserva a la factura incorrecta.
+            $idfactura = $modelFactura->id;
 
             $model->id_factura = $idfactura;
             $model->save();
