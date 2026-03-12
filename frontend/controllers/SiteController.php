@@ -2771,13 +2771,11 @@ class SiteController extends Controller
 
             $reserva = Reservas::find()->where(['nro_reserva' => Yii::$app->request->post('reserva')])->one();
 
-            $buscaServicios = ReservasServicios::find()->where(['id_reserva' => $reserva->nro_reserva])->all();
-            foreach ($buscaServicios as $servicio) {
-                $rs = ReservasServicios::findOne($servicio->id);
-                $rs->delete();
+            if ($reserva !== null) {
+                $reserva->estatus = 0; // Cancelada
+                $reserva->canceled_by = Yii::$app->user->isGuest ? null : Yii::$app->user->id;
+                $reserva->save(false);
             }
-
-            $reserva->delete();
 
             Yii::$app->session->setFlash('success', 'Se ha realizado la anulación de la reserva de manera correcta.');
             return $this->redirect(['site/index']);
